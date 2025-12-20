@@ -1,0 +1,39 @@
+@import './styles/variables.css';
+
+.eita-input {
+  display: block;
+  width: 100%;
+  font-family: var(--eita-font-family);
+  font-size: var(--eita-font-size-base);
+  font-weight: var(--eita-font-weight-normal);
+  line-height: var(--eita-line-height-normal);
+  height: var(--eita-form-input-height);
+  padding: var(--eita-form-input-padding-y) var(--eita-form-input-padding-x);
+  background-color: var(--eita-form-input-bg);
+  color: var(--eita-form-input-text);
+  border: var(--eita-border-width) solid var(--eita-form-input-border);
+  border-radius: var(--eita-radius-md);
+  outline: none;
+  transition: border-color var(--eita-transition-fast), box-shadow var(--eita-transition-fast);
+}
+
+.eita-input::placeholder {
+  color: var(--eita-form-input-placeholder);
+  opacity: 1;
+}
+
+.eita-input:focus {
+  border-color: var(--eita-form-input-border-focus);
+  box-shadow: 0 0 0 var(--eita-focus-ring-width) var(--eita-focus-ring-color);
+}
+
+.eita-input:disabled {
+  background-color: var(--eita-form-input-disabled-bg);
+  border-color: var(--eita-form-input-disabled-border);
+  color: var(--eita-form-input-disabled-text);
+  cursor: not-allowed;
+}
+
+.eita-input:disabled::placeholder {
+  color: var(--eita-form-input-disabled-text);
+}

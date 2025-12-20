@@ -1,0 +1,22 @@
+@import './styles/variables.css';
+
+.eita-label {
+  display: inline-block;
+  font-family: var(--eita-font-family);
+  font-size: var(--eita-font-size-sm);
+  font-weight: var(--eita-font-weight-medium);
+  color: var(--eita-color-neutral-700);
+  line-height: var(--eita-line-height-normal);
+  margin-bottom: var(--eita-spacing-xs);
+  cursor: pointer;
+}
+
+.eita-label--required::after {
+  content: ' *';
+  color: var(--eita-color-error);
+  font-weight: var(--eita-font-weight-bold);
+}
+
+.eita-label:empty {
+  display: none;
+}
