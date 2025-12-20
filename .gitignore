@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+lib/
+*.bs.js
+*.res.mjs
+dist/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+.cache/
