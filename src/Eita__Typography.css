@@ -1,0 +1,102 @@
+.eita-typography {
+  margin: 0;
+  color: #1f2937;
+}
+
+/* Headings */
+.eita-typography--h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.eita-typography--h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.eita-typography--h3 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.eita-typography--h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.eita-typography--h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.eita-typography--h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Paragraph */
+.eita-typography--p {
+  font-size: 1rem;
+  line-height: 1.75;
+  font-weight: 400;
+}
+
+/* Lead paragraph */
+.eita-typography--lead {
+  font-size: 1.25rem;
+  line-height: 1.75;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+/* Small text */
+.eita-typography--small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+/* Muted text */
+.eita-typography--muted {
+  font-size: 1rem;
+  line-height: 1.75;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+/* Code */
+.eita-typography--code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  padding: 0.125rem 0.375rem;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem;
+  color: #1f2937;
+}
+
+/* Text alignment */
+.eita-typography--left {
+  text-align: left;
+}
+
+.eita-typography--center {
+  text-align: center;
+}
+
+.eita-typography--right {
+  text-align: right;
+}
+
+.eita-typography--justify {
+  text-align: justify;
+}

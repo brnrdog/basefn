@@ -213,6 +213,145 @@ module Demo = {
         />
       </div>
 
+      <Separator orientation={Separator.Horizontal} variant={Separator.Solid} />
+
+      <div style="margin-top: 3rem;">
+        <Typography
+          text={Signal.make("Foundation Components")}
+          variant={Typography.H2}
+          align={Typography.Left}
+        />
+        <Typography
+          text={Signal.make("Explore the Tier 1 foundation components below.")}
+          variant={Typography.Muted}
+        />
+      </div>
+
+      // Badges Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Badges")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Display status indicators and labels with various styles.")}
+        </p>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+          <Badge label={Signal.make("Default")} variant={Badge.Default} />
+          <Badge label={Signal.make("Primary")} variant={Badge.Primary} />
+          <Badge label={Signal.make("Secondary")} variant={Badge.Secondary} />
+          <Badge label={Signal.make("Success")} variant={Badge.Success} />
+          <Badge label={Signal.make("Warning")} variant={Badge.Warning} />
+          <Badge label={Signal.make("Error")} variant={Badge.Error} />
+        </div>
+        <div
+          style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; margin-top: 1rem;"
+        >
+          <Badge label={Signal.make("Small")} variant={Badge.Primary} size={Badge.Sm} />
+          <Badge label={Signal.make("Medium")} variant={Badge.Primary} size={Badge.Md} />
+          <Badge label={Signal.make("Large")} variant={Badge.Primary} size={Badge.Lg} />
+          <Badge label={Signal.make("Online")} variant={Badge.Success} dot={true} />
+          <Badge label={Signal.make("Away")} variant={Badge.Warning} dot={true} />
+        </div>
+      </div>
+
+      <Separator orientation={Separator.Horizontal} variant={Separator.Dashed} label={"Spinners"} />
+
+      // Spinners Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Spinners")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Loading indicators in different sizes and colors.")}
+        </p>
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+          <Spinner size={Spinner.Sm} variant={Spinner.Default} />
+          <Spinner size={Spinner.Md} variant={Spinner.Primary} />
+          <Spinner size={Spinner.Lg} variant={Spinner.Secondary} />
+          <Spinner size={Spinner.Xl} variant={Spinner.Primary} />
+        </div>
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem;">
+          <Spinner size={Spinner.Md} variant={Spinner.Primary} label="Loading..." />
+          <Spinner
+            size={Spinner.Lg}
+            variant={Spinner.Default}
+            label={Signal.get(isSubmitting) ? "Submitting..." : "Ready"}
+          />
+        </div>
+      </div>
+
+      <Separator orientation={Separator.Horizontal} variant={Separator.Dotted} />
+
+      // Keyboard Shortcuts Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Keyboard Shortcuts")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Display keyboard shortcuts in a visually appealing way.")}
+        </p>
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+          <div>
+            <span style="color: #6b7280; margin-right: 0.5rem;"> {Component.text("Copy:")} </span>
+            <Kbd keys={Signal.make(["Ctrl", "C"])} size={Kbd.Md} />
+          </div>
+          <div>
+            <span style="color: #6b7280; margin-right: 0.5rem;"> {Component.text("Paste:")} </span>
+            <Kbd keys={Signal.make(["Ctrl", "V"])} size={Kbd.Md} />
+          </div>
+          <div>
+            <span style="color: #6b7280; margin-right: 0.5rem;"> {Component.text("Save:")} </span>
+            <Kbd keys={Signal.make(["Ctrl", "S"])} size={Kbd.Md} />
+          </div>
+          <div>
+            <span style="color: #6b7280; margin-right: 0.5rem;">
+              {Component.text("Select All:")}
+            </span>
+            <Kbd keys={Signal.make(["Ctrl", "A"])} size={Kbd.Md} />
+          </div>
+        </div>
+        <div style="margin-top: 1rem;">
+          <Kbd keys={Signal.make(["Shift", "Alt", "F"])} size={Kbd.Sm} />
+          <span style="color: #6b7280; margin-left: 0.5rem;">
+            {Component.text("Format Document")}
+          </span>
+        </div>
+      </div>
+
+      <Separator orientation={Separator.Horizontal} variant={Separator.Solid} />
+
+      // Typography Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Typography")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Consistent text styling across your application.")}
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <Typography text={Signal.make("Heading 1")} variant={Typography.H1} />
+          <Typography text={Signal.make("Heading 2")} variant={Typography.H2} />
+          <Typography text={Signal.make("Heading 3")} variant={Typography.H3} />
+          <Typography text={Signal.make("Heading 4")} variant={Typography.H4} />
+          <Typography text={Signal.make("Heading 5")} variant={Typography.H5} />
+          <Typography text={Signal.make("Heading 6")} variant={Typography.H6} />
+          <Separator orientation={Separator.Horizontal} variant={Separator.Dashed} />
+          <Typography
+            text={Signal.make(
+              "This is a regular paragraph with normal text styling and comfortable line height.",
+            )}
+            variant={Typography.P}
+          />
+          <Typography
+            text={Signal.make(
+              "This is a lead paragraph that stands out with larger text and is perfect for introductions.",
+            )}
+            variant={Typography.Lead}
+          />
+          <Typography
+            text={Signal.make("This is small text, useful for captions and helper text.")}
+            variant={Typography.Small}
+          />
+          <Typography
+            text={Signal.make("This is muted text with reduced emphasis.")}
+            variant={Typography.Muted}
+          />
+          <Typography text={Signal.make("const hello = 'world'")} variant={Typography.Code} />
+        </div>
+      </div>
+
       <div
         style="margin-top: 3rem; padding: 1rem; background-color: #f3f4f6; border-radius: 0.5rem;"
       >
