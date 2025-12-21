@@ -29,6 +29,14 @@ module Demo = {
     let isSubmitting = Signal.make(false)
     let downloadProgress = Signal.make(65.0)
 
+    // Tier 3 component states
+    let isModalOpen = Signal.make(false)
+    let sliderValue = Signal.make(50.0)
+    let switchEnabled = Signal.make(false)
+    let darkModeSwitch = Signal.make(true)
+    let notificationsSwitch = Signal.make(false)
+    let toastVisible = Signal.make(false)
+
     // Event handlers
     let handleNameChange = evt => {
       let target = Obj.magic(evt)["target"]
@@ -538,6 +546,218 @@ module Demo = {
             />
           </div>
         </div>
+      </div>
+
+      <Separator
+        orientation={Separator.Horizontal} variant={Separator.Solid} label={"Tier 3"}
+      />
+
+      <div style="margin-top: 3rem;">
+        <Typography
+          text={Signal.make("Interactive Components")}
+          variant={Typography.H2}
+          align={Typography.Left}
+        />
+        <Typography
+          text={Signal.make("Explore the Tier 3 advanced interactive components below.")}
+          variant={Typography.Muted}
+        />
+      </div>
+
+      // Modal Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Modal / Dialog")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Display content in an overlay dialog.")}
+        </p>
+        <Button
+          label={Signal.make("Open Modal")}
+          onClick={_ => Signal.set(isModalOpen, true)}
+          variant={Button.Primary}
+        />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => Signal.set(isModalOpen, false)}
+          title="Example Modal"
+          size={Modal.Md}
+          footer={<div style="display: flex; gap: 0.5rem;">
+            <Button
+              label={Signal.make("Cancel")}
+              onClick={_ => Signal.set(isModalOpen, false)}
+              variant={Button.Ghost}
+            />
+            <Button
+              label={Signal.make("Confirm")}
+              onClick={_ => {
+                Console.log("Confirmed!")
+                Signal.set(isModalOpen, false)
+              }}
+              variant={Button.Primary}
+            />
+          </div>}
+        >
+          <p>
+            {Component.text(
+              "This is a modal dialog. You can include any content here. Click the backdrop or the close button to dismiss.",
+            )}
+          </p>
+          <p style="margin-top: 1rem;">
+            {Component.text("Modals are great for focused user interactions and confirmations.")}
+          </p>
+        </Modal>
+      </div>
+
+      // Switch Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Switch / Toggle")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Binary on/off switches for settings and preferences.")}
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <Switch checked={switchEnabled} label="Enable feature" />
+          <Switch checked={darkModeSwitch} label="Dark mode" size={Switch.Lg} />
+          <Switch checked={notificationsSwitch} label="Push notifications" size={Switch.Sm} />
+          <Switch
+            checked={Signal.make(true)} label="Disabled switch" disabled={true} size={Switch.Md}
+          />
+        </div>
+      </div>
+
+      // Slider Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Slider")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Select a value from a range.")}
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <Slider value={sliderValue} label="Volume" showValue={true} />
+          <Slider
+            value={Signal.make(25.0)}
+            label="Brightness"
+            min={0.0}
+            max={100.0}
+            step={5.0}
+            showValue={true}
+          />
+          <Slider
+            value={Signal.make(3.0)}
+            min={0.0}
+            max={5.0}
+            step={1.0}
+            label="Rating"
+            showValue={true}
+            markers={["0", "1", "2", "3", "4", "5"]}
+          />
+        </div>
+      </div>
+
+      // Tooltip Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Tooltip")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Show contextual information on hover.")}
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <Tooltip content="This appears on top" position={Tooltip.Top}>
+            <Button label={Signal.make("Hover me (top)")} variant={Button.Secondary} />
+          </Tooltip>
+          <Tooltip content="This appears on bottom" position={Tooltip.Bottom}>
+            <Button label={Signal.make("Hover me (bottom)")} variant={Button.Secondary} />
+          </Tooltip>
+          <Tooltip content="This appears on left" position={Tooltip.Left}>
+            <Button label={Signal.make("Hover me (left)")} variant={Button.Secondary} />
+          </Tooltip>
+          <Tooltip content="This appears on right" position={Tooltip.Right}>
+            <Button label={Signal.make("Hover me (right)")} variant={Button.Secondary} />
+          </Tooltip>
+        </div>
+      </div>
+
+      // Dropdown Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Dropdown Menu")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Contextual menu with actions.")}
+        </p>
+        <div style="display: flex; gap: 1rem;">
+          <Dropdown
+            trigger={<Button label={Signal.make("Actions")} variant={Button.Secondary} />}
+            items={[
+              Dropdown.Item({
+                label: "Edit",
+                onClick: () => Console.log("Edit clicked"),
+                disabled: None,
+                danger: None,
+              }),
+              Dropdown.Item({
+                label: "Duplicate",
+                onClick: () => Console.log("Duplicate clicked"),
+                disabled: None,
+                danger: None,
+              }),
+              Dropdown.Separator,
+              Dropdown.Item({
+                label: "Archive",
+                onClick: () => Console.log("Archive clicked"),
+                disabled: None,
+                danger: None,
+              }),
+              Dropdown.Item({
+                label: "Delete",
+                onClick: () => Console.log("Delete clicked"),
+                disabled: None,
+                danger: Some(true),
+              }),
+            ]}
+          />
+          <Dropdown
+            trigger={<Button label={Signal.make("More options")} variant={Button.Ghost} />}
+            items={[
+              Dropdown.Item({
+                label: "Settings",
+                onClick: () => Console.log("Settings"),
+                disabled: None,
+                danger: None,
+              }),
+              Dropdown.Item({
+                label: "Help",
+                onClick: () => Console.log("Help"),
+                disabled: None,
+                danger: None,
+              }),
+              Dropdown.Separator,
+              Dropdown.Item({
+                label: "Disabled item",
+                onClick: () => Console.log("Should not fire"),
+                disabled: Some(true),
+                danger: None,
+              }),
+            ]}
+            align=#right
+          />
+        </div>
+      </div>
+
+      // Toast Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Toast / Notification")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Temporary notification messages.")}
+        </p>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <Button
+            label={Signal.make("Show Toast")}
+            onClick={_ => Signal.set(toastVisible, true)}
+            variant={Button.Primary}
+          />
+        </div>
+        <Toast
+          title="Success!"
+          message="Your changes have been saved successfully."
+          variant={Toast.Success}
+          isVisible={toastVisible}
+          onClose={() => Console.log("Toast closed")}
+        />
       </div>
 
       <Separator
