@@ -10,13 +10,9 @@ type tab = {
 }
 
 @jsx.component
-let make = (
-  ~tabs: array<tab>,
-  ~defaultValue: option<string>=?,
-  ~activeTab: option<Signal.t<string>>=?,
-) => {
+let make = (~tabs: array<tab>, ~defaultValue: option<string>=?) => {
   // Use provided signal or create internal one
-  let internalActiveTab = Signal.make(
+  let activeTabSignal = Signal.make(
     switch defaultValue {
     | Some(value) => value
     | None =>
@@ -26,11 +22,6 @@ let make = (
       ->Option.getOr("")
     },
   )
-
-  let activeTabSignal = switch activeTab {
-  | Some(signal) => signal
-  | None => internalActiveTab
-  }
 
   let handleTabClick = (value: string, disabled: option<bool>) => {
     switch disabled {
@@ -66,15 +57,13 @@ let make = (
           ->Component.fragment}
         </div>
         <div class="eita-tabs__content">
-          {Component.LazyComponent(
-            () => {
-              let activeValue = Signal.get(activeTabSignal)
-              tabs
-              ->Array.find(tab => tab.value == activeValue)
-              ->Option.map(tab => tab.content)
-              ->Option.getOr(<> </>)
-            },
-          )}
+          {
+            let activeValue = Signal.get(activeTabSignal)
+            tabs
+            ->Array.find(tab => tab.value == activeValue)
+            ->Option.map(tab => tab.content)
+            ->Option.getOr(<> </>)
+          }
         </div>
       </div>,
     ]

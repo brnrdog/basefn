@@ -215,7 +215,6 @@ let passwordValue = Signal.make("")
                 </div>,
               },
             ]}
-            activeTab
           />
         },
         code: `let activeTab = Signal.make("tab1")
@@ -233,7 +232,6 @@ let passwordValue = Signal.make("")
       content: <div>Account content</div>,
     },
   ]}
-  activeTab
 />`,
       },
     ]

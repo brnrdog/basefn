@@ -12,8 +12,6 @@ type example = {
 
 @jsx.component
 let make = (~componentName: string) => {
-  let activeTab = Signal.make("demo")
-
   // Get examples for the component
   let examples = DocsExamples.getExamples(componentName)
   let title = componentName->String.replaceAll("-", " ")
@@ -53,7 +51,6 @@ let make = (~componentName: string) => {
                 </div>,
               },
             ]}
-            activeTab={activeTab}
           />
         </div>
       })
