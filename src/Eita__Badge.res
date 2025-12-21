@@ -39,7 +39,5 @@ let make = (
     "eita-badge " ++ variantClass ++ " " ++ sizeClass ++ dotClass
   }
 
-  <span class={getClassName()}>
-    {Component.SignalText(label)}
-  </span>
+  <span class={getClassName()}> {Component.SignalText(label)} </span>
 }

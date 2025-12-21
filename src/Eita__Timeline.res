@@ -55,13 +55,11 @@ let make = (~items: array<timelineItem>, ~orientation: orientation=Vertical) => 
         <div class="eita-timeline__content">
           <div class="eita-timeline__title"> {Component.text(item.title)} </div>
           {switch item.timestamp {
-          | Some(time) =>
-            <div class="eita-timeline__timestamp"> {Component.text(time)} </div>
+          | Some(time) => <div class="eita-timeline__timestamp"> {Component.text(time)} </div>
           | None => <> </>
           }}
           {switch item.description {
-          | Some(desc) =>
-            <div class="eita-timeline__description"> {Component.text(desc)} </div>
+          | Some(desc) => <div class="eita-timeline__description"> {Component.text(desc)} </div>
           | None => <> </>
           }}
         </div>

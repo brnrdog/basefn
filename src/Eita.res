@@ -1,5 +1,5 @@
-%%raw(`import './Eita.css'`)
-// Main Eita UI module - exposes all components and utilities
+%%raw(`import './eita.css'`)
+// Main eita UI module - exposes all components and utilities
 
 // Re-export component types
 type selectOption = Eita__Select.selectOption

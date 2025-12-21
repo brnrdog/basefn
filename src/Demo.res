@@ -1,7 +1,7 @@
-// Demo application showcasing Eita-UI components
+// Demo application showcasing eita-UI components
 
 %%raw(`import './styles/variables.css'`)
-%%raw(`import './Eita.css'`)
+%%raw(`import './eita.css'`)
 
 open Xote
 open Eita
@@ -120,7 +120,7 @@ module Demo = {
 
     <>
       {Component.textSignal(() => Signal.get(selectedOption))}
-      <h1> {Component.text("Eita-UI Component Library")} </h1>
+      <h1> {Component.text("eita-UI Component Library")} </h1>
       <p style="color: #6b7280; margin-bottom: 2rem;">
         {Component.text(
           "A demonstration of all form components with both static and reactive values.",
@@ -318,12 +318,18 @@ module Demo = {
           </div>
           <div>
             <Progress
-              value={Signal.make(75.0)} variant={Progress.Warning} showLabel={true} label="Processing"
+              value={Signal.make(75.0)}
+              variant={Progress.Warning}
+              showLabel={true}
+              label="Processing"
             />
           </div>
           <div>
             <Progress
-              value={Signal.make(100.0)} variant={Progress.Success} showLabel={true} label="Complete"
+              value={Signal.make(100.0)}
+              variant={Progress.Success}
+              showLabel={true}
+              label="Complete"
             />
           </div>
           <div>
@@ -384,7 +390,6 @@ module Demo = {
                   )}
                 </p>
               </div>,
-              disabled: None,
             },
             {
               value: "security",
@@ -404,25 +409,29 @@ module Demo = {
                   />
                 </div>
               </div>,
-              disabled: None,
             },
             {
               value: "notifications",
               label: "Notifications",
               content: <div>
-                <Typography text={Signal.make("Notification Preferences")} variant={Typography.H5} />
+                <Typography
+                  text={Signal.make("Notification Preferences")} variant={Typography.H5}
+                />
                 <p style="color: #6b7280; margin-top: 0.5rem;">
                   {Component.text("Choose how you want to receive notifications.")}
                 </p>
                 <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
-                  <Checkbox checked={Signal.make(true)} onChange={_ => ()} label="Email notifications" />
-                  <Checkbox checked={Signal.make(false)} onChange={_ => ()} label="SMS notifications" />
+                  <Checkbox
+                    checked={Signal.make(true)} onChange={_ => ()} label="Email notifications"
+                  />
+                  <Checkbox
+                    checked={Signal.make(false)} onChange={_ => ()} label="SMS notifications"
+                  />
                   <Checkbox
                     checked={Signal.make(true)} onChange={_ => ()} label="Push notifications"
                   />
                 </div>
               </div>,
-              disabled: None,
             },
             {
               value: "billing",
@@ -435,7 +444,7 @@ module Demo = {
                   )}
                 </p>
               </div>,
-              disabled: Some(true),
+              disabled: true,
             },
           ]}
         />
@@ -450,49 +459,43 @@ module Demo = {
           items={[
             {
               value: "faq1",
-              title: "What is Eita-UI?",
+              title: "What is eita-UI?",
               content: <p>
                 {Component.text(
-                  "Eita-UI is a modern, reactive UI component library built with ReScript and Xote. It provides a comprehensive set of accessible and customizable components for building web applications.",
+                  "eita-UI is a modern, reactive UI component library built with ReScript and Xote. It provides a comprehensive set of accessible and customizable components for building web applications.",
                 )}
               </p>,
-              disabled: None,
             },
             {
               value: "faq2",
-              title: "How do I install Eita-UI?",
+              title: "How do I install eita-UI?",
               content: <div>
                 <p>
                   {Component.text(
-                    "You can install Eita-UI via npm or yarn. Here's how to get started:",
+                    "You can install eita-UI via npm or yarn. Here's how to get started:",
                   )}
                 </p>
                 <br />
-                <Typography
-                  text={Signal.make("npm install eita-ui")} variant={Typography.Code}
-                />
+                <Typography text={Signal.make("npm install eita-ui")} variant={Typography.Code} />
               </div>,
-              disabled: None,
             },
             {
               value: "faq3",
-              title: "Is Eita-UI customizable?",
+              title: "Is eita-UI customizable?",
               content: <p>
                 {Component.text(
-                  "Yes! Eita-UI is fully customizable. You can override the default styles using CSS variables or by providing custom CSS classes. Each component accepts standard HTML attributes including className and style.",
+                  "Yes! eita-UI is fully customizable. You can override the default styles using CSS variables or by providing custom CSS classes. Each component accepts standard HTML attributes including className and style.",
                 )}
               </p>,
-              disabled: None,
             },
             {
               value: "faq4",
-              title: "Does Eita-UI support TypeScript?",
+              title: "Does eita-UI support TypeScript?",
               content: <p>
                 {Component.text(
-                  "Eita-UI is built with ReScript, which provides excellent type safety. While it doesn't directly use TypeScript, ReScript's type system is even more robust and catches errors at compile time.",
+                  "eita-UI is built with ReScript, which provides excellent type safety. While it doesn't directly use TypeScript, ReScript's type system is even more robust and catches errors at compile time.",
                 )}
               </p>,
-              disabled: None,
             },
           ]}
           multiple={true}
@@ -556,9 +559,7 @@ module Demo = {
         </div>
       </div>
 
-      <Separator
-        orientation={Separator.Horizontal} variant={Separator.Solid} label={"Tier 3"}
-      />
+      <Separator orientation={Separator.Horizontal} variant={Separator.Solid} label={"Tier 3"} />
 
       <div style="margin-top: 3rem;">
         <Typography
@@ -694,27 +695,20 @@ module Demo = {
               Dropdown.Item({
                 label: "Edit",
                 onClick: () => Console.log("Edit clicked"),
-                disabled: None,
-                danger: None,
               }),
               Dropdown.Item({
                 label: "Duplicate",
                 onClick: () => Console.log("Duplicate clicked"),
-                disabled: None,
-                danger: None,
               }),
               Dropdown.Separator,
               Dropdown.Item({
                 label: "Archive",
                 onClick: () => Console.log("Archive clicked"),
-                disabled: None,
-                danger: None,
               }),
               Dropdown.Item({
                 label: "Delete",
                 onClick: () => Console.log("Delete clicked"),
-                disabled: None,
-                danger: Some(true),
+                danger: true,
               }),
             ]}
           />
@@ -724,21 +718,16 @@ module Demo = {
               Dropdown.Item({
                 label: "Settings",
                 onClick: () => Console.log("Settings"),
-                disabled: None,
-                danger: None,
               }),
               Dropdown.Item({
                 label: "Help",
                 onClick: () => Console.log("Help"),
-                disabled: None,
-                danger: None,
               }),
               Dropdown.Separator,
               Dropdown.Item({
                 label: "Disabled item",
                 onClick: () => Console.log("Should not fire"),
-                disabled: Some(true),
-                danger: None,
+                disabled: true,
               }),
             ]}
             align=#right
@@ -768,15 +757,11 @@ module Demo = {
         />
       </div>
 
-      <Separator
-        orientation={Separator.Horizontal} variant={Separator.Solid} label={"Tier 4"}
-      />
+      <Separator orientation={Separator.Horizontal} variant={Separator.Solid} label={"Tier 4"} />
 
       <div style="margin-top: 3rem;">
         <Typography
-          text={Signal.make("Navigation & Layout")}
-          variant={Typography.H2}
-          align={Typography.Left}
+          text={Signal.make("Navigation & Layout")} variant={Typography.H2} align={Typography.Left}
         />
         <Typography
           text={Signal.make("Explore the Tier 4 navigation and layout components below.")}
@@ -904,15 +889,11 @@ module Demo = {
             </p>
             <div style="margin-top: 1.5rem;">
               <Label text="Name" />
-              <Input
-                value={Signal.make("")} type_={Input.Text} placeholder="Enter your name"
-              />
+              <Input value={Signal.make("")} type_={Input.Text} placeholder="Enter your name" />
             </div>
             <div style="margin-top: 1rem;">
               <Label text="Email" />
-              <Input
-                value={Signal.make("")} type_={Input.Email} placeholder="Enter your email"
-              />
+              <Input value={Signal.make("")} type_={Input.Email} placeholder="Enter your email" />
             </div>
             <div style="margin-top: 1rem;">
               <Label text="Message" />
@@ -1007,9 +988,7 @@ module Demo = {
 
       <div style="margin-top: 3rem;">
         <Typography
-          text={Signal.make("Application Layouts")}
-          variant={Typography.H2}
-          align={Typography.Left}
+          text={Signal.make("Application Layouts")} variant={Typography.H2} align={Typography.Left}
         />
         <Typography
           text={Signal.make(
@@ -1037,46 +1016,46 @@ module Demo = {
             >
               <AppLayout
                 sidebar={<Sidebar
-                  logo={Component.text("Eita UI")}
+                  logo={Component.text("eita UI")}
                   sections={[
-                      {
-                        title: Some("Main"),
-                        items: [
-                          {
-                            label: "Dashboard",
-                            icon: Some("\u2302"),
-                            active: Signal.get(activeNavItem) == "home",
-                            onClick: () => Signal.set(activeNavItem, "home"),
-                          },
-                          {
-                            label: "Analytics",
-                            icon: Some("\u{1F4CA}"),
-                            active: Signal.get(activeNavItem) == "analytics",
-                            onClick: () => Signal.set(activeNavItem, "analytics"),
-                          },
-                        ],
-                      },
-                      {
-                        title: Some("Settings"),
-                        items: [
-                          {
-                            label: "Profile",
-                            icon: Some("\u{1F464}"),
-                            active: Signal.get(activeNavItem) == "profile",
-                            onClick: () => Signal.set(activeNavItem, "profile"),
-                          },
-                          {
-                            label: "Settings",
-                            icon: Some("\u2699"),
-                            active: Signal.get(activeNavItem) == "settings",
-                            onClick: () => Signal.set(activeNavItem, "settings"),
-                          },
-                        ],
-                      },
-                    ]}
-                    theme={Sidebar.Dark}
-                    size={Sidebar.Md}
-                  />}
+                    {
+                      title: Some("Main"),
+                      items: [
+                        {
+                          label: "Dashboard",
+                          icon: Some("\u2302"),
+                          active: Signal.get(activeNavItem) == "home",
+                          onClick: () => Signal.set(activeNavItem, "home"),
+                        },
+                        {
+                          label: "Analytics",
+                          icon: Some("\u{1F4CA}"),
+                          active: Signal.get(activeNavItem) == "analytics",
+                          onClick: () => Signal.set(activeNavItem, "analytics"),
+                        },
+                      ],
+                    },
+                    {
+                      title: Some("Settings"),
+                      items: [
+                        {
+                          label: "Profile",
+                          icon: Some("\u{1F464}"),
+                          active: Signal.get(activeNavItem) == "profile",
+                          onClick: () => Signal.set(activeNavItem, "profile"),
+                        },
+                        {
+                          label: "Settings",
+                          icon: Some("\u2699"),
+                          active: Signal.get(activeNavItem) == "settings",
+                          onClick: () => Signal.set(activeNavItem, "settings"),
+                        },
+                      ],
+                    },
+                  ]}
+                  theme={Sidebar.Dark}
+                  size={Sidebar.Md}
+                />}
               >
                 <div style="padding: 2rem;">
                   <Typography text={Signal.make("Main Content Area")} variant={Typography.H3} />
@@ -1101,32 +1080,30 @@ module Demo = {
             >
               <AppLayout
                 topbar={<Topbar
-                    logo={Component.text("Eita UI")}
-                    navItems={[
-                      {
-                        label: "Home",
-                        active: Signal.get(activeNavItem) == "home",
-                        onClick: () => Signal.set(activeNavItem, "home"),
-                      },
-                      {
-                        label: "Products",
-                        active: Signal.get(activeNavItem) == "products",
-                        onClick: () => Signal.set(activeNavItem, "products"),
-                      },
-                      {
-                        label: "About",
-                        active: Signal.get(activeNavItem) == "about",
-                        onClick: () => Signal.set(activeNavItem, "about"),
-                      },
-                    ]}
-                    rightContent={
-                      <div style="display: flex; gap: 0.5rem;">
-                        <Button label={Signal.make("Sign In")} variant={Button.Ghost} />
-                        <Button label={Signal.make("Sign Up")} variant={Button.Primary} />
-                      </div>
-                    }
-                    theme={Topbar.Light}
-                  />}
+                  logo={Component.text("eita UI")}
+                  navItems={[
+                    {
+                      label: "Home",
+                      active: Signal.get(activeNavItem) == "home",
+                      onClick: () => Signal.set(activeNavItem, "home"),
+                    },
+                    {
+                      label: "Products",
+                      active: Signal.get(activeNavItem) == "products",
+                      onClick: () => Signal.set(activeNavItem, "products"),
+                    },
+                    {
+                      label: "About",
+                      active: Signal.get(activeNavItem) == "about",
+                      onClick: () => Signal.set(activeNavItem, "about"),
+                    },
+                  ]}
+                  rightContent={<div style="display: flex; gap: 0.5rem;">
+                    <Button label={Signal.make("Sign In")} variant={Button.Ghost} />
+                    <Button label={Signal.make("Sign Up")} variant={Button.Primary} />
+                  </div>}
+                  theme={Topbar.Light}
+                />}
               >
                 <div style="padding: 2rem;">
                   <Typography text={Signal.make("Main Content Area")} variant={Typography.H3} />
@@ -1140,9 +1117,7 @@ module Demo = {
 
           // Sidebar + Topbar Example
           <div>
-            <Typography
-              text={Signal.make("Sidebar + Topbar Layout")} variant={Typography.H5}
-            />
+            <Typography text={Signal.make("Sidebar + Topbar Layout")} variant={Typography.H5} />
             <p style="color: #6b7280; margin: 0.5rem 0 1rem 0; font-size: 0.875rem;">
               {Component.text("Full application layout with both sidebar and topbar")}
             </p>
@@ -1151,7 +1126,7 @@ module Demo = {
             >
               <AppLayout
                 sidebar={<Sidebar
-                  logo={Component.text("Eita")}
+                  logo={Component.text("eita")}
                   sections={[
                     {
                       title: Some("Navigation"),
@@ -1183,12 +1158,10 @@ module Demo = {
                 />}
                 topbar={<Topbar
                   onMenuClick={() => Signal.update(sidebarCollapsed, prev => !prev)}
-                  rightContent={
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                      <Badge label={Signal.make("3")} variant={Badge.Primary} />
-                      <Avatar src="https://ui-avatars.com/api/?name=John+Doe" size={Avatar.Sm} />
-                    </div>
-                  }
+                  rightContent={<div style="display: flex; align-items: center; gap: 1rem;">
+                    <Badge label={Signal.make("3")} variant={Badge.Primary} />
+                    <Avatar src="https://ui-avatars.com/api/?name=John+Doe" size={Avatar.Sm} />
+                  </div>}
                   theme={Topbar.Light}
                 />}
                 sidebarSize={"md"}
@@ -1201,13 +1174,13 @@ module Demo = {
                       "This is a complete application layout with both sidebar and topbar. Click the menu button in the topbar to toggle the sidebar.",
                     )}
                   </p>
-                  <div style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                  <div
+                    style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;"
+                  >
                     <Card>
                       <Typography text={Signal.make("Total Users")} variant={Typography.H6} />
                       <Typography
-                        text={Signal.make("1,234")}
-                        variant={Typography.H2}
-                        class="text-primary"
+                        text={Signal.make("1,234")} variant={Typography.H2} class="text-primary"
                       />
                     </Card>
                     <Card>

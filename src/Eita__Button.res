@@ -24,10 +24,5 @@ let make = (
     "eita-button " ++ variantClass
   }
 
-  <button
-    class={getClassName()}
-    disabled
-    ?onClick>
-    {Component.SignalText(label)}
-  </button>
+  <button class={getClassName()} disabled ?onClick> {Component.SignalText(label)} </button>
 }

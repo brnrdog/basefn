@@ -13,10 +13,7 @@ let sizeToString = (size: size) => {
 }
 
 @jsx.component
-let make = (
-  ~keys: Signal.t<array<string>>,
-  ~size: size=Md,
-) => {
+let make = (~keys: Signal.t<array<string>>, ~size: size=Md) => {
   let getClassName = () => {
     let sizeClass = "eita-kbd--" ++ sizeToString(size)
     "eita-kbd " ++ sizeClass
@@ -24,7 +21,7 @@ let make = (
 
   <kbd class={getClassName()}>
     {Component.list(keys, key => {
-      <span class="eita-kbd__key">{Component.text(key)}</span>
+      <span class="eita-kbd__key"> {Component.text(key)} </span>
     })}
   </kbd>
 }

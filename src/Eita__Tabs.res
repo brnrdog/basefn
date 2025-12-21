@@ -6,7 +6,7 @@ type tab = {
   value: string,
   label: string,
   content: Component.node,
-  disabled: option<bool>,
+  disabled?: bool,
 }
 
 @jsx.component

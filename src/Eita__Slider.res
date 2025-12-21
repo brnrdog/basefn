@@ -30,8 +30,7 @@ let make = (
       | (Some(_), _) | (None, true) =>
         <div class="eita-slider__header">
           {switch label {
-          | Some(labelText) =>
-            <span class="eita-slider__label"> {Component.text(labelText)} </span>
+          | Some(labelText) => <span class="eita-slider__label"> {Component.text(labelText)} </span>
           | None => <> </>
           }}
           {showValue

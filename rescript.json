@@ -5,6 +5,11 @@
       "dir": "src",
       "subdirs": true,
       "public": ["Eita"]
+    },
+    {
+      "dir": "docs",
+      "subdirs": true,
+      "public": ["Eita"]
     }
   ],
   "package-specs": {

@@ -45,7 +45,10 @@ let make = (
 
   <div
     class={Computed.make(() => {
-      getLayoutClass() ++ Signal.get(Computed.make(() => Signal.get(sidebarOpen) ? " eita-app-layout--sidebar-open" : ""))
+      getLayoutClass() ++
+      Signal.get(
+        Computed.make(() => Signal.get(sidebarOpen) ? " eita-app-layout--sidebar-open" : ""),
+      )
     })}
   >
     {switch sidebar {
@@ -53,8 +56,7 @@ let make = (
       <>
         <div class="eita-app-layout__sidebar"> {sidebarContent} </div>
         <div
-          class="eita-app-layout__sidebar-backdrop"
-          onClick={_ => Signal.set(sidebarOpen, false)}
+          class="eita-app-layout__sidebar-backdrop" onClick={_ => Signal.set(sidebarOpen, false)}
         />
       </>
     | None => <> </>

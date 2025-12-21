@@ -81,9 +81,7 @@ let make = (
               },
             )}
           </span>
-          {!indeterminate
-            ? {Component.textSignal(() => getPercentage() ++ "%")}
-            : <> </>}
+          {!indeterminate ? {Component.textSignal(() => getPercentage() ++ "%")} : <> </>}
         </div>
       : <> </>}
   </>

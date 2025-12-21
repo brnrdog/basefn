@@ -62,8 +62,7 @@ let make = (
       ->Array.map(section => {
         <div class="eita-sidebar__section">
           {switch section.title {
-          | Some(title) =>
-            <div class="eita-sidebar__section-title"> {Component.text(title)} </div>
+          | Some(title) => <div class="eita-sidebar__section-title"> {Component.text(title)} </div>
           | None => <> </>
           }}
           {section.items
@@ -73,8 +72,7 @@ let make = (
 
             <div key={Int.toString(index)} class={itemClass} onClick={_ => item.onClick()}>
               {switch item.icon {
-              | Some(icon) =>
-                <div class="eita-sidebar__item-icon"> {Component.text(icon)} </div>
+              | Some(icon) => <div class="eita-sidebar__item-icon"> {Component.text(icon)} </div>
               | None => <> </>
               }}
               <div class="eita-sidebar__item-text"> {Component.text(item.label)} </div>

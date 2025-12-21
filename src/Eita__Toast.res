@@ -71,10 +71,13 @@ let make = (
               }}
               <div class="eita-toast__message"> {Component.text(message)} </div>
             </div>
-            <button class="eita-toast__close" onClick={_ => {
+            <button
+              class="eita-toast__close"
+              onClick={_ => {
                 Signal.set(isVisible, false)
                 onClose()
-              }}>
+              }}
+            >
               {Component.text("\u00d7")}
             </button>
           </div>

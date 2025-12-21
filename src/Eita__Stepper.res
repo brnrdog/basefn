@@ -30,12 +30,11 @@ let make = (
 ) => {
   let handleStepClick = (index: int, status: stepStatus) => {
     switch onStepClick {
-    | Some(callback) => {
-        // Only allow clicking on completed steps or current step in non-linear mode
-        switch status {
-        | Completed | Active => callback(index)
-        | _ => ()
-        }
+    | Some(callback) =>
+      // Only allow clicking on completed steps or current step in non-linear mode
+      switch status {
+      | Completed | Active => callback(index)
+      | _ => ()
       }
     | None => ()
     }
@@ -58,13 +57,11 @@ let make = (
   <div class={getStepperClass()}>
     {steps
     ->Array.mapWithIndex((step, index) => {
-      let isClickable = onStepClick->Option.isSome && (step.status == Completed || step.status == Active)
+      let isClickable =
+        onStepClick->Option.isSome && (step.status == Completed || step.status == Active)
 
       <div key={Int.toString(index)} class={getStepClass(step.status, isClickable)}>
-        <div
-          class="eita-stepper__step-header"
-          onClick={_ => handleStepClick(index, step.status)}
-        >
+        <div class="eita-stepper__step-header" onClick={_ => handleStepClick(index, step.status)}>
           <div class="eita-stepper__step-indicator">
             {switch step.status {
             | Completed => Component.text("\u2713")

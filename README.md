@@ -1,4 +1,4 @@
-# Eita-UI
+# eita-UI
 
 A simple, neutral-styled UI component library for Xote applications, built with ReScript and fine-grained reactivity.
 
@@ -23,7 +23,7 @@ npm install
 Components accept both regular values and signals. Use the `Value()` constructor for static values, or `SignalValue()` for reactive signals:
 
 ```rescript
-open EitaUI
+open eitaUI
 
 // Using regular values (static)
 <Button
@@ -51,7 +51,7 @@ let count = Signal.make(0)
 For convenience, you can use the helper functions:
 
 ```rescript
-open EitaUI
+open eitaUI
 
 <Button
   label={value("Click me")}        // Same as Value("Click me")
@@ -65,7 +65,7 @@ open EitaUI
 A versatile button component with three variants: Primary, Secondary, and Ghost.
 
 ```rescript
-open EitaUI
+open eitaUI
 
 let handleClick = (_evt) => Console.log("Clicked!")
 
@@ -92,7 +92,7 @@ let isLoading = Signal.make(false)
 A flexible input component supporting various input types (text, email, password, etc.).
 
 ```rescript
-open EitaUI
+open eitaUI
 
 let inputValue = Signal.make("")
 let handleChange = (evt) => {
@@ -112,7 +112,7 @@ let handleChange = (evt) => {
 A multi-line text input component.
 
 ```rescript
-open EitaUI
+open eitaUI
 
 let textValue = Signal.make("")
 let handleChange = (evt) => {
@@ -132,7 +132,7 @@ let handleChange = (evt) => {
 A dropdown selection component.
 
 ```rescript
-open EitaUI
+open eitaUI
 
 let selectedValue = Signal.make("option1")
 let options = Signal.make([
@@ -152,7 +152,7 @@ let options = Signal.make([
 A checkbox input component with an integrated label.
 
 ```rescript
-open EitaUI
+open eitaUI
 
 let checked = Signal.make(false)
 let handleChange = (_evt) => {
@@ -170,7 +170,7 @@ let handleChange = (_evt) => {
 A radio button component for mutually exclusive selections.
 
 ```rescript
-open EitaUI
+open eitaUI
 
 let selectedValue = Signal.make("option1")
 let handleChange = (evt) => {
@@ -191,7 +191,7 @@ let handleChange = (evt) => {
 A form label component with optional required indicator.
 
 ```rescript
-open EitaUI
+open eitaUI
 
 <Label
   htmlFor={value("email-input")}

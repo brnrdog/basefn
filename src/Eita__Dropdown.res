@@ -5,8 +5,8 @@ open Xote
 type menuItem = {
   label: string,
   onClick: unit => unit,
-  disabled: option<bool>,
-  danger: option<bool>,
+  disabled?: bool,
+  danger?: bool,
 }
 
 type menuContent =
@@ -25,9 +25,9 @@ let make = (
     Signal.update(isOpen, prev => !prev)
   }
 
-  let handleItemClick = (onClick: unit => unit, disabled: option<bool>) => {
+  let handleItemClick = (onClick: unit => unit, disabled: bool) => {
     switch disabled {
-    | Some(true) => ()
+    | true => ()
     | _ => {
         onClick()
         Signal.set(isOpen, false)
@@ -54,14 +54,15 @@ let make = (
             | Item({label, onClick, disabled, danger}) => {
                 let className =
                   "eita-dropdown__item" ++
-                  (disabled->Option.getOr(false) ? " eita-dropdown__item--disabled" : "") ++
-                  (danger->Option.getOr(false) ? " eita-dropdown__item--danger" : "")
+                  (disabled ? " eita-dropdown__item--disabled" : "") ++ (
+                    danger ? " eita-dropdown__item--danger" : ""
+                  )
 
                 <button
                   key={Int.toString(index)}
                   class={className}
                   onClick={_ => handleItemClick(onClick, disabled)}
-                  disabled={disabled->Option.getOr(false)}
+                  disabled={disabled}
                 >
                   {Component.text(label)}
                 </button>

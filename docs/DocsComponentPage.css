@@ -1,0 +1,70 @@
+.docs-component-page {
+  max-width: 1200px;
+  padding: 2rem 0;
+}
+
+.docs-component-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.docs-component-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.docs-component-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.docs-component-example {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.docs-component-example__header {
+  margin-bottom: 0.5rem;
+}
+
+.docs-component-example__header h4 {
+  margin-bottom: 0.5rem;
+}
+
+.docs-component-example__description {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.docs-component-demo {
+  padding: 2rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.docs-component-code {
+  background: #1a1b26;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.docs-component-code pre {
+  margin: 0;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.docs-component-code code {
+  font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #a9b1d6;
+}

@@ -31,9 +31,7 @@ let make = (~items: array<breadcrumbItem>, ~separator: string="/") => {
             {Component.text(item.label)}
           </button>
         | (None, None) =>
-          <span class={"eita-breadcrumb__link " ++ className}>
-            {Component.text(item.label)}
-          </span>
+          <span class={"eita-breadcrumb__link " ++ className}> {Component.text(item.label)} </span>
         }}
         {!isLast
           ? <span class="eita-breadcrumb__separator"> {Component.text(separator)} </span>

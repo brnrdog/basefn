@@ -39,15 +39,19 @@ let make = (
   let getSwitchClass = () => {
     let baseClass = "eita-switch"
     let sizeClass = size != Md ? " eita-switch--" ++ sizeToString(size) : ""
-    let checkedClass = Computed.make(() =>
-      Signal.get(checked) ? " eita-switch--checked" : ""
-    )
+    let checkedClass = Computed.make(() => Signal.get(checked) ? " eita-switch--checked" : "")
     let disabledClass = disabled ? " eita-switch--disabled" : ""
     baseClass ++ sizeClass ++ disabledClass
   }
 
   <label class={getWrapperClass()}>
-    <div class={Computed.make(() => getSwitchClass() ++ Signal.get(Computed.make(() => Signal.get(checked) ? " eita-switch--checked" : "")))} onClick={handleClick}>
+    <div
+      class={Computed.make(() =>
+        getSwitchClass() ++
+        Signal.get(Computed.make(() => Signal.get(checked) ? " eita-switch--checked" : ""))
+      )}
+      onClick={handleClick}
+    >
       <div class="eita-switch__slider" />
     </div>
     {switch label {

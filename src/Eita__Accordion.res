@@ -6,7 +6,7 @@ type accordionItem = {
   value: string,
   title: string,
   content: Component.node,
-  disabled: option<bool>,
+  disabled?: bool,
 }
 
 @jsx.component
@@ -29,13 +29,11 @@ let make = (
         if current->Array.includes(value) {
           // Close item
           current->Array.filter(item => item != value)
+        } // Open item
+        else if multiple {
+          current->Array.concat([value])
         } else {
-          // Open item
-          if multiple {
-            current->Array.concat([value])
-          } else {
-            [value]
-          }
+          [value]
         }
       })
     }
