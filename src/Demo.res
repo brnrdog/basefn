@@ -1,9 +1,11 @@
 // Demo application showcasing Eita-UI components
 
 %%raw(`import './styles/variables.css'`)
+%%raw(`import './Eita.css'`)
 
 open Xote
 open Eita
+open Signals
 
 @get external target: Dom.event => Dom.element = "target"
 @set external setValue: (Dom.element, string) => unit = "value"
@@ -25,6 +27,7 @@ module Demo = {
     let selectedOption = Signal.make("option1")
     let selectedColor = Signal.make("blue")
     let isSubmitting = Signal.make(false)
+    let downloadProgress = Signal.make(65.0)
 
     // Event handlers
     let handleNameChange = evt => {
@@ -99,7 +102,7 @@ module Demo = {
     ]
     let selectOptionsSignal = Signal.make(selectOptions)
 
-    <div>
+    <>
       {Component.textSignal(() => Signal.get(selectedOption))}
       <h1> {Component.text("Eita-UI Component Library")} </h1>
       <p style="color: #6b7280; margin-bottom: 2rem;">
@@ -108,12 +111,50 @@ module Demo = {
         )}
       </p>
 
-      <div style="margin-bottom: 1.5rem;">
+      <Card style="margin-bottom: 2rem;">
+        <Grid>
+          <Avatar src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Schopfkarakara.jpg" />
+          <div>
+            <Typography
+              text={Signal.make("Crested Caracara")} variant=Typography.Unstyled class="bold"
+            />
+            <Typography text={Signal.make("Bird of prey")} variant=Typography.Small />
+          </div>
+        </Grid>
+        <br />
+        <Grid>
+          <Avatar src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Schopfkarakara.jpg" />
+          <div>
+            <Typography text={Signal.make("Crested Caracara")} variant=Typography.P class="bold" />
+          </div>
+        </Grid>
+        <br />
+        <Grid>
+          <Avatar
+            src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Schopfkarakara.jpg" size={Sm}
+          />
+          <div>
+            <Typography text={Signal.make("Crested Caracara")} variant=Typography.Unstyled />
+          </div>
+        </Grid>
+        <br />
+        <Grid gap="1rem">
+          <Avatar
+            src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Schopfkarakara.jpg" size={Lg}
+          />
+          <div>
+            <Typography text={Signal.make("Crested Caracara")} variant=Typography.H4 />
+            <Typography
+              text={Signal.make("Bird of prey")} variant=Typography.H6 class="muted font-normal"
+            />
+          </div>
+        </Grid>
+      </Card>
+
+      <Card>
         <Label text="Full Name" required={true} />
         <Input value={name} onInput={handleNameChange} type_={Input.Text} placeholder="John Doe" />
-      </div>
-
-      <div style="margin-bottom: 1.5rem;">
+        <br />
         <Label text="Email Address" required={true} />
         <Input
           value={email}
@@ -121,9 +162,7 @@ module Demo = {
           type_={Input.Email}
           placeholder="john@example.com"
         />
-      </div>
-
-      <div style="margin-bottom: 1.5rem;">
+        <br />
         <Label text="Password" required={true} />
         <Input
           value={password}
@@ -131,9 +170,9 @@ module Demo = {
           type_={Input.Password}
           placeholder="Enter a secure password"
         />
-      </div>
-
-      <div style="margin-bottom: 1.5rem;">
+      </Card>
+      <br />
+      <Card>
         <Label text="Area of Interest" required={false} />
         <Select
           value={selectedOption}
@@ -143,77 +182,367 @@ module Demo = {
             Signal.set(selectedOption, target["value"])
           }}
         />
-      </div>
-
-      <div style="margin-bottom: 1.5rem;">
+        <br />
         <Label text="Favorite Color" required={false} />
         <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
           <Radio
-            checked={Signals.Computed.make(() => Signal.get(selectedColor) == "blue")}
+            checked={Computed.make(() => Signal.get(selectedColor) == "blue")}
             onChange={handleColorChange}
             value="blue"
             label="Blue"
             name="radio"
           />
           <Radio
-            checked={Signals.Computed.make(() => Signal.get(selectedColor) == "green")}
+            checked={Computed.make(() => Signal.get(selectedColor) == "green")}
             onChange={handleColorChange}
             value="green"
             label="Green"
             name="radio"
           />
           <Radio
-            checked={Signals.Computed.make(() => Signal.get(selectedColor) == "red")}
+            checked={Computed.make(() => Signal.get(selectedColor) == "red")}
             onChange={handleColorChange}
             value="red"
             label="Red"
             name="radio"
           />
         </div>
-      </div>
-
-      <div style="margin-bottom: 1.5rem;">
+      </Card>
+      <br />
+      <Card>
         <Label text="Message" required={false} />
         <Textarea
           value={message} onInput={handleMessageChange} placeholder="Tell us more about yourself..."
         />
+      </Card>
+      <br />
+      <Card>
+        <div style="margin-bottom: 1.5rem;">
+          <Checkbox
+            checked={agreeToTerms}
+            onChange={handleTermsChange}
+            label="I agree to the terms and conditions"
+          />
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <Checkbox
+            checked={newsletter}
+            onChange={handleNewsletterChange}
+            label="Subscribe to our newsletter"
+          />
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <Button
+            label={Computed.make(() => Signal.get(isSubmitting) ? "Submitting..." : "Submit Form")}
+            onClick={handleSubmit}
+            variant={Button.Primary}
+            disabled={Signal.get(isSubmitting)}
+          />
+          <Button
+            label={Signal.make("Reset")}
+            onClick={handleReset}
+            variant={Button.Secondary}
+            disabled={Signal.get(isSubmitting)}
+          />
+          <Button
+            label={Signal.make("Cancel")} variant={Button.Ghost} disabled={Signal.get(isSubmitting)}
+          />
+        </div>
+      </Card>
+
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Alerts")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Display important messages with different severity levels.")}
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <Alert
+            title="Information"
+            message={Signal.make("This is an informational alert message.")}
+            variant={Alert.Info}
+          />
+          <Alert
+            title="Success"
+            message={Signal.make("Your changes have been saved successfully!")}
+            variant={Alert.Success}
+          />
+          <Alert
+            title="Warning"
+            message={Signal.make("Please review your input before proceeding.")}
+            variant={Alert.Warning}
+          />
+          <Alert
+            title="Error"
+            message={Signal.make("An error occurred while processing your request.")}
+            variant={Alert.Error}
+          />
+          <Alert
+            message={Signal.make("This is a dismissible alert. Click the X to close it.")}
+            variant={Alert.Info}
+            dismissible={true}
+          />
+        </div>
       </div>
 
-      <div style="margin-bottom: 1.5rem;">
-        <Checkbox
-          checked={agreeToTerms}
-          onChange={handleTermsChange}
-          label="I agree to the terms and conditions"
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Progress")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Show progress indicators for ongoing operations.")}
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <div>
+            <Progress value={Signal.make(25.0)} variant={Progress.Primary} showLabel={true} />
+          </div>
+          <div>
+            <Progress
+              value={Signal.make(50.0)} variant={Progress.Success} showLabel={true} label="Upload"
+            />
+          </div>
+          <div>
+            <Progress
+              value={Signal.make(75.0)} variant={Progress.Warning} showLabel={true} label="Processing"
+            />
+          </div>
+          <div>
+            <Progress
+              value={Signal.make(100.0)} variant={Progress.Success} showLabel={true} label="Complete"
+            />
+          </div>
+          <div>
+            <Progress
+              value={downloadProgress}
+              variant={Progress.Primary}
+              showLabel={true}
+              label="Dynamic Progress"
+            />
+            <Button
+              label={Signal.make("Simulate Progress")}
+              onClick={_evt => {
+                Signal.set(downloadProgress, 0.0)
+                let intervalId = ref(None)
+                let id = setInterval(() => {
+                  Signal.update(downloadProgress, prev => {
+                    let next = prev +. 5.0
+                    if next >= 100.0 {
+                      switch intervalId.contents {
+                      | Some(id) => clearInterval(id)
+                      | None => ()
+                      }
+                      100.0
+                    } else {
+                      next
+                    }
+                  })
+                }, 100)
+                intervalId := Some(id)
+              }}
+              variant={Button.Secondary}
+            />
+          </div>
+          <div>
+            <p style="color: #6b7280; margin-bottom: 0.5rem;">
+              {Component.text("Indeterminate progress:")}
+            </p>
+            <Progress value={Signal.make(0.0)} variant={Progress.Primary} indeterminate={true} />
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Tabs")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Organize content into tabbed sections.")}
+        </p>
+        <Tabs
+          tabs={[
+            {
+              value: "account",
+              label: "Account",
+              content: <div>
+                <Typography text={Signal.make("Account Settings")} variant={Typography.H5} />
+                <p style="color: #6b7280; margin-top: 0.5rem;">
+                  {Component.text(
+                    "Manage your account settings and preferences here. You can update your profile information, change your password, and configure notification settings.",
+                  )}
+                </p>
+              </div>,
+              disabled: None,
+            },
+            {
+              value: "security",
+              label: "Security",
+              content: <div>
+                <Typography text={Signal.make("Security Settings")} variant={Typography.H5} />
+                <p style="color: #6b7280; margin-top: 0.5rem;">
+                  {Component.text(
+                    "Configure your security preferences including two-factor authentication, active sessions, and security logs.",
+                  )}
+                </p>
+                <div style="margin-top: 1rem;">
+                  <Checkbox
+                    checked={Signal.make(true)}
+                    onChange={_ => ()}
+                    label="Enable two-factor authentication"
+                  />
+                </div>
+              </div>,
+              disabled: None,
+            },
+            {
+              value: "notifications",
+              label: "Notifications",
+              content: <div>
+                <Typography text={Signal.make("Notification Preferences")} variant={Typography.H5} />
+                <p style="color: #6b7280; margin-top: 0.5rem;">
+                  {Component.text("Choose how you want to receive notifications.")}
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+                  <Checkbox checked={Signal.make(true)} onChange={_ => ()} label="Email notifications" />
+                  <Checkbox checked={Signal.make(false)} onChange={_ => ()} label="SMS notifications" />
+                  <Checkbox
+                    checked={Signal.make(true)} onChange={_ => ()} label="Push notifications"
+                  />
+                </div>
+              </div>,
+              disabled: None,
+            },
+            {
+              value: "billing",
+              label: "Billing",
+              content: <div>
+                <Typography text={Signal.make("Billing Information")} variant={Typography.H5} />
+                <p style="color: #6b7280; margin-top: 0.5rem;">
+                  {Component.text(
+                    "View and manage your billing information, payment methods, and invoices.",
+                  )}
+                </p>
+              </div>,
+              disabled: Some(true),
+            },
+          ]}
         />
       </div>
 
-      <div style="margin-bottom: 2rem;">
-        <Checkbox
-          checked={newsletter} onChange={handleNewsletterChange} label="Subscribe to our newsletter"
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Accordion")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Collapsible content sections with expand/collapse functionality.")}
+        </p>
+        <Accordion
+          items={[
+            {
+              value: "faq1",
+              title: "What is Eita-UI?",
+              content: <p>
+                {Component.text(
+                  "Eita-UI is a modern, reactive UI component library built with ReScript and Xote. It provides a comprehensive set of accessible and customizable components for building web applications.",
+                )}
+              </p>,
+              disabled: None,
+            },
+            {
+              value: "faq2",
+              title: "How do I install Eita-UI?",
+              content: <div>
+                <p>
+                  {Component.text(
+                    "You can install Eita-UI via npm or yarn. Here's how to get started:",
+                  )}
+                </p>
+                <br />
+                <Typography
+                  text={Signal.make("npm install eita-ui")} variant={Typography.Code}
+                />
+              </div>,
+              disabled: None,
+            },
+            {
+              value: "faq3",
+              title: "Is Eita-UI customizable?",
+              content: <p>
+                {Component.text(
+                  "Yes! Eita-UI is fully customizable. You can override the default styles using CSS variables or by providing custom CSS classes. Each component accepts standard HTML attributes including className and style.",
+                )}
+              </p>,
+              disabled: None,
+            },
+            {
+              value: "faq4",
+              title: "Does Eita-UI support TypeScript?",
+              content: <p>
+                {Component.text(
+                  "Eita-UI is built with ReScript, which provides excellent type safety. While it doesn't directly use TypeScript, ReScript's type system is even more robust and catches errors at compile time.",
+                )}
+              </p>,
+              disabled: None,
+            },
+          ]}
+          multiple={true}
+          defaultOpen={["faq1"]}
         />
       </div>
 
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <Button
-          label={Signals.Computed.make(() =>
-            Signal.get(isSubmitting) ? "Submitting..." : "Submit Form"
-          )}
-          onClick={handleSubmit}
-          variant={Button.Primary}
-          disabled={Signal.get(isSubmitting)}
-        />
-        <Button
-          label={Signal.make("Reset")}
-          onClick={handleReset}
-          variant={Button.Secondary}
-          disabled={Signal.get(isSubmitting)}
-        />
-        <Button
-          label={Signal.make("Cancel")} variant={Button.Ghost} disabled={Signal.get(isSubmitting)}
-        />
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Breadcrumb")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Navigation breadcrumbs to show the current page hierarchy.")}
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div>
+            <p style="color: #6b7280; margin-bottom: 0.5rem; font-size: 0.875rem;">
+              {Component.text("Default separator:")}
+            </p>
+            <Breadcrumb
+              items={[
+                {label: "Home", href: Some("#"), onClick: None},
+                {label: "Products", href: Some("#"), onClick: None},
+                {label: "Electronics", href: Some("#"), onClick: None},
+                {label: "Laptops", href: None, onClick: None},
+              ]}
+            />
+          </div>
+          <div>
+            <p style="color: #6b7280; margin-bottom: 0.5rem; font-size: 0.875rem;">
+              {Component.text("Custom separator:")}
+            </p>
+            <Breadcrumb
+              items={[
+                {label: "Home", href: Some("#"), onClick: None},
+                {label: "Settings", href: Some("#"), onClick: None},
+                {label: "Account", href: None, onClick: None},
+              ]}
+              separator=">"
+            />
+          </div>
+          <div>
+            <p style="color: #6b7280; margin-bottom: 0.5rem; font-size: 0.875rem;">
+              {Component.text("With onClick handlers:")}
+            </p>
+            <Breadcrumb
+              items={[
+                {
+                  label: "Dashboard",
+                  href: None,
+                  onClick: Some(() => Console.log("Navigate to Dashboard")),
+                },
+                {
+                  label: "Users",
+                  href: None,
+                  onClick: Some(() => Console.log("Navigate to Users")),
+                },
+                {label: "Profile", href: None, onClick: None},
+              ]}
+              separator="\u2022"
+            />
+          </div>
+        </div>
       </div>
 
-      <Separator orientation={Separator.Horizontal} variant={Separator.Solid} />
+      <Separator
+        orientation={Separator.Horizontal} variant={Separator.Dashed} label={"Foundational"}
+      />
 
       <div style="margin-top: 3rem;">
         <Typography
@@ -375,7 +704,7 @@ Newsletter: ${Signal.get(newsletter)->Bool.toString}`
           })}
         </pre>
       </div>
-    </div>
+    </>
   }
 }
 

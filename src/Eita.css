@@ -1,0 +1,11 @@
+.bold {
+	font-weight: 600;
+}
+
+.muted {
+	color: var(--eita-color-neutral-500);
+}
+
+.font-normal {
+	font-weight: 400;
+}

@@ -1,0 +1,69 @@
+.eita-progress {
+  position: relative;
+  width: 100%;
+  height: 0.75rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.eita-progress--sm {
+  height: 0.5rem;
+}
+
+.eita-progress--md {
+  height: 0.75rem;
+}
+
+.eita-progress--lg {
+  height: 1rem;
+}
+
+.eita-progress__bar {
+  height: 100%;
+  background-color: #3b82f6;
+  border-radius: 9999px;
+  transition: width 0.3s ease-in-out;
+}
+
+.eita-progress__bar--default {
+  background-color: #6b7280;
+}
+
+.eita-progress__bar--primary {
+  background-color: #3b82f6;
+}
+
+.eita-progress__bar--success {
+  background-color: #10b981;
+}
+
+.eita-progress__bar--warning {
+  background-color: #f59e0b;
+}
+
+.eita-progress__bar--error {
+  background-color: #ef4444;
+}
+
+.eita-progress__bar--animated {
+  animation: eita-progress-indeterminate 1.5s ease-in-out infinite;
+}
+
+.eita-progress__label {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@keyframes eita-progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}

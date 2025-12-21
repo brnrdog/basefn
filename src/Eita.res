@@ -1,3 +1,4 @@
+%%raw(`import './Eita.css'`)
 // Main Eita UI module - exposes all components and utilities
 
 // Re-export component types
@@ -13,6 +14,12 @@ type separatorVariant = Eita__Separator.variant
 type kbdSize = Eita__Kbd.size
 type typographyVariant = Eita__Typography.variant
 type typographyAlign = Eita__Typography.align
+type alertVariant = Eita__Alert.variant
+type progressSize = Eita__Progress.size
+type progressVariant = Eita__Progress.variant
+type tab = Eita__Tabs.tab
+type accordionItem = Eita__Accordion.accordionItem
+type breadcrumbItem = Eita__Breadcrumb.breadcrumbItem
 
 // Form Components
 module Button = Eita__Button
@@ -29,3 +36,13 @@ module Spinner = Eita__Spinner
 module Separator = Eita__Separator
 module Kbd = Eita__Kbd
 module Typography = Eita__Typography
+
+// Tier 2
+module Card = Eita__Card
+module Avatar = Eita__Avatar
+module Grid = Eita__Grid
+module Alert = Eita__Alert
+module Progress = Eita__Progress
+module Tabs = Eita__Tabs
+module Accordion = Eita__Accordion
+module Breadcrumb = Eita__Breadcrumb

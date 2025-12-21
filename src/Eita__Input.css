@@ -12,7 +12,7 @@
   background-color: var(--eita-form-input-bg);
   color: var(--eita-form-input-text);
   border: var(--eita-border-width) solid var(--eita-form-input-border);
-  border-radius: var(--eita-radius-md);
+  border-radius: var(--eita-radius-lg);
   outline: none;
   transition: border-color var(--eita-transition-fast), box-shadow var(--eita-transition-fast);
 }
