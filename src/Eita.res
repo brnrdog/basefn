@@ -27,6 +27,22 @@ type dropdownMenuItem = Eita__Dropdown.menuItem
 type dropdownMenuContent = Eita__Dropdown.menuContent
 type toastVariant = Eita__Toast.variant
 type toastPosition = Eita__Toast.position
+type stepperOrientation = Eita__Stepper.orientation
+type stepStatus = Eita__Stepper.stepStatus
+type stepperStep = Eita__Stepper.step
+type drawerPosition = Eita__Drawer.position
+type drawerSize = Eita__Drawer.size
+type timelineOrientation = Eita__Timeline.orientation
+type timelineVariant = Eita__Timeline.variant
+type timelineItem = Eita__Timeline.timelineItem
+type sidebarTheme = Eita__Sidebar.theme
+type sidebarSize = Eita__Sidebar.size
+type sidebarNavItem = Eita__Sidebar.navItem
+type sidebarNavSection = Eita__Sidebar.navSection
+type topbarTheme = Eita__Topbar.theme
+type topbarSize = Eita__Topbar.size
+type topbarNavItem = Eita__Topbar.navItem
+type appLayoutContentWidth = Eita__AppLayout.contentWidth
 
 // Form Components
 module Button = Eita__Button
@@ -61,3 +77,13 @@ module Switch = Eita__Switch
 module Slider = Eita__Slider
 module Dropdown = Eita__Dropdown
 module Toast = Eita__Toast
+
+// Tier 4 - Navigation & Layout
+module Stepper = Eita__Stepper
+module Drawer = Eita__Drawer
+module Timeline = Eita__Timeline
+
+// Application Layout
+module Sidebar = Eita__Sidebar
+module Topbar = Eita__Topbar
+module AppLayout = Eita__AppLayout

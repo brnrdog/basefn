@@ -1,0 +1,145 @@
+.eita-sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: #1f2937;
+  color: white;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.eita-sidebar--light {
+  background-color: #ffffff;
+  color: #1f2937;
+  border-right: 1px solid #e5e7eb;
+}
+
+.eita-sidebar__header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.eita-sidebar--light .eita-sidebar__header {
+  border-bottom-color: #e5e7eb;
+}
+
+.eita-sidebar__logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+}
+
+.eita-sidebar--light .eita-sidebar__logo {
+  color: #1f2937;
+}
+
+.eita-sidebar__nav {
+  flex: 1;
+  padding: 1rem 0;
+  overflow-y: auto;
+}
+
+.eita-sidebar__section {
+  margin-bottom: 1.5rem;
+}
+
+.eita-sidebar__section-title {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9ca3af;
+}
+
+.eita-sidebar--light .eita-sidebar__section-title {
+  color: #6b7280;
+}
+
+.eita-sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  color: #d1d5db;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.eita-sidebar--light .eita-sidebar__item {
+  color: #4b5563;
+}
+
+.eita-sidebar__item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.eita-sidebar--light .eita-sidebar__item:hover {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.eita-sidebar__item--active {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
+  border-left-color: #3b82f6;
+}
+
+.eita-sidebar--light .eita-sidebar__item--active {
+  background-color: #eff6ff;
+  color: #3b82f6;
+}
+
+.eita-sidebar__item-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.eita-sidebar__item-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.eita-sidebar__footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.eita-sidebar--light .eita-sidebar__footer {
+  border-top-color: #e5e7eb;
+}
+
+/* Width variants */
+.eita-sidebar--sm {
+  width: 200px;
+}
+
+.eita-sidebar--md {
+  width: 256px;
+}
+
+.eita-sidebar--lg {
+  width: 320px;
+}
+
+/* Collapsible variant */
+.eita-sidebar--collapsed {
+  width: 64px;
+}
+
+.eita-sidebar--collapsed .eita-sidebar__item-text,
+.eita-sidebar--collapsed .eita-sidebar__section-title,
+.eita-sidebar--collapsed .eita-sidebar__logo {
+  display: none;
+}
+
+.eita-sidebar--collapsed .eita-sidebar__item {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}

@@ -37,6 +37,14 @@ module Demo = {
     let notificationsSwitch = Signal.make(false)
     let toastVisible = Signal.make(false)
 
+    // Tier 4 component states
+    let currentStep = Signal.make(1)
+    let isDrawerOpen = Signal.make(false)
+
+    // Layout component states
+    let activeNavItem = Signal.make("home")
+    let sidebarCollapsed = Signal.make(false)
+
     // Event handlers
     let handleNameChange = evt => {
       let target = Obj.magic(evt)["target"]
@@ -758,6 +766,464 @@ module Demo = {
           isVisible={toastVisible}
           onClose={() => Console.log("Toast closed")}
         />
+      </div>
+
+      <Separator
+        orientation={Separator.Horizontal} variant={Separator.Solid} label={"Tier 4"}
+      />
+
+      <div style="margin-top: 3rem;">
+        <Typography
+          text={Signal.make("Navigation & Layout")}
+          variant={Typography.H2}
+          align={Typography.Left}
+        />
+        <Typography
+          text={Signal.make("Explore the Tier 4 navigation and layout components below.")}
+          variant={Typography.Muted}
+        />
+      </div>
+
+      // Stepper Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Stepper")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Multi-step process indicator with progress tracking.")}
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <div>
+            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem;">
+              {Component.text("Horizontal stepper:")}
+            </p>
+            <Stepper
+              steps={[
+                {
+                  title: "Account Info",
+                  description: Some("Enter your details"),
+                  status: Stepper.Completed,
+                },
+                {
+                  title: "Verification",
+                  description: Some("Verify your email"),
+                  status: Stepper.Active,
+                },
+                {
+                  title: "Preferences",
+                  description: Some("Set your preferences"),
+                  status: Stepper.Inactive,
+                },
+                {
+                  title: "Complete",
+                  description: Some("All done!"),
+                  status: Stepper.Inactive,
+                },
+              ]}
+              currentStep={currentStep}
+              orientation={Stepper.Horizontal}
+              onStepClick={step => {
+                Signal.set(currentStep, step)
+                Console.log2("Step clicked:", step)
+              }}
+            />
+          </div>
+          <div>
+            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem;">
+              {Component.text("Vertical stepper:")}
+            </p>
+            <Stepper
+              steps={[
+                {
+                  title: "Order Placed",
+                  description: Some("Your order has been confirmed"),
+                  status: Stepper.Completed,
+                },
+                {
+                  title: "Processing",
+                  description: Some("We are preparing your order"),
+                  status: Stepper.Completed,
+                },
+                {
+                  title: "Shipped",
+                  description: Some("Your order is on the way"),
+                  status: Stepper.Active,
+                },
+                {
+                  title: "Delivered",
+                  description: Some("Enjoy your purchase!"),
+                  status: Stepper.Inactive,
+                },
+              ]}
+              currentStep={Signal.make(2)}
+              orientation={Stepper.Vertical}
+            />
+          </div>
+        </div>
+      </div>
+
+      // Drawer Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Drawer / Sidebar")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Slide-in panels for additional content.")}
+        </p>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <Button
+            label={Signal.make("Open Drawer")}
+            onClick={_ => Signal.set(isDrawerOpen, true)}
+            variant={Button.Primary}
+          />
+        </div>
+        <Drawer
+          isOpen={isDrawerOpen}
+          onClose={() => Signal.set(isDrawerOpen, false)}
+          title="Drawer Panel"
+          position={Drawer.Right}
+          size={Drawer.Md}
+          footer={<div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+            <Button
+              label={Signal.make("Cancel")}
+              onClick={_ => Signal.set(isDrawerOpen, false)}
+              variant={Button.Ghost}
+            />
+            <Button
+              label={Signal.make("Save")}
+              onClick={_ => {
+                Console.log("Saved!")
+                Signal.set(isDrawerOpen, false)
+              }}
+              variant={Button.Primary}
+            />
+          </div>}
+        >
+          <div>
+            <Typography text={Signal.make("Drawer Content")} variant={Typography.H5} />
+            <p style="margin-top: 1rem;">
+              {Component.text(
+                "This is a drawer panel. You can use it for navigation, forms, or any additional content that doesn't fit in the main view.",
+              )}
+            </p>
+            <div style="margin-top: 1.5rem;">
+              <Label text="Name" />
+              <Input
+                value={Signal.make("")} type_={Input.Text} placeholder="Enter your name"
+              />
+            </div>
+            <div style="margin-top: 1rem;">
+              <Label text="Email" />
+              <Input
+                value={Signal.make("")} type_={Input.Email} placeholder="Enter your email"
+              />
+            </div>
+            <div style="margin-top: 1rem;">
+              <Label text="Message" />
+              <Textarea value={Signal.make("")} placeholder="Enter a message" />
+            </div>
+          </div>
+        </Drawer>
+      </div>
+
+      // Timeline Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Timeline")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Display chronological events in a visual timeline.")}
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <div>
+            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem;">
+              {Component.text("Vertical timeline:")}
+            </p>
+            <Timeline
+              items={[
+                {
+                  title: "Project Created",
+                  timestamp: Some("2 hours ago"),
+                  description: Some("Initial project setup and configuration"),
+                  variant: Timeline.Success,
+                  icon: Some("\u2713"),
+                },
+                {
+                  title: "First Commit",
+                  timestamp: Some("1 hour ago"),
+                  description: Some("Added base components and styling"),
+                  variant: Timeline.Success,
+                  icon: Some("\u2713"),
+                },
+                {
+                  title: "Code Review",
+                  timestamp: Some("30 minutes ago"),
+                  description: Some("Team reviewing the implementation"),
+                  variant: Timeline.Primary,
+                  icon: None,
+                },
+                {
+                  title: "Deployment",
+                  timestamp: Some("Pending"),
+                  description: Some("Awaiting approval for production deployment"),
+                  variant: Timeline.Default,
+                  icon: None,
+                },
+              ]}
+              orientation={Timeline.Vertical}
+            />
+          </div>
+          <div>
+            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem;">
+              {Component.text("With different variants:")}
+            </p>
+            <Timeline
+              items={[
+                {
+                  title: "Success Event",
+                  timestamp: None,
+                  description: Some("Operation completed successfully"),
+                  variant: Timeline.Success,
+                  icon: Some("\u2713"),
+                },
+                {
+                  title: "Warning Event",
+                  timestamp: None,
+                  description: Some("Requires attention"),
+                  variant: Timeline.Warning,
+                  icon: Some("!"),
+                },
+                {
+                  title: "Error Event",
+                  timestamp: None,
+                  description: Some("Operation failed"),
+                  variant: Timeline.Error,
+                  icon: Some("\u00d7"),
+                },
+              ]}
+              orientation={Timeline.Vertical}
+            />
+          </div>
+        </div>
+      </div>
+
+      <Separator
+        orientation={Separator.Horizontal} variant={Separator.Solid} label={"App Layouts"}
+      />
+
+      <div style="margin-top: 3rem;">
+        <Typography
+          text={Signal.make("Application Layouts")}
+          variant={Typography.H2}
+          align={Typography.Left}
+        />
+        <Typography
+          text={Signal.make(
+            "Complete application layout structures with sidebar and topbar combinations.",
+          )}
+          variant={Typography.Muted}
+        />
+      </div>
+
+      // Layout Examples Section
+      <div style="margin-top: 2rem;">
+        <Typography text={Signal.make("Layout Variants")} variant={Typography.H4} />
+        <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
+          {Component.text("Different application layout configurations.")}
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          // Sidebar Only Example
+          <div>
+            <Typography text={Signal.make("Sidebar Only Layout")} variant={Typography.H5} />
+            <p style="color: #6b7280; margin: 0.5rem 0 1rem 0; font-size: 0.875rem;">
+              {Component.text("Application with sidebar navigation")}
+            </p>
+            <div
+              style="border: 2px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; height: 400px;"
+            >
+              <AppLayout
+                sidebar={<Sidebar
+                  logo={Component.text("Eita UI")}
+                  sections={[
+                      {
+                        title: Some("Main"),
+                        items: [
+                          {
+                            label: "Dashboard",
+                            icon: Some("\u2302"),
+                            active: Signal.get(activeNavItem) == "home",
+                            onClick: () => Signal.set(activeNavItem, "home"),
+                          },
+                          {
+                            label: "Analytics",
+                            icon: Some("\u{1F4CA}"),
+                            active: Signal.get(activeNavItem) == "analytics",
+                            onClick: () => Signal.set(activeNavItem, "analytics"),
+                          },
+                        ],
+                      },
+                      {
+                        title: Some("Settings"),
+                        items: [
+                          {
+                            label: "Profile",
+                            icon: Some("\u{1F464}"),
+                            active: Signal.get(activeNavItem) == "profile",
+                            onClick: () => Signal.set(activeNavItem, "profile"),
+                          },
+                          {
+                            label: "Settings",
+                            icon: Some("\u2699"),
+                            active: Signal.get(activeNavItem) == "settings",
+                            onClick: () => Signal.set(activeNavItem, "settings"),
+                          },
+                        ],
+                      },
+                    ]}
+                    theme={Sidebar.Dark}
+                    size={Sidebar.Md}
+                  />}
+              >
+                <div style="padding: 2rem;">
+                  <Typography text={Signal.make("Main Content Area")} variant={Typography.H3} />
+                  <p style="margin-top: 1rem;">
+                    {Component.text(
+                      "This is the main content area. The sidebar provides persistent navigation.",
+                    )}
+                  </p>
+                </div>
+              </AppLayout>
+            </div>
+          </div>
+
+          // Topbar Only Example
+          <div>
+            <Typography text={Signal.make("Topbar Only Layout")} variant={Typography.H5} />
+            <p style="color: #6b7280; margin: 0.5rem 0 1rem 0; font-size: 0.875rem;">
+              {Component.text("Application with top navigation bar")}
+            </p>
+            <div
+              style="border: 2px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; height: 300px;"
+            >
+              <AppLayout
+                topbar={<Topbar
+                    logo={Component.text("Eita UI")}
+                    navItems={[
+                      {
+                        label: "Home",
+                        active: Signal.get(activeNavItem) == "home",
+                        onClick: () => Signal.set(activeNavItem, "home"),
+                      },
+                      {
+                        label: "Products",
+                        active: Signal.get(activeNavItem) == "products",
+                        onClick: () => Signal.set(activeNavItem, "products"),
+                      },
+                      {
+                        label: "About",
+                        active: Signal.get(activeNavItem) == "about",
+                        onClick: () => Signal.set(activeNavItem, "about"),
+                      },
+                    ]}
+                    rightContent={
+                      <div style="display: flex; gap: 0.5rem;">
+                        <Button label={Signal.make("Sign In")} variant={Button.Ghost} />
+                        <Button label={Signal.make("Sign Up")} variant={Button.Primary} />
+                      </div>
+                    }
+                    theme={Topbar.Light}
+                  />}
+              >
+                <div style="padding: 2rem;">
+                  <Typography text={Signal.make("Main Content Area")} variant={Typography.H3} />
+                  <p style="margin-top: 1rem;">
+                    {Component.text("This layout uses only a top navigation bar.")}
+                  </p>
+                </div>
+              </AppLayout>
+            </div>
+          </div>
+
+          // Sidebar + Topbar Example
+          <div>
+            <Typography
+              text={Signal.make("Sidebar + Topbar Layout")} variant={Typography.H5}
+            />
+            <p style="color: #6b7280; margin: 0.5rem 0 1rem 0; font-size: 0.875rem;">
+              {Component.text("Full application layout with both sidebar and topbar")}
+            </p>
+            <div
+              style="border: 2px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; height: 500px;"
+            >
+              <AppLayout
+                sidebar={<Sidebar
+                  logo={Component.text("Eita")}
+                  sections={[
+                    {
+                      title: Some("Navigation"),
+                      items: [
+                        {
+                          label: "Dashboard",
+                          icon: Some("\u2302"),
+                          active: true,
+                          onClick: () => Console.log("Dashboard"),
+                        },
+                        {
+                          label: "Projects",
+                          icon: Some("\u{1F4C1}"),
+                          active: false,
+                          onClick: () => Console.log("Projects"),
+                        },
+                        {
+                          label: "Tasks",
+                          icon: Some("\u2713"),
+                          active: false,
+                          onClick: () => Console.log("Tasks"),
+                        },
+                      ],
+                    },
+                  ]}
+                  theme={Sidebar.Dark}
+                  size={Sidebar.Md}
+                  collapsed={Signal.get(sidebarCollapsed)}
+                />}
+                topbar={<Topbar
+                  onMenuClick={() => Signal.update(sidebarCollapsed, prev => !prev)}
+                  rightContent={
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                      <Badge label={Signal.make("3")} variant={Badge.Primary} />
+                      <Avatar src="https://ui-avatars.com/api/?name=John+Doe" size={Avatar.Sm} />
+                    </div>
+                  }
+                  theme={Topbar.Light}
+                />}
+                sidebarSize={"md"}
+                sidebarCollapsed={Signal.get(sidebarCollapsed)}
+              >
+                <div style="padding: 2rem;">
+                  <Typography text={Signal.make("Dashboard")} variant={Typography.H3} />
+                  <p style="margin-top: 1rem;">
+                    {Component.text(
+                      "This is a complete application layout with both sidebar and topbar. Click the menu button in the topbar to toggle the sidebar.",
+                    )}
+                  </p>
+                  <div style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <Card>
+                      <Typography text={Signal.make("Total Users")} variant={Typography.H6} />
+                      <Typography
+                        text={Signal.make("1,234")}
+                        variant={Typography.H2}
+                        class="text-primary"
+                      />
+                    </Card>
+                    <Card>
+                      <Typography text={Signal.make("Active Projects")} variant={Typography.H6} />
+                      <Typography text={Signal.make("45")} variant={Typography.H2} />
+                    </Card>
+                    <Card>
+                      <Typography text={Signal.make("Completed Tasks")} variant={Typography.H6} />
+                      <Typography text={Signal.make("892")} variant={Typography.H2} />
+                    </Card>
+                  </div>
+                </div>
+              </AppLayout>
+            </div>
+          </div>
+        </div>
       </div>
 
       <Separator
