@@ -1,5 +1,5 @@
 {
-  "name": "eita-ui",
+  "name": "basefn-ui",
   "version": "0.1.0",
   "description": "A simple UI component library for Xote applications",
   "main": "lib/js/src/index.js",

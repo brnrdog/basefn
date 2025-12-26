@@ -1,26 +1,26 @@
 open Xote
-open Eita
+open Basefn
 
 @jsx.component
 let make = () => {
   <div style="max-width: 800px; padding: 3rem 0;">
     <div style="text-align: center; margin-bottom: 3rem;">
-      <Typography text={Signal.make("eita UI")} variant={Typography.H1} />
+      <Typography text={Signal.make("basefn UI")} variant={Typography.H1} />
       <Typography
         text={Signal.make("A modern ReScript UI component library built with Xote")} variant={Lead}
       />
       <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
         {Router.link(
           ~to="/component/button",
-          ~children=[<Button label={Signal.make("Get Started")} variant={Button.Primary} />],
+          ~children=[<Button label={Static("Get Started")} variant={Button.Primary} />],
           (),
         )}
         <a
-          href="https://github.com/yourusername/eita-ui"
+          href="https://github.com/yourusername/basefn-ui"
           target="_blank"
           style="text-decoration: none;"
         >
-          <Button label={Signal.make("View on GitHub")} variant={Ghost} />
+          <Button label={Static("View on GitHub")} variant={Ghost} />
         </a>
       </div>
     </div>

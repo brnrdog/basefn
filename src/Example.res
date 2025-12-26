@@ -1,6 +1,6 @@
-// Example usage of Eita-UI components
+// Example usage of basefn-UI components
 
-open Eita
+open Basefn
 open Xote
 
 module ExampleForm = {
@@ -41,6 +41,11 @@ module ExampleForm = {
       Console.log(`Name: ${Signal.get(name)}`)
       Console.log(`Email: ${Signal.get(email)}`)
       Console.log(`Message: ${Signal.get(message)}`)
+
+      let _ = setTimeout(() => {
+        Signal.set(isSubmitting, false)
+        ()
+      }, 1000)
     }
 
     let selectOptions = Signal.make([
@@ -49,7 +54,7 @@ module ExampleForm = {
       ({value: "option3", label: "Option 3"}: selectOption),
     ])
 
-    <div>
+    <div style="max-width: 50rem; margin: auto;">
       <h1> {Component.text("Contact Form Example")} </h1>
 
       <div style="margin-bottom: 1rem;">
@@ -88,13 +93,10 @@ module ExampleForm = {
       </div>
 
       <div style="display: flex; gap: 1rem;">
-        <Button
-          label={Signals.Computed.make(() => Signal.get(isSubmitting) ? "Submitting..." : "Submit")}
-          onClick={handleSubmit}
-          variant={Button.Primary}
-          disabled={Signal.get(isSubmitting)}
-        />
-        <Button label={Signal.make("Cancel")} variant={Button.Ghost} />
+        <Button onClick={handleSubmit} variant={Button.Primary} disabled={isSubmitting}>
+          {Component.textSignal(() => Signal.get(isSubmitting) ? "Submitting..." : "Submit")}
+        </Button>
+        <Button label={Static("Cancel")} variant={Button.Ghost} />
       </div>
     </div>
   }

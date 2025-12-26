@@ -1,7 +1,7 @@
 %%raw(`import './DocsLayout.css'`)
 
 open Xote
-open Eita
+open Basefn
 
 type componentInfo = DocsRoutes.componentInfo
 
@@ -21,65 +21,52 @@ let make = (~components: array<componentInfo>, ~children: Component.node) => {
   let grouped = groupByCategory(components)
   let categories = ["Form", "Foundation", "Display", "Navigation", "Interactive", "Layout"]
 
-  // Get current path for active state
-  let currentPath = Computed.make(() => {
-    Signal.get(Router.location).pathname
+  // Compute sidebar sections reactively based on current route
+  let sidebarSections = Computed.make(() => {
+    let currentPath = Signal.get(Router.location).pathname
+
+    categories->Array.filterMap(category => {
+      grouped
+      ->Dict.get(category)
+      ->Option.map(
+        comps => {
+          {
+            Sidebar.title: Some(category),
+            items: comps->Array.map(
+              comp => {
+                {
+                  Sidebar.label: comp.name,
+                  icon: None,
+                  active: currentPath == comp.path,
+                  onClick: () => Router.push(comp.path, ()),
+                }
+              },
+            ),
+          }
+        },
+      )
+    })
   })
 
   <AppLayout
-    sidebar={<div class="docs-sidebar">
-      <div class="docs-sidebar__header">
-        <Typography text={Signal.make("eita UI")} variant={Typography.H4} />
-        <Typography text={Signal.make("Component Documentation")} variant={Typography.Muted} />
-      </div>
-      <nav class="docs-sidebar__nav">
-        {categories
-        ->Array.filterMap(category => {
-          grouped
-          ->Dict.get(category)
-          ->Option.map(comps => {
-            <div key={category} class="docs-sidebar__category">
-              <div class="docs-sidebar__category-title"> {Component.text(category)} </div>
-              <div class="docs-sidebar__category-items">
-                {comps
-                ->Array.map(
-                  comp => {
-                    let isActive = Computed.make(
-                      () =>
-                        Signal.get(currentPath) == comp.path ? " docs-sidebar__item--active" : "",
-                    )
-                    <div key={comp.name}>
-                      {Router.link(
-                        ~to=comp.path,
-                        ~attrs=[
-                          Component.attr("class", "docs-sidebar__item" ++ Signal.get(isActive)),
-                        ],
-                        ~children=[Component.text(comp.name)],
-                        (),
-                      )}
-                    </div>
-                  },
-                )
-                ->Component.fragment}
-              </div>
-            </div>
-          })
-        })
-        ->Component.fragment}
-      </nav>
-    </div>}
+    sidebar={<Sidebar
+      logo={<div>
+        <Typography text={Signal.make("basefn")} variant={Typography.H5} />
+        <div style="font-size: 0.75rem; margin-top: 0.125rem;">
+          {Component.text("Documentation")}
+        </div>
+      </div>}
+      sections={Signal.get(sidebarSections)}
+      theme={Sidebar.Dark}
+      size={Sidebar.Md}
+      collapsed={Signal.get(sidebarCollapsed)}
+    />}
     topbar={<Topbar
-      logo={Router.link(
-        ~to="/",
-        ~attrs=[Component.attr("class", "docs-topbar__logo")],
-        ~children=[Component.text("eita UI")],
-        (),
-      )}
       onMenuClick={() => Signal.update(sidebarCollapsed, prev => !prev)}
       rightContent={<div style="display: flex; gap: 0.75rem;">
         {Router.link(~to="/", ~children=[Component.text("Home")], ())}
         <a
-          href="https://github.com/yourusername/eita-ui"
+          href="https://github.com/yourusername/basefn-ui"
           target="_blank"
           style="text-decoration: none; color: inherit;"
         >

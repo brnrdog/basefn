@@ -1,15 +1,15 @@
 {
-  "name": "eita",
+  "name": "basefn",
   "sources": [
     {
       "dir": "src",
       "subdirs": true,
-      "public": ["Eita"]
+      "public": ["Basefn"]
     },
     {
       "dir": "docs",
       "subdirs": true,
-      "public": ["Eita"]
+      "public": ["Basefn"]
     }
   ],
   "package-specs": {

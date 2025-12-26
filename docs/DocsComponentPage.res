@@ -1,7 +1,7 @@
 %%raw(`import './DocsComponentPage.css'`)
 
 open Xote
-open Eita
+open Basefn
 
 type example = {
   title: string,

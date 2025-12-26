@@ -47,7 +47,37 @@
   min-height: 200px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+}
+
+/* Special handling for layout demos that use position: fixed */
+.docs-component-demo .basefn-app-layout {
+  position: relative;
+}
+
+.docs-component-demo .basefn-app-layout__sidebar {
+  position: absolute;
+}
+
+.docs-component-demo .basefn-app-layout__topbar {
+  position: relative;
+}
+
+/* Remove default demo padding/alignment for AppLayout demos */
+.docs-component-demo:has(.basefn-app-layout) {
+  padding: 0;
+  display: block;
+  min-height: auto;
+}
+
+/* Override AppLayout height constraints in demo */
+.docs-component-demo .basefn-app-layout {
+  min-height: 100%;
+  height: 100%;
+}
+
+.docs-component-demo .basefn-app-layout__main-wrapper {
+  min-height: 100%;
 }
 
 .docs-component-code {

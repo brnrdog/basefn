@@ -16,7 +16,7 @@ let components: array<componentInfo> = [
   {name: "Label", category: "Form", path: "/component/label"},
   // Foundation Components
   {name: "Badge", category: "Foundation", path: "/component/badge"},
-  {name: "Spinner", category: "Spinner", path: "/component/spinner"},
+  {name: "Spinner", category: "Foundation", path: "/component/spinner"},
   {name: "Separator", category: "Foundation", path: "/component/separator"},
   {name: "Kbd", category: "Foundation", path: "/component/kbd"},
   {name: "Typography", category: "Foundation", path: "/component/typography"},

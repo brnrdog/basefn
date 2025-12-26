@@ -1,10 +1,10 @@
-// Demo application showcasing eita-UI components
+// Demo application showcasing basefn-UI components
 
 %%raw(`import './styles/variables.css'`)
 %%raw(`import './eita.css'`)
 
 open Xote
-open Eita
+open Basefn
 open Signals
 
 @get external target: Dom.event => Dom.element = "target"
@@ -120,7 +120,7 @@ module Demo = {
 
     <>
       {Component.textSignal(() => Signal.get(selectedOption))}
-      <h1> {Component.text("eita-UI Component Library")} </h1>
+      <h1> {Component.text("basefn-UI Component Library")} </h1>
       <p style="color: #6b7280; margin-bottom: 2rem;">
         {Component.text(
           "A demonstration of all form components with both static and reactive values.",
@@ -250,21 +250,25 @@ module Demo = {
         </div>
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          {Component.SignalFragment(
+            Computed.make(() => {
+              [
+                <Button
+                  label={Signal.get(isSubmitting) ? Static("Submitting...") : Static("Submit Form")}
+                  onClick={handleSubmit}
+                  variant={Button.Primary}
+                  disabled={isSubmitting}
+                />,
+              ]
+            }),
+          )}
           <Button
-            label={Computed.make(() => Signal.get(isSubmitting) ? "Submitting..." : "Submit Form")}
-            onClick={handleSubmit}
-            variant={Button.Primary}
-            disabled={Signal.get(isSubmitting)}
-          />
-          <Button
-            label={Signal.make("Reset")}
+            label={Static("reset")}
             onClick={handleReset}
             variant={Button.Secondary}
-            disabled={Signal.get(isSubmitting)}
+            disabled={isSubmitting}
           />
-          <Button
-            label={Signal.make("Cancel")} variant={Button.Ghost} disabled={Signal.get(isSubmitting)}
-          />
+          <Button label={Static("Cancel")} variant={Button.Ghost} disabled={isSubmitting} />
         </div>
       </Card>
 
@@ -340,7 +344,7 @@ module Demo = {
               label="Dynamic Progress"
             />
             <Button
-              label={Signal.make("Simulate Progress")}
+              label={Static("Simulate Progress")}
               onClick={_evt => {
                 Signal.set(downloadProgress, 0.0)
                 let intervalId = ref(None)
@@ -459,41 +463,41 @@ module Demo = {
           items={[
             {
               value: "faq1",
-              title: "What is eita-UI?",
+              title: "What is basefn-UI?",
               content: <p>
                 {Component.text(
-                  "eita-UI is a modern, reactive UI component library built with ReScript and Xote. It provides a comprehensive set of accessible and customizable components for building web applications.",
+                  "basefn-UI is a modern, reactive UI component library built with ReScript and Xote. It provides a comprehensive set of accessible and customizable components for building web applications.",
                 )}
               </p>,
             },
             {
               value: "faq2",
-              title: "How do I install eita-UI?",
+              title: "How do I install basefn-UI?",
               content: <div>
                 <p>
                   {Component.text(
-                    "You can install eita-UI via npm or yarn. Here's how to get started:",
+                    "You can install basefn-UI via npm or yarn. Here's how to get started:",
                   )}
                 </p>
                 <br />
-                <Typography text={Signal.make("npm install eita-ui")} variant={Typography.Code} />
+                <Typography text={Signal.make("npm install basefn-ui")} variant={Typography.Code} />
               </div>,
             },
             {
               value: "faq3",
-              title: "Is eita-UI customizable?",
+              title: "Is basefn-UI customizable?",
               content: <p>
                 {Component.text(
-                  "Yes! eita-UI is fully customizable. You can override the default styles using CSS variables or by providing custom CSS classes. Each component accepts standard HTML attributes including className and style.",
+                  "Yes! basefn-UI is fully customizable. You can override the default styles using CSS variables or by providing custom CSS classes. Each component accepts standard HTML attributes including className and style.",
                 )}
               </p>,
             },
             {
               value: "faq4",
-              title: "Does eita-UI support TypeScript?",
+              title: "Does basefn-UI support TypeScript?",
               content: <p>
                 {Component.text(
-                  "eita-UI is built with ReScript, which provides excellent type safety. While it doesn't directly use TypeScript, ReScript's type system is even more robust and catches errors at compile time.",
+                  "basefn-UI is built with ReScript, which provides excellent type safety. While it doesn't directly use TypeScript, ReScript's type system is even more robust and catches errors at compile time.",
                 )}
               </p>,
             },
@@ -580,7 +584,7 @@ module Demo = {
           {Component.text("Display content in an overlay dialog.")}
         </p>
         <Button
-          label={Signal.make("Open Modal")}
+          label={Static("Open Modal")}
           onClick={_ => Signal.set(isModalOpen, true)}
           variant={Button.Primary}
         />
@@ -591,12 +595,12 @@ module Demo = {
           size={Modal.Md}
           footer={<div style="display: flex; gap: 0.5rem;">
             <Button
-              label={Signal.make("Cancel")}
+              label={Static("Cancel")}
               onClick={_ => Signal.set(isModalOpen, false)}
               variant={Button.Ghost}
             />
             <Button
-              label={Signal.make("Confirm")}
+              label={Static("Confirm")}
               onClick={_ => {
                 Console.log("Confirmed!")
                 Signal.set(isModalOpen, false)
@@ -668,16 +672,16 @@ module Demo = {
         </p>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
           <Tooltip content="This appears on top" position={Tooltip.Top}>
-            <Button label={Signal.make("Hover me (top)")} variant={Button.Secondary} />
+            <Button label={Static("Hover me )(top)")} variant={Button.Secondary} />
           </Tooltip>
           <Tooltip content="This appears on bottom" position={Tooltip.Bottom}>
-            <Button label={Signal.make("Hover me (bottom)")} variant={Button.Secondary} />
+            <Button label={Static("Hover me )(bottom)")} variant={Button.Secondary} />
           </Tooltip>
           <Tooltip content="This appears on left" position={Tooltip.Left}>
-            <Button label={Signal.make("Hover me (left)")} variant={Button.Secondary} />
+            <Button label={Static("Hover me )(left)")} variant={Button.Secondary} />
           </Tooltip>
           <Tooltip content="This appears on right" position={Tooltip.Right}>
-            <Button label={Signal.make("Hover me (right)")} variant={Button.Secondary} />
+            <Button label={Static("Hover me )(right)")} variant={Button.Secondary} />
           </Tooltip>
         </div>
       </div>
@@ -690,7 +694,7 @@ module Demo = {
         </p>
         <div style="display: flex; gap: 1rem;">
           <Dropdown
-            trigger={<Button label={Signal.make("Actions")} variant={Button.Secondary} />}
+            trigger={<Button label={Static("Actions")} variant={Button.Secondary} />}
             items={[
               Dropdown.Item({
                 label: "Edit",
@@ -713,7 +717,7 @@ module Demo = {
             ]}
           />
           <Dropdown
-            trigger={<Button label={Signal.make("More options")} variant={Button.Ghost} />}
+            trigger={<Button label={Static("More options")} variant={Button.Ghost} />}
             items={[
               Dropdown.Item({
                 label: "Settings",
@@ -743,7 +747,7 @@ module Demo = {
         </p>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <Button
-            label={Signal.make("Show Toast")}
+            label={Static("Show Toast")}
             onClick={_ => Signal.set(toastVisible, true)}
             variant={Button.Primary}
           />
@@ -853,7 +857,7 @@ module Demo = {
         </p>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <Button
-            label={Signal.make("Open Drawer")}
+            label={Static("Open Drawer")}
             onClick={_ => Signal.set(isDrawerOpen, true)}
             variant={Button.Primary}
           />
@@ -866,12 +870,12 @@ module Demo = {
           size={Drawer.Md}
           footer={<div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
             <Button
-              label={Signal.make("Cancel")}
+              label={Static("Cancel")}
               onClick={_ => Signal.set(isDrawerOpen, false)}
               variant={Button.Ghost}
             />
             <Button
-              label={Signal.make("Save")}
+              label={Static("Save")}
               onClick={_ => {
                 Console.log("Saved!")
                 Signal.set(isDrawerOpen, false)
@@ -1099,8 +1103,8 @@ module Demo = {
                     },
                   ]}
                   rightContent={<div style="display: flex; gap: 0.5rem;">
-                    <Button label={Signal.make("Sign In")} variant={Button.Ghost} />
-                    <Button label={Signal.make("Sign Up")} variant={Button.Primary} />
+                    <Button label={Static("Sign In")} variant={Button.Ghost} />
+                    <Button label={Static("Sign Up")} variant={Button.Primary} />
                   </div>}
                   theme={Topbar.Light}
                 />}
@@ -1126,7 +1130,7 @@ module Demo = {
             >
               <AppLayout
                 sidebar={<Sidebar
-                  logo={Component.text("eita")}
+                  logo={Component.text("basefn")}
                   sections={[
                     {
                       title: Some("Navigation"),
