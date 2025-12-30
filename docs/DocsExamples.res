@@ -56,9 +56,8 @@ let counterText = Computed.make(() => "Count: " ++ Int.toString(Signal.get(count
         description: "Button attributes can be static or it can react to signals.",
         demo: {
           let fetching = Signal.make(false)
-          let disabled = fetching
           let onClick = event => {
-            Basefn__Dom.preventDefault(event)
+            let _ = Basefn__Dom.preventDefault(event)
             Signal.set(fetching, true)
             let _ = setTimeout(() => {
               Signal.set(fetching, false)
@@ -66,8 +65,10 @@ let counterText = Computed.make(() => "Count: " ++ Int.toString(Signal.get(count
           }
 
           <div style="display: flex; align-items: center; gap: 1rem;">
-            <Button variant={Button.Primary} disabled onClick>
-              {textSignal(() => Signal.get(fetching) ? "Loading data..." : "Load data")}
+            <Button variant={Button.Primary} disabled={ReactiveProp.Reactive(fetching)} onClick>
+              {textSignal(() =>
+                Signal.get(fetching) ? "Data fetching..." : "Simulate data fetching"
+              )}
             </Button>
           </div>
         },
@@ -148,8 +149,10 @@ let onClick = event => {
           let emailValue = Signal.make("")
 
           <div style="display: flex; flex-direction: column; gap:1rem;">
-            <Input value={textValue} placeholder="Enter username" name="username" />
-            <Input value={emailValue} placeholder="Enter email" type_=Input.Email name="email" />
+            <Input value={Reactive(textValue)} placeholder="Enter username" name="username" />
+            <Input
+              value={Reactive(emailValue)} placeholder="Enter email" type_=Input.Email name="email"
+            />
           </div>
         },
         code: `let username = Signal.make("")
@@ -158,7 +161,7 @@ let email = Signal.make("")
 <Input
   name="username"
   placeholder="Enter username" 
-  value={username} 
+  value={username}
 />
 <Input 
   value={email} 
@@ -166,6 +169,39 @@ let email = Signal.make("")
   type_=Input.Email 
   name="email" 
 />
+        `,
+      },
+      {
+        title: "Disabled state",
+        description: "Disabled and other properties can be either static or reactive (signal).",
+        demo: {
+          let checked = Signal.make(false)
+          let disabled = Computed.make(() => !Signal.get(checked))
+          let onChange = e => {
+            let v = Basefn__Dom.target(e)["checked"]
+            Signal.set(checked, v)
+          }
+
+          <div style="display: flex; flex-direction: column; gap:2rem;">
+            <Checkbox label="The button will only be enabled when checked" checked onChange />
+            <div>
+              <Button disabled={Reactive(disabled)}> {Component.text("Submit")} </Button>
+            </div>
+          </div>
+        },
+        code: `let checked = Signal.make(false)
+let disabled = Computed.make(() => !Signal.get(checked))
+let onChange = e => {
+  let v = Basefn__Dom.target(e)["checked"]
+  Signal.set(checked, v)
+}
+
+<div style="display: flex; flex-direction: column; gap:2rem;">
+  <Checkbox label="The button will only be enabled when checked" checked onChange />
+  <div>
+    <Button disabled={Reactive(disabled)}> {Component.text("Submit")} </Button>
+  </div>
+</div>
         `,
       },
     ]
@@ -272,7 +308,7 @@ let email = Signal.make("")
           let value = Signal.make("")
           <div style="max-width: 400px;">
             <Label text="Message" required={true} />
-            <Textarea value placeholder="Enter your message..." />
+            <Textarea value={Reactive(value)} placeholder="Enter your message..." />
           </div>
         },
         code: `let value = Signal.make("")
@@ -290,7 +326,7 @@ let email = Signal.make("")
           let charCount = Computed.make(() => String.length(Signal.get(value)))
           let message = Computed.make(() => Signal.get(charCount)->Int.toString ++ " characters")
           <div style="max-width: 400px; display: flex; flex-direction: column; gap: 0.5rem;">
-            <Textarea value placeholder="Write something..." />
+            <Textarea value={Reactive(value)} placeholder="Write something..." />
             <Typography text={message} variant={Typography.Small} />
           </div>
         },
@@ -341,12 +377,32 @@ let options = Signal.make([
             {value: "grape", label: "Grape"},
           ])
           let selectedValue = Computed.make(() => Signal.get(value))
+
+          let onClickOption = optionValue =>
+            _evt => {
+              Signal.set(value, optionValue)
+            }
+
           <div style="max-width: 300px; display: flex; flex-direction: column; gap: 1rem;">
             <Select value options />
             <Typography
               text={Computed.make(() => "Selected: " ++ Signal.get(selectedValue))}
               variant={Typography.Small}
             />
+            <div style="display: flex; gap: 4rem;">
+              <Button variant={Ghost} onClick={onClickOption("apple")}>
+                {Component.text("🍎")}
+              </Button>
+              <Button variant={Ghost} onClick={onClickOption("banana")}>
+                {Component.text("🍌")}
+              </Button>
+              <Button variant={Ghost} onClick={onClickOption("orange")}>
+                {Component.text("🍊")}
+              </Button>
+              <Button variant={Ghost} onClick={onClickOption("grape")}>
+                {Component.text("🍇")}
+              </Button>
+            </div>
           </div>
         },
         code: `let value = Signal.make("apple")
@@ -449,11 +505,15 @@ let option2 = Signal.make(false)
         demo: <div style="display: flex; flex-direction: column; gap: 1rem;">
           <div>
             <Label text="Email address" />
-            <Input value={Signal.make("")} placeholder="Enter email" type_=Input.Email />
+            <Input value={Static("")} placeholder="Enter email" type_=Input.Email />
           </div>
           <div>
             <Label text="Password" required={true} />
-            <Input value={Signal.make("")} placeholder="Enter password" type_=Input.Password />
+            <Input value={Static("")} placeholder="Enter password" type_=Input.Password />
+          </div>
+          <div>
+            <Label text="Bio" required={true} />
+            <Textarea value={Static("")} placeholder="Describe yourself in a few words..." />
           </div>
         </div>,
         code: `<Label text="Email address" />

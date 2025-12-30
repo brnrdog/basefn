@@ -18,6 +18,27 @@ module App = {
             </DocsLayout>,
         },
         {
+          pattern: "/getting-started",
+          render: _params =>
+            <DocsLayout components>
+              <GettingStarted />
+            </DocsLayout>,
+        },
+        {
+          pattern: "/api",
+          render: _params =>
+            <DocsLayout components>
+              <ApiReference />
+            </DocsLayout>,
+        },
+        {
+          pattern: "/changelog",
+          render: _params =>
+            <DocsLayout components>
+              <Changelog />
+            </DocsLayout>,
+        },
+        {
           pattern: "/component/:name",
           render: params => {
             let componentName = params->Dict.get("name")->Option.getOr("button")

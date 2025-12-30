@@ -7,6 +7,9 @@ type componentInfo = {
 // All components organized by category
 let components: array<componentInfo> = [
   // Form Components
+  {name: "Getting Started", category: "", path: "/getting-started"},
+  {name: "API Reference", category: "", path: "/api"},
+  {name: "Changelog", category: "", path: "/changelog"},
   {name: "Button", category: "Form", path: "/component/button"},
   {name: "Input", category: "Form", path: "/component/input"},
   {name: "Textarea", category: "Form", path: "/component/textarea"},

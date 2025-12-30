@@ -1,12 +1,13 @@
 .docs-component-page {
   max-width: 1200px;
-  padding: 2rem 0;
+  margin: auto;
 }
 
 .docs-component-header {
   margin-bottom: 3rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid #e5e7eb;
+  text-transform: capitalize;
 }
 
 .docs-component-header h1 {
