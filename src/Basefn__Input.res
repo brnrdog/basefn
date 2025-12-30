@@ -4,6 +4,10 @@ open Xote
 
 type inputType = Text | Email | Password | Number | Tel | Url | Search | Date | Time
 
+type inputSize = Sm | Md
+
+type radius = Full | Md
+
 let inputTypeToString = (type_: inputType) => {
   switch type_ {
   | Text => "text"
@@ -20,20 +24,22 @@ let inputTypeToString = (type_: inputType) => {
 
 @jsx.component
 let make = (
-  ~value: Signal.t<string>,
+  ~value: ReactiveProp.t<string>,
   ~onInput: option<Dom.event => unit>=?,
   ~type_: inputType=Text,
   ~placeholder: string="",
-  ~disabled: bool=false,
+  ~disabled=ReactiveProp.static(false),
+  ~size=Md,
+  ~radius=Md,
   ~name=?,
 ) => {
-  <input
-    class="basefn-input"
-    type_={inputTypeToString(type_)}
-    placeholder
-    value={value}
-    disabled={false}
-    name
-    ?onInput
-  />
+  let class = {
+    let radiusClass = switch radius {
+    | Full => "basefn-input--radius-full"
+    | _ => ""
+    }
+
+    "basefn-input " ++ radiusClass
+  }
+  <input class type_={inputTypeToString(type_)} placeholder value={value} disabled name ?onInput />
 }

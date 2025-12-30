@@ -84,6 +84,10 @@
   color: #1f2937;
 }
 
+.basefn-typography--unstyled {
+  display: inline-block;
+}
+
 /* Text alignment */
 .basefn-typography--left {
   text-align: left;

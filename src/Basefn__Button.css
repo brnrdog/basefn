@@ -11,7 +11,7 @@
   height: var(--basefn-button-height);
   padding: 0 var(--basefn-button-padding-x);
   border: var(--basefn-border-width) solid transparent;
-  border-radius: var(--basefn-radius-xl);
+  border-radius: var(--basefn-radius-full);
   cursor: pointer;
   transition: all var(--basefn-transition-fast);
   outline: none;

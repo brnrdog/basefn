@@ -4,7 +4,7 @@ open Xote
 
 @jsx.component
 let make = (
-  ~value: Signal.t<string>,
+  ~value: ReactiveProp.t<string>,
   ~onInput=?,
   ~placeholder: string="",
   ~disabled: bool=false,
@@ -13,7 +13,10 @@ let make = (
     let t = Basefn__Dom.target(e)
     let v = t["value"]
 
-    Signal.set(value, v)
+    switch value {
+    | Reactive(signal) => Signal.set(signal, v)
+    | _ => ()
+    }
 
     switch onInput {
     | Some(onInput) => onInput(v)

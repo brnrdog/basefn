@@ -1,3 +1,5 @@
+@import './styles/variables.css';
+
 .basefn-topbar {
   display: flex;
   align-items: center;
@@ -21,6 +23,10 @@
   align-items: center;
   gap: 1rem;
   flex: 1;
+}
+
+.basefn-topbar__left:empty {
+  display: none;
 }
 
 .basefn-topbar__center {
@@ -92,7 +98,7 @@
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 500;
-  border-radius: 0.375rem;
+  border-radius: var(--basefn-radius-full);
   cursor: pointer;
   transition: all 0.2s;
   background: none;
@@ -104,18 +110,20 @@
 }
 
 .basefn-topbar__nav-item:hover {
-  background-color: #f3f4f6;
-  color: #1f2937;
+  background-color: var(--basefn-color-neutral-200);
+  color: var(--basefn-color-neutral-800);
 }
 
 .basefn-topbar--dark .basefn-topbar__nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--basefn-color-neutral-800);
   color: white;
 }
 
-.basefn-topbar__nav-item--active {
-  background-color: #eff6ff;
-  color: #3b82f6;
+.basefn-topbar__nav-item--active,
+.basefn-topbar__nav-item--active:hover {
+  background-color: var(--basefn-color-primary-background);
+  color: var(--basefn-color-primary);
+  font-weight: 600;
 }
 
 .basefn-topbar--dark .basefn-topbar__nav-item--active {

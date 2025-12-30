@@ -5,7 +5,6 @@
 
 open Xote
 open Basefn
-open Signals
 
 @get external target: Dom.event => Dom.element = "target"
 @set external setValue: (Dom.element, string) => unit = "value"
@@ -169,11 +168,16 @@ module Demo = {
 
       <Card>
         <Label text="Full Name" required={true} />
-        <Input value={name} onInput={handleNameChange} type_={Input.Text} placeholder="John Doe" />
+        <Input
+          value={Reactive(name)}
+          onInput={handleNameChange}
+          type_={Input.Text}
+          placeholder="John Doe"
+        />
         <br />
         <Label text="Email Address" required={true} />
         <Input
-          value={email}
+          value={Reactive(email)}
           onInput={handleEmailChange}
           type_={Input.Email}
           placeholder="john@example.com"
@@ -181,7 +185,7 @@ module Demo = {
         <br />
         <Label text="Password" required={true} />
         <Input
-          value={password}
+          value={Reactive(password)}
           onInput={handlePasswordChange}
           type_={Input.Password}
           placeholder="Enter a secure password"
@@ -228,7 +232,9 @@ module Demo = {
       <Card>
         <Label text="Message" required={false} />
         <Textarea
-          value={message} onInput={handleMessageChange} placeholder="Tell us more about yourself..."
+          value={Reactive(message)}
+          onInput={handleMessageChange}
+          placeholder="Tell us more about yourself..."
         />
       </Card>
       <br />
@@ -257,7 +263,7 @@ module Demo = {
                   label={Signal.get(isSubmitting) ? Static("Submitting...") : Static("Submit Form")}
                   onClick={handleSubmit}
                   variant={Button.Primary}
-                  disabled={isSubmitting}
+                  disabled={isSubmitting->ReactiveProp.Reactive}
                 />,
               ]
             }),
@@ -266,9 +272,13 @@ module Demo = {
             label={Static("reset")}
             onClick={handleReset}
             variant={Button.Secondary}
-            disabled={isSubmitting}
+            disabled={isSubmitting->ReactiveProp.Reactive}
           />
-          <Button label={Static("Cancel")} variant={Button.Ghost} disabled={isSubmitting} />
+          <Button
+            label={Static("Cancel")}
+            variant={Button.Ghost}
+            disabled={isSubmitting->ReactiveProp.Reactive}
+          />
         </div>
       </Card>
 
@@ -893,15 +903,15 @@ module Demo = {
             </p>
             <div style="margin-top: 1.5rem;">
               <Label text="Name" />
-              <Input value={Signal.make("")} type_={Input.Text} placeholder="Enter your name" />
+              <Input value={Static("")} type_={Input.Text} placeholder="Enter your name" />
             </div>
             <div style="margin-top: 1rem;">
               <Label text="Email" />
-              <Input value={Signal.make("")} type_={Input.Email} placeholder="Enter your email" />
+              <Input value={Static("")} type_={Input.Email} placeholder="Enter your email" />
             </div>
             <div style="margin-top: 1rem;">
               <Label text="Message" />
-              <Textarea value={Signal.make("")} placeholder="Enter a message" />
+              <Textarea value={ReactiveProp.Static("")} placeholder="Enter a message" />
             </div>
           </div>
         </Drawer>

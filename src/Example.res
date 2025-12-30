@@ -60,14 +60,17 @@ module ExampleForm = {
       <div style="margin-bottom: 1rem;">
         <Label text="Name" required={true} />
         <Input
-          value={name} onInput={handleNameChange} type_={Input.Text} placeholder="Enter your name"
+          value={Reactive(name)}
+          onInput={handleNameChange}
+          type_={Input.Text}
+          placeholder="Enter your name"
         />
       </div>
 
       <div style="margin-bottom: 1rem;">
         <Label text="Email" required={true} />
         <Input
-          value={email}
+          value={Reactive(email)}
           onInput={handleEmailChange}
           type_={Input.Email}
           placeholder="Enter your email"
@@ -81,7 +84,9 @@ module ExampleForm = {
 
       <div style="margin-bottom: 1rem;">
         <Label text="Message" required={false} />
-        <Textarea value={message} onInput={handleMessageChange} placeholder="Enter your message" />
+        <Textarea
+          value={Reactive(message)} onInput={handleMessageChange} placeholder="Enter your message"
+        />
       </div>
 
       <div style="margin-bottom: 1rem;">
@@ -93,7 +98,7 @@ module ExampleForm = {
       </div>
 
       <div style="display: flex; gap: 1rem;">
-        <Button onClick={handleSubmit} variant={Button.Primary} disabled={isSubmitting}>
+        <Button onClick={handleSubmit} variant={Button.Primary} disabled={Reactive(isSubmitting)}>
           {Component.textSignal(() => Signal.get(isSubmitting) ? "Submitting..." : "Submit")}
         </Button>
         <Button label={Static("Cancel")} variant={Button.Ghost} />

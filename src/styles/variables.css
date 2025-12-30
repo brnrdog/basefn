@@ -1,6 +1,7 @@
 :root {
   /* Color Palette - Neutral Theme */
   --basefn-color-primary: #3b82f6;
+  --basefn-color-primary-background: #eff6ff;
   --basefn-color-primary-hover: #2563eb;
   --basefn-color-primary-active: #1d4ed8;
 
