@@ -385,9 +385,9 @@ vite@^5.0.0:
   optionalDependencies:
     fsevents "~2.3.3"
 
-xote@^4.4.3:
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/xote/-/xote-4.4.3.tgz#302df47b177c5d3c834e55e166be5bf15f8c9d9b"
-  integrity sha512-HuqnfiYQfUsezKPIv/+styIfYf7AblUcXny/BlJ25v82LW+tY32TtO8jzM5cFby7jq9oPFq+Fkgou1NTTYfluQ==
+xote@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/xote/-/xote-4.7.0.tgz#d885ca4c7b55208b7648fc8ea1c01e47b656c2b9"
+  integrity sha512-AUG0iwQlTbizJVHcnvqNi3DnyNptaNUAV+ttu+GAJZy0Uc3UfQwPnnWH5ISZHTyRh/Q3wyGUbzDccnX7t8WsxA==
   dependencies:
     rescript-signals "^1.3.0"
