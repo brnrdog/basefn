@@ -2,21 +2,12 @@
 
 open Xote
 
-type theme = Light | Dark
-
 type size = Sm | Md | Lg
 
 type navItem = {
   label: string,
   active: bool,
   onClick: unit => unit,
-}
-
-let themeToString = (theme: theme) => {
-  switch theme {
-  | Light => "light"
-  | Dark => "dark"
-  }
 }
 
 let sizeToString = (size: size) => {
@@ -35,16 +26,23 @@ let make = (
   ~centerContent: option<Component.node>=?,
   ~rightContent: option<Component.node>=?,
   ~onMenuClick: option<unit => unit>=?,
-  ~theme: theme=Light,
   ~size: size=Md,
 ) => {
-  let getTopbarClass = () => {
-    let themeClass = theme == Dark ? " basefn-topbar--dark" : ""
+  let scrolling = Signal.make(false)
+  let class = Computed.make(() => {
     let sizeClass = " basefn-topbar--" ++ sizeToString(size)
-    "basefn-topbar" ++ themeClass ++ sizeClass
-  }
+    let scrollingClass = Signal.get(scrolling) ? " basefn-topbar--scrolling" : ""
+    "basefn-topbar" ++ sizeClass ++ scrollingClass
+  })
 
-  <header class={getTopbarClass()}>
+  let _ = Effect.run(() => {
+    Basefn__Dom.addEventListener("scroll", () => {
+      let scrollY = %raw("window.scrollY")
+      Signal.set(scrolling, scrollY >= 64)
+    })
+  })
+
+  <header class>
     <div class="basefn-topbar__left">
       {switch onMenuClick {
       | Some(handler) =>

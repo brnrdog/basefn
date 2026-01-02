@@ -1,0 +1,21 @@
+.basefn-theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  border-radius: var(--basefn-radius-md);
+  transition: background-color var(--basefn-transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.basefn-theme-toggle:hover {
+  background-color: var(--basefn-bg-tertiary);
+}
+
+.basefn-theme-toggle:active {
+  transform: scale(0.95);
+}

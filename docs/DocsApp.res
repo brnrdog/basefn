@@ -5,16 +5,20 @@ let components = DocsRoutes.components
 module App = {
   @jsx.component
   let make = () => {
-    // Initialize router
+    // Initialize router and theme
     Router.init()
+    let _ = Effect.run(() => {
+      Basefn__Theme.init()->ignore
+      None
+    })
 
     <div>
       {Router.routes([
         {
           pattern: "/",
           render: _params =>
-            <DocsLayout components>
-              <DocsHome />
+            <DocsLayout components showSidebar={false}>
+              <Homepage />
             </DocsLayout>,
         },
         {

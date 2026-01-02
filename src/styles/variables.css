@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
 :root {
   /* Color Palette - Neutral Theme */
   --basefn-color-primary: #3b82f6;
@@ -24,6 +27,8 @@
   --basefn-color-error: #ef4444;
   --basefn-color-warning: #f59e0b;
   --basefn-color-info: #3b82f6;
+
+  --font-mono: "Open Sans", monospace;
 
   /* Typography */
   --basefn-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -104,9 +109,86 @@
   --basefn-button-padding-x: 1rem;           /* 16px */
   --basefn-button-padding-x-sm: 0.75rem;     /* 12px */
   --basefn-button-padding-x-lg: 1.5rem;      /* 24px */
+
+  /* Semantic Color Tokens - Light Theme */
+  /* Backgrounds */
+  --basefn-bg-primary: #ffffff;
+  --basefn-bg-secondary: #f9fafb;
+  --basefn-bg-tertiary: #f3f4f6;
+
+  /* Text colors */
+  --basefn-text-primary: #111827;
+  --basefn-text-secondary: #4b5563;
+  --basefn-text-tertiary: #6b7280;
+  --basefn-text-muted: #9ca3af;
+
+  /* Borders */
+  --basefn-border-primary: #e5e7eb;
+  --basefn-border-secondary: #d1d5db;
+
+  /* Surfaces */
+  --basefn-surface-elevated: #ffffff;
+  --basefn-surface-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Alert semantic colors - Light theme */
+  --basefn-alert-info-bg: #dbeafe;
+  --basefn-alert-info-text: #1e40af;
+  --basefn-alert-success-bg: #d1fae5;
+  --basefn-alert-success-text: #065f46;
+  --basefn-alert-error-bg: #fee2e2;
+  --basefn-alert-error-text: #991b1b;
+  --basefn-alert-warning-bg: #fef3c7;
+  --basefn-alert-warning-text: #92400e;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  /* Backgrounds - Slate palette */
+  --basefn-bg-primary: #0f172a;
+  --basefn-bg-secondary: #1e293b;
+  --basefn-bg-tertiary: #334155;
+
+  /* Text */
+  --basefn-text-primary: #f1f5f9;
+  --basefn-text-secondary: #cbd5e1;
+  --basefn-text-tertiary: #94a3b8;
+  --basefn-text-muted: #64748b;
+
+  /* Borders */
+  --basefn-border-primary: #334155;
+  --basefn-border-secondary: #475569;
+
+  /* Surfaces */
+  --basefn-surface-elevated: #1e293b;
+  --basefn-surface-overlay: rgba(0, 0, 0, 0.7);
+
+  /* Form inputs */
+  --basefn-form-input-bg: #1e293b;
+  --basefn-form-input-border: #475569;
+  --basefn-form-input-text: #f1f5f9;
+  --basefn-form-input-placeholder: #64748b;
+  --basefn-form-input-disabled-bg: #0f172a;
+  --basefn-form-input-disabled-border: #334155;
+  --basefn-form-input-disabled-text: #475569;
+
+  /* Shadows - darker for dark mode */
+  --basefn-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --basefn-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --basefn-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+
+  /* Alert semantic colors - Dark theme */
+  --basefn-alert-info-bg: #1e3a5f;
+  --basefn-alert-info-text: #93c5fd;
+  --basefn-alert-success-bg: #064e3b;
+  --basefn-alert-success-text: #6ee7b7;
+  --basefn-alert-error-bg: #7f1d1d;
+  --basefn-alert-error-text: #fca5a5;
+  --basefn-alert-warning-bg: #78350f;
+  --basefn-alert-warning-text: #fcd34d;
 }
 
 /* Base reset for form elements */
 * {
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
