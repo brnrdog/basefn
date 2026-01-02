@@ -1,0 +1,18 @@
+@import "../../src/styles/variables";
+
+.logo {
+	font-family: 'Open Sans', monospace;
+	font-size: 4rem;
+	letter-spacing: -0.05em;
+	color: var(--basefn-color-neutral-700) !important;
+}
+
+.logo-a {
+	font-weight: 500;
+}
+
+.logo-b {
+	font-style: italic;
+	font-weight: 700;
+}
+

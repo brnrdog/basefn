@@ -1,11 +1,17 @@
 /* Topbar logo styling */
 .docs-topbar__logo {
+  font-family: 'Open Sans', monospace;
+	letter-spacing: -0.05em;
+	color: var(--basefn-color-neutral-700) !important;
   font-weight: 600;
   font-size: 1.125rem;
   color: #1a1b26;
   text-decoration: none;
 }
 
+
 .docs-topbar__logo:hover {
   color: #3b82f6;
 }
+
+

@@ -16,10 +16,10 @@ let groupByCategory = (components: array<componentInfo>): Dict.t<array<component
 }
 
 @jsx.component
-let make = (~components: array<componentInfo>, ~children: Component.node) => {
-  let sidebarCollapsed = Signal.make(false)
+let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Component.node) => {
+  let sidebarCollapsed = Signal.make(!showSidebar)
   let grouped = groupByCategory(components)
-  let categories = ["", "Form", "Foundation", "Display", "Navigation", "Interactive", "Layout"]
+  let categories = ["Learn", "Form", "Foundation", "Display", "Navigation", "Interactive", "Layout"]
 
   // Compute sidebar sections reactively based on current route
   let sidebarSections = Computed.make(() => {
@@ -53,22 +53,46 @@ let make = (~components: array<componentInfo>, ~children: Component.node) => {
       logo={Router.link(
         ~to="/",
         ~children=[
-          <div style="display: flex; align-items: baseline; gap:0.5rem">
-            <div style="display: flex; align-items: center; gap:0rem">
-              <Typography text={Signal.make("base")} variant={Typography.Unstyled} />
-              <Typography text={Signal.make("fn")} variant={Typography.Unstyled} />
+          <div style="display: flex; align-items: center; gap:0.5rem">
+            <div style="display: flex; align-items: center; gap:0rem; font-size: 1.25rem;">
+              <Typography
+                text={ReactiveProp.Static("base")}
+                variant={Typography.Unstyled}
+                style="font-weight: 600; line-height: 2rem;"
+              />
+              <Typography
+                text={ReactiveProp.Static("fn")}
+                variant={Typography.Unstyled}
+                style="font-style: italic; font-weight: 800;"
+              />
             </div>
-            <Typography text={Signal.make("v1.0.0")} variant={Typography.Small} />
+            <Typography text={ReactiveProp.Static("v1.0.0")} variant={Typography.Small} />
           </div>,
         ],
         (),
       )}
       sections={Signal.get(sidebarSections)}
-      theme={Sidebar.Dark}
       size={Sidebar.Lg}
       collapsed={Signal.get(sidebarCollapsed)}
     />}
     topbar={<Topbar
+      leftContent={Signal.get(sidebarCollapsed)
+        ? <>
+            <div style="display: flex; align-items: center; gap:0rem; font-size: 1.25rem;">
+              <Typography
+                text={ReactiveProp.Static("base")}
+                variant={Typography.Unstyled}
+                style="font-weight: 600; line-height: 2rem;"
+              />
+              <Typography
+                text={ReactiveProp.Static("fn")}
+                variant={Typography.Unstyled}
+                style="font-style: italic; font-weight: 800;"
+              />
+            </div>
+            <Typography text={ReactiveProp.Static("v1.0.0")} variant={Typography.Small} />
+          </>
+        : Component.null()}
       navItems={[
         {
           label: "Getting Started",
@@ -95,18 +119,19 @@ let make = (~components: array<componentInfo>, ~children: Component.node) => {
           active: Router.getCurrentLocation().pathname === "/changelog",
         },
       ]}
-      rightContent={<div style="display: flex; gap: 0.75rem;">
-        <Input type_={Text} value={Static("")} radius=Full placeholder="Search" />
-        {Router.link(~to="/", ~children=[Component.text("Home")], ())}
+      rightContent={<div style="display: flex; align-items: center; gap: 0.75rem;">
+        <Input
+          type_={Text} value={Static("")} radius=Full placeholder="Search" style="width: 20rem;"
+        />
+        <ThemeToggle />
         <a
-          href="https://github.com/yourusername/basefn-ui"
+          href="https://github.com/brnrdog/basefn-ui"
           target="_blank"
           style="text-decoration: none; color: inherit;"
         >
-          {Component.text("GitHub")}
+          <img width="24px" height="24px" src="https://simpleicons.org/icons/github.svg" />
         </a>
       </div>}
-      theme={Topbar.Light}
     />}
     sidebarSize={"lg"}
     sidebarCollapsed={Signal.get(sidebarCollapsed)}

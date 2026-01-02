@@ -34,6 +34,7 @@
 
 .basefn-app-layout--sidebar-collapsed .basefn-app-layout__main-wrapper {
   margin-left: 64px;
+  margin-left: 0;
 }
 
 .basefn-app-layout__topbar {
@@ -50,8 +51,8 @@
 
 .basefn-app-layout__content-inner {
   flex: 1;
-  padding: 2rem;
-  background-color: #f9fafb;
+  padding: 1rem 2rem;
+  background-color: var(--basefn-bg-secondary);
 }
 
 .basefn-app-layout__content-inner--no-padding {
@@ -89,7 +90,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--basefn-surface-overlay);
     z-index: 199;
   }
 

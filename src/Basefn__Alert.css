@@ -43,27 +43,27 @@
 
 /* Variants */
 .basefn-alert--info {
-  background-color: #dbeafe;
-  border-left-color: #3b82f6;
-  color: #1e40af;
+  background-color: var(--basefn-alert-info-bg);
+  border-left-color: var(--basefn-color-info);
+  color: var(--basefn-alert-info-text);
 }
 
 .basefn-alert--success {
-  background-color: #d1fae5;
-  border-left-color: #10b981;
-  color: #065f46;
+  background-color: var(--basefn-alert-success-bg);
+  border-left-color: var(--basefn-color-success);
+  color: var(--basefn-alert-success-text);
 }
 
 .basefn-alert--warning {
-  background-color: #fef3c7;
-  border-left-color: #f59e0b;
-  color: #92400e;
+  background-color: var(--basefn-alert-warning-bg);
+  border-left-color: var(--basefn-color-warning);
+  color: var(--basefn-alert-warning-text);
 }
 
 .basefn-alert--error {
-  background-color: #fee2e2;
-  border-left-color: #ef4444;
-  color: #991b1b;
+  background-color: var(--basefn-alert-error-bg);
+  border-left-color: var(--basefn-color-error);
+  color: var(--basefn-alert-error-text);
 }
 
 /* Animation */

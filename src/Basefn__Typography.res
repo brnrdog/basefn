@@ -51,10 +51,11 @@ let alignToString = (align: align) => {
 
 @jsx.component
 let make = (
-  ~text: Signal.t<string>,
+  ~text: ReactiveProp.t<string>,
   ~variant: variant=P,
   ~align: option<align>=?,
   ~class: string="",
+  ~style=?,
 ) => {
   let variantClass = variantToClass(variant)
 
@@ -72,18 +73,24 @@ let make = (
     baseClass ++ alignClass ++ customClass
   }
 
+  let renderText = text =>
+    switch text {
+    | ReactiveProp.Reactive(text) => Component.SignalText(text)
+    | ReactiveProp.Static(text) => Component.text(text)
+    }
+
   switch variant {
-  | H1 => <h1 class> {Component.SignalText(text)} </h1>
-  | H2 => <h2 class> {Component.SignalText(text)} </h2>
-  | H3 => <h3 class> {Component.SignalText(text)} </h3>
-  | H4 => <h4 class> {Component.SignalText(text)} </h4>
-  | H5 => <h5 class> {Component.SignalText(text)} </h5>
-  | H6 => <h6 class> {Component.SignalText(text)} </h6>
-  | P => <p class> {Component.SignalText(text)} </p>
-  | Small => <small class> {Component.SignalText(text)} </small>
-  | Lead => <p class> {Component.SignalText(text)} </p>
-  | Muted => <p class> {Component.SignalText(text)} </p>
-  | Code => <code class> {Component.SignalText(text)} </code>
-  | Unstyled => <div class> {Component.SignalText(text)} </div>
+  | H1 => <h1 class ?style> {renderText(text)} </h1>
+  | H2 => <h2 class ?style> {renderText(text)} </h2>
+  | H3 => <h3 class ?style> {renderText(text)} </h3>
+  | H4 => <h4 class ?style> {renderText(text)} </h4>
+  | H5 => <h5 class ?style> {renderText(text)} </h5>
+  | H6 => <h6 class ?style> {renderText(text)} </h6>
+  | P => <p class ?style> {renderText(text)} </p>
+  | Small => <small class ?style> {renderText(text)} </small>
+  | Lead => <p class ?style> {renderText(text)} </p>
+  | Muted => <p class ?style> {renderText(text)} </p>
+  | Code => <code class ?style> {renderText(text)} </code>
+  | Unstyled => <div class ?style> {renderText(text)} </div>
   }
 }

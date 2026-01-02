@@ -18,9 +18,9 @@ let make = (~componentName: string) => {
 
   <div class="docs-component-page">
     <div class="docs-component-header">
-      <Typography text={Signal.make(title)} variant={Typography.H1} />
+      <Typography text={ReactiveProp.Static(title)} variant={Typography.H1} />
       <Typography
-        text={Signal.make("Explore examples and code for the " ++ title ++ " component.")}
+        text={ReactiveProp.Static("Explore examples and code for the " ++ title ++ " component.")}
         variant={Typography.Muted}
       />
     </div>
@@ -29,7 +29,7 @@ let make = (~componentName: string) => {
       ->Array.mapWithIndex((example, index) => {
         <div key={Int.toString(index)} class="docs-component-example">
           <div class="docs-component-example__header">
-            <Typography text={Signal.make(example.title)} variant={Typography.H4} />
+            <Typography text={ReactiveProp.Static(example.title)} variant={Typography.H4} />
             <p class="docs-component-example__description">
               {Component.text(example.description)}
             </p>

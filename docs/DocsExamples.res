@@ -36,7 +36,7 @@ let getExamples = (componentName: string): array<example> => {
             <Button variant={Button.Primary} onClick={_ => Signal.update(count, c => c + 1)}>
               {text("Increment")}
             </Button>
-            <Typography text={counterText} variant={Typography.H4} />
+            <Typography text={Reactive(counterText)} variant={Typography.H4} />
           </div>
         },
         code: `let count = Signal.make(0)
@@ -127,14 +127,14 @@ let onClick = event => {
         title: "Basic Card",
         description: "A simple card container for grouping content.",
         demo: <Card>
-          <Typography text={Signal.make("Card Title")} variant={Typography.H4} />
+          <Typography text={ReactiveProp.Static("Card Title")} variant={Typography.H4} />
           <p style="margin: 1rem 0; color: #6b7280;">
             {Component.text("This is a basic card component. It can contain any content.")}
           </p>
           <Button label={Static("Call to Action")} />
         </Card>,
         code: `<Card>
-  <Typography text={Signal.make("Card Title")} variant={Typography.H4} />
+  <Typography text={ReactiveProp.Static("Card Title")} variant={Typography.H4} />
   <p>{Component.text("This is a basic card component.")}</p>
 </Card>`,
       },
@@ -256,7 +256,9 @@ let onChange = e => {
                 label: "Profile",
                 value: "tab1",
                 content: <div style="padding: 1rem;">
-                  <Typography text={Signal.make("Profile Settings")} variant={Typography.H5} />
+                  <Typography
+                    text={ReactiveProp.Static("Profile Settings")} variant={Typography.H5}
+                  />
                   <p> {Component.text("Manage your profile information here.")} </p>
                 </div>,
               },
@@ -264,7 +266,9 @@ let onChange = e => {
                 label: "Account",
                 value: "tab2",
                 content: <div style="padding: 1rem;">
-                  <Typography text={Signal.make("Account Settings")} variant={Typography.H5} />
+                  <Typography
+                    text={ReactiveProp.Static("Account Settings")} variant={Typography.H5}
+                  />
                   <p> {Component.text("Manage your account settings here.")} </p>
                 </div>,
               },
@@ -273,7 +277,7 @@ let onChange = e => {
                 value: "tab3",
                 content: <div style="padding: 1rem;">
                   <Typography
-                    text={Signal.make("Notification Preferences")} variant={Typography.H5}
+                    text={ReactiveProp.Static("Notification Preferences")} variant={Typography.H5}
                   />
                   <p> {Component.text("Configure your notification preferences.")} </p>
                 </div>,
@@ -327,7 +331,7 @@ let onChange = e => {
           let message = Computed.make(() => Signal.get(charCount)->Int.toString ++ " characters")
           <div style="max-width: 400px; display: flex; flex-direction: column; gap: 0.5rem;">
             <Textarea value={Reactive(value)} placeholder="Write something..." />
-            <Typography text={message} variant={Typography.Small} />
+            <Typography text={Reactive(message)} variant={Typography.Small} />
           </div>
         },
         code: `let value = Signal.make("")
@@ -386,7 +390,9 @@ let options = Signal.make([
           <div style="max-width: 300px; display: flex; flex-direction: column; gap: 1rem;">
             <Select value options />
             <Typography
-              text={Computed.make(() => "Selected: " ++ Signal.get(selectedValue))}
+              text={ReactiveProp.Reactive(
+                Computed.make(() => "Selected: " ++ Signal.get(selectedValue)),
+              )}
               variant={Typography.Small}
             />
             <div style="display: flex; gap: 4rem;">
@@ -439,7 +445,7 @@ let options = Signal.make([
           let option2 = Signal.make(false)
           let option3 = Signal.make(true)
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-            <Typography text={Signal.make("Select features:")} variant={Typography.H6} />
+            <Typography text={ReactiveProp.Static("Select features:")} variant={Typography.H6} />
             <Checkbox checked={option1} label="Dark mode" />
             <Checkbox checked={option2} label="Email notifications" />
             <Checkbox checked={option3} label="Auto-save" />
@@ -462,7 +468,7 @@ let option2 = Signal.make(false)
         demo: {
           let selected = Signal.make("option1")
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-            <Typography text={Signal.make("Choose a plan:")} variant={Typography.H6} />
+            <Typography text={ReactiveProp.Static("Choose a plan:")} variant={Typography.H6} />
             <Radio
               checked={Computed.make(() => Signal.get(selected) == "option1")}
               value="option1"
@@ -529,28 +535,30 @@ let option2 = Signal.make(false)
         title: "Typography Variants",
         description: "Different text styles for headings and content.",
         demo: <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <Typography text={Signal.make("Heading 1")} variant={Typography.H1} />
-          <Typography text={Signal.make("Heading 2")} variant={Typography.H2} />
-          <Typography text={Signal.make("Heading 3")} variant={Typography.H3} />
-          <Typography text={Signal.make("Paragraph text")} variant={Typography.P} />
-          <Typography text={Signal.make("Lead text for introductions")} variant={Typography.Lead} />
-          <Typography text={Signal.make("Small text")} variant={Typography.Small} />
-          <Typography text={Signal.make("Muted text")} variant={Typography.Muted} />
-          <Typography text={Signal.make("inline code")} variant={Typography.Code} />
+          <Typography text={ReactiveProp.Static("Heading 1")} variant={Typography.H1} />
+          <Typography text={ReactiveProp.Static("Heading 2")} variant={Typography.H2} />
+          <Typography text={ReactiveProp.Static("Heading 3")} variant={Typography.H3} />
+          <Typography text={ReactiveProp.Static("Paragraph text")} variant={Typography.P} />
+          <Typography
+            text={ReactiveProp.Static("Lead text for introductions")} variant={Typography.Lead}
+          />
+          <Typography text={ReactiveProp.Static("Small text")} variant={Typography.Small} />
+          <Typography text={ReactiveProp.Static("Muted text")} variant={Typography.Muted} />
+          <Typography text={ReactiveProp.Static("inline code")} variant={Typography.Code} />
         </div>,
-        code: `<Typography text={Signal.make("Heading 1")} variant={Typography.H1} />
-<Typography text={Signal.make("Paragraph text")} variant={Typography.P} />
-<Typography text={Signal.make("Muted text")} variant={Typography.Muted} />`,
+        code: `<Typography text={ReactiveProp.Static("Heading 1")} variant={Typography.H1} />
+<Typography text={ReactiveProp.Static("Paragraph text")} variant={Typography.P} />
+<Typography text={ReactiveProp.Static("Muted text")} variant={Typography.Muted} />`,
       },
       {
         title: "Text Alignment",
         description: "Control text alignment.",
         demo: <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <Typography text={Signal.make("Left aligned")} align={Typography.Left} />
-          <Typography text={Signal.make("Center aligned")} align={Typography.Center} />
-          <Typography text={Signal.make("Right aligned")} align={Typography.Right} />
+          <Typography text={ReactiveProp.Static("Left aligned")} align={Typography.Left} />
+          <Typography text={ReactiveProp.Static("Center aligned")} align={Typography.Center} />
+          <Typography text={ReactiveProp.Static("Right aligned")} align={Typography.Right} />
         </div>,
-        code: `<Typography text={Signal.make("Center aligned")} align={Typography.Center} />`,
+        code: `<Typography text={ReactiveProp.Static("Center aligned")} align={Typography.Center} />`,
       },
     ]
 
@@ -585,9 +593,9 @@ let option2 = Signal.make(false)
         title: "Horizontal Separator",
         description: "Divide content sections horizontally.",
         demo: <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <Typography text={Signal.make("Section 1")} variant={Typography.H5} />
+          <Typography text={ReactiveProp.Static("Section 1")} variant={Typography.H5} />
           <Separator orientation={Separator.Horizontal} />
-          <Typography text={Signal.make("Section 2")} variant={Typography.H5} />
+          <Typography text={ReactiveProp.Static("Section 2")} variant={Typography.H5} />
         </div>,
         code: `<Separator orientation={Separator.Horizontal} />`,
       },
@@ -595,9 +603,9 @@ let option2 = Signal.make(false)
         title: "Vertical Separator",
         description: "Divide content sections vertically.",
         demo: <div style="display: flex; gap: 1rem; align-items: center; height: 100px;">
-          <Typography text={Signal.make("Left")} variant={Typography.P} />
+          <Typography text={ReactiveProp.Static("Left")} variant={Typography.P} />
           <Separator orientation={Separator.Vertical} />
-          <Typography text={Signal.make("Right")} variant={Typography.P} />
+          <Typography text={ReactiveProp.Static("Right")} variant={Typography.P} />
         </div>,
         code: `<Separator orientation={Separator.Vertical} />`,
       },
@@ -609,15 +617,15 @@ let option2 = Signal.make(false)
         description: "Display keyboard keys and shortcuts.",
         demo: <div style="display: flex; flex-direction: column; gap: 1rem;">
           <div style="display: flex; gap: 0.5rem; align-items: center;">
-            <Typography text={Signal.make("Save:")} variant={Typography.P} />
+            <Typography text={ReactiveProp.Static("Save:")} variant={Typography.P} />
             <Kbd keys={["Ctrl", "S"]->Signal.make} />
           </div>
           <div style="display: flex; gap: 0.5rem; align-items: center;">
-            <Typography text={Signal.make("Copy:")} variant={Typography.P} />
+            <Typography text={ReactiveProp.Static("Copy:")} variant={Typography.P} />
             <Kbd keys={["Ctrl", "C"]->Signal.make} />
           </div>
           <div style="display: flex; gap: 0.5rem; align-items: center;">
-            <Typography text={Signal.make("Undo:")} variant={Typography.P} />
+            <Typography text={ReactiveProp.Static("Undo:")} variant={Typography.P} />
             <Kbd keys={["Ctrl", "Z"]->Signal.make} />
           </div>
         </div>,
@@ -666,28 +674,28 @@ let option2 = Signal.make(false)
         description: "Responsive grid layout for organizing content.",
         demo: <Grid cols={3} gap="1rem">
           <Card>
-            <Typography text={Signal.make("Item 1")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("Item 1")} variant={Typography.H5} />
           </Card>
           <Card>
-            <Typography text={Signal.make("Item 2")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("Item 2")} variant={Typography.H5} />
           </Card>
           <Card>
-            <Typography text={Signal.make("Item 3")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("Item 3")} variant={Typography.H5} />
           </Card>
           <Card>
-            <Typography text={Signal.make("Item 4")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("Item 4")} variant={Typography.H5} />
           </Card>
           <Card>
-            <Typography text={Signal.make("Item 5")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("Item 5")} variant={Typography.H5} />
           </Card>
           <Card>
-            <Typography text={Signal.make("Item 6")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("Item 6")} variant={Typography.H5} />
           </Card>
         </Grid>,
         code: `<Grid cols={3} gap="1rem">
-  <Card><Typography text={Signal.make("Item 1")} variant={Typography.H5} /></Card>
-  <Card><Typography text={Signal.make("Item 2")} variant={Typography.H5} /></Card>
-  <Card><Typography text={Signal.make("Item 3")} variant={Typography.H5} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Item 1")} variant={Typography.H5} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Item 2")} variant={Typography.H5} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Item 3")} variant={Typography.H5} /></Card>
 </Grid>`,
       },
     ]
@@ -698,23 +706,23 @@ let option2 = Signal.make(false)
         description: "Progress bars with different colors.",
         demo: <div style="display: flex; flex-direction: column; gap: 1.5rem;">
           <div>
-            <Typography text={Signal.make("Default")} variant={Typography.Small} />
+            <Typography text={ReactiveProp.Static("Default")} variant={Typography.Small} />
             <Progress value={Signal.make(45.0)} variant={Progress.Default} />
           </div>
           <div>
-            <Typography text={Signal.make("Primary")} variant={Typography.Small} />
+            <Typography text={ReactiveProp.Static("Primary")} variant={Typography.Small} />
             <Progress value={Signal.make(60.0)} variant={Progress.Primary} />
           </div>
           <div>
-            <Typography text={Signal.make("Success")} variant={Typography.Small} />
+            <Typography text={ReactiveProp.Static("Success")} variant={Typography.Small} />
             <Progress value={Signal.make(75.0)} variant={Progress.Success} />
           </div>
           <div>
-            <Typography text={Signal.make("Warning")} variant={Typography.Small} />
+            <Typography text={ReactiveProp.Static("Warning")} variant={Typography.Small} />
             <Progress value={Signal.make(45.0)} variant={Progress.Warning} />
           </div>
           <div>
-            <Typography text={Signal.make("Error")} variant={Typography.Small} />
+            <Typography text={ReactiveProp.Static("Error")} variant={Typography.Small} />
             <Progress value={Signal.make(30.0)} variant={Progress.Error} />
           </div>
         </div>,
@@ -1180,7 +1188,7 @@ let option2 = Signal.make(false)
               title={"Settings"}
             >
               <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <Typography text={Signal.make("Drawer Content")} variant={Typography.H5} />
+                <Typography text={ReactiveProp.Static("Drawer Content")} variant={Typography.H5} />
                 <p> {Component.text("This drawer slides in from the right side.")} </p>
               </div>
             </Drawer>
@@ -1191,7 +1199,7 @@ let option2 = Signal.make(false)
               title={"Navigation"}
             >
               <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <Typography text={Signal.make("Menu Items")} variant={Typography.H5} />
+                <Typography text={ReactiveProp.Static("Menu Items")} variant={Typography.H5} />
                 <p> {Component.text("This drawer slides in from the left side.")} </p>
               </div>
             </Drawer>
@@ -1387,7 +1395,6 @@ let option2 = Signal.make(false)
           >
             <Sidebar
               logo={<div> {Component.text("MyApp")} </div>}
-              theme={Sidebar.Dark}
               sections={[
                 {
                   title: None,
@@ -1460,7 +1467,6 @@ let option2 = Signal.make(false)
           >
             <Sidebar
               logo={<div> {Component.text("Dashboard")} </div>}
-              theme={Sidebar.Light}
               size={Sidebar.Md}
               sections={[
                 {
@@ -1515,7 +1521,6 @@ let option2 = Signal.make(false)
           <div style="border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden;">
             <Topbar
               logo={<div> {Component.text("Brand")} </div>}
-              theme={Topbar.Light}
               navItems={[
                 {
                   label: "Home",
@@ -1564,7 +1569,6 @@ let option2 = Signal.make(false)
           <div style="border: 1px solid #374151; border-radius: 0.5rem; overflow: hidden;">
             <Topbar
               logo={<div> {Component.text("App")} </div>}
-              theme={Topbar.Dark}
               size={Topbar.Md}
               onMenuClick={() => Signal.update(menuOpen, m => !m)}
               rightContent={<div style="display: flex; gap: 0.75rem; align-items: center;">
@@ -1603,7 +1607,6 @@ let option2 = Signal.make(false)
             <AppLayout
               sidebar={<Sidebar
                 logo={<div> {Component.text("MyApp")} </div>}
-                theme={Sidebar.Dark}
                 size={Sidebar.Md}
                 sections={[
                   {
@@ -1644,7 +1647,7 @@ let option2 = Signal.make(false)
             >
               <Card>
                 <Typography
-                  text={Signal.make("Welcome to your dashboard!")} variant={Typography.H4}
+                  text={ReactiveProp.Static("Welcome to your dashboard!")} variant={Typography.H4}
                 />
                 <p style="margin-top: 1rem; color: #6b7280;">
                   {Component.text("This is a complete application layout example.")}
@@ -1669,7 +1672,7 @@ let option2 = Signal.make(false)
   contentWidth={AppLayout.Contained}
 >
   <Card>
-    <Typography text={Signal.make("Content")} variant={Typography.H4} />
+    <Typography text={ReactiveProp.Static("Content")} variant={Typography.H4} />
   </Card>
 </AppLayout>`,
       },
@@ -1689,7 +1692,7 @@ let option2 = Signal.make(false)
           >
             <div style="padding: 2rem;">
               <Typography
-                text={Signal.make("Simple layout without sidebar")} variant={Typography.H3}
+                text={ReactiveProp.Static("Simple layout without sidebar")} variant={Typography.H3}
               />
               <p style="margin-top: 1rem; color: #6b7280;">
                 {Component.text("Perfect for landing pages and simple applications.")}
@@ -1707,7 +1710,7 @@ let option2 = Signal.make(false)
   contentWidth={AppLayout.FullWidth}
 >
   <div>
-    <Typography text={Signal.make("Content")} variant={Typography.H3} />
+    <Typography text={ReactiveProp.Static("Content")} variant={Typography.H3} />
   </div>
 </AppLayout>`,
       },
@@ -1718,7 +1721,9 @@ let option2 = Signal.make(false)
         title: "Component Examples Coming Soon",
         description: "Documentation for this component is being prepared.",
         demo: <div style="padding: 2rem; text-align: center;">
-          <Typography text={Signal.make("Examples coming soon...")} variant={Typography.Muted} />
+          <Typography
+            text={ReactiveProp.Static("Examples coming soon...")} variant={Typography.Muted}
+          />
         </div>,
         code: `// Examples for this component will be added soon`,
       },

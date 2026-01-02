@@ -131,16 +131,20 @@ module Demo = {
           <Avatar src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Schopfkarakara.jpg" />
           <div>
             <Typography
-              text={Signal.make("Crested Caracara")} variant=Typography.Unstyled class="bold"
+              text={ReactiveProp.Static("Crested Caracara")}
+              variant=Typography.Unstyled
+              class="bold"
             />
-            <Typography text={Signal.make("Bird of prey")} variant=Typography.Small />
+            <Typography text={ReactiveProp.Static("Bird of prey")} variant=Typography.Small />
           </div>
         </Grid>
         <br />
         <Grid>
           <Avatar src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Schopfkarakara.jpg" />
           <div>
-            <Typography text={Signal.make("Crested Caracara")} variant=Typography.P class="bold" />
+            <Typography
+              text={ReactiveProp.Static("Crested Caracara")} variant=Typography.P class="bold"
+            />
           </div>
         </Grid>
         <br />
@@ -149,7 +153,9 @@ module Demo = {
             src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Schopfkarakara.jpg" size={Sm}
           />
           <div>
-            <Typography text={Signal.make("Crested Caracara")} variant=Typography.Unstyled />
+            <Typography
+              text={ReactiveProp.Static("Crested Caracara")} variant=Typography.Unstyled
+            />
           </div>
         </Grid>
         <br />
@@ -158,9 +164,11 @@ module Demo = {
             src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Schopfkarakara.jpg" size={Lg}
           />
           <div>
-            <Typography text={Signal.make("Crested Caracara")} variant=Typography.H4 />
+            <Typography text={ReactiveProp.Static("Crested Caracara")} variant=Typography.H4 />
             <Typography
-              text={Signal.make("Bird of prey")} variant=Typography.H6 class="muted font-normal"
+              text={ReactiveProp.Static("Bird of prey")}
+              variant=Typography.H6
+              class="muted font-normal"
             />
           </div>
         </Grid>
@@ -283,7 +291,7 @@ module Demo = {
       </Card>
 
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Alerts")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Alerts")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Display important messages with different severity levels.")}
         </p>
@@ -317,7 +325,7 @@ module Demo = {
       </div>
 
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Progress")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Progress")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Show progress indicators for ongoing operations.")}
         </p>
@@ -387,7 +395,7 @@ module Demo = {
       </div>
 
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Tabs")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Tabs")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Organize content into tabbed sections.")}
         </p>
@@ -397,7 +405,9 @@ module Demo = {
               value: "account",
               label: "Account",
               content: <div>
-                <Typography text={Signal.make("Account Settings")} variant={Typography.H5} />
+                <Typography
+                  text={ReactiveProp.Static("Account Settings")} variant={Typography.H5}
+                />
                 <p style="color: #6b7280; margin-top: 0.5rem;">
                   {Component.text(
                     "Manage your account settings and preferences here. You can update your profile information, change your password, and configure notification settings.",
@@ -409,7 +419,9 @@ module Demo = {
               value: "security",
               label: "Security",
               content: <div>
-                <Typography text={Signal.make("Security Settings")} variant={Typography.H5} />
+                <Typography
+                  text={ReactiveProp.Static("Security Settings")} variant={Typography.H5}
+                />
                 <p style="color: #6b7280; margin-top: 0.5rem;">
                   {Component.text(
                     "Configure your security preferences including two-factor authentication, active sessions, and security logs.",
@@ -429,7 +441,7 @@ module Demo = {
               label: "Notifications",
               content: <div>
                 <Typography
-                  text={Signal.make("Notification Preferences")} variant={Typography.H5}
+                  text={ReactiveProp.Static("Notification Preferences")} variant={Typography.H5}
                 />
                 <p style="color: #6b7280; margin-top: 0.5rem;">
                   {Component.text("Choose how you want to receive notifications.")}
@@ -451,7 +463,9 @@ module Demo = {
               value: "billing",
               label: "Billing",
               content: <div>
-                <Typography text={Signal.make("Billing Information")} variant={Typography.H5} />
+                <Typography
+                  text={ReactiveProp.Static("Billing Information")} variant={Typography.H5}
+                />
                 <p style="color: #6b7280; margin-top: 0.5rem;">
                   {Component.text(
                     "View and manage your billing information, payment methods, and invoices.",
@@ -465,7 +479,7 @@ module Demo = {
       </div>
 
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Accordion")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Accordion")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Collapsible content sections with expand/collapse functionality.")}
         </p>
@@ -490,7 +504,9 @@ module Demo = {
                   )}
                 </p>
                 <br />
-                <Typography text={Signal.make("npm install basefn-ui")} variant={Typography.Code} />
+                <Typography
+                  text={ReactiveProp.Static("npm install basefn-ui")} variant={Typography.Code}
+                />
               </div>,
             },
             {
@@ -518,7 +534,7 @@ module Demo = {
       </div>
 
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Breadcrumb")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Breadcrumb")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Navigation breadcrumbs to show the current page hierarchy.")}
         </p>
@@ -577,19 +593,19 @@ module Demo = {
 
       <div style="margin-top: 3rem;">
         <Typography
-          text={Signal.make("Interactive Components")}
+          text={ReactiveProp.Static("Interactive Components")}
           variant={Typography.H2}
           align={Typography.Left}
         />
         <Typography
-          text={Signal.make("Explore the Tier 3 advanced interactive components below.")}
+          text={ReactiveProp.Static("Explore the Tier 3 advanced interactive components below.")}
           variant={Typography.Muted}
         />
       </div>
 
       // Modal Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Modal / Dialog")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Modal / Dialog")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Display content in an overlay dialog.")}
         </p>
@@ -632,7 +648,7 @@ module Demo = {
 
       // Switch Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Switch / Toggle")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Switch / Toggle")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Binary on/off switches for settings and preferences.")}
         </p>
@@ -648,7 +664,7 @@ module Demo = {
 
       // Slider Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Slider")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Slider")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Select a value from a range.")}
         </p>
@@ -676,7 +692,7 @@ module Demo = {
 
       // Tooltip Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Tooltip")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Tooltip")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Show contextual information on hover.")}
         </p>
@@ -698,7 +714,7 @@ module Demo = {
 
       // Dropdown Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Dropdown Menu")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Dropdown Menu")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Contextual menu with actions.")}
         </p>
@@ -751,7 +767,7 @@ module Demo = {
 
       // Toast Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Toast / Notification")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Toast / Notification")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Temporary notification messages.")}
         </p>
@@ -775,17 +791,19 @@ module Demo = {
 
       <div style="margin-top: 3rem;">
         <Typography
-          text={Signal.make("Navigation & Layout")} variant={Typography.H2} align={Typography.Left}
+          text={ReactiveProp.Static("Navigation & Layout")}
+          variant={Typography.H2}
+          align={Typography.Left}
         />
         <Typography
-          text={Signal.make("Explore the Tier 4 navigation and layout components below.")}
+          text={ReactiveProp.Static("Explore the Tier 4 navigation and layout components below.")}
           variant={Typography.Muted}
         />
       </div>
 
       // Stepper Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Stepper")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Stepper")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Multi-step process indicator with progress tracking.")}
         </p>
@@ -861,7 +879,7 @@ module Demo = {
 
       // Drawer Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Drawer / Sidebar")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Drawer / Sidebar")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Slide-in panels for additional content.")}
         </p>
@@ -895,7 +913,7 @@ module Demo = {
           </div>}
         >
           <div>
-            <Typography text={Signal.make("Drawer Content")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("Drawer Content")} variant={Typography.H5} />
             <p style="margin-top: 1rem;">
               {Component.text(
                 "This is a drawer panel. You can use it for navigation, forms, or any additional content that doesn't fit in the main view.",
@@ -919,7 +937,7 @@ module Demo = {
 
       // Timeline Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Timeline")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Timeline")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Display chronological events in a visual timeline.")}
         </p>
@@ -1002,10 +1020,12 @@ module Demo = {
 
       <div style="margin-top: 3rem;">
         <Typography
-          text={Signal.make("Application Layouts")} variant={Typography.H2} align={Typography.Left}
+          text={ReactiveProp.Static("Application Layouts")}
+          variant={Typography.H2}
+          align={Typography.Left}
         />
         <Typography
-          text={Signal.make(
+          text={ReactiveProp.Static(
             "Complete application layout structures with sidebar and topbar combinations.",
           )}
           variant={Typography.Muted}
@@ -1014,14 +1034,14 @@ module Demo = {
 
       // Layout Examples Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Layout Variants")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Layout Variants")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Different application layout configurations.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 2rem;">
           // Sidebar Only Example
           <div>
-            <Typography text={Signal.make("Sidebar Only Layout")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("Sidebar Only Layout")} variant={Typography.H5} />
             <p style="color: #6b7280; margin: 0.5rem 0 1rem 0; font-size: 0.875rem;">
               {Component.text("Application with sidebar navigation")}
             </p>
@@ -1067,12 +1087,13 @@ module Demo = {
                       ],
                     },
                   ]}
-                  theme={Sidebar.Dark}
                   size={Sidebar.Md}
                 />}
               >
                 <div style="padding: 2rem;">
-                  <Typography text={Signal.make("Main Content Area")} variant={Typography.H3} />
+                  <Typography
+                    text={ReactiveProp.Static("Main Content Area")} variant={Typography.H3}
+                  />
                   <p style="margin-top: 1rem;">
                     {Component.text(
                       "This is the main content area. The sidebar provides persistent navigation.",
@@ -1085,7 +1106,7 @@ module Demo = {
 
           // Topbar Only Example
           <div>
-            <Typography text={Signal.make("Topbar Only Layout")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("Topbar Only Layout")} variant={Typography.H5} />
             <p style="color: #6b7280; margin: 0.5rem 0 1rem 0; font-size: 0.875rem;">
               {Component.text("Application with top navigation bar")}
             </p>
@@ -1116,11 +1137,12 @@ module Demo = {
                     <Button label={Static("Sign In")} variant={Button.Ghost} />
                     <Button label={Static("Sign Up")} variant={Button.Primary} />
                   </div>}
-                  theme={Topbar.Light}
-                />}
+                    />}
               >
                 <div style="padding: 2rem;">
-                  <Typography text={Signal.make("Main Content Area")} variant={Typography.H3} />
+                  <Typography
+                    text={ReactiveProp.Static("Main Content Area")} variant={Typography.H3}
+                  />
                   <p style="margin-top: 1rem;">
                     {Component.text("This layout uses only a top navigation bar.")}
                   </p>
@@ -1131,7 +1153,9 @@ module Demo = {
 
           // Sidebar + Topbar Example
           <div>
-            <Typography text={Signal.make("Sidebar + Topbar Layout")} variant={Typography.H5} />
+            <Typography
+              text={ReactiveProp.Static("Sidebar + Topbar Layout")} variant={Typography.H5}
+            />
             <p style="color: #6b7280; margin: 0.5rem 0 1rem 0; font-size: 0.875rem;">
               {Component.text("Full application layout with both sidebar and topbar")}
             </p>
@@ -1166,7 +1190,6 @@ module Demo = {
                       ],
                     },
                   ]}
-                  theme={Sidebar.Dark}
                   size={Sidebar.Md}
                   collapsed={Signal.get(sidebarCollapsed)}
                 />}
@@ -1176,13 +1199,12 @@ module Demo = {
                     <Badge label={Signal.make("3")} variant={Badge.Primary} />
                     <Avatar src="https://ui-avatars.com/api/?name=John+Doe" size={Avatar.Sm} />
                   </div>}
-                  theme={Topbar.Light}
-                />}
+                    />}
                 sidebarSize={"md"}
                 sidebarCollapsed={Signal.get(sidebarCollapsed)}
               >
                 <div style="padding: 2rem;">
-                  <Typography text={Signal.make("Dashboard")} variant={Typography.H3} />
+                  <Typography text={ReactiveProp.Static("Dashboard")} variant={Typography.H3} />
                   <p style="margin-top: 1rem;">
                     {Component.text(
                       "This is a complete application layout with both sidebar and topbar. Click the menu button in the topbar to toggle the sidebar.",
@@ -1192,18 +1214,26 @@ module Demo = {
                     style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;"
                   >
                     <Card>
-                      <Typography text={Signal.make("Total Users")} variant={Typography.H6} />
                       <Typography
-                        text={Signal.make("1,234")} variant={Typography.H2} class="text-primary"
+                        text={ReactiveProp.Static("Total Users")} variant={Typography.H6}
+                      />
+                      <Typography
+                        text={ReactiveProp.Static("1,234")}
+                        variant={Typography.H2}
+                        class="text-primary"
                       />
                     </Card>
                     <Card>
-                      <Typography text={Signal.make("Active Projects")} variant={Typography.H6} />
-                      <Typography text={Signal.make("45")} variant={Typography.H2} />
+                      <Typography
+                        text={ReactiveProp.Static("Active Projects")} variant={Typography.H6}
+                      />
+                      <Typography text={ReactiveProp.Static("45")} variant={Typography.H2} />
                     </Card>
                     <Card>
-                      <Typography text={Signal.make("Completed Tasks")} variant={Typography.H6} />
-                      <Typography text={Signal.make("892")} variant={Typography.H2} />
+                      <Typography
+                        text={ReactiveProp.Static("Completed Tasks")} variant={Typography.H6}
+                      />
+                      <Typography text={ReactiveProp.Static("892")} variant={Typography.H2} />
                     </Card>
                   </div>
                 </div>
@@ -1219,19 +1249,19 @@ module Demo = {
 
       <div style="margin-top: 3rem;">
         <Typography
-          text={Signal.make("Foundation Components")}
+          text={ReactiveProp.Static("Foundation Components")}
           variant={Typography.H2}
           align={Typography.Left}
         />
         <Typography
-          text={Signal.make("Explore the Tier 1 foundation components below.")}
+          text={ReactiveProp.Static("Explore the Tier 1 foundation components below.")}
           variant={Typography.Muted}
         />
       </div>
 
       // Badges Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Badges")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Badges")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Display status indicators and labels with various styles.")}
         </p>
@@ -1258,7 +1288,7 @@ module Demo = {
 
       // Spinners Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Spinners")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Spinners")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Loading indicators in different sizes and colors.")}
         </p>
@@ -1282,7 +1312,7 @@ module Demo = {
 
       // Keyboard Shortcuts Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Keyboard Shortcuts")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Keyboard Shortcuts")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Display keyboard shortcuts in a visually appealing way.")}
         </p>
@@ -1318,39 +1348,41 @@ module Demo = {
 
       // Typography Section
       <div style="margin-top: 2rem;">
-        <Typography text={Signal.make("Typography")} variant={Typography.H4} />
+        <Typography text={ReactiveProp.Static("Typography")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
           {Component.text("Consistent text styling across your application.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <Typography text={Signal.make("Heading 1")} variant={Typography.H1} />
-          <Typography text={Signal.make("Heading 2")} variant={Typography.H2} />
-          <Typography text={Signal.make("Heading 3")} variant={Typography.H3} />
-          <Typography text={Signal.make("Heading 4")} variant={Typography.H4} />
-          <Typography text={Signal.make("Heading 5")} variant={Typography.H5} />
-          <Typography text={Signal.make("Heading 6")} variant={Typography.H6} />
+          <Typography text={ReactiveProp.Static("Heading 1")} variant={Typography.H1} />
+          <Typography text={ReactiveProp.Static("Heading 2")} variant={Typography.H2} />
+          <Typography text={ReactiveProp.Static("Heading 3")} variant={Typography.H3} />
+          <Typography text={ReactiveProp.Static("Heading 4")} variant={Typography.H4} />
+          <Typography text={ReactiveProp.Static("Heading 5")} variant={Typography.H5} />
+          <Typography text={ReactiveProp.Static("Heading 6")} variant={Typography.H6} />
           <Separator orientation={Separator.Horizontal} variant={Separator.Dashed} />
           <Typography
-            text={Signal.make(
+            text={ReactiveProp.Static(
               "This is a regular paragraph with normal text styling and comfortable line height.",
             )}
             variant={Typography.P}
           />
           <Typography
-            text={Signal.make(
+            text={ReactiveProp.Static(
               "This is a lead paragraph that stands out with larger text and is perfect for introductions.",
             )}
             variant={Typography.Lead}
           />
           <Typography
-            text={Signal.make("This is small text, useful for captions and helper text.")}
+            text={ReactiveProp.Static("This is small text, useful for captions and helper text.")}
             variant={Typography.Small}
           />
           <Typography
-            text={Signal.make("This is muted text with reduced emphasis.")}
+            text={ReactiveProp.Static("This is muted text with reduced emphasis.")}
             variant={Typography.Muted}
           />
-          <Typography text={Signal.make("const hello = 'world'")} variant={Typography.Code} />
+          <Typography
+            text={ReactiveProp.Static("const hello = 'world'")} variant={Typography.Code}
+          />
         </div>
       </div>
 

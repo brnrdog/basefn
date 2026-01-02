@@ -35,11 +35,9 @@ type drawerSize = Basefn__Drawer.size
 type timelineOrientation = Basefn__Timeline.orientation
 type timelineVariant = Basefn__Timeline.variant
 type timelineItem = Basefn__Timeline.timelineItem
-type sidebarTheme = Basefn__Sidebar.theme
 type sidebarSize = Basefn__Sidebar.size
 type sidebarNavItem = Basefn__Sidebar.navItem
 type sidebarNavSection = Basefn__Sidebar.navSection
-type topbarTheme = Basefn__Topbar.theme
 type topbarSize = Basefn__Topbar.size
 type topbarNavItem = Basefn__Topbar.navItem
 type appLayoutContentWidth = Basefn__AppLayout.contentWidth
@@ -87,3 +85,7 @@ module Timeline = Basefn__Timeline
 module Sidebar = Basefn__Sidebar
 module Topbar = Basefn__Topbar
 module AppLayout = Basefn__AppLayout
+
+// Theme
+module Theme = Basefn__Theme
+module ThemeToggle = Basefn__ThemeToggle

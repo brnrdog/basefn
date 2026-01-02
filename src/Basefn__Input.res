@@ -32,6 +32,7 @@ let make = (
   ~size=Md,
   ~radius=Md,
   ~name=?,
+  ~style=?,
 ) => {
   let class = {
     let radiusClass = switch radius {
@@ -41,5 +42,7 @@ let make = (
 
     "basefn-input " ++ radiusClass
   }
-  <input class type_={inputTypeToString(type_)} placeholder value={value} disabled name ?onInput />
+  <input
+    class ?style type_={inputTypeToString(type_)} placeholder value={value} disabled name ?onInput
+  />
 }

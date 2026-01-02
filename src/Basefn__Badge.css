@@ -29,32 +29,32 @@
 
 /* Variants */
 .basefn-badge--default {
-  background-color: #e5e7eb;
-  color: #1f2937;
+  background-color: var(--basefn-bg-tertiary);
+  color: var(--basefn-text-primary);
 }
 
 .basefn-badge--primary {
-  background-color: #3b82f6;
+  background-color: var(--basefn-color-primary);
   color: #ffffff;
 }
 
 .basefn-badge--secondary {
-  background-color: #6b7280;
+  background-color: var(--basefn-color-secondary);
   color: #ffffff;
 }
 
 .basefn-badge--success {
-  background-color: #10b981;
+  background-color: var(--basefn-color-success);
   color: #ffffff;
 }
 
 .basefn-badge--warning {
-  background-color: #f59e0b;
+  background-color: var(--basefn-color-warning);
   color: #ffffff;
 }
 
 .basefn-badge--error {
-  background-color: #ef4444;
+  background-color: var(--basefn-color-error);
   color: #ffffff;
 }
 

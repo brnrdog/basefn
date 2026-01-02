@@ -2,8 +2,6 @@
 
 open Xote
 
-type theme = Dark | Light
-
 type size = Sm | Md | Lg
 
 type navItem = {
@@ -16,13 +14,6 @@ type navItem = {
 type navSection = {
   title: option<string>,
   items: array<navItem>,
-}
-
-let themeToString = (theme: theme) => {
-  switch theme {
-  | Dark => "dark"
-  | Light => "light"
-  }
 }
 
 let sizeToString = (size: size) => {
@@ -38,23 +29,35 @@ let make = (
   ~logo: option<Component.node>=?,
   ~sections: array<navSection>,
   ~footer: option<Component.node>=?,
-  ~theme: theme=Dark,
   ~size: size=Md,
   ~collapsed: bool=false,
 ) => {
+  let scrolling = Signal.make(false)
   let getSidebarClass = () => {
-    let themeClass = theme == Light ? " basefn-sidebar--light" : ""
     let sizeClass = " basefn-sidebar--" ++ sizeToString(size)
     let collapsedClass = collapsed ? " basefn-sidebar--collapsed" : ""
-    "basefn-sidebar" ++ themeClass ++ sizeClass ++ collapsedClass
+    "basefn-sidebar" ++ sizeClass ++ collapsedClass
   }
+
+  let _ = Effect.run(() => {
+    Basefn__Dom.addEventListener("scroll", () => {
+      let scrollY = %raw("window.scrollY")
+      Signal.set(scrolling, scrollY >= 64)
+    })
+  })
 
   <div class={getSidebarClass()}>
     {switch logo {
-    | Some(logoContent) =>
-      <div class="basefn-sidebar__header">
-        <div class="basefn-sidebar__logo"> {logoContent} </div>
-      </div>
+    | Some(logoContent) => {
+        let class = Computed.make(() =>
+          "basefn-sidebar__header" ++ (
+            Signal.get(scrolling) ? " basefn-sidebar__header--scrolling" : ""
+          )
+        )
+        <div class>
+          <div class="basefn-sidebar__logo"> {logoContent} </div>
+        </div>
+      }
     | None => <> </>
     }}
     <nav class="basefn-sidebar__nav">
