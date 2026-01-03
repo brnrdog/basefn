@@ -41,6 +41,8 @@ type sidebarNavSection = Basefn__Sidebar.navSection
 type topbarSize = Basefn__Topbar.size
 type topbarNavItem = Basefn__Topbar.navItem
 type appLayoutContentWidth = Basefn__AppLayout.contentWidth
+type iconName = Basefn__Icon.name
+type iconSize = Basefn__Icon.size
 
 // Form Components
 module Button = Basefn__Button
@@ -89,3 +91,6 @@ module AppLayout = Basefn__AppLayout
 // Theme
 module Theme = Basefn__Theme
 module ThemeToggle = Basefn__ThemeToggle
+
+// Icons
+module Icon = Basefn__Icon

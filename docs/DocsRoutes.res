@@ -47,4 +47,6 @@ let components: array<componentInfo> = [
   {name: "Sidebar", category: "Layout", path: "/component/sidebar"},
   {name: "Topbar", category: "Layout", path: "/component/topbar"},
   {name: "AppLayout", category: "Layout", path: "/component/app-layout"},
+  // Media Components
+  {name: "Icon", category: "Media", path: "/component/icon"},
 ]

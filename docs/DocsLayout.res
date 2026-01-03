@@ -19,7 +19,16 @@ let groupByCategory = (components: array<componentInfo>): Dict.t<array<component
 let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Component.node) => {
   let sidebarCollapsed = Signal.make(!showSidebar)
   let grouped = groupByCategory(components)
-  let categories = ["Learn", "Form", "Foundation", "Display", "Navigation", "Interactive", "Layout"]
+  let categories = [
+    "Learn",
+    "Form",
+    "Foundation",
+    "Display",
+    "Navigation",
+    "Interactive",
+    "Layout",
+    "Media",
+  ]
 
   // Compute sidebar sections reactively based on current route
   let sidebarSections = Computed.make(() => {

@@ -21,7 +21,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@rescript/core": "^1.8.0",
+    "@rescript/core": "^1.6.1",
+    "lucide": "^0.562.0",
     "xote": "^4.7.0"
   },
   "devDependencies": {
