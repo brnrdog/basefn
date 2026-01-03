@@ -11,14 +11,20 @@ let make = (~size: [#Sm | #Md | #Lg]=#Md) => {
     Signal.set(theme, Signal.get(Basefn__Theme.currentTheme))
   }
 
-  let icon = Computed.make(() => {
+  let iconName = Computed.make(() => {
     switch Signal.get(theme) {
-    | Light => "\u{1F319}" // Moon emoji
-    | Dark => "\u{2600}\u{FE0F}" // Sun emoji
+    | Light => Basefn__Icon.Moon // Show moon in light mode (click to go dark)
+    | Dark => Basefn__Icon.Sun // Show sun in dark mode (click to go light)
     }
   })
 
+  let iconSize = switch size {
+  | #Sm => Basefn__Icon.Sm
+  | #Md => Basefn__Icon.Md
+  | #Lg => Basefn__Icon.Lg
+  }
+
   <button onClick={handleClick} class="basefn-theme-toggle" ariaLabel="Toggle theme">
-    {Component.text(Signal.get(icon))}
+    <Basefn__Icon name={Signal.get(iconName)} size={iconSize} />
   </button>
 }
