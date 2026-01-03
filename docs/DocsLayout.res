@@ -17,6 +17,9 @@ let groupByCategory = (components: array<componentInfo>): Dict.t<array<component
 
 @jsx.component
 let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Component.node) => {
+  // Debug: Log when layout is created
+  let _ = %raw(`console.log('DocsLayout created, showSidebar:', showSidebar)`)
+
   let sidebarCollapsed = Signal.make(!showSidebar)
   let grouped = groupByCategory(components)
   let categories = [
@@ -55,6 +58,28 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
         },
       )
     })
+  })
+
+  // Compute topbar navigation items reactively
+  let topbarNavItems = Computed.make(() => {
+    let currentPath = Signal.get(Router.location).pathname
+    [
+      {
+        Topbar.label: "Getting Started",
+        onClick: () => Router.push("/getting-started", ()),
+        active: currentPath === "/getting-started",
+      },
+      {
+        label: "API Reference",
+        onClick: () => Router.push("/api", ()),
+        active: currentPath === "/api",
+      },
+      {
+        label: "Changelog",
+        onClick: () => Router.push("/changelog", ()),
+        active: currentPath === "/changelog",
+      },
+    ]
   })
 
   <AppLayout
@@ -102,32 +127,7 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
             <Typography text={ReactiveProp.Static("v1.0.0")} variant={Typography.Small} />
           </>
         : Component.null()}
-      navItems={[
-        {
-          label: "Getting Started",
-          onClick: () => {
-            Router.push("/getting-started", ())
-            ()
-          },
-          active: Router.getCurrentLocation().pathname === "/getting-started",
-        },
-        {
-          label: "API Reference",
-          onClick: () => {
-            Router.push("/api", ())
-            ()
-          },
-          active: Router.getCurrentLocation().pathname === "/api",
-        },
-        {
-          label: "Changelog",
-          onClick: () => {
-            Router.push("/changelog", ())
-            ()
-          },
-          active: Router.getCurrentLocation().pathname === "/changelog",
-        },
-      ]}
+      navItems={Signal.get(topbarNavItems)}
       rightContent={<div style="display: flex; align-items: center; gap: 0.75rem;">
         <Input
           type_={Text} value={Static("")} radius=Full placeholder="Search" style="width: 20rem;"

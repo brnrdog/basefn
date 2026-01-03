@@ -12,6 +12,9 @@ type example = {
 
 @jsx.component
 let make = (~componentName: string) => {
+  // Debug: Log when component is created
+  let _ = %raw(`console.log('DocsComponentPage created for:', componentName)`)
+
   // Get examples for the component
   let examples = DocsExamples.getExamples(componentName)
   let title = componentName->String.replaceAll("-", " ")

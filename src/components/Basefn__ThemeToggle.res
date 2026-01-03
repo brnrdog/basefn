@@ -6,19 +6,20 @@ open Xote
 let make = (~size: [#Sm | #Md | #Lg]=#Md) => {
   let theme = Signal.make(Signal.get(Basefn__Theme.currentTheme))
 
-  let handleClick = _ => {
+  let handleClick = e => {
+    Basefn__Dom.preventDefault(e)->ignore
     Basefn__Theme.toggleTheme()
     Signal.set(theme, Signal.get(Basefn__Theme.currentTheme))
   }
 
   let icon = Computed.make(() => {
     switch Signal.get(theme) {
-    | Light => "\u{1F319}" // Moon emoji
-    | Dark => "\u{2600}\u{FE0F}" // Sun emoji
+    | Light => [<Basefn__Icon name={Sun} />]
+    | Dark => [<Basefn__Icon name={Moon} />]
     }
   })
 
-  <button onClick={handleClick} class="basefn-theme-toggle" ariaLabel="Toggle theme">
-    {Component.text(Signal.get(icon))}
-  </button>
+  <Basefn__Button variant=Ghost onClick={handleClick}>
+    {Component.signalFragment(icon)}
+  </Basefn__Button>
 }

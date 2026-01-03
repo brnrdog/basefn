@@ -24,7 +24,10 @@ let stringToTheme = (str: string) => {
 // Apply theme to document
 let applyTheme = (theme: theme) => {
   let themeValue = themeToString(theme)
-  (%raw(`function(val) { document.documentElement.setAttribute('data-theme', val) }`): string => unit)(themeValue)
+
+  (
+    %raw(`function(val) { document.documentElement.setAttribute('data-theme', val) }`): string => unit
+  )(themeValue)
 }
 
 // LocalStorage persistence
