@@ -1059,13 +1059,13 @@ module Demo = {
                           label: "Dashboard",
                           icon: Some("\u2302"),
                           active: Signal.get(activeNavItem) == "home",
-                          onClick: () => Signal.set(activeNavItem, "home"),
+                          url: "/profile",
                         },
                         {
                           label: "Analytics",
                           icon: Some("\u{1F4CA}"),
                           active: Signal.get(activeNavItem) == "analytics",
-                          onClick: () => Signal.set(activeNavItem, "analytics"),
+                          url: "/profile",
                         },
                       ],
                     },
@@ -1076,13 +1076,13 @@ module Demo = {
                           label: "Profile",
                           icon: Some("\u{1F464}"),
                           active: Signal.get(activeNavItem) == "profile",
-                          onClick: () => Signal.set(activeNavItem, "profile"),
+                          url: "/profile",
                         },
                         {
                           label: "Settings",
                           icon: Some("\u2699"),
                           active: Signal.get(activeNavItem) == "settings",
-                          onClick: () => Signal.set(activeNavItem, "settings"),
+                          url: "/profile",
                         },
                       ],
                     },
@@ -1137,7 +1137,7 @@ module Demo = {
                     <Button label={Static("Sign In")} variant={Button.Ghost} />
                     <Button label={Static("Sign Up")} variant={Button.Primary} />
                   </div>}
-                    />}
+                />}
               >
                 <div style="padding: 2rem;">
                   <Typography
@@ -1173,19 +1173,19 @@ module Demo = {
                           label: "Dashboard",
                           icon: Some("\u2302"),
                           active: true,
-                          onClick: () => Console.log("Dashboard"),
+                          url: "/",
                         },
                         {
                           label: "Projects",
                           icon: Some("\u{1F4C1}"),
                           active: false,
-                          onClick: () => Console.log("Projects"),
+                          url: "/",
                         },
                         {
                           label: "Tasks",
                           icon: Some("\u2713"),
                           active: false,
-                          onClick: () => Console.log("Tasks"),
+                          url: "/",
                         },
                       ],
                     },
@@ -1199,7 +1199,7 @@ module Demo = {
                     <Badge label={Signal.make("3")} variant={Badge.Primary} />
                     <Avatar src="https://ui-avatars.com/api/?name=John+Doe" size={Avatar.Sm} />
                   </div>}
-                    />}
+                />}
                 sidebarSize={"md"}
                 sidebarCollapsed={Signal.get(sidebarCollapsed)}
               >

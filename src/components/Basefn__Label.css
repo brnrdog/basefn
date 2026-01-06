@@ -5,7 +5,7 @@
   font-family: var(--basefn-font-family);
   font-size: var(--basefn-font-size-sm);
   font-weight: var(--basefn-font-weight-medium);
-  color: var(--basefn-color-neutral-700);
+  color: var(--basefn-text-secondary);
   line-height: var(--basefn-line-height-normal);
   margin-bottom: var(--basefn-spacing-xs);
   cursor: pointer;

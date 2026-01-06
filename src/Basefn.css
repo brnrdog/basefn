@@ -1,3 +1,5 @@
+@import "./styles/variables.css";
+
 .bold {
 	font-weight: 600;
 }
@@ -9,3 +11,4 @@
 .font-normal {
 	font-weight: 400;
 }
+

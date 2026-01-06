@@ -17,9 +17,6 @@ let groupByCategory = (components: array<componentInfo>): Dict.t<array<component
 
 @jsx.component
 let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Component.node) => {
-  // Debug: Log when layout is created
-  let _ = %raw(`console.log('DocsLayout created, showSidebar:', showSidebar)`)
-
   let sidebarCollapsed = Signal.make(!showSidebar)
   let grouped = groupByCategory(components)
   let categories = [
@@ -50,7 +47,7 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
                   Sidebar.label: comp.name,
                   icon: None,
                   active: currentPath == comp.path,
-                  onClick: () => Router.push(comp.path, ()),
+                  url: comp.path,
                 }
               },
             ),
@@ -90,13 +87,12 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
           <div style="display: flex; align-items: center; gap:0.5rem">
             <div style="display: flex; align-items: center; gap:0rem; font-size: 1.25rem;">
               <Typography
-                text={ReactiveProp.Static("base")}
-                variant={Typography.Unstyled}
-                style="font-weight: 600; line-height: 2rem;"
+                text={ReactiveProp.Static("base")} variant={Typography.Unstyled} class="basefn-logo"
               />
               <Typography
                 text={ReactiveProp.Static("fn")}
                 variant={Typography.Unstyled}
+                class="basefn-logo"
                 style="font-style: italic; font-weight: 800;"
               />
             </div>
@@ -114,13 +110,12 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
         ? <>
             <div style="display: flex; align-items: center; gap:0rem; font-size: 1.25rem;">
               <Typography
-                text={ReactiveProp.Static("base")}
-                variant={Typography.Unstyled}
-                style="font-weight: 600; line-height: 2rem;"
+                text={ReactiveProp.Static("base")} variant={Typography.Unstyled} class="basefn-logo"
               />
               <Typography
                 text={ReactiveProp.Static("fn")}
                 variant={Typography.Unstyled}
+                class="basefn-logo"
                 style="font-style: italic; font-weight: 800;"
               />
             </div>
@@ -128,7 +123,7 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
           </>
         : Component.null()}
       navItems={Signal.get(topbarNavItems)}
-      rightContent={<div style="display: flex; align-items: center; gap: 0.75rem;">
+      rightContent={<div style="display: flex; align-items: center; gap: 1rem;">
         <Input
           type_={Text} value={Static("")} radius=Full placeholder="Search" style="width: 20rem;"
         />
@@ -138,7 +133,9 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
           target="_blank"
           style="text-decoration: none; color: inherit;"
         >
-          <img width="24px" height="24px" src="https://simpleicons.org/icons/github.svg" />
+          <Basefn__Button variant={Ghost}>
+            <Basefn__Icon name={GitHub} />
+          </Basefn__Button>
         </a>
       </div>}
     />}

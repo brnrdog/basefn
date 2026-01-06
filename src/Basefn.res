@@ -43,6 +43,15 @@ type topbarNavItem = Basefn__Topbar.navItem
 type appLayoutContentWidth = Basefn__AppLayout.contentWidth
 type iconName = Basefn__Icon.name
 type iconSize = Basefn__Icon.size
+type gridColumns = Basefn__Grid.columns
+type gridRows = Basefn__Grid.rows
+type gridAutoFlow = Basefn__Grid.autoFlow
+type gridJustifyItems = Basefn__Grid.justifyItems
+type gridAlignItems = Basefn__Grid.alignItems
+type gridJustifyContent = Basefn__Grid.justifyContent
+type gridAlignContent = Basefn__Grid.alignContent
+type gridItemColumnSpan = Basefn__Grid.Item.columnSpan
+type gridItemRowSpan = Basefn__Grid.Item.rowSpan
 
 // Form Components
 module Button = Basefn__Button

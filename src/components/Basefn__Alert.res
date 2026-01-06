@@ -23,11 +23,6 @@ let make = (
 ) => {
   let isVisible = Signal.make(true)
 
-  let _ = Effect.run(() => {
-    Console.log(Signal.get(isVisible))
-    None
-  })
-
   let handleDismiss = () => {
     Signal.set(isVisible, false)
     switch onDismiss {

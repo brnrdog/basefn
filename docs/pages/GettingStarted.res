@@ -3,7 +3,7 @@ open Basefn
 
 @jsx.component
 let make = () => {
-  <div class="docs-page">
+  <div class="docs-component-page">
     <Typography text={ReactiveProp.Static("Getting Started")} variant={Typography.H2} />
     <Typography
       text={ReactiveProp.Static(
@@ -13,7 +13,9 @@ let make = () => {
     />
     // Installation Section
     <Typography text={ReactiveProp.Static("Installation")} variant={Typography.H3} />
-    <Typography text={ReactiveProp.Static("Install basefn-ui via npm or yarn:")} variant={Typography.P} />
+    <Typography
+      text={ReactiveProp.Static("Install basefn-ui via npm or yarn:")} variant={Typography.P}
+    />
     <Card>
       <Typography text={ReactiveProp.Static("npm install basefn-ui")} variant={Typography.Code} />
       <br />
@@ -33,13 +35,13 @@ let make = () => {
     // Quick Start Section
     <Typography text={ReactiveProp.Static("Quick Start")} variant={Typography.H3} />
     <Typography
-      text={ReactiveProp.Static("Here's a simple example to get you started:")} variant={Typography.P}
+      text={ReactiveProp.Static("Here's a simple example to get you started:")}
+      variant={Typography.P}
     />
     <Card>
-      <pre
-        style="background-color: #1f2937; color: #f9fafb; padding: 1rem; border-radius: 0.25rem; overflow-x: auto;"
-      >
-        {Component.text(`open Xote
+      <pre>
+        <code class="language-rescript">
+          {Component.text(`open Xote
 open Basefn
 
 @jsx.component
@@ -49,12 +51,12 @@ let make = () => {
 
   <div>
     <Typography
-      text={ReactiveProp.Static("Counter Example")}
+      text={ReactiveProp.static("Counter Example")}
       variant={Typography.H3}
     />
 
     <Typography
-      text={count->Signal.map(c => "Count: " ++ Int.toString(c))}
+      text={ReactiveProp.reactive(count->Signal.map(c => "Count: " ++ Int.toString(c)))}
       variant={Typography.P}
     />
 
@@ -65,10 +67,13 @@ let make = () => {
     />
   </div>
 }`)}
+        </code>
       </pre>
     </Card>
     // Understanding Reactive Props
-    <Typography text={ReactiveProp.Static("Understanding Reactive Props")} variant={Typography.H2} />
+    <Typography
+      text={ReactiveProp.Static("Understanding Reactive Props")} variant={Typography.H2}
+    />
     <Typography
       text={ReactiveProp.Static(
         "basefn-ui components use ReactiveProp for flexible property handling. Props can be either static or reactive:",
@@ -78,7 +83,8 @@ let make = () => {
     <Card>
       <Typography text={ReactiveProp.Static("Static Props")} variant={Typography.H4} />
       <Typography
-        text={ReactiveProp.Static("Use Static() for values that don't change:")} variant={Typography.P}
+        text={ReactiveProp.Static("Use Static() for values that don't change:")}
+        variant={Typography.P}
       />
       <Typography
         text={ReactiveProp.Static(`<Button
@@ -108,13 +114,13 @@ let make = () => {
     // Form Components Example
     <Typography text={ReactiveProp.Static("Building a Simple Form")} variant={Typography.H2} />
     <Typography
-      text={ReactiveProp.Static("Here's a practical example with form components:")} variant={Typography.P}
+      text={ReactiveProp.Static("Here's a practical example with form components:")}
+      variant={Typography.P}
     />
     <Card>
-      <pre
-        style="background-color: #1f2937; color: #f9fafb; padding: 1rem; border-radius: 0.25rem; overflow-x: auto;"
-      >
-        {Component.text(`open Xote
+      <pre>
+        <code class="language-javascript">
+          {Component.text(`open Xote
 open Basefn
 
 @jsx.component
@@ -176,12 +182,14 @@ let make = () => {
     />
   </Card>
 }`)}
+        </code>
       </pre>
     </Card>
     // Interactive Demo
     <Typography text={ReactiveProp.Static("Try It Out")} variant={Typography.H2} />
     <Typography
-      text={ReactiveProp.Static("Here's a live example you can interact with:")} variant={Typography.P}
+      text={ReactiveProp.Static("Here's a live example you can interact with:")}
+      variant={Typography.P}
     />
     // Component Categories
     <Typography text={ReactiveProp.Static("Available Components")} variant={Typography.H2} />
@@ -356,7 +364,9 @@ module LiveFormExample = {
         variant={Button.Secondary}
       />
       <Separator orientation={Separator.Horizontal} variant={Separator.Dashed} />
-      <Typography text={ReactiveProp.Static("Form State (Live Updates):")} variant={Typography.H6} />
+      <Typography
+        text={ReactiveProp.Static("Form State (Live Updates):")} variant={Typography.H6}
+      />
       <pre
         style="background-color: #1f2937; color: #f9fafb; padding: 1rem; border-radius: 0.25rem; overflow-x: auto; font-size: 0.875rem; margin-top: 0.5rem;"
       >

@@ -12,11 +12,10 @@
   top: 0;
   z-index: 100;
   border-bottom: 1px solid transparent;
-  transition: all 300ms ease-out;
+  border-bottom: 1px solid var(--basefn-border-primary);
 }
 
 .basefn-topbar--scrolling {
-  border-bottom: 1px solid var(--basefn-border-primary);
 }
 
 .basefn-topbar__left {
@@ -97,15 +96,15 @@
 }
 
 .basefn-topbar__nav-item:hover {
-  background-color: var(--basefn-bg-tertiary);
+  background-color: var(--basefn-bg-secondary);
   color: var(--basefn-text-primary);
 }
 
 .basefn-topbar__nav-item--active,
 .basefn-topbar__nav-item--active:hover {
-  background-color: var(--basefn-color-primary-background);
+  background-color: var(--basefn-bg-primary-aa);
   color: var(--basefn-color-primary);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .basefn-topbar__actions {

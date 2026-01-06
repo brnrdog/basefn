@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
 
 :root {
@@ -28,7 +28,7 @@
   --basefn-color-warning: #f59e0b;
   --basefn-color-info: #3b82f6;
 
-  --font-mono: "Open Sans", monospace;
+  --font-mono: "Source Code", monospace;
 
   /* Typography */
   --basefn-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -115,6 +115,8 @@
   --basefn-bg-primary: #ffffff;
   --basefn-bg-secondary: #f9fafb;
   --basefn-bg-tertiary: #f3f4f6;
+  --basefn-bg-primary-aa: #eff6ff;
+
 
   /* Text colors */
   --basefn-text-primary: #111827;
@@ -143,10 +145,13 @@
 
 /* Dark Theme */
 [data-theme="dark"] {
+  
   /* Backgrounds - Slate palette */
   --basefn-bg-primary: #0f172a;
-  --basefn-bg-secondary: #1e293b;
+  --basefn-bg-secondary: #131c2f;
   --basefn-bg-tertiary: #334155;
+  --basefn-bg-primary-aa: #172443;
+  --basefn-bg-secondary-aa: #121e3b;
 
   /* Text */
   --basefn-text-primary: #f1f5f9;
@@ -190,5 +195,5 @@
 /* Base reset for form elements */
 * {
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans', sans-serif;
 }

@@ -1,13 +1,14 @@
+@import "../styles/variables.css";
+
 .basefn-separator {
   border: 0;
-  background-color: #e5e7eb;
 }
 
 /* Horizontal separator */
 .basefn-separator--horizontal {
   width: 100%;
   height: 1px;
-  margin: 4rem 0;
+  margin: 2rem 0;
 }
 
 /* Vertical separator */
@@ -19,31 +20,31 @@
 
 /* Variants */
 .basefn-separator--solid {
-  background-color: #e5e7eb;
+  background-color: var(--basefn-border-primary);
 }
 
 .basefn-separator--dashed {
-  background-image: linear-gradient(to right, #e5e7eb 50%, transparent 50%);
+  background-image: linear-gradient(to right, var(--basefn-border-primary) 50%, transparent 50%);
   background-size: 8px 1px;
   background-repeat: repeat-x;
   background-color: transparent;
 }
 
 .basefn-separator--vertical.basefn-separator--dashed {
-  background-image: linear-gradient(to bottom, #e5e7eb 50%, transparent 50%);
+  background-image: linear-gradient(to bottom, var(--basefn-border-primary) 50%, transparent 50%);
   background-size: 1px 8px;
   background-repeat: repeat-y;
 }
 
 .basefn-separator--dotted {
-  background-image: linear-gradient(to right, #e5e7eb 25%, transparent 25%);
+  background-image: linear-gradient(to right, var(--basefn-border-primary) 25%, transparent 25%);
   background-size: 4px 1px;
   background-repeat: repeat-x;
   background-color: transparent;
 }
 
 .basefn-separator--vertical.basefn-separator--dotted {
-  background-image: linear-gradient(to bottom, #e5e7eb 25%, transparent 25%);
+  background-image: linear-gradient(to bottom, var(--basefn-border-primary) 25%, transparent 25%);
   background-size: 1px 4px;
   background-repeat: repeat-y;
 }
@@ -60,18 +61,18 @@
 .basefn-separator__line {
   flex: 1;
   height: 1px;
-  background-color: #e5e7eb;
+  background-color: var(--basefn-border-primary);
 }
 
 .basefn-separator--dashed .basefn-separator__line {
-  background-image: linear-gradient(to right, #e5e7eb 50%, transparent 50%);
+  background-image: linear-gradient(to right, var(--basefn-border-primary) 50%, transparent 50%);
   background-size: 8px 1px;
   background-repeat: repeat-x;
   background-color: transparent;
 }
 
 .basefn-separator--dotted .basefn-separator__line {
-  background-image: linear-gradient(to right, #e5e7eb 25%, transparent 25%);
+  background-image: linear-gradient(to right, var(--basefn-border-primary) 25%, transparent 25%);
   background-size: 4px 1px;
   background-repeat: repeat-x;
   background-color: transparent;

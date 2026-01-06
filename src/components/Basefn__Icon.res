@@ -35,6 +35,7 @@ external externalLink: iconElement = "default"
 @module("lucide/dist/esm/icons/star.js") external star: iconElement = "default"
 @module("lucide/dist/esm/icons/sun.js") external sun: iconElement = "default"
 @module("lucide/dist/esm/icons/moon.js") external moon: iconElement = "default"
+@module("lucide/dist/esm/icons/github.js") external github: iconElement = "default"
 
 // Icon name type
 type name =
@@ -65,6 +66,7 @@ type name =
   | Star
   | Sun
   | Moon
+  | GitHub
 
 // Get icon data from name
 let getIconData = (name: name): iconElement => {
@@ -96,6 +98,7 @@ let getIconData = (name: name): iconElement => {
   | Star => star
   | Sun => sun
   | Moon => moon
+  | GitHub => github
   }
 }
 
@@ -170,7 +173,12 @@ let make = (
   })
 
   let style = Computed.make(() => {
-    "color: " ++ color->ReactiveProp.get ++ "; width: " ++ sizeStr ++ "px; height: " ++ sizeStr ++ "px; display: inline-flex;"
+    "color: " ++
+    color->ReactiveProp.get ++
+    "; width: " ++
+    sizeStr ++
+    "px; height: " ++
+    sizeStr ++ "px; display: inline-flex;"
   })
 
   // Create complete SVG HTML

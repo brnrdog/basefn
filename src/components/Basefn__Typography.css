@@ -50,6 +50,7 @@
   line-height: 1.75;
   font-weight: 400;
   margin-bottom: 1rem;
+  color: var(--basefn-text-tertiary);
 }
 
 /* Lead paragraph */
@@ -90,6 +91,7 @@
 
 .basefn-typography--unstyled {
   display: inline-block;
+  color: var(--basefn-text-tertiary);
 }
 
 /* Text alignment */
@@ -107,4 +109,12 @@
 
 .basefn-typography--justify {
   text-align: justify;
+}
+
+.basefn-code {
+	background: var(--basefn-bg-primary);
+  color: var(--basefn-text-secondary);
+  font-family: 'Source Code', Courier, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5em;
 }

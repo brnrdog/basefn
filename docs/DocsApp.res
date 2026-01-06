@@ -1,4 +1,26 @@
+%%raw(`import hljs from 'highlight.js/lib/core'`)
+%%raw(`import javascript from 'highlight.js/lib/languages/javascript'`)
+%%raw(`import rescript from 'highlight.js/lib/languages/reasonml'`)
+%%raw(`hljs.registerLanguage('javascript', javascript)`)
+%%raw(`hljs.registerLanguage('rescript', rescript)`)
+
 open Xote
+
+let highlightCode = %raw(`function() {
+      document.querySelectorAll('pre code:not(.hljs)').forEach((block) => {
+        console.log('what')
+        hljs.highlightElement(block);
+      });
+    }`)
+
+// Highlight on mount
+let _ = Effect.run(() => {
+  let _ = setTimeout(() => {
+    highlightCode()
+  }, 100)
+
+  None
+})
 
 let components = DocsRoutes.components
 
@@ -6,26 +28,11 @@ let components = DocsRoutes.components
 Router.init()
 Basefn__Theme.init()
 
-// Debug: Watch for location changes
-let _ = Effect.run(() => {
-  let loc = Signal.get(Router.location)
-  (%raw(`function(p) { console.log('Router.location changed:', p) }`): string => unit)(loc.pathname)
-  None
-})
-
-// Debug: Watch for theme changes
-let _ = Effect.run(() => {
-  let theme = Signal.get(Basefn__Theme.currentTheme)
-  (%raw(`function(t) { console.log('Theme changed:', t) }`): 'a => unit)(theme)
-  None
-})
-
 // Define routes once at module level to prevent recreation on every render
 let appRoutes = Router.routes([
   {
     pattern: "/",
     render: _params => {
-      let _ = %raw(`console.log('Route render: /')`)
       <DocsLayout components showSidebar={false}>
         <Homepage />
       </DocsLayout>
@@ -34,7 +41,6 @@ let appRoutes = Router.routes([
   {
     pattern: "/getting-started",
     render: _params => {
-      let _ = %raw(`console.log('Route render: /getting-started')`)
       <DocsLayout components>
         <GettingStarted />
       </DocsLayout>
@@ -43,7 +49,6 @@ let appRoutes = Router.routes([
   {
     pattern: "/api",
     render: _params => {
-      let _ = %raw(`console.log('Route render: /api')`)
       <DocsLayout components>
         <ApiReference />
       </DocsLayout>
@@ -52,7 +57,6 @@ let appRoutes = Router.routes([
   {
     pattern: "/changelog",
     render: _params => {
-      let _ = %raw(`console.log('Route render: /changelog')`)
       <DocsLayout components>
         <Changelog />
       </DocsLayout>
@@ -62,7 +66,6 @@ let appRoutes = Router.routes([
     pattern: "/component/:name",
     render: params => {
       let componentName = params->Dict.get("name")->Option.getOr("button")
-      let _ = %raw(`console.log('Route render: /component/', componentName)`)
       <DocsLayout components>
         <DocsComponentPage componentName />
       </DocsLayout>

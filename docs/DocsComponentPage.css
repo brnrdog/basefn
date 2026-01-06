@@ -4,9 +4,7 @@
 }
 
 .docs-component-header {
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 2rem;
   text-transform: capitalize;
 }
 
@@ -42,13 +40,14 @@
 
 .docs-component-demo {
   padding: 2rem;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+  background: var(--basefn-bg-primary);
+  border: 1px solid var(--basefn-border-primary);
+  border-radius: var(--basefn-radius-xl);
   min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: start;
+  width: 100%;
 }
 
 /* Special handling for layout demos that use position: fixed */
@@ -82,20 +81,19 @@
 }
 
 .docs-component-code {
-  background: #1a1b26;
   border-radius: 0.5rem;
   overflow: hidden;
+  border: 1px solid var(--basefn-border-primary);
 }
 
 .docs-component-code pre {
   margin: 0;
-  padding: 1.5rem;
   overflow-x: auto;
 }
 
 .docs-component-code code {
-  font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+  font-family: 'Source Code Pro', 'Monaco', 'Courier New', monospace;
   font-size: 0.875rem;
   line-height: 1.6;
-  color: #a9b1d6;
+  display: block;
 }

@@ -8,7 +8,7 @@ type navItem = {
   label: string,
   icon: option<string>,
   active: bool,
-  onClick: unit => unit,
+  url: string,
 }
 
 type navSection = {
@@ -74,13 +74,13 @@ let make = (
             let itemClass =
               "basefn-sidebar__item" ++ (item.active ? " basefn-sidebar__item--active" : "")
 
-            <div key={Int.toString(index)} class={itemClass} onClick={_ => item.onClick()}>
+            <Router.Link key={Int.toString(index)} class={itemClass} to={item.url}>
               {switch item.icon {
               | Some(icon) => <div class="basefn-sidebar__item-icon"> {Component.text(icon)} </div>
               | None => <> </>
               }}
               <div class="basefn-sidebar__item-text"> {Component.text(item.label)} </div>
-            </div>
+            </Router.Link>
           })
           ->Component.fragment}
         </div>

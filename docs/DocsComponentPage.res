@@ -12,20 +12,13 @@ type example = {
 
 @jsx.component
 let make = (~componentName: string) => {
-  // Debug: Log when component is created
-  let _ = %raw(`console.log('DocsComponentPage created for:', componentName)`)
-
   // Get examples for the component
   let examples = DocsExamples.getExamples(componentName)
   let title = componentName->String.replaceAll("-", " ")
 
   <div class="docs-component-page">
     <div class="docs-component-header">
-      <Typography text={ReactiveProp.Static(title)} variant={Typography.H1} />
-      <Typography
-        text={ReactiveProp.Static("Explore examples and code for the " ++ title ++ " component.")}
-        variant={Typography.Muted}
-      />
+      <Typography text={ReactiveProp.Static(title)} variant={Typography.H2} />
     </div>
     <div class="docs-component-content">
       {examples
@@ -37,24 +30,12 @@ let make = (~componentName: string) => {
               {Component.text(example.description)}
             </p>
           </div>
-          <Tabs
-            tabs={[
-              {
-                label: "Demo",
-                value: "demo",
-                content: <div class="docs-component-demo"> {example.demo} </div>,
-              },
-              {
-                label: "Code",
-                value: "code",
-                content: <div class="docs-component-code">
-                  <pre>
-                    <code> {Component.text(example.code)} </code>
-                  </pre>
-                </div>,
-              },
-            ]}
-          />
+          <div class="docs-component-demo"> {example.demo} </div>
+          <div class="docs-component-code">
+            <pre>
+              <code class="language-javascript"> {Component.text(example.code)} </code>
+            </pre>
+          </div>
         </div>
       })
       ->Component.fragment}

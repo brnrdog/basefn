@@ -5,7 +5,7 @@
 	color: var(--basefn-color-neutral-700) !important;
   font-weight: 600;
   font-size: 1.125rem;
-  color: #1a1b26;
+  color: 
   text-decoration: none;
 }
 
@@ -14,4 +14,14 @@
   color: #3b82f6;
 }
 
+.basefn-logo {
+  color: black;
+  font-weight: 600; 
+  line-height: 2rem; 
+}
 
+html[data-theme="dark"] {
+  .basefn-logo {
+    color: white;
+  }
+}
