@@ -1,18 +1,18 @@
 {
   "name": "basefn",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/brnrdog/basefn"
   },
   "description": "A simple UI component library for Xote applications",
-  "main": "lib/js/src/index.js",
+  "main": "src/Basefn.res.mjs",
   "type": "module",
   "files": [
-    "dist",
     "src/**/*.res",
     "src/**/*.resi",
     "src/**/*.res.mjs",
+    "src/**/*.css",
     "rescript.json"
   ],
   "scripts": {

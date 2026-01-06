@@ -5,7 +5,7 @@ A simple, neutrally styled UI component library for [Xote](https://github.com/br
 ## Installation
 
 ```bash
-npm install basefn-ui
+npm install basefn
 ```
 
 Make sure you have installed [xote](https://github.com/brnrdog/xote) and [rescript-signals](https://github.com/brnrdog/rescript-signals).
