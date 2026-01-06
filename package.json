@@ -2,6 +2,7 @@
   "name": "basefn",
   "version": "0.0.0",
   "repository": {
+    "type": "git",
     "url": "https://github.com/brnrdog/basefn"
   },
   "description": "A simple UI component library for Xote applications",
@@ -68,7 +69,7 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^12.0.2",
-    "@semantic-release/npm": "^13.1.2",
+    "@semantic-release/npm": "^13.1.3",
     "rescript": "^12.0.1",
     "vite": "^5.0.0"
   }
