@@ -1,45 +1,39 @@
-name: Build & Release
+name: Release and Publish
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch: {}
+    branches:
+      - main
 
 permissions:
-  contents: write          # create releases, push changelog commits
-  issues: write            # (optional) if plugins comment on issues
-  pull-requests: write     # (optional) if plugins post to PRs
-  id-token: write
-
-concurrency:
-  group: release-${{ github.ref }}
-  cancel-in-progress: false
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write  # Required for npm provenance
 
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # semantic-release needs full history & tags
+          fetch-depth: 0
+          persist-credentials: false
 
-      - name: Use Node.js 24
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 24.10.0
-          cache: npm
-          registry-url: https://registry.npmjs.org
+          node-version: 'lts/*'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Rescript Build
+      - name: Build
         run: npm run build
 
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
