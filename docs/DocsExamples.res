@@ -8,6 +8,43 @@ type example = {
   code: string,
 }
 
+// Demo components - these create signals internally so they persist across re-renders
+module ButtonClickHandlerDemo = {
+  @jsx.component
+  let make = () => {
+    open Component
+    let count = Signal.make(0)
+    let counterText = Computed.make(() => "Count: " ++ Int.toString(Signal.get(count)))
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <Button variant={Button.Primary} onClick={_ => Signal.update(count, c => c + 1)}>
+        {text("Increment")}
+      </Button>
+      <Typography text={Reactive(counterText)} variant={Typography.H4} />
+    </div>
+  }
+}
+
+module ButtonReactiveDemo = {
+  @jsx.component
+  let make = () => {
+    open Component
+    let fetching = Signal.make(false)
+    let onClick = event => {
+      let _ = Basefn__Dom.preventDefault(event)
+      Signal.set(fetching, true)
+      let _ = setTimeout(() => {
+        Signal.set(fetching, false)
+      }, 1500)
+    }
+
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <Button variant={Button.Primary} disabled={ReactiveProp.Reactive(fetching)} onClick>
+        {textSignal(() => Signal.get(fetching) ? "Data fetching..." : "Simulate data fetching")}
+      </Button>
+    </div>
+  }
+}
+
 // Helper to get examples for a component
 let getExamples = (componentName: string): array<example> => {
   open Component
@@ -15,7 +52,7 @@ let getExamples = (componentName: string): array<example> => {
   switch componentName {
   | "button" => [
       {
-        title: "Button Variants",
+        title: "Variants",
         description: "Different button styles for various use cases.",
         demo: <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
           <Button variant={Button.Primary}> {text("Primary")} </Button>
@@ -29,16 +66,7 @@ let getExamples = (componentName: string): array<example> => {
       {
         title: "Button with Click Handler",
         description: "Buttons can handle click events.",
-        demo: {
-          let count = Signal.make(0)
-          let counterText = Computed.make(() => "Count: " ++ Int.toString(Signal.get(count)))
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <Button variant={Button.Primary} onClick={_ => Signal.update(count, c => c + 1)}>
-              {text("Increment")}
-            </Button>
-            <Typography text={Reactive(counterText)} variant={Typography.H4} />
-          </div>
-        },
+        demo: <ButtonClickHandlerDemo />,
         code: `let count = Signal.make(0)
 let counterText = Computed.make(() => "Count: " ++ Int.toString(Signal.get(count)))
 
@@ -54,24 +82,7 @@ let counterText = Computed.make(() => "Count: " ++ Int.toString(Signal.get(count
       {
         title: "Reactive button attributes",
         description: "Button attributes can be static or it can react to signals.",
-        demo: {
-          let fetching = Signal.make(false)
-          let onClick = event => {
-            let _ = Basefn__Dom.preventDefault(event)
-            Signal.set(fetching, true)
-            let _ = setTimeout(() => {
-              Signal.set(fetching, false)
-            }, 1500)
-          }
-
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <Button variant={Button.Primary} disabled={ReactiveProp.Reactive(fetching)} onClick>
-              {textSignal(() =>
-                Signal.get(fetching) ? "Data fetching..." : "Simulate data fetching"
-              )}
-            </Button>
-          </div>
-        },
+        demo: <ButtonReactiveDemo />,
         code: `let fetching = Signal.make(false)
 let disabled = fetching
 
@@ -127,11 +138,19 @@ let onClick = event => {
         title: "Basic Card",
         description: "A simple card container for grouping content.",
         demo: <Card>
-          <Typography text={ReactiveProp.Static("Card Title")} variant={Typography.H4} />
-          <p style="margin: 1rem 0; color: #6b7280;">
-            {Component.text("This is a basic card component. It can contain any content.")}
-          </p>
-          <Button label={Static("Call to Action")} />
+          <Typography
+            text={ReactiveProp.Static("Card Title")}
+            variant={Typography.H5}
+            style="margin-bottom: 1rem;"
+          />
+          <Typography
+            text={ReactiveProp.static(
+              "This is a basic card component. It can contain any content.",
+            )}
+            style="margin-bottom: 2rem;"
+            variant={P}
+          />
+          <Button> {Component.text("Call to Action")} </Button>
         </Card>,
         code: `<Card>
   <Typography text={ReactiveProp.Static("Card Title")} variant={Typography.H4} />
@@ -592,22 +611,102 @@ let option2 = Signal.make(false)
       {
         title: "Horizontal Separator",
         description: "Divide content sections horizontally.",
-        demo: <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <Typography text={ReactiveProp.Static("Section 1")} variant={Typography.H5} />
+        demo: <div style="display: flex; flex-direction: column;">
+          <Typography text={ReactiveProp.Static("Section 1")} variant={Typography.Unstyled} />
           <Separator orientation={Separator.Horizontal} />
-          <Typography text={ReactiveProp.Static("Section 2")} variant={Typography.H5} />
+          <Typography text={ReactiveProp.Static("Section 2")} variant={Typography.Unstyled} />
         </div>,
         code: `<Separator orientation={Separator.Horizontal} />`,
       },
       {
         title: "Vertical Separator",
         description: "Divide content sections vertically.",
-        demo: <div style="display: flex; gap: 1rem; align-items: center; height: 100px;">
-          <Typography text={ReactiveProp.Static("Left")} variant={Typography.P} />
-          <Separator orientation={Separator.Vertical} />
-          <Typography text={ReactiveProp.Static("Right")} variant={Typography.P} />
+        demo: <div
+          style="display: flex; flex-direction: column; align-items: center; gap: 2rem; width: 100%;"
+        >
+          <div
+            style="display: flex; width: 100%; flex-direction: row; height: 2.5rem; gap: 2rem; height: 2.5rem; gap: 2rem;"
+          >
+            <Typography
+              text={ReactiveProp.Static("Solid Separators")}
+              variant={Typography.Unstyled}
+              style="width: 100px;"
+            />
+            <Separator orientation={Vertical} variant={Solid} />
+            <Typography
+              text={ReactiveProp.Static("Content example")} variant={Typography.Unstyled}
+            />
+          </div>
+          <div style="display: flex; width: 100%; flex-direction: row; height: 2.5rem; gap: 2rem;">
+            <Typography
+              text={ReactiveProp.Static("Dashed Separators")}
+              variant={Typography.Unstyled}
+              style="width: 100px;"
+            />
+            <Separator orientation={Vertical} variant={Dashed} />
+            <Typography
+              text={ReactiveProp.Static("Content example")} variant={Typography.Unstyled}
+            />
+          </div>
+          <div style="display: flex; width: 100%; flex-direction: row; height: 2.5rem; gap: 2rem;">
+            <Typography
+              text={ReactiveProp.Static("Dotted Separators")}
+              variant={Typography.Unstyled}
+              style="width: 100px;"
+            />
+            <Separator orientation={Vertical} variant={Dotted} />
+            <Typography
+              text={ReactiveProp.Static("Content example")} variant={Typography.Unstyled}
+            />
+          </div>
         </div>,
         code: `<Separator orientation={Separator.Vertical} />`,
+      },
+      {
+        title: "Horizontal Separators",
+        description: "Divides content sections horizontally.",
+        demo: <div style="display: flex; align-items: center; gap: 2rem; width: 100%;">
+          <div style="display: flex; width: 100%; flex-direction: column;">
+            <Typography
+              text={ReactiveProp.Static("Solid Separators")} variant={Typography.Unstyled}
+            />
+            <Separator variant={Solid} />
+            <Typography
+              text={ReactiveProp.Static("Content example")} variant={Typography.Unstyled}
+            />
+          </div>
+          <div style="display: flex; width: 100%; flex-direction: column;">
+            <Typography
+              text={ReactiveProp.Static("Dashed Separators")} variant={Typography.Unstyled}
+            />
+            <Separator variant={Dashed} />
+            <Typography
+              text={ReactiveProp.Static("Content example")} variant={Typography.Unstyled}
+            />
+          </div>
+          <div style="display: flex; width: 100%; flex-direction: column;">
+            <Typography
+              text={ReactiveProp.Static("Dotted Separators")} variant={Typography.Unstyled}
+            />
+            <Separator variant={Dotted} />
+            <Typography
+              text={ReactiveProp.Static("Content example")} variant={Typography.Unstyled}
+            />
+          </div>
+          <div style="display: flex; width: 100%; flex-direction: column; width: 100%;">
+            <Typography
+              text={ReactiveProp.Static("Separator with a label")} variant={Typography.Unstyled}
+            />
+            <Separator variant={Solid} label="With a label" />
+            <Typography
+              text={ReactiveProp.Static("Content example")} variant={Typography.Unstyled}
+            />
+          </div>
+        </div>,
+        code: `<Separator variant={Solid} />
+<Separator variant={Dashed} />
+<Separator variant={Dotted} />
+<Separator variant={Dotted} label="Section name"/>`,
       },
     ]
 
@@ -670,9 +769,9 @@ let option2 = Signal.make(false)
 
   | "grid" => [
       {
-        title: "Basic Grid",
-        description: "Responsive grid layout for organizing content.",
-        demo: <Grid cols={3} gap="1rem">
+        title: "Simple Column Count",
+        description: "Create an equal-width grid with a simple column count.",
+        demo: <Grid columns={Count(3)} gap="1rem">
           <Card>
             <Typography text={ReactiveProp.Static("Item 1")} variant={Typography.H5} />
           </Card>
@@ -692,10 +791,408 @@ let option2 = Signal.make(false)
             <Typography text={ReactiveProp.Static("Item 6")} variant={Typography.H5} />
           </Card>
         </Grid>,
-        code: `<Grid cols={3} gap="1rem">
-  <Card><Typography text={ReactiveProp.Static("Item 1")} variant={Typography.H5} /></Card>
-  <Card><Typography text={ReactiveProp.Static("Item 2")} variant={Typography.H5} /></Card>
-  <Card><Typography text={ReactiveProp.Static("Item 3")} variant={Typography.H5} /></Card>
+        code: `<Grid columns={Count(3)} gap="1rem">
+  <Card><Typography text={ReactiveProp.Static("Item 1")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Item 2")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Item 3")} /></Card>
+</Grid>`,
+      },
+      {
+        title: "Responsive Auto-Fit",
+        description: "Grid that automatically fits items based on available space.",
+        demo: <Grid columns={AutoFit("minmax(200px, 1fr)")} gap="1rem">
+          <Card>
+            <Typography text={ReactiveProp.Static("Card 1")} variant={Typography.H5} />
+            <Typography
+              text={ReactiveProp.Static("Resizes automatically")} variant={Typography.Small}
+            />
+          </Card>
+          <Card>
+            <Typography text={ReactiveProp.Static("Card 2")} variant={Typography.H5} />
+            <Typography
+              text={ReactiveProp.Static("Try resizing window")} variant={Typography.Small}
+            />
+          </Card>
+          <Card>
+            <Typography text={ReactiveProp.Static("Card 3")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("Flexible layout")} variant={Typography.Small} />
+          </Card>
+          <Card>
+            <Typography text={ReactiveProp.Static("Card 4")} variant={Typography.H5} />
+            <Typography text={ReactiveProp.Static("No media queries")} variant={Typography.Small} />
+          </Card>
+        </Grid>,
+        code: `<Grid columns={AutoFit("minmax(200px, 1fr)")} gap="1rem">
+  <Card><Typography text={ReactiveProp.Static("Card 1")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Card 2")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Card 3")} /></Card>
+</Grid>`,
+      },
+      {
+        title: "Custom Template",
+        description: "Define exact column sizes with custom templates.",
+        demo: <Grid columns={Template("2fr 1fr 1fr")} gap="1rem">
+          <Card>
+            <Typography
+              text={ReactiveProp.Static("2fr - Twice as wide")} variant={Typography.Small}
+            />
+          </Card>
+          <Card>
+            <Typography text={ReactiveProp.Static("1fr")} variant={Typography.Small} />
+          </Card>
+          <Card>
+            <Typography text={ReactiveProp.Static("1fr")} variant={Typography.Small} />
+          </Card>
+        </Grid>,
+        code: `<Grid columns={Template("2fr 1fr 1fr")} gap="1rem">
+  <Card><Typography text={ReactiveProp.Static("2fr - Twice as wide")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("1fr")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("1fr")} /></Card>
+</Grid>`,
+      },
+      {
+        title: "Grid with Spanning Items",
+        description: "Items can span multiple columns or rows.",
+        demo: <Grid columns={Count(4)} gap="1rem">
+          <Grid.Item column={Span(2)}>
+            <Card>
+              <Typography text={ReactiveProp.Static("Spans 2 columns")} variant={Typography.H5} />
+            </Card>
+          </Grid.Item>
+          <Card>
+            <Typography text={ReactiveProp.Static("Normal")} variant={Typography.Small} />
+          </Card>
+          <Card>
+            <Typography text={ReactiveProp.Static("Normal")} variant={Typography.Small} />
+          </Card>
+          <Card>
+            <Typography text={ReactiveProp.Static("Normal")} variant={Typography.Small} />
+          </Card>
+          <Grid.Item column={Span(3)}>
+            <Card>
+              <Typography text={ReactiveProp.Static("Spans 3 columns")} variant={Typography.H5} />
+            </Card>
+          </Grid.Item>
+        </Grid>,
+        code: `<Grid columns={Count(4)} gap="1rem">
+  <Grid.Item column={Span(2)}>
+    <Card><Typography text={ReactiveProp.Static("Spans 2 columns")} /></Card>
+  </Grid.Item>
+  <Card><Typography text={ReactiveProp.Static("Normal")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Normal")} /></Card>
+</Grid>`,
+      },
+      {
+        title: "Alignment Options",
+        description: "Control item alignment with justifyItems and alignItems.",
+        demo: <Grid
+          columns={Count(3)}
+          gap="1rem"
+          justifyItems={Center}
+          alignItems={Center}
+          style={ReactiveProp.static("min-height: 200px;")}
+        >
+          <Badge variant={Badge.Default} label={Signal.make("Centered")} />
+          <Badge variant={Badge.Primary} label={Signal.make("Centered")} />
+          <Badge variant={Badge.Success} label={Signal.make("Centered")} />
+        </Grid>,
+        code: `<Grid
+  columns={Count(3)}
+  gap="1rem"
+  justifyItems={Center}
+  alignItems={Center}
+>
+  <Badge variant={Badge.Default} label={Signal.make("Centered")} />
+  <Badge variant={Badge.Primary} label={Signal.make("Centered")} />
+</Grid>`,
+      },
+      {
+        title: "Separate Row and Column Gaps",
+        description: "Control row and column gaps independently.",
+        demo: <Grid columns={Count(2)} rowGap="2rem" columnGap="0.5rem">
+          <Card>
+            <Typography text={ReactiveProp.Static("Large row gap")} variant={Typography.Small} />
+          </Card>
+          <Card>
+            <Typography text={ReactiveProp.Static("Small column gap")} variant={Typography.Small} />
+          </Card>
+          <Card>
+            <Typography text={ReactiveProp.Static("Item 3")} variant={Typography.Small} />
+          </Card>
+          <Card>
+            <Typography text={ReactiveProp.Static("Item 4")} variant={Typography.Small} />
+          </Card>
+        </Grid>,
+        code: `<Grid columns={Count(2)} rowGap="2rem" columnGap="0.5rem">
+  <Card><Typography text={ReactiveProp.Static("Large row gap")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Small column gap")} /></Card>
+</Grid>`,
+      },
+      {
+        title: "Dashboard Layout",
+        description: "Classic dashboard with header, sidebar, and content area.",
+        demo: <Grid
+          columns={Template("250px 1fr")}
+          rows={Template("60px 1fr")}
+          gap="1rem"
+          style={ReactiveProp.static("height: 400px;")}
+        >
+          <Grid.Item column={StartEnd(1, 3)}>
+            <Card style="height: 100%; display: flex; align-items: center; padding: 0 1rem;">
+              <Typography text={ReactiveProp.Static("Header")} variant={Typography.H5} />
+            </Card>
+          </Grid.Item>
+          <Card style="height: 100%; display: flex; align-items: center; justify-content: center;">
+            <Typography text={ReactiveProp.Static("Sidebar")} variant={Typography.Muted} />
+          </Card>
+          <Card style="height: 100%; display: flex; align-items: center; justify-content: center;">
+            <Typography text={ReactiveProp.Static("Main Content")} variant={Typography.Muted} />
+          </Card>
+        </Grid>,
+        code: `<Grid
+  columns={Template("250px 1fr")}
+  rows={Template("60px 1fr")}
+  gap="1rem"
+>
+  <Grid.Item column={StartEnd(1, 3)}>
+    <Card><Typography text={ReactiveProp.Static("Header")} /></Card>
+  </Grid.Item>
+  <Card><Typography text={ReactiveProp.Static("Sidebar")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Main Content")} /></Card>
+</Grid>`,
+      },
+      {
+        title: "Feature Grid",
+        description: "Highlight a featured item alongside regular items.",
+        demo: <Grid columns={Count(3)} rows={Repeat(2, "200px")} gap="1rem">
+          <Grid.Item column={Span(2)} row={Span(2)}>
+            <Card
+              style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: var(--primary-500); color: white;"
+            >
+              <Typography text={ReactiveProp.Static("Featured")} variant={Typography.H3} />
+              <Typography
+                text={ReactiveProp.Static("Main highlight")}
+                variant={Typography.Small}
+                style="color: white; opacity: 0.9;"
+              />
+            </Card>
+          </Grid.Item>
+          <Card style="height: 100%; display: flex; align-items: center; justify-content: center;">
+            <Typography text={ReactiveProp.Static("Item 1")} variant={Typography.Small} />
+          </Card>
+          <Card style="height: 100%; display: flex; align-items: center; justify-content: center;">
+            <Typography text={ReactiveProp.Static("Item 2")} variant={Typography.Small} />
+          </Card>
+        </Grid>,
+        code: `<Grid columns={Count(3)} rows={Repeat(2, "200px")} gap="1rem">
+  <Grid.Item column={Span(2)} row={Span(2)}>
+    <Card style="background: var(--primary-500); color: white;">
+      <Typography text={ReactiveProp.Static("Featured")} />
+    </Card>
+  </Grid.Item>
+  <Card><Typography text={ReactiveProp.Static("Item 1")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Item 2")} /></Card>
+</Grid>`,
+      },
+      {
+        title: "Product Grid",
+        description: "Responsive product card layout with auto-fit.",
+        demo: <Grid columns={AutoFit("minmax(150px, 1fr)")} gap="1.5rem">
+          <Card>
+            <div
+              style="width: 100%; height: 100px; background: var(--gray-200); border-radius: 0.5rem; margin-bottom: 0.5rem;"
+            />
+            <Typography text={ReactiveProp.Static("Product 1")} variant={Typography.H6} />
+            <Typography text={ReactiveProp.Static("$29.99")} variant={Typography.Muted} />
+          </Card>
+          <Card>
+            <div
+              style="width: 100%; height: 100px; background: var(--gray-200); border-radius: 0.5rem; margin-bottom: 0.5rem;"
+            />
+            <Typography text={ReactiveProp.Static("Product 2")} variant={Typography.H6} />
+            <Typography text={ReactiveProp.Static("$39.99")} variant={Typography.Muted} />
+          </Card>
+          <Card>
+            <div
+              style="width: 100%; height: 100px; background: var(--gray-200); border-radius: 0.5rem; margin-bottom: 0.5rem;"
+            />
+            <Typography text={ReactiveProp.Static("Product 3")} variant={Typography.H6} />
+            <Typography text={ReactiveProp.Static("$49.99")} variant={Typography.Muted} />
+          </Card>
+          <Card>
+            <div
+              style="width: 100%; height: 100px; background: var(--gray-200); border-radius: 0.5rem; margin-bottom: 0.5rem;"
+            />
+            <Typography text={ReactiveProp.Static("Product 4")} variant={Typography.H6} />
+            <Typography text={ReactiveProp.Static("$59.99")} variant={Typography.Muted} />
+          </Card>
+        </Grid>,
+        code: `<Grid columns={AutoFit("minmax(150px, 1fr)")} gap="1.5rem">
+  <Card>
+    <div style="width: 100%; height: 100px; background: var(--gray-200);" />
+    <Typography text={ReactiveProp.Static("Product 1")} />
+    <Typography text={ReactiveProp.Static("$29.99")} variant={Typography.Muted} />
+  </Card>
+  {/* More products... */}
+</Grid>`,
+      },
+      {
+        title: "Holy Grail Layout",
+        description: "Classic holy grail layout with header, footer, sidebar, ads, and content.",
+        demo: <Grid
+          columns={Template("200px 1fr 150px")}
+          rows={Template("auto 1fr auto")}
+          gap="1rem"
+          style={ReactiveProp.static("min-height: 400px;")}
+        >
+          <Grid.Item column={StartEnd(1, 4)}>
+            <Card style="padding: 1rem;">
+              <Typography text={ReactiveProp.Static("Header")} variant={Typography.H5} />
+            </Card>
+          </Grid.Item>
+          <Card style="padding: 1rem;">
+            <Typography text={ReactiveProp.Static("Sidebar")} variant={Typography.Small} />
+          </Card>
+          <Card style="padding: 1rem;">
+            <Typography text={ReactiveProp.Static("Main Content")} variant={Typography.H6} />
+            <Typography
+              text={ReactiveProp.Static("This area expands to fill available space")}
+              variant={Typography.Small}
+            />
+          </Card>
+          <Card style="padding: 1rem;">
+            <Typography text={ReactiveProp.Static("Ads")} variant={Typography.Small} />
+          </Card>
+          <Grid.Item column={StartEnd(1, 4)}>
+            <Card style="padding: 1rem;">
+              <Typography text={ReactiveProp.Static("Footer")} variant={Typography.Small} />
+            </Card>
+          </Grid.Item>
+        </Grid>,
+        code: `<Grid
+  columns={Template("200px 1fr 150px")}
+  rows={Template("auto 1fr auto")}
+  gap="1rem"
+>
+  <Grid.Item column={StartEnd(1, 4)}>
+    <Card><Typography text={ReactiveProp.Static("Header")} /></Card>
+  </Grid.Item>
+  <Card><Typography text={ReactiveProp.Static("Sidebar")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Main Content")} /></Card>
+  <Card><Typography text={ReactiveProp.Static("Ads")} /></Card>
+  <Grid.Item column={StartEnd(1, 4)}>
+    <Card><Typography text={ReactiveProp.Static("Footer")} /></Card>
+  </Grid.Item>
+</Grid>`,
+      },
+      {
+        title: "Stats Grid",
+        description: "Grid for displaying statistics or metrics.",
+        demo: <Grid columns={AutoFit("minmax(180px, 1fr)")} gap="1rem">
+          <Card style="text-align: center; padding: 1.5rem;">
+            <Typography text={ReactiveProp.Static("1,234")} variant={Typography.H3} />
+            <Typography text={ReactiveProp.Static("Total Users")} variant={Typography.Muted} />
+          </Card>
+          <Card style="text-align: center; padding: 1.5rem;">
+            <Typography text={ReactiveProp.Static("567")} variant={Typography.H3} />
+            <Typography text={ReactiveProp.Static("Active Today")} variant={Typography.Muted} />
+          </Card>
+          <Card style="text-align: center; padding: 1.5rem;">
+            <Typography text={ReactiveProp.Static("89%")} variant={Typography.H3} />
+            <Typography text={ReactiveProp.Static("Satisfaction")} variant={Typography.Muted} />
+          </Card>
+          <Card style="text-align: center; padding: 1.5rem;">
+            <Typography text={ReactiveProp.Static("$12.5k")} variant={Typography.H3} />
+            <Typography text={ReactiveProp.Static("Revenue")} variant={Typography.Muted} />
+          </Card>
+        </Grid>,
+        code: `<Grid columns={AutoFit("minmax(180px, 1fr)")} gap="1rem">
+  <Card style="text-align: center;">
+    <Typography text={ReactiveProp.Static("1,234")} variant={Typography.H3} />
+    <Typography text={ReactiveProp.Static("Total Users")} variant={Typography.Muted} />
+  </Card>
+  {/* More stats... */}
+</Grid>`,
+      },
+      {
+        title: "Masonry-Style Grid",
+        description: "Auto-flow dense for a masonry-like effect.",
+        demo: <Grid columns={Count(3)} autoFlow={RowDense} gap="1rem">
+          <Card style="padding: 2rem;">
+            <Typography text={ReactiveProp.Static("Tall Item")} variant={Typography.H6} />
+          </Card>
+          <Card style="padding: 1rem;">
+            <Typography text={ReactiveProp.Static("Short")} variant={Typography.Small} />
+          </Card>
+          <Card style="padding: 3rem;">
+            <Typography text={ReactiveProp.Static("Very Tall Item")} variant={Typography.H6} />
+          </Card>
+          <Card style="padding: 1rem;">
+            <Typography text={ReactiveProp.Static("Short")} variant={Typography.Small} />
+          </Card>
+          <Grid.Item column={Span(2)}>
+            <Card style="padding: 1.5rem;">
+              <Typography text={ReactiveProp.Static("Wide Item")} variant={Typography.H6} />
+            </Card>
+          </Grid.Item>
+          <Card style="padding: 1rem;">
+            <Typography text={ReactiveProp.Static("Short")} variant={Typography.Small} />
+          </Card>
+        </Grid>,
+        code: `<Grid columns={Count(3)} autoFlow={RowDense} gap="1rem">
+  <Card style="padding: 2rem;">
+    <Typography text={ReactiveProp.Static("Tall Item")} />
+  </Card>
+  <Card style="padding: 1rem;">
+    <Typography text={ReactiveProp.Static("Short")} />
+  </Card>
+  <Grid.Item column={Span(2)}>
+    <Card><Typography text={ReactiveProp.Static("Wide Item")} /></Card>
+  </Grid.Item>
+</Grid>`,
+      },
+      {
+        title: "Form Layout",
+        description: "Use grid for complex form layouts.",
+        demo: <Grid columns={Count(2)} gap="1rem">
+          <div>
+            <Label text="First Name" />
+            <Input type_={Text} value={Static("")} />
+          </div>
+          <div>
+            <Label text="Last Name" />
+            <Input type_={Text} value={Static("")} />
+          </div>
+          <Grid.Item column={Span(2)}>
+            <Label text="Email" />
+            <Input type_={Email} value={Static("")} />
+          </Grid.Item>
+          <Grid.Item column={Span(2)}>
+            <Label text="Address" />
+            <Textarea value={Static("")} />
+          </Grid.Item>
+          <div>
+            <Label text="City" />
+            <Input type_={Text} value={Static("")} />
+          </div>
+          <div>
+            <Label text="Zip Code" />
+            <Input type_={Text} value={Static("")} />
+          </div>
+        </Grid>,
+        code: `<Grid columns={Count(2)} gap="1rem">
+  <div>
+    <Label text="First Name" />
+    <Input type_={Text} value={Static("")} />
+  </div>
+  <div>
+    <Label text="Last Name" />
+    <Input type_={Text} value={Static("")} />
+  </div>
+  <Grid.Item column={Span(2)}>
+    <Label text="Email" />
+    <Input type_={Email} value={Static("")} />
+  </Grid.Item>
 </Grid>`,
       },
     ]
@@ -1403,13 +1900,13 @@ let option2 = Signal.make(false)
                       label: "Dashboard",
                       icon: Some("\u{1F4CA}"),
                       active: Signal.get(activePage) == "dashboard",
-                      onClick: () => Signal.set(activePage, "dashboard"),
+                      url: "/dashboard",
                     },
                     {
                       label: "Projects",
                       icon: Some("\u{1F4C1}"),
                       active: Signal.get(activePage) == "projects",
-                      onClick: () => Signal.set(activePage, "projects"),
+                      url: "/projects",
                     },
                   ],
                 },
@@ -1420,13 +1917,13 @@ let option2 = Signal.make(false)
                       label: "Profile",
                       icon: Some("\u{1F464}"),
                       active: Signal.get(activePage) == "profile",
-                      onClick: () => Signal.set(activePage, "profile"),
+                      url: "/profile",
                     },
                     {
                       label: "Preferences",
                       icon: Some("\u2699\uFE0F"),
                       active: Signal.get(activePage) == "preferences",
-                      onClick: () => Signal.set(activePage, "preferences"),
+                      url: "/profile",
                     },
                   ],
                 },
@@ -1476,19 +1973,19 @@ let option2 = Signal.make(false)
                       label: "Home",
                       icon: Some("\u{1F3E0}"),
                       active: Signal.get(activePage) == "home",
-                      onClick: () => Signal.set(activePage, "home"),
+                      url: "/profile",
                     },
                     {
                       label: "Analytics",
                       icon: Some("\u{1F4C8}"),
                       active: Signal.get(activePage) == "analytics",
-                      onClick: () => Signal.set(activePage, "analytics"),
+                      url: "/profile",
                     },
                     {
                       label: "Reports",
                       icon: Some("\u{1F4CB}"),
                       active: Signal.get(activePage) == "reports",
-                      onClick: () => Signal.set(activePage, "reports"),
+                      url: "/profile",
                     },
                   ],
                 },
@@ -1817,13 +2314,13 @@ let option2 = Signal.make(false)
                         label: "Dashboard",
                         icon: Some("\u{1F4CA}"),
                         active: Signal.get(activePage) == "dashboard",
-                        onClick: () => Signal.set(activePage, "dashboard"),
+                        url: "/profile",
                       },
                       {
                         label: "Users",
                         icon: Some("\u{1F464}"),
                         active: Signal.get(activePage) == "users",
-                        onClick: () => Signal.set(activePage, "users"),
+                        url: "/profile",
                       },
                     ],
                   },
