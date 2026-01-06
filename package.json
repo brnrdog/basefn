@@ -1,6 +1,9 @@
 {
-  "name": "basefn-ui",
-  "version": "0.1.0",
+  "name": "basefn",
+  "version": "0.0.0",
+  "repository": {
+    "url": "https://github.com/brnrdog/basefn"
+  },
   "description": "A simple UI component library for Xote applications",
   "main": "lib/js/src/index.js",
   "type": "module",
@@ -18,14 +21,47 @@
     "ui",
     "components"
   ],
-  "author": "",
+  "author": "Bernardo Gurgel <brnrdog@hey.com>",
   "license": "MIT",
   "dependencies": {
     "@rescript/core": "^1.6.1",
+    "highlight.js": "^11.11.1",
     "lucide": "^0.562.0",
-    "xote": "^4.7.0"
+    "xote": "^4.8.0"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "docs/CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "docs/CHANGELOG.md"
+          ]
+        }
+      ],
+      "@semantic-release/github",
+      "@semantic-release/npm"
+    ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@rescript/core": "^1.6.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.2",
+    "@semantic-release/npm": "^13.1.2",
     "rescript": "^12.0.1",
     "vite": "^5.0.0"
   }
