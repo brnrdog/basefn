@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brnrdog/basefn"
+    "url": "https://github.com/brnrdog/basefn.git"
   },
   "description": "A simple UI component library for Xote applications",
   "main": "src/Basefn.res.mjs",
@@ -59,7 +59,13 @@
         }
       ],
       "@semantic-release/github",
-      "@semantic-release/npm"
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": true,
+          "provenance": true
+        }
+      ]
     ]
   },
   "devDependencies": {
