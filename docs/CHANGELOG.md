@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/brnrdog/basefn/compare/v1.0.0...v1.1.0) (2026-01-07)
+
+
+### Features
+
+* bump for release ([b9977f0](https://github.com/brnrdog/basefn/commit/b9977f03bc7c56a6885c77e14995470de891ef31))
+
 # 1.0.0 (2026-01-06)
 
 
