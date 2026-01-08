@@ -29,9 +29,17 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: docs-website/package-lock.json
+          cache-dependency-path: |
+            package-lock.json
+            docs-website/package-lock.json
 
-      - name: Install dependencies
+      - name: Install basefn dependencies
+        run: npm ci
+
+      - name: Build basefn
+        run: npm run build
+
+      - name: Install docs-website dependencies
         working-directory: ./docs-website
         run: npm ci
 
