@@ -1,0 +1,25 @@
+{
+  "name": "basefn-docs",
+  "version": "1.0.0",
+  "description": "Documentation website for basefn",
+  "type": "module",
+  "scripts": {
+    "res:build": "rescript",
+    "res:clean": "rescript clean",
+    "res:watch": "rescript build -w",
+    "dev": "npm run res:build && vite",
+    "build": "npm run res:build && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@rescript/core": "^1.6.1",
+    "basefn": "file:..",
+    "highlight.js": "^11.11.1",
+    "rescript-signals": "^1.0.0",
+    "xote": "^4.8.0"
+  },
+  "devDependencies": {
+    "rescript": "^12.0.1",
+    "vite": "^5.0.0"
+  }
+}

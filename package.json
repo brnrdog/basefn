@@ -1,6 +1,6 @@
 {
   "name": "basefn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/brnrdog/basefn.git"
@@ -27,7 +27,8 @@
     "rescript",
     "xote",
     "ui",
-    "components"
+    "components",
+    "component library"
   ],
   "author": "Bernardo Gurgel <brnrdog@hey.com>",
   "license": "MIT",

@@ -1,10 +1,9 @@
 {
-  "name": "basefn",
+  "name": "basefn-docs",
   "sources": [
     {
       "dir": "src",
-      "subdirs": true,
-      "public": ["Basefn"]
+      "subdirs": true
     }
   ],
   "package-specs": {
@@ -15,7 +14,8 @@
   "dependencies": [
     "@rescript/core",
     "rescript-signals",
-    "xote"
+    "xote",
+    "basefn"
   ],
   "compiler-flags": [
     "-open RescriptCore"

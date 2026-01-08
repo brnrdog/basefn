@@ -1,6 +1,8 @@
 %%raw(`import './Basefn__Accordion.css'`)
 
-open Xote
+module Signal = Xote.Signal
+module Computed = Xote.Computed
+module Component = Xote.Component
 
 type accordionItem = {
   value: string,
