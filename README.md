@@ -1,102 +1,98 @@
-# basefn-UI
+# basefn
 
-A simple, neutrally styled UI component library for [Xote](https://github.com/brnrdog/xote) applications, primarily used to battle-test the Xote framework against a real-world user interface system.
+[![npm version](https://img.shields.io/npm/v/basefn.svg)](https://www.npmjs.com/package/basefn)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/basefn)](https://bundlephobia.com/package/basefn)
+
+A UI component library for [Xote](https://github.com/brnrdog/xote) applications. Built with ReScript, designed to be lightweight and customizable.
 
 ## Installation
 
+Ensure you have the dependencies installed:
+
 ```bash
-npm install basefn
+npm install xote @rescript/core
 ```
 
-Make sure you have installed [xote](https://github.com/brnrdog/xote) and [rescript-signals](https://github.com/brnrdog/rescript-signals).
+Install `basefn`:
 
-## Usage Patterns
+```bash
+npm install basefn 
+```
 
-Components accept both regular values and signals. Use the `static()` for static values, or `reactive()` for reactive signals:
+**Required peer dependencies:**
+- `xote` - The reactive framework
+- `@rescript/core` - ReScript standard library
+
+**Add to your `rescript.json`:**
+```json
+{
+  "dependencies": [
+    // Standard ReScript library
+    "@rescript/core",
+    // Signals library
+    "rescript-signals", 
+    // UI library
+    "xote"
+  ],
+}
+```
+
+## Quick Start
 
 ```rescript
-open basefnUI
-open ReactiveProp
+open Xote
+open Basefn
 
-// Using regular values (static)
+// Static values
 <Button
-  variant={Button.Primary}
+  variant={Primary}
   label={static("Click me")}
-  onClick={_ => Console.log("You clicked!")}
+  onClick={_ => Console.log("Clicked")}
 />
 
-// Using signals (reactive)
-let labelSignal = Signal.make("Click me")
+// Reactive values
+let count = Signal.make(0)
 <Button
-  variant={Button.Primary}
-  label={reactive(labelSignal)}
-  onClick={_ => Signal.set(labelSignal, "You clicked!")}
+  variant={Primary}
+  label={reactive(count->Signal.map(n => `Clicked ${n->Int.toString} times`))}
+  onClick={_ => count->Signal.update(n => n + 1)}
 />
 ```
 
 ## Components
 
-See the available components at [src/components](https://github.com/brnrdog/basefn-ui/tree/main/src/components). Contributions are welcome if features are missing.
+**Forms:** [Button](src/components/Basefn__Button.res) · [Input](src/components/Basefn__Input.res) · [Textarea](src/components/Basefn__Textarea.res) · [Checkbox](src/components/Basefn__Checkbox.res) · [Radio](src/components/Basefn__Radio.res) · [Select](src/components/Basefn__Select.res) · [Switch](src/components/Basefn__Switch.res) · [Slider](src/components/Basefn__Slider.res)
+
+**Layout:** [Card](src/components/Basefn__Card.res) · [Grid](src/components/Basefn__Grid.res) · [Separator](src/components/Basefn__Separator.res) · [AppLayout](src/components/Basefn__AppLayout.res) · [Sidebar](src/components/Basefn__Sidebar.res) · [Topbar](src/components/Basefn__Topbar.res)
+
+**Feedback:** [Alert](src/components/Basefn__Alert.res) · [Toast](src/components/Basefn__Toast.res) · [Modal](src/components/Basefn__Modal.res) · [Drawer](src/components/Basefn__Drawer.res) · [Spinner](src/components/Basefn__Spinner.res) · [Progress](src/components/Basefn__Progress.res) · [Tooltip](src/components/Basefn__Tooltip.res)
+
+**Navigation:** [Tabs](src/components/Basefn__Tabs.res) · [Breadcrumb](src/components/Basefn__Breadcrumb.res) · [Stepper](src/components/Basefn__Stepper.res) · [Dropdown](src/components/Basefn__Dropdown.res)
+
+**Data Display:** [Typography](src/components/Basefn__Typography.res) · [Badge](src/components/Basefn__Badge.res) · [Avatar](src/components/Basefn__Avatar.res) · [Timeline](src/components/Basefn__Timeline.res) · [Accordion](src/components/Basefn__Accordion.res) · [Kbd](src/components/Basefn__Kbd.res) · [Icon](src/components/Basefn__Icon.res)
+
+**Utilities:** [ThemeToggle](src/components/Basefn__ThemeToggle.res) · [Label](src/components/Basefn__Label.res)
 
 ## Theming
 
-All components use CSS variables for styling, making them easy to customize. Override the variables in your CSS:
+Customize via CSS variables:
 
 ```css
 :root {
-  --basefn-color-primary: #your-color;
-  --basefn-color-secondary: #your-color;
-  /* ... other variables */
+  --basefn-color-primary: #0066cc;
+  --basefn-color-secondary: #6c757d;
+  --basefn-radius: 0.375rem;
+  /* See src/styles/variables.css for all variables */
 }
 ```
-
-See `src/styles/variables.css` for all available CSS variables.
 
 ## Development
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server with Vite (hot reload)
-npm run dev
-
-# Build ReScript code
-npm run build
-
-# Watch mode for ReScript
-npm run watch
-
-# Build for production
-npm run build:vite
-
-# Preview production build
-npm run preview
-
-# Clean ReScript build
-npm run clean
-```
-
-### Running the Demo
-
-1. Install dependencies: `npm install`
-2. Build the ReScript code: `npm run build`
-3. Start the dev server: `npm run dev`
-4. Open your browser to `http://localhost:3000`
-
-The demo application showcases all components with live form state updates.
-
-## Project Structure
-
-```
-basefn-ui/
-├── src/
-│   ├── components/     # All UI components
-│   ├── styles/         # CSS variables and theming
-│   ├── Basefn__Dom.res # Simple dom bindings used in the lib
-│   └── Basefn.res       # Main export file
-├── package.json
-└── rescript.json
+npm install        # Install dependencies
+npm run build      # Build ReScript
+npm run watch      # Watch mode
+npm run dev        # Dev server with demo
 ```
 
 ## License
