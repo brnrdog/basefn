@@ -54,52 +54,122 @@ type gridItemColumnSpan = Basefn__Grid.Item.columnSpan
 type gridItemRowSpan = Basefn__Grid.Item.rowSpan
 
 // Form Components
-module Button = Basefn__Button
-module Input = Basefn__Input
-module Textarea = Basefn__Textarea
-module Select = Basefn__Select
-module Checkbox = Basefn__Checkbox
-module Radio = Basefn__Radio
-module Label = Basefn__Label
+module Button = {
+  include Basefn__Button
+}
+module Input = {
+  include Basefn__Input
+}
+module Textarea = {
+  include Basefn__Textarea
+}
+module Select = {
+  include Basefn__Select
+}
+module Checkbox = {
+  include Basefn__Checkbox
+}
+module Radio = {
+  include Basefn__Radio
+}
+module Label = {
+  include Basefn__Label
+}
 
 // Tier 1 Foundation Components
-module Badge = Basefn__Badge
-module Spinner = Basefn__Spinner
-module Separator = Basefn__Separator
-module Kbd = Basefn__Kbd
-module Typography = Basefn__Typography
+module Badge = {
+  include Basefn__Badge
+}
+module Spinner = {
+  include Basefn__Spinner
+}
+module Separator = {
+  include Basefn__Separator
+}
+module Kbd = {
+  include Basefn__Kbd
+}
+module Typography = {
+  include Basefn__Typography
+}
 
 // Tier 2
-module Card = Basefn__Card
-module Avatar = Basefn__Avatar
-module Grid = Basefn__Grid
-module Alert = Basefn__Alert
-module Progress = Basefn__Progress
-module Tabs = Basefn__Tabs
-module Accordion = Basefn__Accordion
-module Breadcrumb = Basefn__Breadcrumb
+module Card = {
+  include Basefn__Card
+}
+module Avatar = {
+  include Basefn__Avatar
+}
+module Grid = {
+  include Basefn__Grid
+}
+module Alert = {
+  include Basefn__Alert
+}
+module Progress = {
+  include Basefn__Progress
+}
+module Tabs = {
+  include Basefn__Tabs
+}
+module Accordion = {
+  include Basefn__Accordion
+}
+module Breadcrumb = {
+  include Basefn__Breadcrumb
+}
 
 // Tier 3
-module Modal = Basefn__Modal
-module Tooltip = Basefn__Tooltip
-module Switch = Basefn__Switch
-module Slider = Basefn__Slider
-module Dropdown = Basefn__Dropdown
-module Toast = Basefn__Toast
+module Modal = {
+  include Basefn__Modal
+}
+module Tooltip = {
+  include Basefn__Tooltip
+}
+module Switch = {
+  include Basefn__Switch
+}
+module Slider = {
+  include Basefn__Slider
+}
+module Dropdown = {
+  include Basefn__Dropdown
+}
+module Toast = {
+  include Basefn__Toast
+}
 
 // Tier 4 - Navigation & Layout
-module Stepper = Basefn__Stepper
-module Drawer = Basefn__Drawer
-module Timeline = Basefn__Timeline
+module Stepper = {
+  include Basefn__Stepper
+}
+module Drawer = {
+  include Basefn__Drawer
+}
+module Timeline = {
+  include Basefn__Timeline
+}
 
 // Application Layout
-module Sidebar = Basefn__Sidebar
-module Topbar = Basefn__Topbar
-module AppLayout = Basefn__AppLayout
+module Sidebar = {
+  include Basefn__Sidebar
+}
+module Topbar = {
+  include Basefn__Topbar
+}
+module AppLayout = {
+  include Basefn__AppLayout
+}
 
 // Theme
-module Theme = Basefn__Theme
-module ThemeToggle = Basefn__ThemeToggle
+module Theme = {
+  include Basefn__Theme
+}
+module ThemeToggle = {
+  include Basefn__ThemeToggle
+}
 
 // Icons
-module Icon = Basefn__Icon
+module Icon = {
+  include Basefn__Icon
+}
