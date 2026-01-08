@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/brnrdog/basefn/compare/v1.1.0...v1.1.1) (2026-01-08)
+
+
+### Bug Fixes
+
+* basefn won't include the exposed modules ([bf143a1](https://github.com/brnrdog/basefn/commit/bf143a1ba9a2476df59ab8504752dcd9954d60de))
+
 # [1.1.0](https://github.com/brnrdog/basefn/compare/v1.0.0...v1.1.0) (2026-01-07)
 
 
