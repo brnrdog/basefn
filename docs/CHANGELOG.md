@@ -1,3 +1,11 @@
+## [1.1.3](https://github.com/brnrdog/basefn/compare/v1.1.2...v1.1.3) (2026-01-08)
+
+
+### Bug Fixes
+
+* add base path support for GitHub Pages routing ([8cd21e8](https://github.com/brnrdog/basefn/commit/8cd21e8b8aa72be7c3d10d7a8226fa4ecce57b5d))
+* docs router for github pages ([251d764](https://github.com/brnrdog/basefn/commit/251d7642cd23a329a06ebf5b003101633e9a7fcc))
+
 ## [1.1.2](https://github.com/brnrdog/basefn/compare/v1.1.1...v1.1.2) (2026-01-08)
 
 
