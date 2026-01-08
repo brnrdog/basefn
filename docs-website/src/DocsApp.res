@@ -28,10 +28,13 @@ let components = DocsRoutes.components
 Router.init()
 Basefn__Theme.init()
 
+// Base path for routing (for GitHub Pages deployment)
+let basePath = %raw(`import.meta.env.GITHUB_PAGES ? '/basefn' : ''`)
+
 // Define routes once at module level to prevent recreation on every render
 let appRoutes = Router.routes([
   {
-    pattern: "/",
+    pattern: basePath ++ "/",
     render: _params => {
       <DocsLayout components showSidebar={false}>
         <Homepage />
@@ -39,7 +42,7 @@ let appRoutes = Router.routes([
     },
   },
   {
-    pattern: "/getting-started",
+    pattern: basePath ++ "/getting-started",
     render: _params => {
       <DocsLayout components>
         <GettingStarted />
@@ -47,7 +50,7 @@ let appRoutes = Router.routes([
     },
   },
   {
-    pattern: "/api",
+    pattern: basePath ++ "/api",
     render: _params => {
       <DocsLayout components>
         <ApiReference />
@@ -55,7 +58,7 @@ let appRoutes = Router.routes([
     },
   },
   {
-    pattern: "/changelog",
+    pattern: basePath ++ "/changelog",
     render: _params => {
       <DocsLayout components>
         <Changelog />
@@ -63,7 +66,7 @@ let appRoutes = Router.routes([
     },
   },
   {
-    pattern: "/component/:name",
+    pattern: basePath ++ "/component/:name",
     render: params => {
       let componentName = params->Dict.get("name")->Option.getOr("button")
       <DocsLayout components>
