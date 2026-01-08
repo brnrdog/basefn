@@ -63,18 +63,18 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
     [
       {
         Topbar.label: "Getting Started",
-        onClick: () => Router.push("/getting-started", ()),
-        active: currentPath === "/getting-started",
+        onClick: () => Router.push(PathUtils.toRoute("/getting-started"), ()),
+        active: currentPath === PathUtils.toRoute("/getting-started"),
       },
       {
         label: "API Reference",
-        onClick: () => Router.push("/api", ()),
-        active: currentPath === "/api",
+        onClick: () => Router.push(PathUtils.toRoute("/api"), ()),
+        active: currentPath === PathUtils.toRoute("/api"),
       },
       {
         label: "Changelog",
-        onClick: () => Router.push("/changelog", ()),
-        active: currentPath === "/changelog",
+        onClick: () => Router.push(PathUtils.toRoute("/changelog"), ()),
+        active: currentPath === PathUtils.toRoute("/changelog"),
       },
     ]
   })
@@ -82,7 +82,7 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
   <AppLayout
     sidebar={<Sidebar
       logo={Router.link(
-        ~to="/",
+        ~to=PathUtils.toRoute("/"),
         ~children=[
           <div style="display: flex; align-items: center; gap:0.5rem">
             <div style="display: flex; align-items: center; gap:0rem; font-size: 1.25rem;">

@@ -4,8 +4,8 @@ type componentInfo = {
   path: string,
 }
 
-// All components organized by category
-let components: array<componentInfo> = [
+// Raw paths without base path
+let rawPaths = [
   // Form Components
   {name: "Getting Started", category: "Learn", path: "/getting-started"},
   {name: "API Reference", category: "Learn", path: "/api"},
@@ -50,3 +50,8 @@ let components: array<componentInfo> = [
   // Media Components
   {name: "Icon", category: "Media", path: "/component/icon"},
 ]
+
+// All components organized by category with base path applied
+let components: array<componentInfo> = rawPaths->Array.map(comp => {
+  {...comp, path: PathUtils.toRoute(comp.path)}
+})
