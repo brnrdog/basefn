@@ -1,5 +1,8 @@
-// Base path for routing (for GitHub Pages deployment)
-let basePath = BaseUrl.v
+type viteEnv = {"GITHUB_PAGES": bool}
+
+@val external env: viteEnv = "import.meta.env"
+
+let basePath = env["GITHUB_PAGES"] ? "basefn" : ""
 
 // Helper to prepend base path to a route
 let toRoute = (path: string): string => {
