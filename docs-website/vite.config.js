@@ -13,5 +13,10 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true
+  },
+
+  define: {
+    // Expose GITHUB_PAGES to the client-side code
+    'import.meta.env.GITHUB_PAGES': JSON.stringify(process.env.GITHUB_PAGES === 'true')
   }
 })

@@ -1,5 +1,5 @@
 // Base path for routing (for GitHub Pages deployment)
-let basePath = %raw(`import.meta.env.GITHUB_PAGES ? '/basefn' : ''`)
+let basePath = BaseUrl.v
 
 // Helper to prepend base path to a route
 let toRoute = (path: string): string => {
