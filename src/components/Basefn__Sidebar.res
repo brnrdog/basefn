@@ -74,13 +74,14 @@ let make = (
             let itemClass =
               "basefn-sidebar__item" ++ (item.active ? " basefn-sidebar__item--active" : "")
 
-            <Router.Link key={Int.toString(index)} class={itemClass} to={item.url}>
-              {switch item.icon {
-              | Some(icon) => <div class="basefn-sidebar__item-icon"> {Component.text(icon)} </div>
-              | None => <> </>
-              }}
-              <div class="basefn-sidebar__item-text"> {Component.text(item.label)} </div>
-            </Router.Link>
+            Router.link(
+              ~to={item.url},
+              ~attrs=[Component.attr("class", itemClass)],
+              ~children=[
+                <div class="basefn-sidebar__item-text"> {Component.text(item.label)} </div>,
+              ],
+              (),
+            )
           })
           ->Component.fragment}
         </div>
