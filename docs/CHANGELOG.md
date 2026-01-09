@@ -1,3 +1,11 @@
+## [1.1.4](https://github.com/brnrdog/basefn/compare/v1.1.3...v1.1.4) (2026-01-09)
+
+
+### Bug Fixes
+
+* base path in path utils ([ad7b67e](https://github.com/brnrdog/basefn/commit/ad7b67e885c1f70a8ae22708b7c954379a1e881d))
+* sidebar links ([ee2f3bf](https://github.com/brnrdog/basefn/commit/ee2f3bfac4bb409622387ef5cb7b7cad8cd4e3d1))
+
 ## [1.1.3](https://github.com/brnrdog/basefn/compare/v1.1.2...v1.1.3) (2026-01-08)
 
 
