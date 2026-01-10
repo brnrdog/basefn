@@ -25,13 +25,15 @@ let _ = Effect.run(() => {
 let components = DocsRoutes.components
 
 // Initialize router and theme once at module level
-Router.init()
+// Use Xote's built-in basePath support for GitHub Pages
+Router.init(~basePath=PathUtils.basePath, ())
 Basefn__Theme.init()
 
 // Define routes once at module level to prevent recreation on every render
+// Routes are now relative to basePath - no need to prepend it manually
 let appRoutes = Router.routes([
   {
-    pattern: PathUtils.toRoute("/"),
+    pattern: "/",
     render: _params => {
       <DocsLayout components showSidebar={false}>
         <Homepage />
@@ -39,7 +41,7 @@ let appRoutes = Router.routes([
     },
   },
   {
-    pattern: PathUtils.toRoute("/getting-started"),
+    pattern: "/getting-started",
     render: _params => {
       <DocsLayout components>
         <GettingStarted />
@@ -47,7 +49,7 @@ let appRoutes = Router.routes([
     },
   },
   {
-    pattern: PathUtils.toRoute("/api"),
+    pattern: "/api",
     render: _params => {
       <DocsLayout components>
         <ApiReference />
@@ -55,7 +57,7 @@ let appRoutes = Router.routes([
     },
   },
   {
-    pattern: PathUtils.toRoute("/changelog"),
+    pattern: "/changelog",
     render: _params => {
       <DocsLayout components>
         <Changelog />
@@ -63,7 +65,7 @@ let appRoutes = Router.routes([
     },
   },
   {
-    pattern: PathUtils.toRoute("/component/:name"),
+    pattern: "/component/:name",
     render: params => {
       let componentName = params->Dict.get("name")->Option.getOr("button")
       <DocsLayout components>

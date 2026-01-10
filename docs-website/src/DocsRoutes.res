@@ -51,7 +51,5 @@ let rawPaths = [
   {name: "Icon", category: "Media", path: "/component/icon"},
 ]
 
-// All components organized by category with base path applied
-let components: array<componentInfo> = rawPaths->Array.map(comp => {
-  {...comp, path: PathUtils.toRoute(comp.path)}
-})
+// All components - paths are relative to Router basePath
+let components: array<componentInfo> = rawPaths
