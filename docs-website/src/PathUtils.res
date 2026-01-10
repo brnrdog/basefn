@@ -2,7 +2,7 @@ type viteEnv = {"GITHUB_PAGES": bool}
 
 @val external env: viteEnv = "import.meta.env"
 
-let basePath = env["GITHUB_PAGES"] ? "basefn" : ""
+let basePath = env["GITHUB_PAGES"] ? "/basefn" : ""
 
 // Helper to prepend base path to a route
 let toRoute = (path: string): string => {
