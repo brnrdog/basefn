@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/brnrdog/basefn/compare/v1.1.4...v1.1.5) (2026-01-10)
+
+
+### Bug Fixes
+
+* base path for gh pages ([18f6b28](https://github.com/brnrdog/basefn/commit/18f6b281a08ee26267375ca10aa9edf8733ec051))
+
 ## [1.1.4](https://github.com/brnrdog/basefn/compare/v1.1.3...v1.1.4) (2026-01-09)
 
 
