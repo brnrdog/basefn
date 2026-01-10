@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/brnrdog/basefn/compare/v1.1.5...v1.1.6) (2026-01-10)
+
+
+### Bug Fixes
+
+* different router instance when using basefn and xote ([90a4bb2](https://github.com/brnrdog/basefn/commit/90a4bb28a8db6358ff2fb57b3f19abaea2dfe3dc))
+
 ## [1.1.5](https://github.com/brnrdog/basefn/compare/v1.1.4...v1.1.5) (2026-01-10)
 
 
