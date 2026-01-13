@@ -28,19 +28,7 @@ let make = (
   ~onMenuClick: option<unit => unit>=?,
   ~size: size=Md,
 ) => {
-  let scrolling = Signal.make(false)
-  let class = Computed.make(() => {
-    let sizeClass = " basefn-topbar--" ++ sizeToString(size)
-    let scrollingClass = Signal.get(scrolling) ? " basefn-topbar--scrolling" : ""
-    "basefn-topbar" ++ sizeClass ++ scrollingClass
-  })
-
-  let _ = Effect.run(() => {
-    Basefn__Dom.addEventListener("scroll", () => {
-      let scrollY = %raw("window.scrollY")
-      Signal.set(scrolling, scrollY >= 64)
-    })
-  })
+  let class = "basefn-topbar basefn-topbar--" ++ sizeToString(size)
 
   <header class>
     <div class="basefn-topbar__left">
