@@ -4,12 +4,42 @@
   width: 100%;
 }
 
+.basefn-app-layout__body {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* When topbar is above, adjust layout direction */
+.basefn-app-layout--topbar-above {
+  flex-direction: column;
+}
+
+.basefn-app-layout--topbar-above .basefn-app-layout__body {
+  flex: 1;
+  min-height: 0;
+}
+
 .basefn-app-layout__sidebar {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
   z-index: 200;
+}
+
+/* When topbar is above, sidebar starts below topbar */
+.basefn-app-layout--topbar-above .basefn-app-layout__sidebar {
+  top: 64px; /* Default topbar height (md) */
+}
+
+.basefn-app-layout--topbar-above.basefn-app-layout--topbar-sm .basefn-app-layout__sidebar {
+  top: 56px;
+}
+
+.basefn-app-layout--topbar-above.basefn-app-layout--topbar-lg .basefn-app-layout__sidebar {
+  top: 72px;
 }
 
 .basefn-app-layout__main-wrapper {
@@ -41,6 +71,14 @@
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+/* When topbar is above all content */
+.basefn-app-layout__topbar--above {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 201; /* Above sidebar */
 }
 
 .basefn-app-layout__content {
@@ -96,5 +134,18 @@
 
   .basefn-app-layout--sidebar-open .basefn-app-layout__sidebar-backdrop {
     display: block;
+  }
+
+  /* When topbar is above, adjust sidebar and backdrop position */
+  .basefn-app-layout--topbar-above .basefn-app-layout__sidebar-backdrop {
+    top: 64px; /* Start below topbar (md) */
+  }
+
+  .basefn-app-layout--topbar-above.basefn-app-layout--topbar-sm .basefn-app-layout__sidebar-backdrop {
+    top: 56px;
+  }
+
+  .basefn-app-layout--topbar-above.basefn-app-layout--topbar-lg .basefn-app-layout__sidebar-backdrop {
+    top: 72px;
   }
 }

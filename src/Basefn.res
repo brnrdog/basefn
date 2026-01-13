@@ -41,6 +41,7 @@ type sidebarNavSection = Basefn__Sidebar.navSection
 type topbarSize = Basefn__Topbar.size
 type topbarNavItem = Basefn__Topbar.navItem
 type appLayoutContentWidth = Basefn__AppLayout.contentWidth
+type appLayoutTopbarPosition = Basefn__AppLayout.topbarPosition
 type iconName = Basefn__Icon.name
 type iconSize = Basefn__Icon.size
 type gridColumns = Basefn__Grid.columns

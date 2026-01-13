@@ -3,6 +3,7 @@
 open Xote
 
 type contentWidth = FullWidth | Contained
+type topbarPosition = Inline | AboveAll
 
 @jsx.component
 let make = (
@@ -13,6 +14,8 @@ let make = (
   ~noPadding: bool=false,
   ~sidebarSize: option<string>=?, // "sm" | "md" | "lg"
   ~sidebarCollapsed: bool=false,
+  ~topbarPosition: topbarPosition=Inline,
+  ~topbarSize: option<string>=?, // "sm" | "md" | "lg"
 ) => {
   let sidebarOpen = Signal.make(false)
 
@@ -24,10 +27,24 @@ let make = (
     | _ => ""
     }
     let collapsedClass = sidebarCollapsed ? " basefn-app-layout--sidebar-collapsed" : ""
+    let topbarPositionClass = switch topbarPosition {
+    | AboveAll => " basefn-app-layout--topbar-above"
+    | Inline => ""
+    }
+    let topbarSizeClass = switch (topbarPosition, topbarSize) {
+    | (AboveAll, Some("sm")) => " basefn-app-layout--topbar-sm"
+    | (AboveAll, Some("lg")) => " basefn-app-layout--topbar-lg"
+    | _ => ""
+    }
     let sidebarOpenClass = Computed.make(() =>
       Signal.get(sidebarOpen) ? " basefn-app-layout--sidebar-open" : ""
     )
-    "basefn-app-layout" ++ hasSidebar ++ sidebarSizeClass ++ collapsedClass
+    "basefn-app-layout" ++
+    hasSidebar ++
+    sidebarSizeClass ++
+    collapsedClass ++
+    topbarPositionClass ++
+    topbarSizeClass
   }
 
   let getContentClass = () => {
@@ -51,24 +68,35 @@ let make = (
       )
     })}
   >
-    {switch sidebar {
-    | Some(sidebarContent) =>
-      <>
-        <div class="basefn-app-layout__sidebar"> {sidebarContent} </div>
-        <div
-          class="basefn-app-layout__sidebar-backdrop" onClick={_ => Signal.set(sidebarOpen, false)}
-        />
-      </>
-    | None => <> </>
+    {switch (topbarPosition, topbar) {
+    | (AboveAll, Some(topbarContent)) =>
+      <div class="basefn-app-layout__topbar basefn-app-layout__topbar--above">
+        {topbarContent}
+      </div>
+    | _ => <> </>
     }}
-    <div class="basefn-app-layout__main-wrapper">
-      {switch topbar {
-      | Some(topbarContent) => <div class="basefn-app-layout__topbar"> {topbarContent} </div>
+    <div class="basefn-app-layout__body">
+      {switch sidebar {
+      | Some(sidebarContent) =>
+        <>
+          <div class="basefn-app-layout__sidebar"> {sidebarContent} </div>
+          <div
+            class="basefn-app-layout__sidebar-backdrop"
+            onClick={_ => Signal.set(sidebarOpen, false)}
+          />
+        </>
       | None => <> </>
       }}
-      <main class="basefn-app-layout__content">
-        <div class={getContentClass()}> {children} </div>
-      </main>
+      <div class="basefn-app-layout__main-wrapper">
+        {switch (topbarPosition, topbar) {
+        | (Inline, Some(topbarContent)) =>
+          <div class="basefn-app-layout__topbar"> {topbarContent} </div>
+        | _ => <> </>
+        }}
+        <main class="basefn-app-layout__content">
+          <div class={getContentClass()}> {children} </div>
+        </main>
+      </div>
     </div>
   </div>
 }
