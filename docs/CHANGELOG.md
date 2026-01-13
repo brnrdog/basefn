@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/brnrdog/basefn/compare/v1.1.6...v1.2.0) (2026-01-13)
+
+
+### Features
+
+* add topbar position option to layout ([24f8c12](https://github.com/brnrdog/basefn/commit/24f8c12e002c10f5535f5a92b7666161f96a3493))
+
 ## [1.1.6](https://github.com/brnrdog/basefn/compare/v1.1.5...v1.1.6) (2026-01-10)
 
 
