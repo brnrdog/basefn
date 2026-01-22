@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/brnrdog/basefn/compare/v1.2.0...v1.3.0) (2026-01-22)
+
+
+### Features
+
+* remove scrolling effect from topbar ([930eb75](https://github.com/brnrdog/basefn/commit/930eb750027be2b04a78348634507ab26be2134d))
+* update xote from 4.10.0 to 4.11.0 ([de98b28](https://github.com/brnrdog/basefn/commit/de98b2858d93fa057d2d0eac7020867b4416f962))
+
 # [1.2.0](https://github.com/brnrdog/basefn/compare/v1.1.6...v1.2.0) (2026-01-13)
 
 
