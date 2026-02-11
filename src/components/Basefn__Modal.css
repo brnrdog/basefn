@@ -98,3 +98,41 @@
     transform: scale(1) translateY(0);
   }
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .basefn-modal-backdrop {
+    align-items: flex-end;
+  }
+
+  .basefn-modal {
+    max-width: 100vw;
+    max-height: 85vh;
+    width: 100% !important;
+    border-radius: 0.75rem 0.75rem 0 0;
+    animation: basefn-modal-slide-up 0.3s ease-out;
+  }
+
+  .basefn-modal__header {
+    padding: 1rem;
+  }
+
+  .basefn-modal__body {
+    padding: 1rem;
+  }
+
+  .basefn-modal__footer {
+    padding: 1rem;
+  }
+
+  @keyframes basefn-modal-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

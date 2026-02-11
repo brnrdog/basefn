@@ -139,3 +139,39 @@
 .basefn-stepper__step--clickable .basefn-stepper__step-indicator:hover {
   transform: scale(1.05);
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .basefn-stepper--horizontal {
+    flex-direction: column;
+  }
+
+  .basefn-stepper--horizontal .basefn-stepper__step {
+    flex-direction: row;
+    margin-bottom: 2rem;
+  }
+
+  .basefn-stepper--horizontal .basefn-stepper__step:last-child {
+    margin-bottom: 0;
+  }
+
+  .basefn-stepper--horizontal .basefn-stepper__step-header {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .basefn-stepper--horizontal .basefn-stepper__connector {
+    width: 2px;
+    height: auto;
+    left: 1.25rem;
+    top: 2.5rem;
+    bottom: -2rem;
+    transform: none;
+  }
+
+  .basefn-stepper__step-indicator {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+}

@@ -125,3 +125,47 @@
   height: 72px;
   padding: 1rem 2rem;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .basefn-topbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .basefn-topbar--sm {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .basefn-topbar--md {
+    padding: 0.5rem 1rem;
+  }
+
+  .basefn-topbar--lg {
+    padding: 0.5rem 1rem;
+  }
+
+  .basefn-topbar__logo {
+    font-size: 1.1rem;
+  }
+
+  .basefn-topbar__nav {
+    gap: 0.125rem;
+  }
+
+  .basefn-topbar__nav-item {
+    font-size: 0.8125rem;
+    padding: 0.375rem 0.625rem;
+  }
+
+  .basefn-topbar__center {
+    gap: 0.5rem;
+  }
+
+  .basefn-topbar__right {
+    gap: 0.5rem;
+  }
+
+  .basefn-topbar__actions {
+    gap: 0.5rem;
+  }
+}

@@ -166,3 +166,34 @@
     transform: translateY(0);
   }
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .basefn-drawer--left,
+  .basefn-drawer--right {
+    width: 85vw;
+    max-width: 320px;
+  }
+
+  .basefn-drawer--sm.basefn-drawer--left,
+  .basefn-drawer--sm.basefn-drawer--right,
+  .basefn-drawer--md.basefn-drawer--left,
+  .basefn-drawer--md.basefn-drawer--right,
+  .basefn-drawer--lg.basefn-drawer--left,
+  .basefn-drawer--lg.basefn-drawer--right {
+    width: 85vw;
+    max-width: 320px;
+  }
+
+  .basefn-drawer__header {
+    padding: 1rem;
+  }
+
+  .basefn-drawer__body {
+    padding: 1rem;
+  }
+
+  .basefn-drawer__footer {
+    padding: 1rem;
+  }
+}
