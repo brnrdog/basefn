@@ -148,4 +148,14 @@
   .basefn-app-layout--topbar-above.basefn-app-layout--topbar-lg .basefn-app-layout__sidebar-backdrop {
     top: 72px;
   }
+
+  /* Reduce content padding on mobile */
+  .basefn-app-layout__content-inner {
+    padding: 0.75rem 1rem;
+  }
+
+  /* Contained variant needs full width on mobile */
+  .basefn-app-layout--contained .basefn-app-layout__content-inner {
+    max-width: 100%;
+  }
 }

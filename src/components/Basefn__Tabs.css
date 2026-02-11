@@ -52,3 +52,21 @@
     transform: translateY(0);
   }
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .basefn-tabs__list {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .basefn-tabs__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .basefn-tabs__trigger {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+  }
+}
