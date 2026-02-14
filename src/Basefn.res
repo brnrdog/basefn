@@ -44,6 +44,24 @@ type appLayoutContentWidth = Basefn__AppLayout.contentWidth
 type appLayoutTopbarPosition = Basefn__AppLayout.topbarPosition
 type iconName = Basefn__Icon.name
 type iconSize = Basefn__Icon.size
+type skeletonVariant = Basefn__Skeleton.variant
+type skeletonAnimation = Basefn__Skeleton.animation
+type scrollAreaOrientation = Basefn__ScrollArea.orientation
+type scrollAreaScrollbarSize = Basefn__ScrollArea.scrollbarSize
+type toggleVariant = Basefn__Toggle.variant
+type toggleSize = Basefn__Toggle.size
+type buttonGroupOrientation = Basefn__ButtonGroup.orientation
+type toggleGroupSelectionType = Basefn__ToggleGroup.selectionType
+type toggleGroupItem = Basefn__ToggleGroup.toggleItem
+type toggleGroupVariant = Basefn__ToggleGroup.variant
+type toggleGroupSize = Basefn__ToggleGroup.size
+type popoverPosition = Basefn__Popover.position
+type popoverAlign = Basefn__Popover.align
+type hoverCardPosition = Basefn__HoverCard.position
+type hoverCardAlign = Basefn__HoverCard.align
+type alertDialogVariant = Basefn__AlertDialog.variant
+type contextMenuItem = Basefn__ContextMenu.menuItem
+type contextMenuContent = Basefn__ContextMenu.menuContent
 type gridColumns = Basefn__Grid.columns
 type gridRows = Basefn__Grid.rows
 type gridAutoFlow = Basefn__Grid.autoFlow
@@ -173,4 +191,36 @@ module ThemeToggle = {
 // Icons
 module Icon = {
   include Basefn__Icon
+}
+
+// New shadcn-style components
+module Skeleton = {
+  include Basefn__Skeleton
+}
+module AspectRatio = {
+  include Basefn__AspectRatio
+}
+module ScrollArea = {
+  include Basefn__ScrollArea
+}
+module Toggle = {
+  include Basefn__Toggle
+}
+module ButtonGroup = {
+  include Basefn__ButtonGroup
+}
+module ToggleGroup = {
+  include Basefn__ToggleGroup
+}
+module Popover = {
+  include Basefn__Popover
+}
+module HoverCard = {
+  include Basefn__HoverCard
+}
+module AlertDialog = {
+  include Basefn__AlertDialog
+}
+module ContextMenu = {
+  include Basefn__ContextMenu
 }
