@@ -1,4 +1,4 @@
-@import '../styles/variables.css';
+@import "../styles/variables.css";
 
 .basefn-button {
   display: inline-flex;
@@ -11,7 +11,7 @@
   height: var(--basefn-button-height);
   padding: 0 var(--basefn-button-padding-x);
   border: var(--basefn-border-width) solid transparent;
-  border-radius: var(--basefn-radius-lg);
+  border-radius: var(--basefn-radius-xl);
   cursor: pointer;
   transition: all var(--basefn-transition-fast);
   outline: none;
@@ -64,7 +64,6 @@
   background-color: transparent;
   border-color: transparent;
   border: 0;
-  padding: 0;
   color: var(--basefn-text-tertiary);
 }
 
