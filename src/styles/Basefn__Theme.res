@@ -21,12 +21,26 @@ let stringToTheme = (str: string) => {
   }
 }
 
-// Apply theme to document
+// Apply theme to document (disables transitions temporarily for instant switch)
 let applyTheme = (theme: theme) => {
   let themeValue = themeToString(theme)
 
   (
-    %raw(`function(val) { document.documentElement.setAttribute('data-theme', val) }`): string => unit
+    %raw(`function(val) {
+      // Disable all transitions
+      document.documentElement.classList.add('no-transitions');
+
+      // Apply theme
+      document.documentElement.setAttribute('data-theme', val);
+
+      // Force reflow to ensure styles are applied
+      document.documentElement.offsetHeight;
+
+      // Re-enable transitions after a frame
+      requestAnimationFrame(() => {
+        document.documentElement.classList.remove('no-transitions');
+      });
+    }`): string => unit
   )(themeValue)
 }
 
