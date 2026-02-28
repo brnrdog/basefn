@@ -10,6 +10,42 @@ type example = {
   code: string,
 }
 
+let copyToClipboard: string => unit = %raw(`
+  function(text) {
+    navigator.clipboard.writeText(text);
+  }
+`)
+
+module CodeBlock = {
+  @jsx.component
+  let make = (~code: string) => {
+    let copied = Signal.make(false)
+
+    let handleCopy = _ => {
+      copyToClipboard(code)
+      Signal.set(copied, true)
+      let _ = %raw(`setTimeout(() => { copied.value = false }, 2000)`)
+    }
+
+    let buttonContent = Computed.make(() => {
+      [Component.text(Signal.get(copied) ? "Copied!" : "Copy")]
+    })
+
+    <div class="docs-component-code">
+      <div class="docs-component-code__header">
+        <button class="docs-component-code__copy-btn" onClick={handleCopy}>
+          {Component.signalFragment(buttonContent)}
+        </button>
+      </div>
+      <div class="docs-component-code__content">
+        <pre>
+          <code class="language-rescript"> {Component.text(code)} </code>
+        </pre>
+      </div>
+    </div>
+  }
+}
+
 @jsx.component
 let make = (~componentName: string) => {
   // Get examples for the component
@@ -30,12 +66,12 @@ let make = (~componentName: string) => {
               {Component.text(example.description)}
             </p>
           </div>
-          <div class="docs-component-demo"> {example.demo} </div>
-          <div class="docs-component-code">
-            <pre>
-              <code class="language-javascript"> {Component.text(example.code)} </code>
-            </pre>
-          </div>
+          <Card className="docs-component-example__card">
+            <div class="docs-component-example__split">
+              <div class="docs-component-demo"> {example.demo} </div>
+              <CodeBlock code={example.code} />
+            </div>
+          </Card>
         </div>
       })
       ->Component.fragment}

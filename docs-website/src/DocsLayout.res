@@ -32,7 +32,7 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
 
   // Compute sidebar sections reactively based on current route
   let sidebarSections = Computed.make(() => {
-    let currentPath = Signal.get(Router.location).pathname
+    let currentPath = Signal.get(Router.location()).pathname
 
     categories->Array.filterMap(category => {
       grouped
@@ -59,7 +59,7 @@ let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Com
 
   // Compute topbar navigation items reactively
   let topbarNavItems = Computed.make(() => {
-    let currentPath = Signal.get(Router.location).pathname
+    let currentPath = Signal.get(Router.location()).pathname
     [
       {
         Topbar.label: "Getting Started",

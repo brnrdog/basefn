@@ -38,16 +38,85 @@
   font-size: 0.875rem;
 }
 
+.docs-component-example__card {
+  overflow: hidden;
+}
+
+.docs-component-example__card .basefn-card__body {
+  padding: 0;
+}
+
+.docs-component-example__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 200px;
+  gap: 0;
+}
+
+.docs-component-code {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--basefn-border-primary);
+  background: var(--basefn-bg-secondary);
+  max-height: 400px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.docs-component-code__header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--basefn-border-primary);
+  background: var(--basefn-bg-tertiary);
+}
+
+.docs-component-code__copy-btn {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  border: 1px solid var(--basefn-border-primary);
+  border-radius: var(--basefn-radius-md);
+  background: var(--basefn-bg-primary);
+  color: var(--basefn-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.docs-component-code__copy-btn:hover {
+  background: var(--basefn-bg-secondary);
+  color: var(--basefn-text-primary);
+}
+
+.docs-component-code__content {
+  flex: 1;
+  overflow: auto;
+}
+
+.docs-component-code pre {
+  margin: 0;
+  padding: 1rem;
+}
+
+.docs-component-code code {
+  font-family: "JetBrains Mono", "SF Mono", "Fira Code", monospace !important;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  display: block;
+}
+
+.docs-component-code code * {
+  font-family: "JetBrains Mono", "SF Mono", "Fira Code", monospace !important;
+}
+
 .docs-component-demo {
   padding: 2rem;
   background: var(--basefn-bg-primary);
-  border: 1px solid var(--basefn-border-primary);
-  border-radius: var(--basefn-radius-xl);
-  min-height: 200px;
   display: flex;
   align-items: center;
-  justify-content: start;
-  width: 100%;
+  justify-content: center;
+  min-height: 200px;
+  margin: 0;
+  border-radius: 0;
 }
 
 /* Special handling for layout demos that use position: fixed */
@@ -80,20 +149,15 @@
   min-height: 100%;
 }
 
-.docs-component-code {
-  border-radius: 0.5rem;
-  overflow: hidden;
-  border: 1px solid var(--basefn-border-primary);
-}
+/* Responsive: stack on smaller screens */
+@media (max-width: 900px) {
+  .docs-component-example__split {
+    grid-template-columns: 1fr;
+  }
 
-.docs-component-code pre {
-  margin: 0;
-  overflow-x: auto;
-}
-
-.docs-component-code code {
-  font-family: 'Source Code Pro', 'Monaco', 'Courier New', monospace;
-  font-size: 0.875rem;
-  line-height: 1.6;
-  display: block;
+  .docs-component-code {
+    border-left: none;
+    border-top: 1px solid var(--basefn-border-primary);
+    max-height: 300px;
+  }
 }

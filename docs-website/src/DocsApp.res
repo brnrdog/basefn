@@ -1,23 +1,28 @@
 %%raw(`import hljs from 'highlight.js/lib/core'`)
 %%raw(`import javascript from 'highlight.js/lib/languages/javascript'`)
+%%raw(`import xml from 'highlight.js/lib/languages/xml'`)
 %%raw(`import rescript from 'highlight.js/lib/languages/reasonml'`)
 %%raw(`hljs.registerLanguage('javascript', javascript)`)
+%%raw(`hljs.registerLanguage('xml', xml)`)
 %%raw(`hljs.registerLanguage('rescript', rescript)`)
 
 open Xote
 
 let highlightCode = %raw(`function() {
       document.querySelectorAll('pre code:not(.hljs)').forEach((block) => {
-        console.log('what')
         hljs.highlightElement(block);
       });
     }`)
 
-// Highlight on mount
+// Highlight code on route changes
 let _ = Effect.run(() => {
+  // Track route changes by subscribing to location signal
+  let _location = Signal.get(Router.location())
+
+  // Run highlighting after DOM updates
   let _ = setTimeout(() => {
     highlightCode()
-  }, 100)
+  }, 50)
 
   None
 })

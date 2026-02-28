@@ -16,7 +16,7 @@
     "basefn": "file:..",
     "highlight.js": "^11.11.1",
     "rescript-signals": "^1.0.0",
-    "xote": "^4.8.0"
+    "xote": "^4.12.0"
   },
   "devDependencies": {
     "rescript": "^12.0.1",

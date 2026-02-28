@@ -13,14 +13,14 @@
   <title>basefn UI - Component Documentation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     /* Light theme syntax highlighting */
     [data-theme="light"] .hljs {
       background: #f6f8fa;
       color: #24292f;
     }
-    [data-theme="light"] .hljs-comment { color: #6a737d; font-family: 'Source Code', monospace; }
+    [data-theme="light"] .hljs-comment { color: #6a737d; }
     [data-theme="light"] .hljs-keyword { color: #d73a49; }
     [data-theme="light"] .hljs-string { color: #032f62; }
     [data-theme="light"] .hljs-number { color: #005cc5; }
@@ -29,6 +29,14 @@
     [data-theme="light"] .hljs-title { color: #6f42c1; font-weight: 600; }
     [data-theme="light"] .hljs-params { color: #24292f; }
     [data-theme="light"] .hljs-built_in { color: #005cc5; }
+    [data-theme="light"] .hljs-tag { color: #22863a; }
+    [data-theme="light"] .hljs-name { color: #22863a; }
+    [data-theme="light"] .hljs-attr { color: #6f42c1; }
+    [data-theme="light"] .hljs-symbol { color: #005cc5; }
+    [data-theme="light"] .hljs-operator { color: #d73a49; }
+    [data-theme="light"] .hljs-punctuation { color: #24292f; }
+    [data-theme="light"] .hljs-property { color: #005cc5; }
+    [data-theme="light"] .hljs-literal { color: #005cc5; }
 
     /* Dark theme syntax highlighting */
     [data-theme="dark"] .hljs {
@@ -44,6 +52,14 @@
     [data-theme="dark"] .hljs-title { color: #d2a8ff; font-weight: 600; }
     [data-theme="dark"] .hljs-params { color: #e6edf3; }
     [data-theme="dark"] .hljs-built_in { color: #79c0ff; }
+    [data-theme="dark"] .hljs-tag { color: #7ee787; }
+    [data-theme="dark"] .hljs-name { color: #7ee787; }
+    [data-theme="dark"] .hljs-attr { color: #d2a8ff; }
+    [data-theme="dark"] .hljs-symbol { color: #79c0ff; }
+    [data-theme="dark"] .hljs-operator { color: #ff7b72; }
+    [data-theme="dark"] .hljs-punctuation { color: #e6edf3; }
+    [data-theme="dark"] .hljs-property { color: #79c0ff; }
+    [data-theme="dark"] .hljs-literal { color: #79c0ff; }
   </style>
   <style>
     * {
@@ -63,7 +79,7 @@
     }
 
     code, pre {
-      font-family: 'Source Code Pro', 'Monaco', 'Courier New', monospace;
+      font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
     }
 
     pre {
