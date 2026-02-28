@@ -63,25 +63,19 @@ let make = (
           {items
           ->Array.mapWithIndex((item, index) => {
             switch item {
-            | Item({label, onClick, disabled, danger}) => {
-                let isDisabled = switch disabled {
-                | Some(d) => d
-                | None => false
-                }
-                let isDanger = switch danger {
-                | Some(d) => d
-                | None => false
-                }
+            | Item({label, onClick, ?disabled, ?danger}) => {
+                let disabled = disabled->Option.getOr(false)
+                let danger = danger->Option.getOr(false)
                 let itemClass =
                   "basefn-context-menu__item" ++
-                  (isDisabled ? " basefn-context-menu__item--disabled" : "") ++
-                  (isDanger ? " basefn-context-menu__item--danger" : "")
+                  (disabled ? " basefn-context-menu__item--disabled" : "") ++
+                  (danger ? " basefn-context-menu__item--danger" : "")
 
                 <button
                   key={Int.toString(index)}
                   class={itemClass}
-                  onClick={_ => handleItemClick(onClick, isDisabled)}
-                  disabled={isDisabled}
+                  onClick={_ => handleItemClick(onClick, disabled)}
+                  disabled={disabled}
                 >
                   {Component.text(label)}
                 </button>

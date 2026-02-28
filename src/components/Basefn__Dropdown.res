@@ -51,7 +51,9 @@ let make = (
           {items
           ->Array.mapWithIndex((item, index) => {
             switch item {
-            | Item({label, onClick, disabled, danger}) => {
+            | Item({label, onClick, ?disabled, ?danger}) => {
+                let disabled = disabled->Option.getOr(false)
+                let danger = danger->Option.getOr(false)
                 let className =
                   "basefn-dropdown__item" ++
                   (disabled ? " basefn-dropdown__item--disabled" : "") ++ (
