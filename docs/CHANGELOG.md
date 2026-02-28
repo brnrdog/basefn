@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/brnrdog/basefn/compare/v1.3.0...v1.4.0) (2026-02-28)
+
+
+### Bug Fixes
+
+* contextmenu ([81ed58d](https://github.com/brnrdog/basefn/commit/81ed58d5922814667373f5cf081f5a18dda6371a))
+
+
+### Features
+
+* add new components ([ee9a36a](https://github.com/brnrdog/basefn/commit/ee9a36af477bddbbbf25fadcb63257d1c02f3ad2))
+* update xote to v4.12 ([ae9d2dd](https://github.com/brnrdog/basefn/commit/ae9d2dd8d6ad81f4442fae6a60891ea88ed6cb22))
+
 # [1.3.0](https://github.com/brnrdog/basefn/compare/v1.2.0...v1.3.0) (2026-01-22)
 
 
