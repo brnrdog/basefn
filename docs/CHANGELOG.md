@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/brnrdog/basefn/compare/v1.4.0...v1.5.0) (2026-02-28)
+
+
+### Features
+
+* **button:** increase button radius ([e8b2658](https://github.com/brnrdog/basefn/commit/e8b265876a8fc5eb4db5c9142bdefb9243388807))
+* **theme:** skip transitions when switching themes ([7a9a2f4](https://github.com/brnrdog/basefn/commit/7a9a2f4e9c45230dd6bdf266b57f8b56bbf326a4))
+
 # [1.4.0](https://github.com/brnrdog/basefn/compare/v1.3.0...v1.4.0) (2026-02-28)
 
 
