@@ -65,8 +65,10 @@
 
 .docs-component-code__header {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  padding: 0.5rem;
+  height: 2rem;
+  padding: 0 0.5rem;
   border-bottom: 1px solid var(--basefn-border-primary);
   background: var(--basefn-bg-tertiary);
 }
@@ -110,7 +112,11 @@
 
 .docs-component-demo {
   padding: 2rem;
-  background: var(--basefn-bg-primary);
+  background-color: var(--basefn-bg-primary);
+  background-image:
+    linear-gradient(var(--basefn-demo-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--basefn-demo-grid-color) 1px, transparent 1px);
+  background-size: 32px 32px;
   display: flex;
   align-items: center;
   justify-content: center;
