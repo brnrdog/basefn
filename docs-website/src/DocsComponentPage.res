@@ -3,13 +3,6 @@
 open Xote
 open Basefn
 
-type example = {
-  title: string,
-  description: string,
-  demo: Component.node,
-  code: string,
-}
-
 let copyToClipboard: string => unit = %raw(`
   function(text) {
     navigator.clipboard.writeText(text);
