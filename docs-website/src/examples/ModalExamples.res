@@ -10,7 +10,9 @@ let examples: array<DocsExample.t> = {
       demo: {
         let isOpen = Signal.make(false)
         <div>
-          <Button label={Static("Open Modal")} onClick={_ => Signal.set(isOpen, true)} />
+          <Button onClick={_ => Signal.set(isOpen, true)}>
+            {Component.text("Open Modal")}
+          </Button>
           <Modal isOpen onClose={() => Signal.set(isOpen, false)} title={"Welcome"}>
             <p>
               {Component.text(
@@ -35,21 +37,15 @@ let examples: array<DocsExample.t> = {
         let isMdOpen = Signal.make(false)
         let isLgOpen = Signal.make(false)
         <div style="display: flex; gap: 0.5rem;">
-          <Button
-            label={Static("Small")}
-            variant={Button.Ghost}
-            onClick={_ => Signal.set(isSmOpen, true)}
-          />
-          <Button
-            label={Static("Medium")}
-            variant={Button.Ghost}
-            onClick={_ => Signal.set(isMdOpen, true)}
-          />
-          <Button
-            label={Static("Large")}
-            variant={Button.Ghost}
-            onClick={_ => Signal.set(isLgOpen, true)}
-          />
+          <Button variant={Button.Ghost} onClick={_ => Signal.set(isSmOpen, true)}>
+            {Component.text("Small")}
+          </Button>
+          <Button variant={Button.Ghost} onClick={_ => Signal.set(isMdOpen, true)}>
+            {Component.text("Medium")}
+          </Button>
+          <Button variant={Button.Ghost} onClick={_ => Signal.set(isLgOpen, true)}>
+            {Component.text("Large")}
+          </Button>
           <Modal
             isOpen={isSmOpen}
             onClose={() => Signal.set(isSmOpen, false)}

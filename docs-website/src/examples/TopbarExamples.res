@@ -30,8 +30,8 @@ let examples: array<DocsExample.t> = {
               },
             ]}
             rightContent={<div style="display: flex; gap: 0.5rem;">
-              <Button label={Static("Login")} variant={Button.Ghost} />
-              <Button label={Static("Sign Up")} variant={Button.Primary} />
+              <Button variant={Button.Ghost}> {text("Login")} </Button>
+              <Button variant={Button.Primary}> {text("Sign Up")} </Button>
             </div>}
           />
         </div>

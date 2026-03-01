@@ -36,15 +36,17 @@ let examples: array<DocsExample.t> = [
         />
         <div style="display: flex; gap: 0.5rem; justify-content: center;">
           <Button
-            label={Static("Previous")}
             variant={Button.Secondary}
             onClick={_ => Signal.update(currentStep, step => step > 0 ? step - 1 : step)}
-          />
+          >
+            {Component.text("Previous")}
+          </Button>
           <Button
-            label={Static("Next")}
             variant={Button.Primary}
             onClick={_ => Signal.update(currentStep, step => step < 3 ? step + 1 : step)}
-          />
+          >
+            {Component.text("Next")}
+          </Button>
         </div>
       </div>
     },

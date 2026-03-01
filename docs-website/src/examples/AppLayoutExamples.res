@@ -94,7 +94,7 @@ let examples: array<DocsExample.t> = {
         <AppLayout
           topbar={<Topbar
             logo={<div> {Component.text("Simple App")} </div>}
-            rightContent={<Button label={Static("Get Started")} variant={Button.Primary} />}
+            rightContent={<Button variant={Button.Primary}> {text("Get Started")} </Button>}
           />}
           contentWidth={AppLayout.FullWidth}
           noPadding={false}

@@ -11,16 +11,12 @@ let examples: array<DocsExample.t> = {
         let isRightOpen = Signal.make(false)
         let isLeftOpen = Signal.make(false)
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <Button
-            label={Static("Open Right Drawer")}
-            variant={Button.Primary}
-            onClick={_ => Signal.set(isRightOpen, true)}
-          />
-          <Button
-            label={Static("Open Left Drawer")}
-            variant={Button.Secondary}
-            onClick={_ => Signal.set(isLeftOpen, true)}
-          />
+          <Button variant={Button.Primary} onClick={_ => Signal.set(isRightOpen, true)}>
+            {text("Open Right Drawer")}
+          </Button>
+          <Button variant={Button.Secondary} onClick={_ => Signal.set(isLeftOpen, true)}>
+            {text("Open Left Drawer")}
+          </Button>
           <Drawer
             isOpen={isRightOpen}
             onClose={() => Signal.set(isRightOpen, false)}
@@ -69,21 +65,15 @@ let examples: array<DocsExample.t> = {
         let isMediumOpen = Signal.make(false)
         let isLargeOpen = Signal.make(false)
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <Button
-            label={Static("Small")}
-            variant={Button.Ghost}
-            onClick={_ => Signal.set(isSmallOpen, true)}
-          />
-          <Button
-            label={Static("Medium")}
-            variant={Button.Ghost}
-            onClick={_ => Signal.set(isMediumOpen, true)}
-          />
-          <Button
-            label={Static("Large")}
-            variant={Button.Ghost}
-            onClick={_ => Signal.set(isLargeOpen, true)}
-          />
+          <Button variant={Button.Ghost} onClick={_ => Signal.set(isSmallOpen, true)}>
+            {text("Small")}
+          </Button>
+          <Button variant={Button.Ghost} onClick={_ => Signal.set(isMediumOpen, true)}>
+            {text("Medium")}
+          </Button>
+          <Button variant={Button.Ghost} onClick={_ => Signal.set(isLargeOpen, true)}>
+            {text("Large")}
+          </Button>
           <Drawer
             isOpen={isSmallOpen}
             onClose={() => Signal.set(isSmallOpen, false)}

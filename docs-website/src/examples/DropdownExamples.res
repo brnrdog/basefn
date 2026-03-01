@@ -6,7 +6,7 @@ let examples: array<DocsExample.t> = [
     title: "Basic Dropdown",
     description: "Menu with multiple actions.",
     demo: <Dropdown
-      trigger={<Button label={Static("Actions")} variant={Button.Secondary} />}
+      trigger={<Button variant={Button.Secondary}> {Component.text("Actions")} </Button>}
       items={[
         Item({label: "Edit", onClick: () => ()}),
         Item({label: "Duplicate", onClick: () => ()}),
