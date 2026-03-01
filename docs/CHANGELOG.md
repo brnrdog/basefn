@@ -1,3 +1,16 @@
+# [1.6.0](https://github.com/brnrdog/basefn/compare/v1.5.0...v1.6.0) (2026-03-01)
+
+
+### Bug Fixes
+
+* prevent horizontal scroll on smaller screens ([58a4264](https://github.com/brnrdog/basefn/commit/58a4264f0b204020810f1d8957f1675929d4a6a5))
+* use children instead of label prop for buttons in examples ([857d831](https://github.com/brnrdog/basefn/commit/857d83142b6925f9178a39695dc80f790c636879))
+
+
+### Features
+
+* add background and theme support to tabs and accordion ([5a38fc7](https://github.com/brnrdog/basefn/commit/5a38fc7f1cd753fc5d5cfd0f925fb7f457a8c6e2))
+
 # [1.5.0](https://github.com/brnrdog/basefn/compare/v1.4.0...v1.5.0) (2026-02-28)
 
 
