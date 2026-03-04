@@ -11,7 +11,7 @@
   border-radius: 0.375rem;
   font-size: 0.875rem;
   white-space: nowrap;
-  z-index: 1000;
+  z-index: 1010;
   pointer-events: none;
   animation: basefn-tooltip-fade-in 0.15s ease-out;
 }
