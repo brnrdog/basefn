@@ -12,12 +12,12 @@
 .basefn-popover__backdrop {
   position: fixed;
   inset: 0;
-  z-index: 49;
+  z-index: 1009;
 }
 
 .basefn-popover__content {
   position: absolute;
-  z-index: 50;
+  z-index: 1010;
   background: var(--basefn-surface-elevated);
   border: var(--basefn-border-width) solid var(--basefn-border-primary);
   border-radius: var(--basefn-radius-lg);
