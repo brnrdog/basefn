@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/brnrdog/basefn/compare/v1.6.0...v1.6.1) (2026-03-05)
+
+
+### Bug Fixes
+
+* raise z-index of tooltips ([191f0e1](https://github.com/brnrdog/basefn/commit/191f0e1edebbc0bf8273fe34ed36ba60c68d97cc))
+
 # [1.6.0](https://github.com/brnrdog/basefn/compare/v1.5.0...v1.6.0) (2026-03-01)
 
 
