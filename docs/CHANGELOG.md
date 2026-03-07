@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/brnrdog/basefn/compare/v1.6.1...v1.7.0) (2026-03-07)
+
+
+### Features
+
+* add backdrop to dropdown menu for improved UX ([#4](https://github.com/brnrdog/basefn/issues/4)) ([9102a00](https://github.com/brnrdog/basefn/commit/9102a00099fc34d74ca08d3fa2c02170b4add5ea))
+
 ## [1.6.1](https://github.com/brnrdog/basefn/compare/v1.6.0...v1.6.1) (2026-03-05)
 
 
