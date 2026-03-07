@@ -44,9 +44,14 @@ let make = (
     baseClass ++ alignClass
   }
 
+  let handleBackdropClick = _ => {
+    Signal.set(isOpen, false)
+  }
+
   let menuContent = Computed.make(() => {
     if Signal.get(isOpen) {
       [
+        <div class="basefn-dropdown__backdrop" onClick={handleBackdropClick} />,
         <div class={getMenuClass()}>
           {items
           ->Array.mapWithIndex((item, index) => {
