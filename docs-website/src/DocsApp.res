@@ -46,6 +46,14 @@ let appRoutes = Router.routes([
     },
   },
   {
+    pattern: "/home",
+    render: _params => {
+      <DocsLayout components showSidebar={false}>
+        <UserHomePage />
+      </DocsLayout>
+    },
+  },
+  {
     pattern: "/getting-started",
     render: _params => {
       <DocsLayout components>

@@ -1,0 +1,135 @@
+.uhp {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Welcome Header */
+.uhp-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.uhp-avatar-xl .basefn-avatar {
+  width: 120px;
+  height: 120px;
+}
+
+.uhp-header-info {
+  flex: 1;
+}
+
+.uhp-header-info .basefn-typography--h2 {
+  margin: 0 0 0.25rem 0;
+}
+
+.uhp-header-info .basefn-typography--muted {
+  margin: 0;
+}
+
+.uhp-time-weather {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  color: var(--basefn-text-muted, #6b7280);
+  font-size: 0.95rem;
+}
+
+.uhp-weather {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.uhp-greeting {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0 !important;
+}
+
+/* Sections */
+.uhp-section {
+  margin: 2rem 0;
+}
+
+.uhp-section .basefn-typography--h3 {
+  margin: 0 0 1rem 0;
+}
+
+/* Lists */
+.uhp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Event Items */
+.uhp-event-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.uhp-event-time {
+  color: var(--basefn-text-muted, #6b7280);
+  font-size: 0.875rem;
+  min-width: 5rem;
+  flex-shrink: 0;
+}
+
+.uhp-event-date {
+  color: var(--basefn-text-muted, #6b7280);
+  font-size: 0.875rem;
+  min-width: 6rem;
+  flex-shrink: 0;
+}
+
+.uhp-event-title {
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+/* Task Items */
+.uhp-task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.uhp-task-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.uhp-muted {
+  color: var(--basefn-text-muted, #6b7280);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .uhp-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .uhp-time-weather {
+    justify-content: center;
+  }
+
+  .uhp-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .uhp-event-item {
+    flex-wrap: wrap;
+  }
+
+  .uhp-task-item {
+    flex-wrap: wrap;
+  }
+}
