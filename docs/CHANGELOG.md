@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/brnrdog/basefn/compare/v1.7.0...v1.8.0) (2026-03-07)
+
+
+### Features
+
+* add responsive design utilities module ([#6](https://github.com/brnrdog/basefn/issues/6)) ([916d909](https://github.com/brnrdog/basefn/commit/916d909797b1d9b2da77395f9f5354a5db5107b6))
+
 # [1.7.0](https://github.com/brnrdog/basefn/compare/v1.6.1...v1.7.0) (2026-03-07)
 
 
