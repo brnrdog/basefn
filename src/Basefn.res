@@ -71,6 +71,9 @@ type gridJustifyContent = Basefn__Grid.justifyContent
 type gridAlignContent = Basefn__Grid.alignContent
 type gridItemColumnSpan = Basefn__Grid.Item.columnSpan
 type gridItemRowSpan = Basefn__Grid.Item.rowSpan
+type breakpoint = Basefn__Responsive.breakpoint
+type currentBreakpoint = Basefn__Responsive.currentBreakpoint
+type responsiveValue<'a> = Basefn__Responsive.responsiveValue<'a>
 
 // Form Components
 module Button = {
@@ -223,4 +226,9 @@ module AlertDialog = {
 }
 module ContextMenu = {
   include Basefn__ContextMenu
+}
+
+// Responsive Utilities
+module Responsive = {
+  include Basefn__Responsive
 }
