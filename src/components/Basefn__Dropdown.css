@@ -3,6 +3,12 @@
   display: inline-block;
 }
 
+.basefn-dropdown__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1009;
+}
+
 .basefn-dropdown__menu {
   position: absolute;
   top: calc(100% + 4px);
