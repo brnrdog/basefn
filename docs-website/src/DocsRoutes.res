@@ -43,6 +43,7 @@ let rawPaths = [
   {name: "Dropdown", category: "Interactive", path: "/component/dropdown"},
   {name: "Toast", category: "Interactive", path: "/component/toast"},
   {name: "Drawer", category: "Interactive", path: "/component/drawer"},
+  {name: "Spotlight", category: "Interactive", path: "/component/spotlight"},
   // Layout Components
   {name: "Sidebar", category: "Layout", path: "/component/sidebar"},
   {name: "Topbar", category: "Layout", path: "/component/topbar"},
