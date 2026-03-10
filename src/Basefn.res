@@ -62,6 +62,7 @@ type hoverCardAlign = Basefn__HoverCard.align
 type alertDialogVariant = Basefn__AlertDialog.variant
 type contextMenuItem = Basefn__ContextMenu.menuItem
 type contextMenuContent = Basefn__ContextMenu.menuContent
+type spotlightItem = Basefn__Spotlight.spotlightItem
 type gridColumns = Basefn__Grid.columns
 type gridRows = Basefn__Grid.rows
 type gridAutoFlow = Basefn__Grid.autoFlow
@@ -226,6 +227,9 @@ module AlertDialog = {
 }
 module ContextMenu = {
   include Basefn__ContextMenu
+}
+module Spotlight = {
+  include Basefn__Spotlight
 }
 
 // Responsive Utilities
