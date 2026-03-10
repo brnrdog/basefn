@@ -33,6 +33,7 @@ let getExamples = (componentName: string): array<DocsExample.t> => {
   | "topbar" => TopbarExamples.examples
   | "icon" => IconExamples.examples
   | "app-layout" => AppLayoutExamples.examples
+  | "spotlight" => SpotlightExamples.examples
   | _ => []
   }
 }
