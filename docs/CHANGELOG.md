@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/brnrdog/basefn/compare/v1.8.0...v1.9.0) (2026-03-10)
+
+
+### Features
+
+* add Spotlight component for command palette functionality ([#7](https://github.com/brnrdog/basefn/issues/7)) ([2ed058c](https://github.com/brnrdog/basefn/commit/2ed058c7a8b98171e9a62253b5ec675c877f9e7b))
+
 # [1.8.0](https://github.com/brnrdog/basefn/compare/v1.7.0...v1.8.0) (2026-03-07)
 
 
