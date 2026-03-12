@@ -65,10 +65,18 @@ let make = (
     | "ArrowDown" => {
         let _ = Basefn__Dom.preventDefault(evt)
         Signal.update(activeIndex, i => mod(i + 1, max(len, 1)))
+        let _ = %raw(`requestAnimationFrame(() => {
+          const el = document.querySelector(".basefn-spotlight__item--active");
+          if (el) el.scrollIntoView({ block: "nearest" });
+        })`)
       }
     | "ArrowUp" => {
         let _ = Basefn__Dom.preventDefault(evt)
         Signal.update(activeIndex, i => mod(i - 1 + max(len, 1), max(len, 1)))
+        let _ = %raw(`requestAnimationFrame(() => {
+          const el = document.querySelector(".basefn-spotlight__item--active");
+          if (el) el.scrollIntoView({ block: "nearest" });
+        })`)
       }
     | "Enter" =>
       if len > 0 {
