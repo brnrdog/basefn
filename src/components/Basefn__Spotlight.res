@@ -103,16 +103,15 @@ let make = (
     }
   }
 
-  // Auto-focus input when opened
+  // Auto-focus input when opened using requestAnimationFrame for reliable timing
   let _ = Effect.run(() => {
     if Signal.get(isOpen) {
-      let _ = setTimeout(() => {
-        let doc: Dom.element = %raw(`document.body`)
-        switch querySelector(doc, ".basefn-spotlight__input") {
-        | Value(el) => focus(el)
-        | _ => ()
-        }
-      }, 16)
+      let _ = %raw(`requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const el = document.querySelector(".basefn-spotlight__input");
+          if (el) el.focus();
+        })
+      })`)
     }
     None
   })
@@ -165,7 +164,7 @@ let make = (
     if Signal.get(isOpen) {
       [
         <div class="basefn-spotlight-backdrop" onClick={handleBackdropClick}>
-          <div class="basefn-spotlight">
+          <div class="basefn-spotlight" onKeyDown={handleKeyDown}>
             <div class="basefn-spotlight__input-wrapper">
               <Basefn__Icon name={Basefn__Icon.Search} size={Basefn__Icon.Sm} />
               <input
@@ -174,7 +173,6 @@ let make = (
                 placeholder
                 value={ReactiveProp.reactive(query)}
                 onInput={handleInput}
-                onKeyDown={handleKeyDown}
               />
             </div>
             <div class="basefn-spotlight__results"> {renderResults()} </div>
