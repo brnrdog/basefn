@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/brnrdog/basefn/compare/v1.9.0...v1.9.1) (2026-03-12)
+
+
+### Bug Fixes
+
+* spotlight keyboard navigation scrolling page when input not focused ([#8](https://github.com/brnrdog/basefn/issues/8)) ([7657054](https://github.com/brnrdog/basefn/commit/76570544f7371056cfa83fbd1448d4094b97490b))
+
 # [1.9.0](https://github.com/brnrdog/basefn/compare/v1.8.0...v1.9.0) (2026-03-10)
 
 
