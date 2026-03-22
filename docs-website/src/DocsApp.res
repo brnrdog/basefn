@@ -30,12 +30,10 @@ let _ = Effect.run(() => {
 let components = DocsRoutes.components
 
 // Initialize router and theme once at module level
-// Use Xote's built-in basePath support for GitHub Pages
 Router.init(~basePath=PathUtils.basePath, ())
 Basefn__Theme.init()
 
-// Define routes once at module level to prevent recreation on every render
-// Routes are now relative to basePath - no need to prepend it manually
+// Define routes
 let appRoutes = Router.routes([
   {
     pattern: "/",

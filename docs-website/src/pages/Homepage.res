@@ -1,123 +1,438 @@
 open Xote
-open Xote.Component
-open Basefn
 
 %%raw(`import './Homepage.css'`)
 
+// ---- Feature data ----
+type feature = {
+  title: string,
+  description: string,
+  iconName: Basefn__Icon.name,
+  linkText: option<string>,
+  linkTo: option<string>,
+}
+
+let features = [
+  {
+    title: "35+ Components",
+    description: "Forms, navigation, layout, display, and interactive components \u2014 everything you need to build complete UIs.",
+    iconName: Basefn__Icon.Home,
+    linkText: Some("Browse components"),
+    linkTo: Some("/component/button"),
+  },
+  {
+    title: "Fine-Grained Reactivity",
+    description: "Built on Xote's signal-based architecture. Direct DOM updates without a virtual DOM, with automatic dependency tracking.",
+    iconName: Basefn__Icon.Star,
+    linkText: Some("Learn more"),
+    linkTo: Some("/getting-started"),
+  },
+  {
+    title: "Type-Safe by Default",
+    description: "Written entirely in ReScript with sound types, pattern matching, and compile-time safety for every component.",
+    iconName: Basefn__Icon.Check,
+    linkText: Some("View API Reference"),
+    linkTo: Some("/api"),
+  },
+  {
+    title: "Dark Mode Built-In",
+    description: "Every component supports light and dark themes out of the box with CSS custom properties and smooth transitions.",
+    iconName: Basefn__Icon.Moon,
+    linkText: None,
+    linkTo: None,
+  },
+  {
+    title: "Accessible & Responsive",
+    description: "Keyboard navigation, ARIA attributes, and responsive designs that work across devices and screen sizes.",
+    iconName: Basefn__Icon.User,
+    linkText: None,
+    linkTo: None,
+  },
+  {
+    title: "Lightweight & Fast",
+    description: "Minimal runtime overhead with no virtual DOM diffing. Components compile to efficient JavaScript with tree-shaking support.",
+    iconName: Basefn__Icon.Download,
+    linkText: None,
+    linkTo: None,
+  },
+]
+
+// ---- Feature Card ----
+module FeatureCard = {
+  @jsx.component
+  let make = (~feature: feature) => {
+    <div class="feature-card">
+      <div class="feature-card-icon">
+        {Basefn__Icon.make({name: feature.iconName, size: Md})}
+      </div>
+      <h3> {Component.text(feature.title)} </h3>
+      <p> {Component.text(feature.description)} </p>
+      {switch (feature.linkText, feature.linkTo) {
+      | (Some(text), Some(to)) =>
+        Router.link(
+          ~to,
+          ~attrs=[Component.attr("class", "feature-card-link")],
+          ~children=[
+            Component.text(text ++ " "),
+            Basefn__Icon.make({name: ChevronRight, size: Sm}),
+          ],
+          (),
+        )
+      | _ => Component.fragment([])
+      }}
+    </div>
+  }
+}
+
+// ---- Hero ----
+module Hero = {
+  @jsx.component
+  let make = () => {
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-logo">
+          <span class="hero-logo-base"> {Component.text("base")} </span>
+          <span class="hero-logo-fn"> {Component.text("fn")} </span>
+        </div>
+        <h1>
+          {Component.text("Build beautiful interfaces with ")}
+          <em> {Component.text("reactive components")} </em>
+          {Component.text(" and ")}
+          <em> {Component.text("sound types")} </em>
+        </h1>
+        <p class="hero-subtitle">
+          {Component.text(
+            "basefn is a comprehensive UI component library for ReScript and Xote. 35+ components with fine-grained reactivity, dark mode, and full type safety \u2014 no virtual DOM required.",
+          )}
+        </p>
+        <div class="hero-buttons">
+          {Router.link(
+            ~to="/getting-started",
+            ~attrs=[Component.attr("class", "btn btn-primary")],
+            ~children=[
+              Component.text("Get Started "),
+              Basefn__Icon.make({name: ChevronRight, size: Sm}),
+            ],
+            (),
+          )}
+          <a
+            href="https://github.com/brnrdog/basefn-ui"
+            target="_blank"
+            class="btn btn-ghost"
+          >
+            {Basefn__Icon.make({name: GitHub, size: Sm})}
+            {Component.text(" View on GitHub")}
+          </a>
+        </div>
+        <div class="hero-install">
+          <code> {Component.text("npm install basefn-ui")} </code>
+        </div>
+      </div>
+    </section>
+  }
+}
+
+// ---- Features Section ----
+module Features = {
+  @jsx.component
+  let make = () => {
+    <section class="features-section">
+      <div class="features-inner">
+        <div class="features-heading">
+          <h2> {Component.text("Everything you need for modern UIs")} </h2>
+          <p>
+            {Component.text(
+              "A complete component library with reactive primitives, type safety, and thoughtful design patterns.",
+            )}
+          </p>
+        </div>
+        <div class="features-grid">
+          {Component.fragment(features->Array.map(f => <FeatureCard feature={f} />))}
+        </div>
+      </div>
+    </section>
+  }
+}
+
+// ---- Component Categories Section ----
+module Categories = {
+  type category = {
+    name: string,
+    description: string,
+    components: string,
+    path: string,
+    iconName: Basefn__Icon.name,
+  }
+
+  let categories = [
+    {
+      name: "Form",
+      description: "Input controls for collecting user data",
+      components: "Button, Input, Textarea, Select, Checkbox, Radio, Label",
+      path: "/component/button",
+      iconName: Basefn__Icon.Edit,
+    },
+    {
+      name: "Foundation",
+      description: "Essential building blocks for any interface",
+      components: "Badge, Spinner, Separator, Kbd, Typography",
+      path: "/component/badge",
+      iconName: Basefn__Icon.Star,
+    },
+    {
+      name: "Display",
+      description: "Components for presenting content",
+      components: "Card, Avatar, Grid, Alert, Progress",
+      path: "/component/card",
+      iconName: Basefn__Icon.Info,
+    },
+    {
+      name: "Navigation",
+      description: "Guide users through your application",
+      components: "Tabs, Accordion, Breadcrumb, Stepper, Timeline",
+      path: "/component/tabs",
+      iconName: Basefn__Icon.Menu,
+    },
+    {
+      name: "Interactive",
+      description: "Rich interactive experiences",
+      components: "Modal, Tooltip, Switch, Slider, Dropdown, Toast, Drawer, Spotlight",
+      path: "/component/modal",
+      iconName: Basefn__Icon.ExternalLink,
+    },
+    {
+      name: "Layout",
+      description: "Structure and organize your pages",
+      components: "Sidebar, Topbar, AppLayout",
+      path: "/component/sidebar",
+      iconName: Basefn__Icon.Home,
+    },
+  ]
+
+  @jsx.component
+  let make = () => {
+    <section class="categories-section">
+      <div class="categories-inner">
+        <div class="categories-heading">
+          <h2> {Component.text("Component Categories")} </h2>
+          <p>
+            {Component.text(
+              "Organized by purpose so you can find the right component for every part of your UI.",
+            )}
+          </p>
+        </div>
+        <div class="categories-grid">
+          {Component.fragment(
+            categories->Array.map(cat => {
+              Router.link(
+                ~to=cat.path,
+                ~attrs=[Component.attr("class", "category-card")],
+                ~children=[
+                  <div class="category-card-icon">
+                    {Basefn__Icon.make({name: cat.iconName, size: Md})}
+                  </div>,
+                  <h3> {Component.text(cat.name)} </h3>,
+                  <p class="category-card-desc">
+                    {Component.text(cat.description)}
+                  </p>,
+                  <p class="category-card-components">
+                    {Component.text(cat.components)}
+                  </p>,
+                ],
+                (),
+              )
+            }),
+          )}
+        </div>
+      </div>
+    </section>
+  }
+}
+
+// ---- Code Demo ----
+module CodeDemo = {
+  let buttonCode = `open Xote
+open Basefn
+
 @jsx.component
 let make = () => {
-  <div style="max-width: 800px; padding: 3rem 0; margin: auto;">
-    <div style="text-align: center; margin-bottom: 3rem; max-width: 72ch; margin: auto;">
-      <Typography
-        text={ReactiveProp.Static("base")} variant={Typography.Unstyled} class="logo logo-a"
-      />
-      <Typography
-        text={ReactiveProp.Static("fn")} variant={Typography.Unstyled} class="logo logo-b"
-      />
-      <Typography
-        text={ReactiveProp.Static(
-          "A modern user interface component library written in ReScript for Xote applications.",
-        )}
-        variant={Lead}
-      />
-      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-        {Router.link(
-          ~to="/component/button",
-          ~children=[<Button> {text("Get Started")} </Button>],
-          (),
-        )}
-        <a
-          href="https://github.com/yourusername/basefn-ui"
-          target="_blank"
-          style="text-decoration: none;"
-        >
-          <Button variant={Ghost}> {text("View on GitHub")} </Button>
-        </a>
-      </div>
-    </div>
-    <div style="margin-top: 5rem;">
-      <Typography text={ReactiveProp.Static("Features")} variant={Typography.H2} />
-      <div
-        style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;"
-      >
-        <Card>
-          <Typography text={ReactiveProp.Static("🎨 Modern Design")} variant={Typography.H5} />
-          <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
-            {Component.text("Clean and beautiful components with thoughtful design patterns.")}
-          </p>
-        </Card>
-        <Card>
-          <Typography text={ReactiveProp.Static("⚡ Built with Xote")} variant={Typography.H5} />
-          <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
-            {Component.text("Leverages Xote's fine-grained reactivity with Signals.")}
-          </p>
-        </Card>
-        <Card>
-          <Typography text={ReactiveProp.Static("🔒 Type-Safe")} variant={Typography.H5} />
-          <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
-            {Component.text("Written in ReScript for complete type safety.")}
-          </p>
-        </Card>
-        <Card>
-          <Typography text={ReactiveProp.Static("📦 Comprehensive")} variant={Typography.H5} />
-          <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
-            {Component.text("35+ components covering forms, navigation, and layouts.")}
-          </p>
-        </Card>
-      </div>
-    </div>
-    <div style="margin-top: 3rem;">
-      <Typography text={ReactiveProp.Static("Component Categories")} variant={Typography.H2} />
-      <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-        <div>
-          <Typography text={ReactiveProp.Static("Form Components")} variant={Typography.H5} />
-          <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
-            {Component.text(
-              "Button, Input, Textarea, Select, Checkbox, Radio, and Label components for building forms.",
-            )}
-          </p>
-        </div>
-        <div>
-          <Typography text={ReactiveProp.Static("Foundation Components")} variant={Typography.H5} />
-          <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
-            {Component.text(
-              "Badge, Spinner, Separator, Kbd, and Typography for basic UI elements.",
-            )}
-          </p>
-        </div>
-        <div>
-          <Typography text={ReactiveProp.Static("Display Components")} variant={Typography.H5} />
-          <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
-            {Component.text("Card, Avatar, Grid, Alert, and Progress for displaying content.")}
-          </p>
-        </div>
-        <div>
-          <Typography text={ReactiveProp.Static("Navigation Components")} variant={Typography.H5} />
-          <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
-            {Component.text(
-              "Tabs, Accordion, Breadcrumb, Stepper, and Timeline for navigation patterns.",
-            )}
-          </p>
-        </div>
-        <div>
-          <Typography
-            text={ReactiveProp.Static("Interactive Components")} variant={Typography.H5}
-          />
-          <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
-            {Component.text(
-              "Modal, Tooltip, Switch, Slider, Dropdown, Toast, and Drawer for interactive UI.",
-            )}
-          </p>
-        </div>
-        <div>
-          <Typography text={ReactiveProp.Static("Layout Components")} variant={Typography.H5} />
-          <p style="margin: 0.5rem 0 0 0; color: #6b7280;">
-            {Component.text(
-              "Sidebar, Topbar, and AppLayout for building complete application layouts.",
-            )}
-          </p>
-        </div>
-      </div>
-    </div>
+  let loading = Signal.make(false)
+
+  let handleClick = _ => {
+    Signal.set(loading, true)
+    let _ = setTimeout(() =>
+      Signal.set(loading, false)
+    , 1500)
+  }
+
+  <div style="display: flex; gap: 0.5rem">
+    <Button
+      label={Static("Primary")}
+      variant={Primary}
+      onClick={handleClick}
+    />
+    <Button
+      label={Static("Secondary")}
+      variant={Secondary}
+    />
+    <Button
+      label={Static("Ghost")}
+      variant={Ghost}
+    />
   </div>
+}`
+
+  let signalCode = `open Xote
+open Basefn
+
+@jsx.component
+let make = () => {
+  let count = Signal.make(0)
+
+  // Computed values auto-update
+  let doubled = Computed.make(() =>
+    Signal.get(count) * 2
+  )
+
+  let label = Computed.make(() =>
+    "Count: " ++ Int.toString(
+      Signal.get(count)
+    )
+  )
+
+  <div>
+    <Typography
+      text={Reactive(label)}
+      variant={H3}
+    />
+    <Typography
+      text={Reactive(
+        Signal.map(doubled, d =>
+          "Doubled: " ++ Int.toString(d)
+        )
+      )}
+      variant={Muted}
+    />
+    <Button
+      label={Static("Increment")}
+      onClick={_ =>
+        Signal.update(count, n => n + 1)
+      }
+    />
+  </div>
+}`
+
+  @jsx.component
+  let make = () => {
+    let activeTab = Signal.make("buttons")
+
+    let setTab = (tab: string) => (_evt: Dom.event) => Signal.set(activeTab, tab)
+
+    <section class="code-demo-section">
+      <div class="code-demo-inner">
+        <div class="code-demo-heading">
+          <h2> {Component.text("Simple, reactive, type-safe")} </h2>
+          <p>
+            {Component.text(
+              "Components that work with Xote's signal system. Your mental model stays simple \u2014 update a signal, the UI reacts.",
+            )}
+          </p>
+        </div>
+        <div class="code-demo-container">
+          <div class="code-editor-pane">
+            <div class="code-editor-tabs">
+              {Component.element(
+                "div",
+                ~attrs=[
+                  Component.computedAttr("class", () =>
+                    "code-editor-tab" ++
+                    (Signal.get(activeTab) == "buttons" ? " active" : "")
+                  ),
+                ],
+                ~events=[("click", setTab("buttons"))],
+                ~children=[Component.text("Buttons.res")],
+                (),
+              )}
+              {Component.element(
+                "div",
+                ~attrs=[
+                  Component.computedAttr("class", () =>
+                    "code-editor-tab" ++
+                    (Signal.get(activeTab) == "signals" ? " active" : "")
+                  ),
+                ],
+                ~events=[("click", setTab("signals"))],
+                ~children=[Component.text("Signals.res")],
+                (),
+              )}
+            </div>
+            <div class="code-editor-body">
+              <pre class="code-editor-pre">
+                <code>
+                  {Component.signalFragment(
+                    Computed.make(() => {
+                      let code = switch Signal.get(activeTab) {
+                      | "buttons" => buttonCode
+                      | _ => signalCode
+                      }
+                      [Component.text(code)]
+                    }),
+                  )}
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  }
+}
+
+// ---- Community Section ----
+module Community = {
+  @jsx.component
+  let make = () => {
+    <section class="community-section">
+      <div class="community-inner">
+        <h2> {Component.text("Ready to build?")} </h2>
+        <p>
+          {Component.text(
+            "basefn is open source and built for developers who value type safety, fine-grained reactivity, and clean component APIs.",
+          )}
+        </p>
+        <div class="community-links">
+          {Router.link(
+            ~to="/getting-started",
+            ~attrs=[Component.attr("class", "btn btn-primary")],
+            ~children=[
+              Component.text("Get Started "),
+              Basefn__Icon.make({name: ChevronRight, size: Sm}),
+            ],
+            (),
+          )}
+          <a
+            href="https://github.com/brnrdog/basefn-ui"
+            target="_blank"
+            class="btn btn-ghost"
+          >
+            {Basefn__Icon.make({name: GitHub, size: Sm})}
+            {Component.text(" GitHub")}
+          </a>
+          <a
+            href="https://www.npmjs.com/package/basefn-ui"
+            target="_blank"
+            class="btn btn-ghost"
+          >
+            {Basefn__Icon.make({name: Download, size: Sm})}
+            {Component.text(" npm")}
+          </a>
+        </div>
+      </div>
+    </section>
+  }
+}
+
+// ---- Main page ----
+@jsx.component
+let make = () => {
+  Component.fragment([<Hero />, <Features />, <Categories />, <CodeDemo />, <Community />])
 }
