@@ -1,3 +1,4 @@
+%%raw(`import './styles/variables.css'`)
 %%raw(`import hljs from 'highlight.js/lib/core'`)
 %%raw(`import javascript from 'highlight.js/lib/languages/javascript'`)
 %%raw(`import xml from 'highlight.js/lib/languages/xml'`)
@@ -70,7 +71,7 @@ let appRoutes = Router.routes([
   {
     pattern: "/component/:name",
     render: params => {
-      let componentName = params->Dict.get("name")->Option.getOr("button")
+      let componentName = Obj.magic(params)->Dict.get("name")->Option.getOr("button")
       <DocsLayout components>
         <DocsComponentPage componentName />
       </DocsLayout>
