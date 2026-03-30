@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <script>
     // Apply theme immediately to prevent FOUC (Flash of Unstyled Content)
@@ -10,10 +10,11 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>basefn UI - Component Documentation</title>
+  <meta name="description" content="basefn - A modern UI component library for ReScript and Xote with 35+ components, fine-grained reactivity, and type safety.">
+  <title>basefn - UI Components for ReScript & Xote</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     /* Light theme syntax highlighting */
     [data-theme="light"] .hljs {
@@ -40,46 +41,49 @@
 
     /* Dark theme syntax highlighting */
     [data-theme="dark"] .hljs {
-      background: #1f2937;
-      color: #e6edf3;
+      background: #1e293b;
+      color: #e2e8f0;
     }
-    [data-theme="dark"] .hljs-comment { color: #8b949e; }
-    [data-theme="dark"] .hljs-keyword { color: #ff7b72; }
-    [data-theme="dark"] .hljs-string { color: #a5d6ff; }
-    [data-theme="dark"] .hljs-number { color: #79c0ff; }
-    [data-theme="dark"] .hljs-function { color: #d2a8ff; }
-    [data-theme="dark"] .hljs-variable { color: #ffa657; }
-    [data-theme="dark"] .hljs-title { color: #d2a8ff; font-weight: 600; }
-    [data-theme="dark"] .hljs-params { color: #e6edf3; }
-    [data-theme="dark"] .hljs-built_in { color: #79c0ff; }
-    [data-theme="dark"] .hljs-tag { color: #7ee787; }
-    [data-theme="dark"] .hljs-name { color: #7ee787; }
-    [data-theme="dark"] .hljs-attr { color: #d2a8ff; }
-    [data-theme="dark"] .hljs-symbol { color: #79c0ff; }
-    [data-theme="dark"] .hljs-operator { color: #ff7b72; }
-    [data-theme="dark"] .hljs-punctuation { color: #e6edf3; }
-    [data-theme="dark"] .hljs-property { color: #79c0ff; }
-    [data-theme="dark"] .hljs-literal { color: #79c0ff; }
+    [data-theme="dark"] .hljs-comment { color: #64748b; }
+    [data-theme="dark"] .hljs-keyword { color: #f472b6; }
+    [data-theme="dark"] .hljs-string { color: #7dd3fc; }
+    [data-theme="dark"] .hljs-number { color: #38bdf8; }
+    [data-theme="dark"] .hljs-function { color: #c4b5fd; }
+    [data-theme="dark"] .hljs-variable { color: #fdba74; }
+    [data-theme="dark"] .hljs-title { color: #c4b5fd; font-weight: 600; }
+    [data-theme="dark"] .hljs-params { color: #e2e8f0; }
+    [data-theme="dark"] .hljs-built_in { color: #38bdf8; }
+    [data-theme="dark"] .hljs-tag { color: #86efac; }
+    [data-theme="dark"] .hljs-name { color: #86efac; }
+    [data-theme="dark"] .hljs-attr { color: #c4b5fd; }
+    [data-theme="dark"] .hljs-symbol { color: #38bdf8; }
+    [data-theme="dark"] .hljs-operator { color: #f472b6; }
+    [data-theme="dark"] .hljs-punctuation { color: #e2e8f0; }
+    [data-theme="dark"] .hljs-property { color: #38bdf8; }
+    [data-theme="dark"] .hljs-literal { color: #38bdf8; }
   </style>
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      background: var(--docs-bg-base);
+      color: var(--docs-text-primary);
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     #root {
       min-height: 100vh;
     }
 
-    code, pre {
-      font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    code, pre, .hljs {
+      font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', ui-monospace, monospace;
     }
 
     pre {
@@ -92,6 +96,11 @@
     pre code {
       padding: 0;
       background: transparent !important;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
   </style>
 </head>

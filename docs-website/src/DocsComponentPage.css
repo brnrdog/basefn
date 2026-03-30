@@ -1,7 +1,6 @@
 .docs-component-page {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 1rem;
+  max-width: 1000px;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -37,13 +36,15 @@
 
 .docs-component-example__description {
   margin: 0;
-  color: #6b7280;
+  color: var(--docs-text-tertiary);
   font-size: 0.875rem;
 }
 
 .docs-component-example__card {
   overflow: hidden;
   max-width: 100%;
+  border: 1px solid var(--docs-border);
+  border-radius: var(--docs-radius-xl);
 }
 
 .docs-component-example__card .basefn-card__body {
@@ -60,8 +61,8 @@
 .docs-component-code {
   display: flex;
   flex-direction: column;
-  border-left: 1px solid var(--basefn-border-primary);
-  background: var(--basefn-bg-secondary);
+  border-left: 1px solid var(--docs-border);
+  background: var(--docs-bg-surface);
   max-height: 400px;
   margin: 0;
   border-radius: 0;
@@ -73,24 +74,25 @@
   justify-content: flex-end;
   height: 2rem;
   padding: 0 0.5rem;
-  border-bottom: 1px solid var(--basefn-border-primary);
-  background: var(--basefn-bg-tertiary);
+  border-bottom: 1px solid var(--docs-border);
+  background: var(--docs-bg-subtle);
 }
 
 .docs-component-code__copy-btn {
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
-  border: 1px solid var(--basefn-border-primary);
-  border-radius: var(--basefn-radius-md);
-  background: var(--basefn-bg-primary);
-  color: var(--basefn-text-secondary);
+  border: 1px solid var(--docs-border);
+  border-radius: var(--docs-radius-md);
+  background: var(--docs-bg-base);
+  color: var(--docs-text-secondary);
   cursor: pointer;
   transition: all 0.15s ease;
+  font-family: var(--docs-font-sans);
 }
 
 .docs-component-code__copy-btn:hover {
-  background: var(--basefn-bg-secondary);
-  color: var(--basefn-text-primary);
+  background: var(--docs-bg-surface);
+  color: var(--docs-text-primary);
 }
 
 .docs-component-code__content {
@@ -104,19 +106,19 @@
 }
 
 .docs-component-code code {
-  font-family: "JetBrains Mono", "SF Mono", "Fira Code", monospace !important;
+  font-family: var(--docs-font-mono) !important;
   font-size: 0.8rem;
   line-height: 1.6;
   display: block;
 }
 
 .docs-component-code code * {
-  font-family: "JetBrains Mono", "SF Mono", "Fira Code", monospace !important;
+  font-family: var(--docs-font-mono) !important;
 }
 
 .docs-component-demo {
   padding: 2rem;
-  background-color: var(--basefn-bg-primary);
+  background-color: var(--docs-bg-base);
   background-image:
     linear-gradient(var(--basefn-demo-grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--basefn-demo-grid-color) 1px, transparent 1px);
@@ -167,7 +169,7 @@
 
   .docs-component-code {
     border-left: none;
-    border-top: 1px solid var(--basefn-border-primary);
+    border-top: 1px solid var(--docs-border);
     max-height: 300px;
   }
 }
