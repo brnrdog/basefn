@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/brnrdog/basefn/compare/v1.9.1...v1.10.0) (2026-03-30)
+
+
+### Features
+
+* addd resizable component for draggable panel resizing ([345bd00](https://github.com/brnrdog/basefn/commit/345bd002f0d89a6dd3df95beb0e54c190a7862f2))
+
 ## [1.9.1](https://github.com/brnrdog/basefn/compare/v1.9.0...v1.9.1) (2026-03-12)
 
 
