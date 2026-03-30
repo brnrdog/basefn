@@ -1,0 +1,156 @@
+@import "../styles/variables.css";
+
+/* Panel Group Container */
+.basefn-resizable {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.basefn-resizable--horizontal {
+  flex-direction: row;
+}
+
+.basefn-resizable--vertical {
+  flex-direction: column;
+}
+
+/* Panel */
+.basefn-resizable__panel {
+  overflow: auto;
+}
+
+.basefn-resizable__panel--dragging {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Handle */
+.basefn-resizable__handle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  outline: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.basefn-resizable__handle--horizontal {
+  width: 8px;
+  cursor: col-resize;
+}
+
+.basefn-resizable__handle--vertical {
+  height: 8px;
+  cursor: row-resize;
+}
+
+/* Handle visible line */
+.basefn-resizable__handle::after {
+  content: "";
+  position: absolute;
+  background-color: var(--basefn-border-primary);
+  transition: background-color var(--basefn-transition-fast);
+}
+
+.basefn-resizable__handle--horizontal::after {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.basefn-resizable__handle--vertical::after {
+  height: 1px;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.basefn-resizable__handle:hover::after,
+.basefn-resizable__handle:focus-visible::after {
+  background-color: var(--basefn-color-primary);
+}
+
+/* Grip indicator */
+.basefn-resizable__handle-grip {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--basefn-radius-sm);
+  background-color: var(--basefn-border-primary);
+  border: 1px solid var(--basefn-border-secondary);
+  transition:
+    background-color var(--basefn-transition-fast),
+    border-color var(--basefn-transition-fast);
+}
+
+.basefn-resizable__handle--horizontal .basefn-resizable__handle-grip {
+  width: 12px;
+  height: 24px;
+}
+
+.basefn-resizable__handle--vertical .basefn-resizable__handle-grip {
+  width: 24px;
+  height: 12px;
+}
+
+/* Grip dots pattern */
+.basefn-resizable__handle-grip::after {
+  content: "";
+  display: block;
+  border-radius: var(--basefn-radius-full);
+}
+
+.basefn-resizable__handle--horizontal .basefn-resizable__handle-grip::after {
+  width: 4px;
+  height: 16px;
+  background-image: radial-gradient(
+    circle,
+    var(--basefn-text-muted) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+.basefn-resizable__handle--vertical .basefn-resizable__handle-grip::after {
+  width: 16px;
+  height: 4px;
+  background-image: radial-gradient(
+    circle,
+    var(--basefn-text-muted) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+/* Hover and focus states */
+.basefn-resizable__handle:hover .basefn-resizable__handle-grip,
+.basefn-resizable__handle:focus-visible .basefn-resizable__handle-grip {
+  background-color: var(--basefn-bg-tertiary);
+  border-color: var(--basefn-color-primary);
+}
+
+.basefn-resizable__handle:focus-visible .basefn-resizable__handle-grip {
+  box-shadow: 0 0 0 var(--basefn-focus-ring-width) var(--basefn-focus-ring-color);
+}
+
+/* Hide line when grip is present */
+.basefn-resizable__handle--with-grip::after {
+  background-color: transparent;
+}
+
+.basefn-resizable__handle--with-grip:hover::after,
+.basefn-resizable__handle--with-grip:focus-visible::after {
+  background-color: transparent;
+}

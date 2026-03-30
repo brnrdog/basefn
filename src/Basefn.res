@@ -72,6 +72,8 @@ type gridJustifyContent = Basefn__Grid.justifyContent
 type gridAlignContent = Basefn__Grid.alignContent
 type gridItemColumnSpan = Basefn__Grid.Item.columnSpan
 type gridItemRowSpan = Basefn__Grid.Item.rowSpan
+type resizableDirection = Basefn__Resizable.direction
+type resizablePanel = Basefn__Resizable.panel
 type breakpoint = Basefn__Responsive.breakpoint
 type currentBreakpoint = Basefn__Responsive.currentBreakpoint
 type responsiveValue<'a> = Basefn__Responsive.responsiveValue<'a>
@@ -230,6 +232,9 @@ module ContextMenu = {
 }
 module Spotlight = {
   include Basefn__Spotlight
+}
+module Resizable = {
+  include Basefn__Resizable
 }
 
 // Responsive Utilities
