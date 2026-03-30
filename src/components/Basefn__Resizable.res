@@ -66,28 +66,53 @@ let genId: unit => string = %raw(`function() {
   return "basefn-resizable-" + Math.random().toString(36).substr(2, 9);
 }`)
 
-// Set up mousedown/touchstart delegation on a container element by ID
-let setupDragListeners: (string, (int, Dom.event) => unit) => unit = %raw(`function(containerId, onStart) {
-  requestAnimationFrame(function() {
-    var container = document.getElementById(containerId);
-    if (!container) return;
+// Global event delegation: register callbacks by container ID, one document
+// listener handles all instances. No timing dependency on DOM rendering.
+let registerInstance: (string, (int, Dom.event) => unit) => unit = %raw(`function(id, cb) {
+  if (!window.__basefn_resizable) {
+    window.__basefn_resizable = {};
 
     function handler(e) {
       var target = e.target;
-      var handle = target.closest ? target.closest(".basefn-resizable__handle") : null;
-      if (!handle || !container.contains(handle)) return;
-      var handles = container.querySelectorAll(".basefn-resizable__handle");
-      for (var i = 0; i < handles.length; i++) {
-        if (handles[i] === handle) {
-          onStart(i, e);
-          return;
+      if (!target || !target.closest) return;
+      var handle = target.closest(".basefn-resizable__handle");
+      if (!handle) return;
+      var container = handle.closest(".basefn-resizable");
+      if (!container || !container.id) return;
+      var entry = window.__basefn_resizable[container.id];
+      if (!entry) return;
+      // Find the handle index among direct children of the container
+      var children = container.children;
+      var handleIndex = 0;
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].classList.contains("basefn-resizable__handle")) {
+          if (children[i] === handle) {
+            entry(handleIndex, e);
+            return;
+          }
+          handleIndex++;
         }
       }
     }
 
-    container.addEventListener("mousedown", handler);
-    container.addEventListener("touchstart", handler, { passive: false });
-  });
+    document.addEventListener("mousedown", handler);
+    document.addEventListener("touchstart", handler, { passive: false });
+  }
+
+  window.__basefn_resizable[id] = cb;
+}`)
+
+// Lazily attach mousedown/touchstart directly to a handle element.
+// Called from onMouseEnter so the element is guaranteed to exist.
+let initHandle: (Dom.element, int, (int, Dom.event) => unit) => unit = %raw(`function(el, idx, cb) {
+  if (el._basefnInit) return;
+  el._basefnInit = true;
+  el.addEventListener("mousedown", function(e) { cb(idx, e); });
+  el.addEventListener("touchstart", function(e) { cb(idx, e); }, { passive: false });
+}`)
+
+let getCurrentTarget: Dom.event => Dom.element = %raw(`function(e) {
+  return e.currentTarget;
 }`)
 
 type dragInfo = {
@@ -234,8 +259,8 @@ let make = (
     }
   }
 
-  // Set up mousedown/touchstart via event delegation
-  setupDragListeners(containerId, startDrag)
+  // Register this instance for global event delegation
+  registerInstance(containerId, startDrag)
 
   let containerClass =
     "basefn-resizable basefn-resizable--" ++
@@ -275,6 +300,10 @@ let make = (
         <div
           key={"handle-" ++ Int.toString(index)}
           class={handleClass}
+          onMouseEnter={evt => {
+            let el = getCurrentTarget(evt)
+            initHandle(el, index, startDrag)
+          }}
           onKeyDown={evt => handleKeyDown(index, evt)}
           role="separator"
           tabIndex={0}
