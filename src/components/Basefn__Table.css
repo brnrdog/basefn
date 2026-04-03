@@ -1,0 +1,79 @@
+@import '../styles/variables.css';
+
+.basefn-table-wrapper {
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--basefn-border-primary);
+  border-radius: var(--basefn-radius-lg);
+}
+
+.basefn-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--basefn-font-family);
+  font-size: var(--basefn-font-size-sm);
+  color: var(--basefn-text-primary);
+}
+
+.basefn-table__head {
+  background-color: var(--basefn-bg-secondary);
+}
+
+.basefn-table__th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: var(--basefn-font-weight-semibold);
+  font-size: var(--basefn-font-size-xs);
+  color: var(--basefn-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--basefn-border-primary);
+  white-space: nowrap;
+}
+
+.basefn-table__td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--basefn-border-primary);
+  color: var(--basefn-text-primary);
+}
+
+.basefn-table__body .basefn-table__row:last-child .basefn-table__td {
+  border-bottom: none;
+}
+
+.basefn-table__row {
+  transition: background-color var(--basefn-transition-fast);
+}
+
+.basefn-table__body .basefn-table__row:hover {
+  background-color: var(--basefn-bg-secondary);
+}
+
+/* Striped variant */
+.basefn-table--striped .basefn-table__body .basefn-table__row:nth-child(even) {
+  background-color: var(--basefn-bg-secondary);
+}
+
+.basefn-table--striped .basefn-table__body .basefn-table__row:nth-child(even):hover {
+  background-color: var(--basefn-bg-tertiary);
+}
+
+/* Footer */
+.basefn-table__foot {
+  background-color: var(--basefn-bg-secondary);
+}
+
+.basefn-table__foot .basefn-table__td {
+  font-weight: var(--basefn-font-weight-medium);
+  border-bottom: none;
+  border-top: 1px solid var(--basefn-border-primary);
+}
+
+/* Caption */
+.basefn-table__caption {
+  padding: 0.75rem 1rem;
+  font-size: var(--basefn-font-size-sm);
+  color: var(--basefn-text-muted);
+  caption-side: bottom;
+  text-align: left;
+}
