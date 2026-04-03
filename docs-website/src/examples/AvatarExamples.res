@@ -23,4 +23,22 @@ let examples: array<DocsExample.t> = [
     </div>,
     code: `<Avatar src="https://i.pravatar.cc" name="User 1" />`,
   },
+  {
+    title: "Fallback",
+    description: "When no image is provided, the avatar shows initials from the name or a default icon.",
+    demo: <div style="display: flex; gap: 1rem; align-items: center;">
+      <Avatar name="Alice Brown" size={Avatar.Sm} />
+      <Avatar name="Bob Carter" size={Avatar.Md} />
+      <Avatar name="Charlie Davis" size={Avatar.Lg} />
+      <Avatar size={Avatar.Md} />
+    </div>,
+    code: `// Shows initials "AB"
+<Avatar name="Alice Brown" />
+
+// Shows initials "BC"
+<Avatar name="Bob Carter" />
+
+// Shows default User icon
+<Avatar />`,
+  },
 ]

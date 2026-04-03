@@ -39,4 +39,25 @@ let charCount = Computed.make(() => String.length(Signal.get(value)))
   <Typography text={charCount} variant={Typography.Small} />
 </div>`,
   },
+  {
+    title: "Rows, MaxLength, and ReadOnly",
+    description: "Control the textarea height, character limit, and read-only state.",
+    demo: <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+      <div>
+        <Label text="Short note (2 rows, max 100 chars)" />
+        <Textarea value={Static("")} placeholder="Brief note..." rows={2} maxLength={100} />
+      </div>
+      <div>
+        <Label text="Read-only content" />
+        <Textarea value={Static("This content cannot be edited.")} readOnly={true} />
+      </div>
+      <div>
+        <Label text="Error state" />
+        <Textarea value={Static("")} placeholder="Required field..." error={true} />
+      </div>
+    </div>,
+    code: `<Textarea value rows={2} maxLength={100} />
+<Textarea value readOnly={true} />
+<Textarea value error={true} />`,
+  },
 ]

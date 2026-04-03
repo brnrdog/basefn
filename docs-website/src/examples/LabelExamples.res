@@ -25,4 +25,14 @@ let examples: array<DocsExample.t> = [
 <Label text="Password" required={true} />
 <Input value={Signal.make("")} placeholder="Enter password" />`,
   },
+  {
+    title: "Label with htmlFor",
+    description: "Associate a label with a form control using htmlFor.",
+    demo: <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <Label text="Username" htmlFor="username-input" />
+      <Input value={Static("")} placeholder="Click the label above" name="username-input" />
+    </div>,
+    code: `<Label text="Username" htmlFor="username-input" />
+<Input value={Static("")} name="username-input" />`,
+  },
 ]

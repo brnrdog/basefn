@@ -78,5 +78,28 @@ let options = Signal.make([
 
 <Select value options />`,
     },
+    {
+      title: "Placeholder and Sizes",
+      description: "Select with a placeholder option and different sizes.",
+      demo: {
+        let value = Signal.make("")
+        let options = Signal.make([
+          {Select.value: "red", label: "Red"},
+          {value: "green", label: "Green"},
+          {value: "blue", label: "Blue"},
+        ])
+        <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 300px;">
+          <Select value options placeholder="Choose a color..." size={Select.Sm} name="color-sm" />
+          <Select value options placeholder="Choose a color..." size={Select.Md} name="color-md" />
+          <Select value options placeholder="Choose a color..." size={Select.Lg} name="color-lg" />
+        </div>
+      },
+      code: `<Select
+  value options
+  placeholder="Choose a color..."
+  size={Select.Md}
+  name="color"
+/>`,
+    },
   ]
 }

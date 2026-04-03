@@ -91,5 +91,50 @@ let onClick = event => {
 </div>
 `,
     },
+    {
+      title: "Sizes",
+      description: "Buttons in small, medium, and large sizes.",
+      demo: <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+        <Button size={Button.Sm}> {text("Small")} </Button>
+        <Button size={Button.Md}> {text("Medium")} </Button>
+        <Button size={Button.Lg}> {text("Large")} </Button>
+      </div>,
+      code: `<Button size={Button.Sm}> {text("Small")} </Button>
+<Button size={Button.Md}> {text("Medium")} </Button>
+<Button size={Button.Lg}> {text("Large")} </Button>`,
+    },
+    {
+      title: "Loading State",
+      description: "Buttons show a spinner and disable interaction while loading.",
+      demo: {
+        let loading = Signal.make(false)
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <Button
+            loading={ReactiveProp.Reactive(loading)}
+            onClick={_ => {
+              Signal.set(loading, true)
+              let _ = setTimeout(() => Signal.set(loading, false), 2000)
+            }}
+          >
+            {text("Save Changes")}
+          </Button>
+          <Button variant={Button.Secondary} loading={ReactiveProp.Static(true)}>
+            {text("Always Loading")}
+          </Button>
+        </div>
+      },
+      code: `let loading = Signal.make(false)
+
+<Button
+  loading={ReactiveProp.Reactive(loading)}
+  onClick={_ => {
+    Signal.set(loading, true)
+    let _ = setTimeout(() =>
+      Signal.set(loading, false), 2000)
+  }}
+>
+  {text("Save Changes")}
+</Button>`,
+    },
   ]
 }

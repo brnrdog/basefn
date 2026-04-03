@@ -67,5 +67,27 @@ let onChange = e => {
 </div>
         `,
     },
+    {
+      title: "Sizes",
+      description: "Inputs in small, medium, and large sizes.",
+      demo: <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 300px;">
+        <Input value={Static("")} placeholder="Small" size={Input.Sm} />
+        <Input value={Static("")} placeholder="Medium (default)" size={Input.Md} />
+        <Input value={Static("")} placeholder="Large" size={Input.Lg} />
+      </div>,
+      code: `<Input value={Static("")} placeholder="Small" size={Input.Sm} />
+<Input value={Static("")} placeholder="Medium" size={Input.Md} />
+<Input value={Static("")} placeholder="Large" size={Input.Lg} />`,
+    },
+    {
+      title: "Error and ReadOnly",
+      description: "Inputs with error styling and read-only state.",
+      demo: <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 300px;">
+        <Input value={Static("invalid@")} error={true} placeholder="Email" type_=Input.Email />
+        <Input value={Static("Read-only value")} readOnly={true} />
+      </div>,
+      code: `<Input value={Static("invalid@")} error={true} />
+<Input value={Static("Read-only value")} readOnly={true} />`,
+    },
   ]
 }
