@@ -4,7 +4,7 @@ open Xote
 
 type inputType = Text | Email | Password | Number | Tel | Url | Search | Date | Time
 
-type inputSize = Sm | Md
+type inputSize = Sm | Md | Lg
 
 type radius = Full | Md
 
@@ -22,6 +22,14 @@ let inputTypeToString = (type_: inputType) => {
   }
 }
 
+let sizeToString = (size: inputSize) => {
+  switch size {
+  | Sm => "sm"
+  | Md => "md"
+  | Lg => "lg"
+  }
+}
+
 @jsx.component
 let make = (
   ~value: ReactiveProp.t<string>,
@@ -29,20 +37,24 @@ let make = (
   ~type_: inputType=Text,
   ~placeholder: string="",
   ~disabled=ReactiveProp.static(false),
-  ~size=Md,
-  ~radius=Md,
+  ~readOnly: bool=false,
+  ~size: inputSize=Md,
+  ~radius: radius=Md,
+  ~error: bool=false,
   ~name=?,
   ~style=?,
 ) => {
   let class = {
+    let sizeClass = " basefn-input--" ++ sizeToString(size)
     let radiusClass = switch radius {
-    | Full => "basefn-input--radius-full"
+    | Full => " basefn-input--radius-full"
     | _ => ""
     }
-
-    "basefn-input " ++ radiusClass
+    let errorClass = error ? " basefn-input--error" : ""
+    "basefn-input" ++ sizeClass ++ radiusClass ++ errorClass
   }
   <input
-    class ?style type_={inputTypeToString(type_)} placeholder value={value} disabled name ?onInput
+    class ?style type_={inputTypeToString(type_)} placeholder value={value} disabled readOnly name
+    ?onInput
   />
 }
