@@ -1,0 +1,67 @@
+@import '../styles/variables.css';
+
+.basefn-pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--basefn-font-family);
+}
+
+.basefn-pagination__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  border: 1px solid var(--basefn-border-primary);
+  border-radius: var(--basefn-radius-md);
+  background-color: var(--basefn-bg-primary);
+  color: var(--basefn-text-primary);
+  font-size: var(--basefn-font-size-sm);
+  font-family: var(--basefn-font-family);
+  cursor: pointer;
+  transition: all var(--basefn-transition-fast);
+  outline: none;
+}
+
+.basefn-pagination__btn:hover:not(:disabled) {
+  background-color: var(--basefn-bg-secondary);
+}
+
+.basefn-pagination__btn:focus-visible {
+  outline: var(--basefn-focus-ring-width) solid var(--basefn-focus-ring-color);
+  outline-offset: var(--basefn-focus-ring-offset);
+}
+
+.basefn-pagination__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.basefn-pagination__prev,
+.basefn-pagination__next {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.basefn-pagination__page--active {
+  background-color: var(--basefn-color-primary);
+  border-color: var(--basefn-color-primary);
+  color: white;
+}
+
+.basefn-pagination__page--active:hover:not(:disabled) {
+  background-color: var(--basefn-color-primary-hover);
+  border-color: var(--basefn-color-primary-hover);
+}
+
+.basefn-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  color: var(--basefn-text-muted);
+  font-size: var(--basefn-font-size-sm);
+}
