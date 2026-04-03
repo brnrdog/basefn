@@ -339,13 +339,7 @@ module DocsSidebar = {
     let grouped = groupByCategory(components)
     let categories = [
       "Learn",
-      "Form",
-      "Foundation",
-      "Display",
-      "Navigation",
-      "Interactive",
-      "Layout",
-      "Media",
+      "Components",
     ]
 
     <nav class="docs-sidebar">
