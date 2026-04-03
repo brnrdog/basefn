@@ -16,8 +16,8 @@ let variantToString = (variant: variant) => {
 let make = (
   ~children: Xote__JSX.element,
   ~variant: variant=Default,
-  ~header: option<string>=?,
-  ~footer: option<string>=?,
+  ~header: option<Component.node>=?,
+  ~footer: option<Component.node>=?,
   ~style: string="",
   ~className: string="",
   ~padding: bool=true,
@@ -39,12 +39,12 @@ let make = (
 
   <div class={getClassName()} style>
     {switch header {
-    | Some(text) => <div class="basefn-card__header"> {Component.text(text)} </div>
+    | Some(content) => <div class="basefn-card__header"> {content} </div>
     | None => <empty />
     }}
     <div class="basefn-card__body"> {children} </div>
     {switch footer {
-    | Some(text) => <div class="basefn-card__footer"> {Component.text(text)} </div>
+    | Some(content) => <div class="basefn-card__footer"> {content} </div>
     | None => <empty />
     }}
   </div>
