@@ -20,15 +20,21 @@ let make = (
   ~footer: option<string>=?,
   ~style: string="",
   ~className: string="",
+  ~padding: bool=true,
 ) => {
   let getClassName = () => {
     let variantClass = "basefn-card--" ++ variantToString(variant)
+    let paddingClass = if !padding {
+      " basefn-card--no-padding"
+    } else {
+      ""
+    }
     let customClass = if className !== "" {
       " " ++ className
     } else {
       ""
     }
-    "basefn-card " ++ variantClass ++ customClass
+    "basefn-card " ++ variantClass ++ paddingClass ++ customClass
   }
 
   <div class={getClassName()} style>

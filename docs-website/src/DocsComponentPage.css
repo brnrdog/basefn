@@ -47,10 +47,6 @@
   border-radius: var(--docs-radius-xl);
 }
 
-.docs-component-example__card .basefn-card__body {
-  padding: 0;
-}
-
 .docs-component-example__split {
   display: grid;
   grid-template-columns: 1fr 1fr;

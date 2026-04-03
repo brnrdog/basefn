@@ -59,7 +59,7 @@ let make = (~componentName: string) => {
               {Component.text(example.description)}
             </p>
           </div>
-          <Card className="docs-component-example__card">
+          <Card className="docs-component-example__card" padding={false}>
             <div class="docs-component-example__split">
               <div class="docs-component-demo"> {example.demo} </div>
               <CodeBlock code={example.code} />
