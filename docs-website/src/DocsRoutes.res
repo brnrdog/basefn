@@ -6,10 +6,9 @@ type componentInfo = {
 
 // Raw paths without base path
 let rawPaths = [
-  // Form Components
+  // Learn
   {name: "Getting Started", category: "Learn", path: "/getting-started"},
-  {name: "API Reference", category: "Learn", path: "/api"},
-  {name: "Changelog", category: "Learn", path: "/changelog"},
+  // Form Components
   {name: "Button", category: "Form", path: "/component/button"},
   {name: "Input", category: "Form", path: "/component/input"},
   {name: "Textarea", category: "Form", path: "/component/textarea"},

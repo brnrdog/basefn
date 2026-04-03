@@ -59,6 +59,8 @@
 
 /* Results list */
 .basefn-spotlight__results {
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding: var(--basefn-spacing-sm) 0;
 }

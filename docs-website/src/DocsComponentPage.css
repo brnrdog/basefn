@@ -131,6 +131,13 @@
   border-radius: 0;
 }
 
+/* Remove default demo padding/alignment for Resizable demos */
+.docs-component-demo:has(.basefn-resizable) {
+  padding: 0;
+  display: block;
+  min-height: auto;
+}
+
 /* Special handling for layout demos that use position: fixed */
 .docs-component-demo .basefn-app-layout {
   position: relative;
