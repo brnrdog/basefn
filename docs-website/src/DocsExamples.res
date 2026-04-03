@@ -35,6 +35,12 @@ let getExamples = (componentName: string): array<DocsExample.t> => {
   | "app-layout" => AppLayoutExamples.examples
   | "spotlight" => SpotlightExamples.examples
   | "resizable" => ResizableExamples.examples
+  | "table" => TableExamples.examples
+  | "pagination" => PaginationExamples.examples
+  | "collapsible" => CollapsibleExamples.examples
+  | "combobox" => ComboboxExamples.examples
+  | "calendar" => CalendarExamples.examples
+  | "date-picker" => DatePickerExamples.examples
   | _ => []
   }
 }

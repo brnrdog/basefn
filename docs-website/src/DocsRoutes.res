@@ -51,6 +51,13 @@ let rawPaths = [
   {name: "Resizable", category: "Layout", path: "/component/resizable"},
   // Media Components
   {name: "Icon", category: "Media", path: "/component/icon"},
+  // Data Components
+  {name: "Table", category: "Data", path: "/component/table"},
+  {name: "Pagination", category: "Data", path: "/component/pagination"},
+  {name: "Combobox", category: "Form", path: "/component/combobox"},
+  {name: "Calendar", category: "Interactive", path: "/component/calendar"},
+  {name: "DatePicker", category: "Interactive", path: "/component/date-picker"},
+  {name: "Collapsible", category: "Navigation", path: "/component/collapsible"},
 ]
 
 // All components - paths are relative to Router basePath
