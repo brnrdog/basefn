@@ -697,16 +697,16 @@ module Demo = {
           {Component.text("Show contextual information on hover.")}
         </p>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <Tooltip content="This appears on top" position={Tooltip.Top}>
+          <Tooltip content={Component.text("This appears on top")} position={Tooltip.Top}>
             <Button label={Static("Hover me )(top)")} variant={Button.Secondary} />
           </Tooltip>
-          <Tooltip content="This appears on bottom" position={Tooltip.Bottom}>
+          <Tooltip content={Component.text("This appears on bottom")} position={Tooltip.Bottom}>
             <Button label={Static("Hover me )(bottom)")} variant={Button.Secondary} />
           </Tooltip>
-          <Tooltip content="This appears on left" position={Tooltip.Left}>
+          <Tooltip content={Component.text("This appears on left")} position={Tooltip.Left}>
             <Button label={Static("Hover me )(left)")} variant={Button.Secondary} />
           </Tooltip>
-          <Tooltip content="This appears on right" position={Tooltip.Right}>
+          <Tooltip content={Component.text("This appears on right")} position={Tooltip.Right}>
             <Button label={Static("Hover me )(right)")} variant={Button.Secondary} />
           </Tooltip>
         </div>

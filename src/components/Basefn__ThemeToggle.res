@@ -19,7 +19,7 @@ let make = (~size: [#Sm | #Md | #Lg]=#Md) => {
     }
   })
 
-  <Basefn__Tooltip content="Toggle theme" position={Bottom}>
+  <Basefn__Tooltip content={Component.text("Toggle theme")} position={Bottom}>
     <Basefn__Button
       variant=Ghost onClick={handleClick} class={"basefn-theme-toggle"->ReactiveProp.static}
     >
