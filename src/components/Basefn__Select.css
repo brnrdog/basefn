@@ -4,12 +4,8 @@
   display: block;
   width: 100%;
   font-family: var(--basefn-font-family);
-  font-size: var(--basefn-font-size-base);
   font-weight: var(--basefn-font-weight-normal);
   line-height: var(--basefn-line-height-normal);
-  height: var(--basefn-form-input-height);
-  padding: var(--basefn-form-input-padding-y) var(--basefn-form-input-padding-x);
-  padding-right: calc(var(--basefn-form-input-padding-x) * 2 + 1em);
   background-color: var(--basefn-form-input-bg);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -22,6 +18,28 @@
   appearance: none;
   cursor: pointer;
   transition: border-color var(--basefn-transition-fast), box-shadow var(--basefn-transition-fast);
+}
+
+/* Sizes */
+.basefn-select--sm {
+  font-size: var(--basefn-font-size-xs);
+  height: 1.75rem;
+  padding: 0 var(--basefn-form-input-padding-x);
+  padding-right: calc(var(--basefn-form-input-padding-x) * 2 + 1em);
+}
+
+.basefn-select--md {
+  font-size: var(--basefn-font-size-base);
+  height: var(--basefn-form-input-height);
+  padding: var(--basefn-form-input-padding-y) var(--basefn-form-input-padding-x);
+  padding-right: calc(var(--basefn-form-input-padding-x) * 2 + 1em);
+}
+
+.basefn-select--lg {
+  font-size: var(--basefn-font-size-base);
+  height: 2.75rem;
+  padding: var(--basefn-form-input-padding-y) var(--basefn-form-input-padding-x);
+  padding-right: calc(var(--basefn-form-input-padding-x) * 2 + 1em);
 }
 
 .basefn-select:focus {

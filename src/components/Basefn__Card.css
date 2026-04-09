@@ -27,6 +27,13 @@
   background-color: var(--basefn-bg-secondary);
 }
 
+/* No padding */
+.basefn-card--no-padding .basefn-card__header,
+.basefn-card--no-padding .basefn-card__body,
+.basefn-card--no-padding .basefn-card__footer {
+  padding: 0;
+}
+
 /* Variants */
 .basefn-card--default {
   background-color: var(--basefn-bg-primary);

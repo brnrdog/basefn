@@ -4,17 +4,33 @@
   display: block;
   width: 100%;
   font-family: var(--basefn-font-family);
-  font-size: var(--basefn-font-size-sm);
   font-weight: var(--basefn-font-weight-normal);
   line-height: var(--basefn-line-height-normal);
-  height: var(--basefn-form-input-height);
-  padding: var(--basefn-form-input-padding-y) var(--basefn-form-input-padding-x);
   background-color: var(--basefn-form-input-bg);
   color: var(--basefn-form-input-text);
   border: var(--basefn-border-width) solid var(--basefn-form-input-border);
   border-radius: var(--basefn-radius-lg);
   outline: none;
   transition: border-color var(--basefn-transition-fast), box-shadow var(--basefn-transition-fast);
+}
+
+/* Sizes */
+.basefn-input--sm {
+  font-size: var(--basefn-font-size-xs);
+  height: 1.75rem;
+  padding: 0 var(--basefn-form-input-padding-x);
+}
+
+.basefn-input--md {
+  font-size: var(--basefn-font-size-sm);
+  height: var(--basefn-form-input-height);
+  padding: var(--basefn-form-input-padding-y) var(--basefn-form-input-padding-x);
+}
+
+.basefn-input--lg {
+  font-size: var(--basefn-font-size-base);
+  height: 2.75rem;
+  padding: var(--basefn-form-input-padding-y) var(--basefn-form-input-padding-x);
 }
 
 .basefn-input::placeholder {
@@ -36,6 +52,26 @@
 
 .basefn-input:disabled::placeholder {
   color: var(--basefn-form-input-disabled-text);
+}
+
+.basefn-input:read-only {
+  background-color: var(--basefn-bg-secondary);
+  cursor: default;
+}
+
+.basefn-input:read-only:focus {
+  border-color: var(--basefn-form-input-border);
+  box-shadow: none;
+}
+
+/* Error state */
+.basefn-input--error {
+  border-color: var(--basefn-color-error);
+}
+
+.basefn-input--error:focus {
+  border-color: var(--basefn-color-error);
+  box-shadow: 0 0 0 var(--basefn-focus-ring-width) rgba(239, 68, 68, 0.2);
 }
 
 .basefn-input--radius-full {

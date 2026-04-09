@@ -74,6 +74,9 @@ type gridItemColumnSpan = Basefn__Grid.Item.columnSpan
 type gridItemRowSpan = Basefn__Grid.Item.rowSpan
 type resizableDirection = Basefn__Resizable.direction
 type resizablePanel = Basefn__Resizable.panel
+type tableVariant = Basefn__Table.variant
+type comboboxOption = Basefn__Combobox.comboboxOption
+type calendarDate = Basefn__Calendar.date
 type breakpoint = Basefn__Responsive.breakpoint
 type currentBreakpoint = Basefn__Responsive.currentBreakpoint
 type responsiveValue<'a> = Basefn__Responsive.responsiveValue<'a>
@@ -235,6 +238,26 @@ module Spotlight = {
 }
 module Resizable = {
   include Basefn__Resizable
+}
+
+// New components
+module Table = {
+  include Basefn__Table
+}
+module Pagination = {
+  include Basefn__Pagination
+}
+module Collapsible = {
+  include Basefn__Collapsible
+}
+module Combobox = {
+  include Basefn__Combobox
+}
+module Calendar = {
+  include Basefn__Calendar
+}
+module DatePicker = {
+  include Basefn__DatePicker
 }
 
 // Responsive Utilities

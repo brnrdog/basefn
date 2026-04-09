@@ -39,3 +39,24 @@
 .basefn-textarea:disabled::placeholder {
   color: var(--basefn-form-input-disabled-text);
 }
+
+.basefn-textarea:read-only {
+  background-color: var(--basefn-bg-secondary);
+  cursor: default;
+  resize: none;
+}
+
+.basefn-textarea:read-only:focus {
+  border-color: var(--basefn-form-input-border);
+  box-shadow: none;
+}
+
+/* Error state */
+.basefn-textarea--error {
+  border-color: var(--basefn-color-error);
+}
+
+.basefn-textarea--error:focus {
+  border-color: var(--basefn-color-error);
+  box-shadow: 0 0 0 var(--basefn-focus-ring-width) rgba(239, 68, 68, 0.2);
+}

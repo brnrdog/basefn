@@ -146,9 +146,10 @@ let make = (
         | _ => ()
         }
 
-        let itemClass =
+        let itemClass = Computed.make(() =>
           "basefn-spotlight__item" ++
           (index === Signal.get(activeIndex) ? " basefn-spotlight__item--active" : "")
+        )
 
         let _ = elements->Array.push(
           <button key={item.id} class={itemClass} onClick={_ => handleSelect(item)}>

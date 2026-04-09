@@ -3,7 +3,7 @@
 open Xote
 
 @jsx.component
-let make = (~text: string, ~required: bool=false) => {
+let make = (~text: string, ~required: bool=false, ~htmlFor: option<string>=?) => {
   let getClassName = () => {
     let base = "basefn-label"
     if required {
@@ -13,6 +13,16 @@ let make = (~text: string, ~required: bool=false) => {
     }
   }
 
-  // TODO: Add htmlFor support to Xote JSX props
-  <label class={getClassName()}> {Component.text(text)} </label>
+  let attrs = [Component.attr("class", getClassName())]
+  let attrs = switch htmlFor {
+  | Some(id) => Array.concat(attrs, [Component.attr("for", id)])
+  | None => attrs
+  }
+
+  Component.element(
+    "label",
+    ~attrs,
+    ~children=[Component.text(text)],
+    (),
+  )
 }

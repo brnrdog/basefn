@@ -39,4 +39,21 @@ let option2 = Signal.make(false)
   <Checkbox checked={option2} label="Email notifications" />
 </div>`,
   },
+  {
+    title: "Indeterminate State",
+    description: "Use indeterminate for \"select all\" patterns where some but not all items are checked.",
+    demo: <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+      <Checkbox checked={Signal.make(false)} label="Select all" indeterminate={true} />
+      <div style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+        <Checkbox checked={Signal.make(true)} label="Item A" />
+        <Checkbox checked={Signal.make(false)} label="Item B" />
+        <Checkbox checked={Signal.make(true)} label="Item C" />
+      </div>
+    </div>,
+    code: `<Checkbox
+  checked={Signal.make(false)}
+  label="Select all"
+  indeterminate={true}
+/>`,
+  },
 ]

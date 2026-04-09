@@ -29,8 +29,6 @@ type searchItem = {
 let buildSearchItems = (components: array<componentInfo>): array<searchItem> => {
   let items = [
     {title: "Getting Started", path: "/getting-started", section: "Learn"},
-    {title: "API Reference", path: "/api", section: "Learn"},
-    {title: "Changelog", path: "/changelog", section: "Learn"},
   ]
   let componentItems = components->Array.map(c => {
     {title: c.name, path: c.path, section: c.category}
@@ -254,7 +252,7 @@ module Header = {
               target="_blank"
               class="header-version"
             >
-              {Component.text("v1.3.0")}
+              {Component.text("v1.10.0")}
             </a>
             <nav class="header-nav">
               {Router.link(
@@ -267,12 +265,6 @@ module Header = {
                 ~to="/component/button",
                 ~attrs=[Component.attr("class", "header-nav-link")],
                 ~children=[Component.text("Components")],
-                (),
-              )}
-              {Router.link(
-                ~to="/api",
-                ~attrs=[Component.attr("class", "header-nav-link")],
-                ~children=[Component.text("API Reference")],
                 (),
               )}
             </nav>
@@ -347,13 +339,7 @@ module DocsSidebar = {
     let grouped = groupByCategory(components)
     let categories = [
       "Learn",
-      "Form",
-      "Foundation",
-      "Display",
-      "Navigation",
-      "Interactive",
-      "Layout",
-      "Media",
+      "Components",
     ]
 
     <nav class="docs-sidebar">
@@ -429,13 +415,6 @@ module Footer = {
                   (),
                 )}
               </li>
-              <li>
-                {Router.link(
-                  ~to="/api",
-                  ~children=[Component.text("API Reference")],
-                  (),
-                )}
-              </li>
             </ul>
           </div>
           <div class="footer-col">
@@ -450,13 +429,6 @@ module Footer = {
                 <a href="https://www.npmjs.com/package/basefn-ui" target="_blank">
                   {Component.text("npm")}
                 </a>
-              </li>
-              <li>
-                {Router.link(
-                  ~to="/changelog",
-                  ~children=[Component.text("Changelog")],
-                  (),
-                )}
               </li>
             </ul>
           </div>
@@ -519,24 +491,17 @@ let _ = Effect.run(() => {
   Some(() => removeWindowListener("keydown", handler))
 })->ignore
 
-// ---- Main layout with sidebar ----
+// ---- Content layout with sidebar ----
 @jsx.component
 let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Component.node) => {
-  let searchItems = buildSearchItems(components)
-
-  <div>
-    <Header />
-    {if showSidebar {
-      <div class="docs-wrapper">
-        <DocsSidebar components />
-        <main class="docs-content"> {children} </main>
-      </div>
-    } else {
-      <div class="full-width-wrapper">
-        <main> {children} </main>
-      </div>
-    }}
-    <Footer />
-    <SearchModal searchItems />
-  </div>
+  if showSidebar {
+    <div class="docs-wrapper">
+      <DocsSidebar components />
+      <main class="docs-content"> {children} </main>
+    </div>
+  } else {
+    <div class="full-width-wrapper">
+      <main> {children} </main>
+    </div>
+  }
 }

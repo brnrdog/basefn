@@ -14,42 +14,42 @@ type feature = {
 let features = [
   {
     title: "35+ Components",
-    description: "Forms, navigation, layout, display, and interactive components \u2014 everything you need to build complete UIs.",
+    description: "Forms, navigation, layout, display, and interactive components covering common UI patterns.",
     iconName: Basefn__Icon.Home,
     linkText: Some("Browse components"),
     linkTo: Some("/component/button"),
   },
   {
-    title: "Fine-Grained Reactivity",
-    description: "Built on Xote's signal-based architecture. Direct DOM updates without a virtual DOM, with automatic dependency tracking.",
+    title: "Signal-Based Reactivity",
+    description: "Built on Xote's signal architecture. Direct DOM updates with automatic dependency tracking, no virtual DOM.",
     iconName: Basefn__Icon.Star,
     linkText: Some("Learn more"),
     linkTo: Some("/getting-started"),
   },
   {
-    title: "Type-Safe by Default",
-    description: "Written entirely in ReScript with sound types, pattern matching, and compile-time safety for every component.",
+    title: "Type-Safe",
+    description: "Written in ReScript with sound types, pattern matching, and compile-time safety.",
     iconName: Basefn__Icon.Check,
-    linkText: Some("View API Reference"),
-    linkTo: Some("/api"),
+    linkText: None,
+    linkTo: None,
   },
   {
-    title: "Dark Mode Built-In",
-    description: "Every component supports light and dark themes out of the box with CSS custom properties and smooth transitions.",
+    title: "Dark Mode",
+    description: "Light and dark themes supported out of the box via CSS custom properties.",
     iconName: Basefn__Icon.Moon,
     linkText: None,
     linkTo: None,
   },
   {
     title: "Accessible & Responsive",
-    description: "Keyboard navigation, ARIA attributes, and responsive designs that work across devices and screen sizes.",
+    description: "Keyboard navigation, ARIA attributes, and responsive layouts included where applicable.",
     iconName: Basefn__Icon.User,
     linkText: None,
     linkTo: None,
   },
   {
-    title: "Lightweight & Fast",
-    description: "Minimal runtime overhead with no virtual DOM diffing. Components compile to efficient JavaScript with tree-shaking support.",
+    title: "Lightweight",
+    description: "No virtual DOM diffing. Components compile to plain JavaScript with minimal runtime overhead.",
     iconName: Basefn__Icon.Download,
     linkText: None,
     linkTo: None,
@@ -94,14 +94,14 @@ module Hero = {
           <span class="hero-logo-fn"> {Component.text("fn")} </span>
         </div>
         <h1>
-          {Component.text("Build beautiful interfaces with ")}
-          <em> {Component.text("reactive components")} </em>
+          {Component.text("A foundational UI library for ")}
+          <em> {Component.text("ReScript")} </em>
           {Component.text(" and ")}
-          <em> {Component.text("sound types")} </em>
+          <em> {Component.text("Xote")} </em>
         </h1>
         <p class="hero-subtitle">
           {Component.text(
-            "basefn is a comprehensive UI component library for ReScript and Xote. 35+ components with fine-grained reactivity, dark mode, and full type safety \u2014 no virtual DOM required.",
+            "basefn provides 35+ UI components with signal-based reactivity, dark mode, and type safety. Built for the ReScript and Xote ecosystem.",
           )}
         </p>
         <div class="hero-buttons">
@@ -138,110 +138,15 @@ module Features = {
     <section class="features-section">
       <div class="features-inner">
         <div class="features-heading">
-          <h2> {Component.text("Everything you need for modern UIs")} </h2>
+          <h2> {Component.text("What's included")} </h2>
           <p>
             {Component.text(
-              "A complete component library with reactive primitives, type safety, and thoughtful design patterns.",
+              "A set of foundational components for building UIs with ReScript and Xote.",
             )}
           </p>
         </div>
         <div class="features-grid">
           {Component.fragment(features->Array.map(f => <FeatureCard feature={f} />))}
-        </div>
-      </div>
-    </section>
-  }
-}
-
-// ---- Component Categories Section ----
-module Categories = {
-  type category = {
-    name: string,
-    description: string,
-    components: string,
-    path: string,
-    iconName: Basefn__Icon.name,
-  }
-
-  let categories = [
-    {
-      name: "Form",
-      description: "Input controls for collecting user data",
-      components: "Button, Input, Textarea, Select, Checkbox, Radio, Label",
-      path: "/component/button",
-      iconName: Basefn__Icon.Edit,
-    },
-    {
-      name: "Foundation",
-      description: "Essential building blocks for any interface",
-      components: "Badge, Spinner, Separator, Kbd, Typography",
-      path: "/component/badge",
-      iconName: Basefn__Icon.Star,
-    },
-    {
-      name: "Display",
-      description: "Components for presenting content",
-      components: "Card, Avatar, Grid, Alert, Progress",
-      path: "/component/card",
-      iconName: Basefn__Icon.Info,
-    },
-    {
-      name: "Navigation",
-      description: "Guide users through your application",
-      components: "Tabs, Accordion, Breadcrumb, Stepper, Timeline",
-      path: "/component/tabs",
-      iconName: Basefn__Icon.Menu,
-    },
-    {
-      name: "Interactive",
-      description: "Rich interactive experiences",
-      components: "Modal, Tooltip, Switch, Slider, Dropdown, Toast, Drawer, Spotlight",
-      path: "/component/modal",
-      iconName: Basefn__Icon.ExternalLink,
-    },
-    {
-      name: "Layout",
-      description: "Structure and organize your pages",
-      components: "Sidebar, Topbar, AppLayout",
-      path: "/component/sidebar",
-      iconName: Basefn__Icon.Home,
-    },
-  ]
-
-  @jsx.component
-  let make = () => {
-    <section class="categories-section">
-      <div class="categories-inner">
-        <div class="categories-heading">
-          <h2> {Component.text("Component Categories")} </h2>
-          <p>
-            {Component.text(
-              "Organized by purpose so you can find the right component for every part of your UI.",
-            )}
-          </p>
-        </div>
-        <div class="categories-grid">
-          {Component.fragment(
-            categories->Array.map(cat => {
-              Router.link(
-                ~to=cat.path,
-                ~attrs=[Component.attr("class", "category-card")],
-                ~children=[
-                  <div class="category-card-icon">
-                    {Basefn__Icon.make({name: cat.iconName, size: Md})}
-                  </div>,
-                  <h3> {Component.text(cat.name)} </h3>,
-                  <p class="category-card-desc">
-                    {Component.text(cat.description)}
-                  </p>,
-                  <p class="category-card-components">
-                    {Component.text(cat.components)}
-                  </p>,
-                ],
-                (),
-              )
-            }),
-          )}
         </div>
       </div>
     </section>
@@ -330,10 +235,10 @@ let make = () => {
     <section class="code-demo-section">
       <div class="code-demo-inner">
         <div class="code-demo-heading">
-          <h2> {Component.text("Simple, reactive, type-safe")} </h2>
+          <h2> {Component.text("Signals in, UI out")} </h2>
           <p>
             {Component.text(
-              "Components that work with Xote's signal system. Your mental model stays simple \u2014 update a signal, the UI reacts.",
+              "Components work with Xote's signal system. Update a signal, the UI reacts.",
             )}
           </p>
         </div>
@@ -393,10 +298,10 @@ module Community = {
   let make = () => {
     <section class="community-section">
       <div class="community-inner">
-        <h2> {Component.text("Ready to build?")} </h2>
+        <h2> {Component.text("Get started")} </h2>
         <p>
           {Component.text(
-            "basefn is open source and built for developers who value type safety, fine-grained reactivity, and clean component APIs.",
+            "basefn is open source and available on npm.",
           )}
         </p>
         <div class="community-links">
@@ -434,5 +339,5 @@ module Community = {
 // ---- Main page ----
 @jsx.component
 let make = () => {
-  Component.fragment([<Hero />, <Features />, <Categories />, <CodeDemo />, <Community />])
+  Component.fragment([<Hero />, <Features />, <CodeDemo />, <Community />])
 }

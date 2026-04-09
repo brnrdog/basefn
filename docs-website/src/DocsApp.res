@@ -53,22 +53,6 @@ let appRoutes = Router.routes([
     },
   },
   {
-    pattern: "/api",
-    render: _params => {
-      <DocsLayout components>
-        <ApiReference />
-      </DocsLayout>
-    },
-  },
-  {
-    pattern: "/changelog",
-    render: _params => {
-      <DocsLayout components>
-        <Changelog />
-      </DocsLayout>
-    },
-  },
-  {
     pattern: "/component/:name",
     render: params => {
       let componentName = Obj.magic(params)->Dict.get("name")->Option.getOr("button")
@@ -82,7 +66,14 @@ let appRoutes = Router.routes([
 module App = {
   @jsx.component
   let make = () => {
-    <div> {appRoutes} </div>
+    let searchItems = DocsLayout.buildSearchItems(components)
+
+    <div>
+      <DocsLayout.Header />
+      {appRoutes}
+      <DocsLayout.Footer />
+      <DocsLayout.SearchModal searchItems />
+    </div>
   }
 }
 
