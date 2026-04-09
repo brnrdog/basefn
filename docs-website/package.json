@@ -12,7 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "basefn": "file:..",
+    "basefn": "^1.11.0",
     "highlight.js": "^11.11.1",
     "rescript-signals": "^2.1.0",
     "xote": "^6.0.0"
