@@ -21,18 +21,18 @@ module CodeBlock = {
     }
 
     let buttonContent = Computed.make(() => {
-      [Component.text(Signal.get(copied) ? "Copied!" : "Copy")]
+      [Node.text(Signal.get(copied) ? "Copied!" : "Copy")]
     })
 
     <div class="docs-component-code">
       <div class="docs-component-code__header">
         <button class="docs-component-code__copy-btn" onClick={handleCopy}>
-          {Component.signalFragment(buttonContent)}
+          {Node.signalFragment(buttonContent)}
         </button>
       </div>
       <div class="docs-component-code__content">
         <pre>
-          <code class="language-rescript"> {Component.text(code)} </code>
+          <code class="language-rescript"> {Node.text(code)} </code>
         </pre>
       </div>
     </div>
@@ -56,7 +56,7 @@ let make = (~componentName: string) => {
           <div class="docs-component-example__header">
             <Typography text={ReactiveProp.Static(example.title)} variant={Typography.H4} />
             <p class="docs-component-example__description">
-              {Component.text(example.description)}
+              {Node.text(example.description)}
             </p>
           </div>
           <Card className="docs-component-example__card">
@@ -67,7 +67,7 @@ let make = (~componentName: string) => {
           </Card>
         </div>
       })
-      ->Component.fragment}
+      ->Node.fragment}
     </div>
   </div>
 }

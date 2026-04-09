@@ -23,7 +23,7 @@ let make = (~size: [#Sm | #Md | #Lg]=#Md) => {
     <Basefn__Button
       variant=Ghost onClick={handleClick} class={"basefn-theme-toggle"->ReactiveProp.static}
     >
-      {Component.signalFragment(icon)}
+      {Node.signalFragment(icon)}
     </Basefn__Button>
   </Basefn__Tooltip>
 }

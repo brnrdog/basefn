@@ -17,7 +17,7 @@ let examples: array<DocsExample.t> = {
                 <Typography
                   text={ReactiveProp.Static("Profile Settings")} variant={Typography.H5}
                 />
-                <p> {Component.text("Manage your profile information here.")} </p>
+                <p> {Node.text("Manage your profile information here.")} </p>
               </div>,
             },
             {
@@ -27,7 +27,7 @@ let examples: array<DocsExample.t> = {
                 <Typography
                   text={ReactiveProp.Static("Account Settings")} variant={Typography.H5}
                 />
-                <p> {Component.text("Manage your account settings here.")} </p>
+                <p> {Node.text("Manage your account settings here.")} </p>
               </div>,
             },
             {
@@ -37,7 +37,7 @@ let examples: array<DocsExample.t> = {
                 <Typography
                   text={ReactiveProp.Static("Notification Preferences")} variant={Typography.H5}
                 />
-                <p> {Component.text("Configure your notification preferences.")} </p>
+                <p> {Node.text("Configure your notification preferences.")} </p>
               </div>,
             },
           ]}

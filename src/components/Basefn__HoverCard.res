@@ -25,8 +25,8 @@ let alignToString = (align: align) => {
 
 @jsx.component
 let make = (
-  ~trigger: Component.node,
-  ~content: Component.node,
+  ~trigger: Node.node,
+  ~content: Node.node,
   ~position: position=Bottom,
   ~align: align=Center,
   ~openDelay: int=200,
@@ -94,6 +94,6 @@ let make = (
     <div class="basefn-hover-card__trigger">
       {trigger}
     </div>
-    {Component.signalFragment(hoverCardContent)}
+    {Node.signalFragment(hoverCardContent)}
   </div>
 }

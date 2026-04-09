@@ -48,7 +48,7 @@ let email = Signal.make("")
         <div style="display: flex; flex-direction: column; gap:2rem;">
           <Checkbox label="The button will only be enabled when checked" checked onChange />
           <div>
-            <Button disabled={Reactive(disabled)}> {Component.text("Submit")} </Button>
+            <Button disabled={Reactive(disabled)}> {Node.text("Submit")} </Button>
           </div>
         </div>
       },
@@ -62,7 +62,7 @@ let onChange = e => {
 <div style="display: flex; flex-direction: column; gap:2rem;">
   <Checkbox label="The button will only be enabled when checked" checked onChange />
   <div>
-    <Button disabled={Reactive(disabled)}> {Component.text("Submit")} </Button>
+    <Button disabled={Reactive(disabled)}> {Node.text("Submit")} </Button>
   </div>
 </div>
         `,

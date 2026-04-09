@@ -15,7 +15,7 @@ let orientationToString = (orientation: orientation) => {
 let make = (
   ~orientation: orientation=Horizontal,
   ~className: option<string>=?,
-  ~children: Component.node,
+  ~children: Node.node,
 ) => {
   let getClassName = () => {
     let baseClass = "basefn-button-group"

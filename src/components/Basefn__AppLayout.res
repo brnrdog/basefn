@@ -7,9 +7,9 @@ type topbarPosition = Inline | AboveAll
 
 @jsx.component
 let make = (
-  ~sidebar: option<Component.node>=?,
-  ~topbar: option<Component.node>=?,
-  ~children: Component.node,
+  ~sidebar: option<Node.node>=?,
+  ~topbar: option<Node.node>=?,
+  ~children: Node.node,
   ~contentWidth: contentWidth=FullWidth,
   ~noPadding: bool=false,
   ~sidebarSize: option<string>=?, // "sm" | "md" | "lg"

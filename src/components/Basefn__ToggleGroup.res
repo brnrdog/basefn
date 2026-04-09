@@ -98,9 +98,9 @@ let make = (
         onClick={_ => handleItemClick(item.value, isDisabled)}
         disabled={isDisabled}
       >
-        {Component.text(item.label)}
+        {Node.text(item.label)}
       </button>
     })
-    ->Component.fragment}
+    ->Node.fragment}
   </div>
 }

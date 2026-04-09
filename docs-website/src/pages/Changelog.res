@@ -11,7 +11,7 @@ module VersionEntry = {
         <Badge label={Signal.make(date)} variant={Badge.Secondary} />
       </div>
       <div>
-        {Component.list(changesSignal, change => {
+        {Node.list(changesSignal, change => {
           let (changeType, description) = change
           <div style="display: flex; gap: 0.5rem; margin-bottom: 0.25rem;">
             <Badge

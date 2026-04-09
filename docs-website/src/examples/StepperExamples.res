@@ -39,13 +39,13 @@ let examples: array<DocsExample.t> = [
             variant={Button.Secondary}
             onClick={_ => Signal.update(currentStep, step => step > 0 ? step - 1 : step)}
           >
-            {Component.text("Previous")}
+            {Node.text("Previous")}
           </Button>
           <Button
             variant={Button.Primary}
             onClick={_ => Signal.update(currentStep, step => step < 3 ? step + 1 : step)}
           >
-            {Component.text("Next")}
+            {Node.text("Next")}
           </Button>
         </div>
       </div>

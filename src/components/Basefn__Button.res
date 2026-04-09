@@ -14,7 +14,7 @@ let variantToString = (variant: variant) => {
 
 @jsx.component
 let make = (
-  ~children=Xote__JSX.null(),
+  ~children=XoteJSX.null(),
   ~class=ReactiveProp.static(""),
   ~disabled=ReactiveProp.static(false),
   ~label=ReactiveProp.static(""),

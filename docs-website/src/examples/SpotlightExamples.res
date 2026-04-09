@@ -73,7 +73,7 @@ let items: array<Spotlight.spotlightItem> = [
 ]
 
 <Button onClick={_ => Signal.set(isOpen, true)}>
-  {Component.text("Open Spotlight")}
+  {Node.text("Open Spotlight")}
 </Button>
 <Spotlight
   isOpen

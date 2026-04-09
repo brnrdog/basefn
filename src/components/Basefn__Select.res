@@ -26,8 +26,8 @@ let make = (
     }
   }
   <select name="test" class="basefn-select" value={value} disabled onChange>
-    {Component.list(options, opt =>
-      <option value={opt.value}> {Component.text(opt.label)} </option>
+    {Node.list(options, opt =>
+      <option value={opt.value}> {Node.text(opt.label)} </option>
     )}
   </select>
 }

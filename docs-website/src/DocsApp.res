@@ -86,4 +86,4 @@ module App = {
   }
 }
 
-Component.mountById(<App />, "root")
+Node.mountById(<App />, "root")

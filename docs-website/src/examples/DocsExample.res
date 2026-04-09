@@ -3,6 +3,6 @@ open Xote
 type t = {
   title: string,
   description: string,
-  demo: Component.node,
+  demo: Node.node,
   code: string,
 }

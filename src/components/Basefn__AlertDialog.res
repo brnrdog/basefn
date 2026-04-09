@@ -55,17 +55,17 @@ let make = (
         <div class="basefn-alert-dialog-backdrop" onClick={handleBackdropClick}>
           <div class="basefn-alert-dialog" role="alertdialog">
             <div class="basefn-alert-dialog__header">
-              <h2 class="basefn-alert-dialog__title"> {Component.text(title)} </h2>
+              <h2 class="basefn-alert-dialog__title"> {Node.text(title)} </h2>
             </div>
             <div class="basefn-alert-dialog__body">
-              <p class="basefn-alert-dialog__description"> {Component.text(description)} </p>
+              <p class="basefn-alert-dialog__description"> {Node.text(description)} </p>
             </div>
             <div class="basefn-alert-dialog__footer">
               <button class="basefn-alert-dialog__cancel" onClick={handleCancel}>
-                {Component.text(cancelLabel)}
+                {Node.text(cancelLabel)}
               </button>
               <button class={getConfirmButtonClass()} onClick={handleConfirm}>
-                {Component.text(confirmLabel)}
+                {Node.text(confirmLabel)}
               </button>
             </div>
           </div>
@@ -76,5 +76,5 @@ let make = (
     }
   })
 
-  Component.signalFragment(content)
+  Node.signalFragment(content)
 }

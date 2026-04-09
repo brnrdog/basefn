@@ -20,11 +20,11 @@ let sizeToString = (size: size) => {
 
 @jsx.component
 let make = (
-  ~logo: option<Component.node>=?,
+  ~logo: option<Node.node>=?,
   ~navItems: option<array<navItem>>=?,
-  ~leftContent: option<Component.node>=?,
-  ~centerContent: option<Component.node>=?,
-  ~rightContent: option<Component.node>=?,
+  ~leftContent: option<Node.node>=?,
+  ~centerContent: option<Node.node>=?,
+  ~rightContent: option<Node.node>=?,
   ~onMenuClick: option<unit => unit>=?,
   ~size: size=Md,
 ) => {
@@ -35,7 +35,7 @@ let make = (
       {switch onMenuClick {
       | Some(handler) =>
         <button class="basefn-topbar__menu-button" onClick={_ => handler()}>
-          {Component.text("\u2630")}
+          {Node.text("\u2630")}
         </button>
       | None => <> </>
       }}
@@ -58,10 +58,10 @@ let make = (
               "basefn-topbar__nav-item" ++ (item.active ? " basefn-topbar__nav-item--active" : "")
 
             <button key={Int.toString(index)} class={className} onClick={_ => item.onClick()}>
-              {Component.text(item.label)}
+              {Node.text(item.label)}
             </button>
           })
-          ->Component.fragment}
+          ->Node.fragment}
         </nav>
       | None => <> </>
       }}

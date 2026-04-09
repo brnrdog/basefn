@@ -173,24 +173,24 @@ let examples: array<DocsExample.t> = {
         <Button variant={Button.Primary}>
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <Icon name={Icon.Download} size={Icon.Sm} />
-            {Component.text("Download")}
+            {Node.text("Download")}
           </div>
         </Button>
         <Button variant={Button.Secondary}>
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <Icon name={Icon.Upload} size={Icon.Sm} />
-            {Component.text("Upload")}
+            {Node.text("Upload")}
           </div>
         </Button>
         <Button variant={Button.Ghost}>
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <Icon name={Icon.Trash} size={Icon.Sm} />
-            {Component.text("Delete")}
+            {Node.text("Delete")}
           </div>
         </Button>
         <Button variant={Button.Primary}>
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            {Component.text("Next")}
+            {Node.text("Next")}
             <Icon name={Icon.ChevronRight} size={Icon.Sm} />
           </div>
         </Button>
@@ -198,7 +198,7 @@ let examples: array<DocsExample.t> = {
       code: `<Button variant={Button.Primary}>
   <div style="display: flex; align-items: center; gap: 0.5rem;">
     <Icon name={Icon.Download} size={Icon.Sm} />
-    {Component.text("Download")}
+    {Node.text("Download")}
   </div>
 </Button>`,
     },

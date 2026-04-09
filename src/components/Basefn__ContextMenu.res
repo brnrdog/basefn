@@ -15,7 +15,7 @@ type menuContent =
 
 @jsx.component
 let make = (
-  ~trigger: Component.node,
+  ~trigger: Node.node,
   ~items: array<menuContent>,
   ~className: option<string>=?,
 ) => {
@@ -77,13 +77,13 @@ let make = (
                   onClick={_ => handleItemClick(onClick, disabled)}
                   disabled={disabled}
                 >
-                  {Component.text(label)}
+                  {Node.text(label)}
                 </button>
               }
             | Separator => <div key={Int.toString(index)} class="basefn-context-menu__separator" />
             }
           })
-          ->Component.fragment}
+          ->Node.fragment}
         </div>,
       ]
     } else {
@@ -93,6 +93,6 @@ let make = (
 
   <div class={getWrapperClass()} onContextMenu={handleContextMenu}>
     {trigger}
-    {Component.signalFragment(menuContent)}
+    {Node.signalFragment(menuContent)}
   </div>
 }

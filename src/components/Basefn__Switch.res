@@ -55,7 +55,7 @@ let make = (
       <div class="basefn-switch__slider" />
     </div>
     {switch label {
-    | Some(labelText) => <span class="basefn-switch-label"> {Component.text(labelText)} </span>
+    | Some(labelText) => <span class="basefn-switch-label"> {Node.text(labelText)} </span>
     | None => <> </>
     }}
   </label>

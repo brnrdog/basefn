@@ -13,7 +13,7 @@ let examples: array<DocsExample.t> = {
             value: "item1",
             title: "What is basefn-UI?",
             content: <p>
-              {Component.text(
+              {Node.text(
                 "basefn-UI is a modern ReScript UI component library built with Xote for fine-grained reactivity.",
               )}
             </p>,
@@ -22,7 +22,7 @@ let examples: array<DocsExample.t> = {
             value: "item2",
             title: "How do I install it?",
             content: <p>
-              {Component.text(
+              {Node.text(
                 "You can install basefn-UI via npm or use it directly in your ReScript project.",
               )}
             </p>,
@@ -30,7 +30,7 @@ let examples: array<DocsExample.t> = {
           {
             value: "item3",
             title: "Is it free?",
-            content: <p> {Component.text("Yes, basefn-UI is open source and free to use.")} </p>,
+            content: <p> {Node.text("Yes, basefn-UI is open source and free to use.")} </p>,
           },
         ]}
       />,
@@ -39,7 +39,7 @@ let examples: array<DocsExample.t> = {
     {
       value: "item1",
       title: "Question?",
-      content: <p>{Component.text("Answer here")}</p>,
+      content: <p>{Node.text("Answer here")}</p>,
     },
   ]}
 />`,

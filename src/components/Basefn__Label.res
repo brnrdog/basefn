@@ -14,5 +14,5 @@ let make = (~text: string, ~required: bool=false) => {
   }
 
   // TODO: Add htmlFor support to Xote JSX props
-  <label class={getClassName()}> {Component.text(text)} </label>
+  <label class={getClassName()}> {Node.text(text)} </label>
 }

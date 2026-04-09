@@ -66,10 +66,10 @@ let make = (
             <div class="basefn-toast__content">
               {switch title {
               | Some(titleText) =>
-                <div class="basefn-toast__title"> {Component.text(titleText)} </div>
+                <div class="basefn-toast__title"> {Node.text(titleText)} </div>
               | None => <> </>
               }}
-              <div class="basefn-toast__message"> {Component.text(message)} </div>
+              <div class="basefn-toast__message"> {Node.text(message)} </div>
             </div>
             <button
               class="basefn-toast__close"
@@ -78,7 +78,7 @@ let make = (
                 onClose()
               }}
             >
-              {Component.text("\u00d7")}
+              {Node.text("\u00d7")}
             </button>
           </div>
         </div>,
@@ -88,5 +88,5 @@ let make = (
     }
   })
 
-  Component.signalFragment(content)
+  Node.signalFragment(content)
 }

@@ -13,7 +13,7 @@ let make = () => {
     <Card>
       <pre>
         <code class="language-bash">
-          {Component.text("npm install basefn-ui")}
+          {Node.text("npm install basefn-ui")}
         </code>
       </pre>
     </Card>
@@ -30,7 +30,7 @@ let make = () => {
     <Card>
       <pre>
         <code class="language-rescript">
-          {Component.text(`open Xote
+          {Node.text(`open Xote
 open Basefn
 
 @jsx.component
@@ -60,7 +60,7 @@ let make = () => {
     <Card>
       <pre>
         <code class="language-rescript">
-          {Component.text(`// Static - value doesn't change
+          {Node.text(`// Static - value doesn't change
 <Button label={Static("Click me")} />
 
 // Reactive - value updates with signal
@@ -73,7 +73,7 @@ let text = Signal.make("Loading...")
     <Card>
       <pre>
         <code class="language-rescript">
-          {Component.text(`let name = Signal.make("")
+          {Node.text(`let name = Signal.make("")
 let email = Signal.make("")
 
 <div>

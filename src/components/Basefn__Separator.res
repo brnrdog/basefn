@@ -37,7 +37,7 @@ let make = (
   | Some(text) =>
     <div class={getClassName() ++ " basefn-separator--with-label"}>
       <div class="basefn-separator__line" />
-      <span class="basefn-separator__label"> {Component.text(text)} </span>
+      <span class="basefn-separator__label"> {Node.text(text)} </span>
       <div class="basefn-separator__line" />
     </div>
   | None => <div class={getClassName()} role="separator" />

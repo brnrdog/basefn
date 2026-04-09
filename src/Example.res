@@ -55,7 +55,7 @@ module ExampleForm = {
     ])
 
     <div style="max-width: 50rem; margin: auto;">
-      <h1> {Component.text("Contact Form Example")} </h1>
+      <h1> {Node.text("Contact Form Example")} </h1>
 
       <div style="margin-bottom: 1rem;">
         <Label text="Name" required={true} />
@@ -99,7 +99,7 @@ module ExampleForm = {
 
       <div style="display: flex; gap: 1rem;">
         <Button onClick={handleSubmit} variant={Button.Primary} disabled={Reactive(isSubmitting)}>
-          {Component.textSignal(() => Signal.get(isSubmitting) ? "Submitting..." : "Submit")}
+          {Node.signalText(() => Signal.get(isSubmitting) ? "Submitting..." : "Submit")}
         </Button>
         <Button label={Static("Cancel")} variant={Button.Ghost} />
       </div>
@@ -108,4 +108,4 @@ module ExampleForm = {
 }
 
 // Mount the example form
-Component.mountById(<ExampleForm />, "root")
+Node.mountById(<ExampleForm />, "root")

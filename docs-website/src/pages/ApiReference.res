@@ -11,29 +11,29 @@ module ComponentDoc = {
         <thead>
           <tr style="border-bottom: 1px solid var(--border);">
             <th style="text-align: left; padding: 0.5rem; font-weight: 600;">
-              {Component.text("Prop")}
+              {Node.text("Prop")}
             </th>
             <th style="text-align: left; padding: 0.5rem; font-weight: 600;">
-              {Component.text("Type")}
+              {Node.text("Type")}
             </th>
             <th style="text-align: left; padding: 0.5rem; font-weight: 600;">
-              {Component.text("Description")}
+              {Node.text("Description")}
             </th>
           </tr>
         </thead>
         <tbody>
-          {Component.list(propsSignal, prop => {
+          {Node.list(propsSignal, prop => {
             let (propName, propType, description) = prop
             <tr style="border-bottom: 1px solid var(--border);">
               <td style="padding: 0.5rem;">
                 <code style="background: var(--muted); padding: 0.125rem 0.25rem; border-radius: 0.25rem;">
-                  {Component.text(propName)}
+                  {Node.text(propName)}
                 </code>
               </td>
               <td style="padding: 0.5rem; color: var(--muted-foreground);">
-                {Component.text(propType)}
+                {Node.text(propType)}
               </td>
-              <td style="padding: 0.5rem;"> {Component.text(description)} </td>
+              <td style="padding: 0.5rem;"> {Node.text(description)} </td>
             </tr>
           })}
         </tbody>

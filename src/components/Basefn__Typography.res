@@ -75,8 +75,8 @@ let make = (
 
   let renderText = text =>
     switch text {
-    | ReactiveProp.Reactive(text) => Component.SignalText(text)
-    | ReactiveProp.Static(text) => Component.text(text)
+    | ReactiveProp.Reactive(text) => Node.SignalText(text)
+    | ReactiveProp.Static(text) => Node.text(text)
     }
 
   switch variant {

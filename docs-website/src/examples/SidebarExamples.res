@@ -13,7 +13,7 @@ let examples: array<DocsExample.t> = {
           style="height: 400px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden;"
         >
           <Sidebar
-            logo={<div> {Component.text("MyApp")} </div>}
+            logo={<div> {Node.text("MyApp")} </div>}
             sections={[
               {
                 title: None,
@@ -51,7 +51,7 @@ let examples: array<DocsExample.t> = {
               },
             ]}
             footer={<div style="font-size: 0.75rem; color: #9ca3af;">
-              {Component.text("v1.0.0")}
+              {Node.text("v1.0.0")}
             </div>}
           />
         </div>
@@ -59,7 +59,7 @@ let examples: array<DocsExample.t> = {
       code: `let activePage = Signal.make("dashboard")
 
 <Sidebar
-  logo={Some(<div>{Component.text("MyApp")}</div>)}
+  logo={Some(<div>{Node.text("MyApp")}</div>)}
   theme={Sidebar.Dark}
   sections={[
     {
@@ -85,7 +85,7 @@ let examples: array<DocsExample.t> = {
           style="height: 400px; background: #1f2937; border: 1px solid #374151; border-radius: 0.5rem; overflow: hidden;"
         >
           <Sidebar
-            logo={<div> {Component.text("Dashboard")} </div>}
+            logo={<div> {Node.text("Dashboard")} </div>}
             size={Sidebar.Md}
             sections={[
               {
@@ -116,7 +116,7 @@ let examples: array<DocsExample.t> = {
         </div>
       },
       code: `<Sidebar
-  logo={Some(<div>{Component.text("Dashboard")}</div>)}
+  logo={Some(<div>{Node.text("Dashboard")}</div>)}
   theme={Sidebar.Light}
   sections={[
     {

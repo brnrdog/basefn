@@ -20,8 +20,8 @@ let make = (~keys: Signal.t<array<string>>, ~size: size=Md) => {
   }
 
   <kbd class={getClassName()}>
-    {Component.list(keys, key => {
-      <span class="basefn-kbd__key"> {Component.text(key)} </span>
+    {Node.list(keys, key => {
+      <span class="basefn-kbd__key"> {Node.text(key)} </span>
     })}
   </kbd>
 }

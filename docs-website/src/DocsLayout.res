@@ -106,13 +106,13 @@ module SearchModal = {
       }
     }
 
-    Component.signalFragment(
+    Node.signalFragment(
       Computed.make(() => {
         if Signal.get(searchOpen) {
           [
-            Component.element(
+            Node.element(
               "div",
-              ~attrs=[Component.attr("class", "search-overlay")],
+              ~attrs=[Node.attr("class", "search-overlay")],
               ~events=[
                 (
                   "click",
@@ -129,26 +129,26 @@ module SearchModal = {
                 <div class="search-modal">
                   <div class="search-input-wrapper">
                     {Basefn__Icon.make({name: Search, size: Sm})}
-                    {Component.input(
+                    {Html.input(
                       ~attrs=[
-                        Component.attr("class", "search-input"),
-                        Component.attr("placeholder", "Search components..."),
-                        Component.attr("autofocus", "true"),
+                        Node.attr("class", "search-input"),
+                        Node.attr("placeholder", "Search components..."),
+                        Node.attr("autofocus", "true"),
                       ],
                       ~events=[("input", handleInput), ("keydown", handleKeyDown)],
                       (),
                     )}
-                    <div class="search-trigger-key"> {Component.text("esc")} </div>
+                    <div class="search-trigger-key"> {Node.text("esc")} </div>
                   </div>
                   <div class="search-results">
-                    {Component.signalFragment(
+                    {Node.signalFragment(
                       Computed.make(() => {
                         let items = Signal.get(filteredItems)
                         let idx = Signal.get(selectedIndex)
                         if Array.length(items) == 0 {
                           [
                             <div class="search-empty">
-                              {Component.text("No results found.")}
+                              {Node.text("No results found.")}
                             </div>,
                           ]
                         } else {
@@ -161,7 +161,7 @@ module SearchModal = {
                               nodes
                               ->Array.push(
                                 <div class="search-group-label">
-                                  {Component.text(item.section)}
+                                  {Node.text(item.section)}
                                 </div>,
                               )
                               ->ignore
@@ -171,9 +171,9 @@ module SearchModal = {
                             let cn = "search-result-item" ++ (isActive ? " active" : "")
                             nodes
                             ->Array.push(
-                              Component.element(
+                              Node.element(
                                 "div",
-                                ~attrs=[Component.attr("class", cn)],
+                                ~attrs=[Node.attr("class", cn)],
                                 ~events=[
                                   (
                                     "click",
@@ -186,7 +186,7 @@ module SearchModal = {
                                 ],
                                 ~children=[
                                   <div class="search-result-title">
-                                    {Component.text(item.title)}
+                                    {Node.text(item.title)}
                                   </div>,
                                 ],
                                 (),
@@ -201,7 +201,7 @@ module SearchModal = {
                     )}
                   </div>
                   <div class="search-footer">
-                    {Component.text("Use arrow keys to navigate, Enter to select, Esc to close")}
+                    {Node.text("Use arrow keys to navigate, Enter to select, Esc to close")}
                   </div>
                 </div>,
               ],
@@ -230,10 +230,10 @@ module Header = {
       Some(() => removeWindowListener("scroll", handleScroll))
     })->ignore
 
-    Component.element(
+    Node.element(
       "header",
       ~attrs=[
-        Component.computedAttr("class", () =>
+        Node.computedAttr("class", () =>
           Signal.get(isScrolled) ? "site-header scrolled" : "site-header"
         ),
       ],
@@ -242,10 +242,10 @@ module Header = {
           <div class="header-left">
             {Router.link(
               ~to="/",
-              ~attrs=[Component.attr("class", "header-logo-link")],
+              ~attrs=[Node.attr("class", "header-logo-link")],
               ~children=[
-                <span class="logo-text-base"> {Component.text("base")} </span>,
-                <span class="logo-text-fn"> {Component.text("fn")} </span>,
+                <span class="logo-text-base"> {Node.text("base")} </span>,
+                <span class="logo-text-fn"> {Node.text("fn")} </span>,
               ],
               (),
             )}
@@ -254,79 +254,79 @@ module Header = {
               target="_blank"
               class="header-version"
             >
-              {Component.text("v1.3.0")}
+              {Node.text("v1.3.0")}
             </a>
             <nav class="header-nav">
               {Router.link(
                 ~to="/getting-started",
-                ~attrs=[Component.attr("class", "header-nav-link")],
-                ~children=[Component.text("Getting Started")],
+                ~attrs=[Node.attr("class", "header-nav-link")],
+                ~children=[Node.text("Getting Started")],
                 (),
               )}
               {Router.link(
                 ~to="/component/button",
-                ~attrs=[Component.attr("class", "header-nav-link")],
-                ~children=[Component.text("Components")],
+                ~attrs=[Node.attr("class", "header-nav-link")],
+                ~children=[Node.text("Components")],
                 (),
               )}
               {Router.link(
                 ~to="/api",
-                ~attrs=[Component.attr("class", "header-nav-link")],
-                ~children=[Component.text("API Reference")],
+                ~attrs=[Node.attr("class", "header-nav-link")],
+                ~children=[Node.text("API Reference")],
                 (),
               )}
             </nav>
           </div>
           <div class="header-right">
-            {Component.element(
+            {Node.element(
               "button",
-              ~attrs=[Component.attr("class", "search-trigger")],
+              ~attrs=[Node.attr("class", "search-trigger")],
               ~events=[("click", _ => openSearch())],
               ~children=[
                 Basefn__Icon.make({name: Search, size: Sm}),
-                <span> {Component.text("Search...")} </span>,
+                <span> {Node.text("Search...")} </span>,
                 <div class="search-trigger-keys">
-                  <span class="search-trigger-key"> {Component.text("\u2318")} </span>
-                  <span class="search-trigger-key"> {Component.text("K")} </span>
+                  <span class="search-trigger-key"> {Node.text("\u2318")} </span>
+                  <span class="search-trigger-key"> {Node.text("K")} </span>
                 </div>,
               ],
               (),
             )}
-            {Component.element(
+            {Node.element(
               "a",
               ~attrs=[
-                Component.attr("href", "https://github.com/brnrdog/basefn-ui"),
-                Component.attr("target", "_blank"),
-                Component.attr("class", "gh-star-btn"),
-                Component.attr("title", "Star on GitHub"),
+                Node.attr("href", "https://github.com/brnrdog/basefn-ui"),
+                Node.attr("target", "_blank"),
+                Node.attr("class", "gh-star-btn"),
+                Node.attr("title", "Star on GitHub"),
               ],
               ~children=[
                 Basefn__Icon.make({name: Star, size: Sm}),
-                Component.element(
+                Node.element(
                   "span",
-                  ~attrs=[Component.attr("class", "gh-star-label")],
-                  ~children=[Component.text("Star")],
+                  ~attrs=[Node.attr("class", "gh-star-label")],
+                  ~children=[Node.text("Star")],
                   (),
                 ),
               ],
               (),
             )}
-            {Component.element(
+            {Node.element(
               "a",
               ~attrs=[
-                Component.attr("href", "https://github.com/brnrdog/basefn-ui"),
-                Component.attr("target", "_blank"),
-                Component.attr("class", "header-icon-btn"),
-                Component.attr("title", "GitHub"),
+                Node.attr("href", "https://github.com/brnrdog/basefn-ui"),
+                Node.attr("target", "_blank"),
+                Node.attr("class", "header-icon-btn"),
+                Node.attr("title", "GitHub"),
               ],
               ~children=[Basefn__Icon.make({name: GitHub, size: Sm})],
               (),
             )}
-            {Component.element(
+            {Node.element(
               "button",
               ~attrs=[
-                Component.attr("class", "header-icon-btn"),
-                Component.attr("title", "Toggle theme"),
+                Node.attr("class", "header-icon-btn"),
+                Node.attr("title", "Toggle theme"),
               ],
               ~events=[("click", _ => Basefn__Theme.toggleTheme())],
               ~children=[<ThemeToggle />],
@@ -357,17 +357,17 @@ module DocsSidebar = {
     ]
 
     <nav class="docs-sidebar">
-      {Component.signalFragment(
+      {Node.signalFragment(
         Computed.make(() => {
           let currentPath = Signal.get(Router.location()).pathname
           categories->Array.filterMap(category => {
             grouped
             ->Dict.get(category)
             ->Option.map(comps => {
-              Component.fragment([
+              Node.fragment([
                 <div class="sidebar-section">
                   <div class="sidebar-section-title">
-                    {Component.text(category)}
+                    {Node.text(category)}
                   </div>
                   {comps
                   ->Array.map(comp => {
@@ -376,12 +376,12 @@ module DocsSidebar = {
                       "sidebar-link" ++ (isActive ? " active" : "")
                     Router.link(
                       ~to=comp.path,
-                      ~attrs=[Component.attr("class", className)],
-                      ~children=[Component.text(comp.name)],
+                      ~attrs=[Node.attr("class", className)],
+                      ~children=[Node.text(comp.name)],
                       (),
                     )
                   })
-                  ->Component.fragment}
+                  ->Node.fragment}
                 </div>,
               ])
             })
@@ -403,79 +403,79 @@ module Footer = {
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="footer-brand-logo">
-              <span class="logo-text-base"> {Component.text("base")} </span>
-              <span class="logo-text-fn"> {Component.text("fn")} </span>
+              <span class="logo-text-base"> {Node.text("base")} </span>
+              <span class="logo-text-fn"> {Node.text("fn")} </span>
             </div>
             <p>
-              {Component.text(
+              {Node.text(
                 "A modern UI component library for ReScript and Xote with fine-grained reactivity and type safety.",
               )}
             </p>
           </div>
           <div class="footer-col">
-            <h4> {Component.text("Docs")} </h4>
+            <h4> {Node.text("Docs")} </h4>
             <ul>
               <li>
                 {Router.link(
                   ~to="/getting-started",
-                  ~children=[Component.text("Getting Started")],
+                  ~children=[Node.text("Getting Started")],
                   (),
                 )}
               </li>
               <li>
                 {Router.link(
                   ~to="/component/button",
-                  ~children=[Component.text("Components")],
+                  ~children=[Node.text("Components")],
                   (),
                 )}
               </li>
               <li>
                 {Router.link(
                   ~to="/api",
-                  ~children=[Component.text("API Reference")],
+                  ~children=[Node.text("API Reference")],
                   (),
                 )}
               </li>
             </ul>
           </div>
           <div class="footer-col">
-            <h4> {Component.text("Community")} </h4>
+            <h4> {Node.text("Community")} </h4>
             <ul>
               <li>
                 <a href="https://github.com/brnrdog/basefn-ui" target="_blank">
-                  {Component.text("GitHub")}
+                  {Node.text("GitHub")}
                 </a>
               </li>
               <li>
                 <a href="https://www.npmjs.com/package/basefn-ui" target="_blank">
-                  {Component.text("npm")}
+                  {Node.text("npm")}
                 </a>
               </li>
               <li>
                 {Router.link(
                   ~to="/changelog",
-                  ~children=[Component.text("Changelog")],
+                  ~children=[Node.text("Changelog")],
                   (),
                 )}
               </li>
             </ul>
           </div>
           <div class="footer-col">
-            <h4> {Component.text("Built With")} </h4>
+            <h4> {Node.text("Built With")} </h4>
             <ul>
               <li>
                 <a href="https://rescript-lang.org/" target="_blank">
-                  {Component.text("ReScript")}
+                  {Node.text("ReScript")}
                 </a>
               </li>
               <li>
                 <a href="https://github.com/brnrdog/xote" target="_blank">
-                  {Component.text("Xote")}
+                  {Node.text("Xote")}
                 </a>
               </li>
               <li>
                 <a href="https://github.com/tc39/proposal-signals" target="_blank">
-                  {Component.text("TC39 Signals")}
+                  {Node.text("TC39 Signals")}
                 </a>
               </li>
             </ul>
@@ -483,17 +483,17 @@ module Footer = {
         </div>
         <div class="footer-bottom">
           <div>
-            {Component.text(`\u00A9 ${year} basefn. MIT License.`)}
+            {Node.text(`\u00A9 ${year} basefn. MIT License.`)}
           </div>
           <div class="footer-bottom-right">
-            {Component.text("Built with ")}
+            {Node.text("Built with ")}
             <span class="logo-text-base" style="font-size:0.75rem">
-              {Component.text("base")}
+              {Node.text("base")}
             </span>
             <span class="logo-text-fn" style="font-size:0.75rem">
-              {Component.text("fn")}
+              {Node.text("fn")}
             </span>
-            {Component.text(" + Xote")}
+            {Node.text(" + Xote")}
           </div>
         </div>
       </div>
@@ -521,7 +521,7 @@ let _ = Effect.run(() => {
 
 // ---- Main layout with sidebar ----
 @jsx.component
-let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Component.node) => {
+let make = (~components: array<componentInfo>, ~showSidebar=true, ~children: Node.node) => {
   let searchItems = buildSearchItems(components)
 
   <div>

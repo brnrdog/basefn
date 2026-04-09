@@ -6,7 +6,7 @@ open Xote
 let make = (
   ~ratio: float=1.0,
   ~className: option<string>=?,
-  ~children: Component.node,
+  ~children: Node.node,
 ) => {
   let getClassName = () => {
     let baseClass = "basefn-aspect-ratio"
