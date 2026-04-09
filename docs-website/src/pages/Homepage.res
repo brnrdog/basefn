@@ -64,20 +64,20 @@ module FeatureCard = {
       <div class="feature-card-icon">
         {Basefn__Icon.make({name: feature.iconName, size: Md})}
       </div>
-      <h3> {Component.text(feature.title)} </h3>
-      <p> {Component.text(feature.description)} </p>
+      <h3> {Node.text(feature.title)} </h3>
+      <p> {Node.text(feature.description)} </p>
       {switch (feature.linkText, feature.linkTo) {
       | (Some(text), Some(to)) =>
         Router.link(
           ~to,
-          ~attrs=[Component.attr("class", "feature-card-link")],
+          ~attrs=[Node.attr("class", "feature-card-link")],
           ~children=[
-            Component.text(text ++ " "),
+            Node.text(text ++ " "),
             Basefn__Icon.make({name: ChevronRight, size: Sm}),
           ],
           (),
         )
-      | _ => Component.fragment([])
+      | _ => Node.fragment([])
       }}
     </div>
   }
@@ -90,26 +90,26 @@ module Hero = {
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-logo">
-          <span class="hero-logo-base"> {Component.text("base")} </span>
-          <span class="hero-logo-fn"> {Component.text("fn")} </span>
+          <span class="hero-logo-base"> {Node.text("base")} </span>
+          <span class="hero-logo-fn"> {Node.text("fn")} </span>
         </div>
         <h1>
-          {Component.text("Build beautiful interfaces with ")}
-          <em> {Component.text("reactive components")} </em>
-          {Component.text(" and ")}
-          <em> {Component.text("sound types")} </em>
+          {Node.text("Build beautiful interfaces with ")}
+          <em> {Node.text("reactive components")} </em>
+          {Node.text(" and ")}
+          <em> {Node.text("sound types")} </em>
         </h1>
         <p class="hero-subtitle">
-          {Component.text(
+          {Node.text(
             "basefn is a comprehensive UI component library for ReScript and Xote. 35+ components with fine-grained reactivity, dark mode, and full type safety \u2014 no virtual DOM required.",
           )}
         </p>
         <div class="hero-buttons">
           {Router.link(
             ~to="/getting-started",
-            ~attrs=[Component.attr("class", "btn btn-primary")],
+            ~attrs=[Node.attr("class", "btn btn-primary")],
             ~children=[
-              Component.text("Get Started "),
+              Node.text("Get Started "),
               Basefn__Icon.make({name: ChevronRight, size: Sm}),
             ],
             (),
@@ -120,11 +120,11 @@ module Hero = {
             class="btn btn-ghost"
           >
             {Basefn__Icon.make({name: GitHub, size: Sm})}
-            {Component.text(" View on GitHub")}
+            {Node.text(" View on GitHub")}
           </a>
         </div>
         <div class="hero-install">
-          <code> {Component.text("npm install basefn-ui")} </code>
+          <code> {Node.text("npm install basefn-ui")} </code>
         </div>
       </div>
     </section>
@@ -138,15 +138,15 @@ module Features = {
     <section class="features-section">
       <div class="features-inner">
         <div class="features-heading">
-          <h2> {Component.text("Everything you need for modern UIs")} </h2>
+          <h2> {Node.text("Everything you need for modern UIs")} </h2>
           <p>
-            {Component.text(
+            {Node.text(
               "A complete component library with reactive primitives, type safety, and thoughtful design patterns.",
             )}
           </p>
         </div>
         <div class="features-grid">
-          {Component.fragment(features->Array.map(f => <FeatureCard feature={f} />))}
+          {Node.fragment(features->Array.map(f => <FeatureCard feature={f} />))}
         </div>
       </div>
     </section>
@@ -213,29 +213,29 @@ module Categories = {
     <section class="categories-section">
       <div class="categories-inner">
         <div class="categories-heading">
-          <h2> {Component.text("Component Categories")} </h2>
+          <h2> {Node.text("Component Categories")} </h2>
           <p>
-            {Component.text(
+            {Node.text(
               "Organized by purpose so you can find the right component for every part of your UI.",
             )}
           </p>
         </div>
         <div class="categories-grid">
-          {Component.fragment(
+          {Node.fragment(
             categories->Array.map(cat => {
               Router.link(
                 ~to=cat.path,
-                ~attrs=[Component.attr("class", "category-card")],
+                ~attrs=[Node.attr("class", "category-card")],
                 ~children=[
                   <div class="category-card-icon">
                     {Basefn__Icon.make({name: cat.iconName, size: Md})}
                   </div>,
-                  <h3> {Component.text(cat.name)} </h3>,
+                  <h3> {Node.text(cat.name)} </h3>,
                   <p class="category-card-desc">
-                    {Component.text(cat.description)}
+                    {Node.text(cat.description)}
                   </p>,
                   <p class="category-card-components">
-                    {Component.text(cat.components)}
+                    {Node.text(cat.components)}
                   </p>,
                 ],
                 (),
@@ -330,9 +330,9 @@ let make = () => {
     <section class="code-demo-section">
       <div class="code-demo-inner">
         <div class="code-demo-heading">
-          <h2> {Component.text("Simple, reactive, type-safe")} </h2>
+          <h2> {Node.text("Simple, reactive, type-safe")} </h2>
           <p>
-            {Component.text(
+            {Node.text(
               "Components that work with Xote's signal system. Your mental model stays simple \u2014 update a signal, the UI reacts.",
             )}
           </p>
@@ -340,41 +340,41 @@ let make = () => {
         <div class="code-demo-container">
           <div class="code-editor-pane">
             <div class="code-editor-tabs">
-              {Component.element(
+              {Node.element(
                 "div",
                 ~attrs=[
-                  Component.computedAttr("class", () =>
+                  Node.computedAttr("class", () =>
                     "code-editor-tab" ++
                     (Signal.get(activeTab) == "buttons" ? " active" : "")
                   ),
                 ],
                 ~events=[("click", setTab("buttons"))],
-                ~children=[Component.text("Buttons.res")],
+                ~children=[Node.text("Buttons.res")],
                 (),
               )}
-              {Component.element(
+              {Node.element(
                 "div",
                 ~attrs=[
-                  Component.computedAttr("class", () =>
+                  Node.computedAttr("class", () =>
                     "code-editor-tab" ++
                     (Signal.get(activeTab) == "signals" ? " active" : "")
                   ),
                 ],
                 ~events=[("click", setTab("signals"))],
-                ~children=[Component.text("Signals.res")],
+                ~children=[Node.text("Signals.res")],
                 (),
               )}
             </div>
             <div class="code-editor-body">
               <pre class="code-editor-pre">
                 <code>
-                  {Component.signalFragment(
+                  {Node.signalFragment(
                     Computed.make(() => {
                       let code = switch Signal.get(activeTab) {
                       | "buttons" => buttonCode
                       | _ => signalCode
                       }
-                      [Component.text(code)]
+                      [Node.text(code)]
                     }),
                   )}
                 </code>
@@ -393,18 +393,18 @@ module Community = {
   let make = () => {
     <section class="community-section">
       <div class="community-inner">
-        <h2> {Component.text("Ready to build?")} </h2>
+        <h2> {Node.text("Ready to build?")} </h2>
         <p>
-          {Component.text(
+          {Node.text(
             "basefn is open source and built for developers who value type safety, fine-grained reactivity, and clean component APIs.",
           )}
         </p>
         <div class="community-links">
           {Router.link(
             ~to="/getting-started",
-            ~attrs=[Component.attr("class", "btn btn-primary")],
+            ~attrs=[Node.attr("class", "btn btn-primary")],
             ~children=[
-              Component.text("Get Started "),
+              Node.text("Get Started "),
               Basefn__Icon.make({name: ChevronRight, size: Sm}),
             ],
             (),
@@ -415,7 +415,7 @@ module Community = {
             class="btn btn-ghost"
           >
             {Basefn__Icon.make({name: GitHub, size: Sm})}
-            {Component.text(" GitHub")}
+            {Node.text(" GitHub")}
           </a>
           <a
             href="https://www.npmjs.com/package/basefn-ui"
@@ -423,7 +423,7 @@ module Community = {
             class="btn btn-ghost"
           >
             {Basefn__Icon.make({name: Download, size: Sm})}
-            {Component.text(" npm")}
+            {Node.text(" npm")}
           </a>
         </div>
       </div>
@@ -434,5 +434,5 @@ module Community = {
 // ---- Main page ----
 @jsx.component
 let make = () => {
-  Component.fragment([<Hero />, <Features />, <Categories />, <CodeDemo />, <Community />])
+  Node.fragment([<Hero />, <Features />, <Categories />, <CodeDemo />, <Community />])
 }

@@ -20,6 +20,6 @@ let make = (
 
   <label class={getWrapperClassName()}>
     <input type_="checkbox" class="basefn-checkbox-input" checked={checked} disabled ?onChange />
-    <span class="basefn-checkbox-label"> {Component.text(label)} </span>
+    <span class="basefn-checkbox-label"> {Node.text(label)} </span>
   </label>
 }

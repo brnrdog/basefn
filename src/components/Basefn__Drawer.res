@@ -32,8 +32,8 @@ let make = (
   ~title: option<string>=?,
   ~showCloseButton: bool=true,
   ~closeOnBackdrop: bool=true,
-  ~children: Component.node,
-  ~footer: option<Component.node>=?,
+  ~children: Node.node,
+  ~footer: option<Node.node>=?,
 ) => {
   let handleBackdropClick = evt => {
     if closeOnBackdrop {
@@ -60,10 +60,10 @@ let make = (
             {switch title {
             | Some(titleText) =>
               <div class="basefn-drawer__header">
-                <h2 class="basefn-drawer__title"> {Component.text(titleText)} </h2>
+                <h2 class="basefn-drawer__title"> {Node.text(titleText)} </h2>
                 {showCloseButton
                   ? <button class="basefn-drawer__close" onClick={_ => onClose()}>
-                      {Component.text("\u00d7")}
+                      {Node.text("\u00d7")}
                     </button>
                   : <> </>}
               </div>
@@ -82,5 +82,5 @@ let make = (
     }
   })
 
-  Component.signalFragment(content)
+  Node.signalFragment(content)
 }

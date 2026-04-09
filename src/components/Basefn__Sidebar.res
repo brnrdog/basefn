@@ -26,9 +26,9 @@ let sizeToString = (size: size) => {
 
 @jsx.component
 let make = (
-  ~logo: option<Component.node>=?,
+  ~logo: option<Node.node>=?,
   ~sections: array<navSection>,
-  ~footer: option<Component.node>=?,
+  ~footer: option<Node.node>=?,
   ~size: size=Md,
   ~collapsed: bool=false,
 ) => {
@@ -66,7 +66,7 @@ let make = (
         <div class="basefn-sidebar__section">
           {switch section.title {
           | Some(title) =>
-            <div class="basefn-sidebar__section-title"> {Component.text(title)} </div>
+            <div class="basefn-sidebar__section-title"> {Node.text(title)} </div>
           | None => <> </>
           }}
           {section.items
@@ -76,17 +76,17 @@ let make = (
 
             Router.link(
               ~to={item.url},
-              ~attrs=[Component.attr("class", itemClass)],
+              ~attrs=[Node.attr("class", itemClass)],
               ~children=[
-                <div class="basefn-sidebar__item-text"> {Component.text(item.label)} </div>,
+                <div class="basefn-sidebar__item-text"> {Node.text(item.label)} </div>,
               ],
               (),
             )
           })
-          ->Component.fragment}
+          ->Node.fragment}
         </div>
       })
-      ->Component.fragment}
+      ->Node.fragment}
     </nav>
     {switch footer {
     | Some(footerContent) => <div class="basefn-sidebar__footer"> {footerContent} </div>

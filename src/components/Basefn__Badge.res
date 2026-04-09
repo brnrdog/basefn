@@ -39,5 +39,5 @@ let make = (
     "basefn-badge " ++ variantClass ++ " " ++ sizeClass ++ dotClass
   }
 
-  <span class={getClassName()}> {Component.SignalText(label)} </span>
+  <span class={getClassName()}> {Node.SignalText(label)} </span>
 }

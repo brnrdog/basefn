@@ -29,7 +29,7 @@ let make = (
   ~size: size=Md,
   ~disabled: bool=false,
   ~className: option<string>=?,
-  ~children: Component.node,
+  ~children: Node.node,
 ) => {
   let handleClick = _ => {
     if !disabled {

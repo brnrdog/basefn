@@ -56,16 +56,16 @@ let options = Signal.make([
           />
           <div style="display: flex; gap: 4rem;">
             <Button variant={Ghost} onClick={onClickOption("apple")}>
-              {Component.text("🍎")}
+              {Node.text("🍎")}
             </Button>
             <Button variant={Ghost} onClick={onClickOption("banana")}>
-              {Component.text("🍌")}
+              {Node.text("🍌")}
             </Button>
             <Button variant={Ghost} onClick={onClickOption("orange")}>
-              {Component.text("🍊")}
+              {Node.text("🍊")}
             </Button>
             <Button variant={Ghost} onClick={onClickOption("grape")}>
-              {Component.text("🍇")}
+              {Node.text("🍇")}
             </Button>
           </div>
         </div>

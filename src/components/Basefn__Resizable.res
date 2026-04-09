@@ -5,7 +5,7 @@ open Xote
 type direction = Horizontal | Vertical
 
 type panel = {
-  content: Component.node,
+  content: Node.node,
   defaultSize: float,
   minSize?: float,
   maxSize?: float,
@@ -267,7 +267,7 @@ let make = (
     directionToString(direction) ++
     (class !== "" ? " " ++ class : "")
 
-  let elements: array<Component.node> = []
+  let elements: array<Node.node> = []
 
   panels->Array.forEachWithIndex((panel, index) => {
     let panelStyle = Computed.make(() => {
@@ -314,5 +314,5 @@ let make = (
     }
   })
 
-  <div id={containerId} class={containerClass}> {elements->Component.fragment} </div>
+  <div id={containerId} class={containerClass}> {elements->Node.fragment} </div>
 }

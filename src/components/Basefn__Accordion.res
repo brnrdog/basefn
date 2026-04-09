@@ -2,12 +2,12 @@
 
 module Signal = Xote.Signal
 module Computed = Xote.Computed
-module Component = Xote.Component
+module Node = Xote.Node
 
 type accordionItem = {
   value: string,
   title: string,
-  content: Component.node,
+  content: Node.node,
   disabled?: bool,
 }
 
@@ -52,7 +52,7 @@ let make = (
           onClick={_ => toggleItem(item.value, item.disabled)}
           disabled={item.disabled->Option.getOr(false)}
         >
-          <span> {Component.text(item.title)} </span>
+          <span> {Node.text(item.title)} </span>
           <span
             class={Computed.make(() => {
               let baseClass = "basefn-accordion__icon"
@@ -60,7 +60,7 @@ let make = (
               baseClass ++ openClass
             })}
           >
-            {Component.text("\u25bc")}
+            {Node.text("\u25bc")}
           </span>
         </button>
         <div
@@ -76,6 +76,6 @@ let make = (
         </div>
       </div>
     })
-    ->Component.fragment}
+    ->Node.fragment}
   </div>
 }

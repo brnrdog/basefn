@@ -74,14 +74,14 @@ let make = (
     {showLabel || label->Option.isSome
       ? <div class="basefn-progress__label">
           <span>
-            {Component.text(
+            {Node.text(
               switch label {
               | Some(labelText) => labelText
               | None => "Progress"
               },
             )}
           </span>
-          {!indeterminate ? {Component.textSignal(() => getPercentage() ++ "%")} : <> </>}
+          {!indeterminate ? {Node.signalText(() => getPercentage() ++ "%")} : <> </>}
         </div>
       : <> </>}
   </>

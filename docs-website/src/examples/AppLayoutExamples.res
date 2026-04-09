@@ -15,7 +15,7 @@ let examples: array<DocsExample.t> = {
         >
           <AppLayout
             sidebar={<Sidebar
-              logo={<div> {Component.text("MyApp")} </div>}
+              logo={<div> {Node.text("MyApp")} </div>}
               size={Sidebar.Md}
               sections={[
                 {
@@ -59,7 +59,7 @@ let examples: array<DocsExample.t> = {
                 text={ReactiveProp.Static("Welcome to your dashboard!")} variant={Typography.H4}
               />
               <p style="margin-top: 1rem; color: #6b7280;">
-                {Component.text("This is a complete application layout example.")}
+                {Node.text("This is a complete application layout example.")}
               </p>
             </Card>
           </AppLayout>
@@ -68,7 +68,7 @@ let examples: array<DocsExample.t> = {
       code: `<AppLayout
   sidebar={Some(
     <Sidebar
-      logo={Some(<div>{Component.text("MyApp")}</div>)}
+      logo={Some(<div>{Node.text("MyApp")}</div>)}
       sections={[...]}
     />
   )}
@@ -93,7 +93,7 @@ let examples: array<DocsExample.t> = {
       >
         <AppLayout
           topbar={<Topbar
-            logo={<div> {Component.text("Simple App")} </div>}
+            logo={<div> {Node.text("Simple App")} </div>}
             rightContent={<Button variant={Button.Primary}> {text("Get Started")} </Button>}
           />}
           contentWidth={AppLayout.FullWidth}
@@ -104,7 +104,7 @@ let examples: array<DocsExample.t> = {
               text={ReactiveProp.Static("Simple layout without sidebar")} variant={Typography.H3}
             />
             <p style="margin-top: 1rem; color: #6b7280;">
-              {Component.text("Perfect for landing pages and simple applications.")}
+              {Node.text("Perfect for landing pages and simple applications.")}
             </p>
           </div>
         </AppLayout>
@@ -112,7 +112,7 @@ let examples: array<DocsExample.t> = {
       code: `<AppLayout
   topbar={Some(
     <Topbar
-      logo={Some(<div>{Component.text("App")}</div>)}
+      logo={Some(<div>{Node.text("App")}</div>)}
       rightContent={Some(<Button label={Signal.make("Start")} />)}
     />
   )}

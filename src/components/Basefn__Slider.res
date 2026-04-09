@@ -31,12 +31,12 @@ let make = (
         <div class="basefn-slider__header">
           {switch label {
           | Some(labelText) =>
-            <span class="basefn-slider__label"> {Component.text(labelText)} </span>
+            <span class="basefn-slider__label"> {Node.text(labelText)} </span>
           | None => <> </>
           }}
           {showValue
             ? <span class="basefn-slider__value">
-                {Component.textSignal(() => Float.toString(Signal.get(value)))}
+                {Node.signalText(() => Float.toString(Signal.get(value)))}
               </span>
             : <> </>}
         </div>
@@ -57,9 +57,9 @@ let make = (
         <div class="basefn-slider__markers">
           {markerLabels
           ->Array.map(marker => {
-            <span class="basefn-slider__marker"> {Component.text(marker)} </span>
+            <span class="basefn-slider__marker"> {Node.text(marker)} </span>
           })
-          ->Component.fragment}
+          ->Node.fragment}
         </div>
       | None => <> </>
       }}

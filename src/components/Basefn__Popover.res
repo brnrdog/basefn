@@ -25,8 +25,8 @@ let alignToString = (align: align) => {
 
 @jsx.component
 let make = (
-  ~trigger: Component.node,
-  ~content: Component.node,
+  ~trigger: Node.node,
+  ~content: Node.node,
   ~isOpen: Signal.t<bool>,
   ~onOpenChange: option<bool => unit>=?,
   ~position: position=Bottom,
@@ -90,6 +90,6 @@ let make = (
     <div class="basefn-popover__trigger" onClick={handleTriggerClick}>
       {trigger}
     </div>
-    {Component.signalFragment(popoverContent)}
+    {Node.signalFragment(popoverContent)}
   </div>
 }

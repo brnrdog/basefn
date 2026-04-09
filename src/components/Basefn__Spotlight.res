@@ -128,10 +128,10 @@ let make = (
     let currentItems = Signal.get(filteredItems)
 
     if Array.length(currentItems) === 0 {
-      <div class="basefn-spotlight__empty"> {Component.text(emptyMessage)} </div>
+      <div class="basefn-spotlight__empty"> {Node.text(emptyMessage)} </div>
     } else {
       let lastGroup: ref<option<string>> = ref(None)
-      let elements: array<Component.node> = []
+      let elements: array<Node.node> = []
 
       currentItems->Array.forEachWithIndex((item, index) => {
         switch item.group {
@@ -139,7 +139,7 @@ let make = (
             lastGroup := Some(group)
             let _ = elements->Array.push(
               <div key={"group-" ++ group} class="basefn-spotlight__group-label">
-                {Component.text(group)}
+                {Node.text(group)}
               </div>,
             )
           }
@@ -153,10 +153,10 @@ let make = (
         let _ = elements->Array.push(
           <button key={item.id} class={itemClass} onClick={_ => handleSelect(item)}>
             <div class="basefn-spotlight__item-content">
-              <div class="basefn-spotlight__item-label"> {Component.text(item.label)} </div>
+              <div class="basefn-spotlight__item-label"> {Node.text(item.label)} </div>
               {switch item.description {
               | Some(desc) =>
-                <div class="basefn-spotlight__item-description"> {Component.text(desc)} </div>
+                <div class="basefn-spotlight__item-description"> {Node.text(desc)} </div>
               | None => <> </>
               }}
             </div>
@@ -164,7 +164,7 @@ let make = (
         )
       })
 
-      elements->Component.fragment
+      elements->Node.fragment
     }
   }
 
@@ -186,17 +186,17 @@ let make = (
             <div class="basefn-spotlight__results"> {renderResults()} </div>
             <div class="basefn-spotlight__footer">
               <span class="basefn-spotlight__footer-hint">
-                <span class="basefn-spotlight__footer-key"> {Component.text("\u2191")} </span>
-                <span class="basefn-spotlight__footer-key"> {Component.text("\u2193")} </span>
-                {Component.text("to navigate")}
+                <span class="basefn-spotlight__footer-key"> {Node.text("\u2191")} </span>
+                <span class="basefn-spotlight__footer-key"> {Node.text("\u2193")} </span>
+                {Node.text("to navigate")}
               </span>
               <span class="basefn-spotlight__footer-hint">
-                <span class="basefn-spotlight__footer-key"> {Component.text("\u21b5")} </span>
-                {Component.text("to select")}
+                <span class="basefn-spotlight__footer-key"> {Node.text("\u21b5")} </span>
+                {Node.text("to select")}
               </span>
               <span class="basefn-spotlight__footer-hint">
-                <span class="basefn-spotlight__footer-key"> {Component.text("esc")} </span>
-                {Component.text("to close")}
+                <span class="basefn-spotlight__footer-key"> {Node.text("esc")} </span>
+                {Node.text("to close")}
               </span>
             </div>
           </div>
@@ -207,5 +207,5 @@ let make = (
     }
   })
 
-  Component.signalFragment(content)
+  Node.signalFragment(content)
 }

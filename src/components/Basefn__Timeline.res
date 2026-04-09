@@ -46,25 +46,25 @@ let make = (~items: array<timelineItem>, ~orientation: orientation=Vertical) => 
         <div class="basefn-timeline__marker-wrapper">
           <div class={getMarkerClass(item.variant)}>
             {switch item.icon {
-            | Some(iconText) => Component.text(iconText)
-            | None => Component.text(Int.toString(index + 1))
+            | Some(iconText) => Node.text(iconText)
+            | None => Node.text(Int.toString(index + 1))
             }}
           </div>
           <div class="basefn-timeline__connector" />
         </div>
         <div class="basefn-timeline__content">
-          <div class="basefn-timeline__title"> {Component.text(item.title)} </div>
+          <div class="basefn-timeline__title"> {Node.text(item.title)} </div>
           {switch item.timestamp {
-          | Some(time) => <div class="basefn-timeline__timestamp"> {Component.text(time)} </div>
+          | Some(time) => <div class="basefn-timeline__timestamp"> {Node.text(time)} </div>
           | None => <> </>
           }}
           {switch item.description {
-          | Some(desc) => <div class="basefn-timeline__description"> {Component.text(desc)} </div>
+          | Some(desc) => <div class="basefn-timeline__description"> {Node.text(desc)} </div>
           | None => <> </>
           }}
         </div>
       </div>
     })
-    ->Component.fragment}
+    ->Node.fragment}
   </div>
 }

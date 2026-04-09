@@ -36,7 +36,7 @@ let make = (~size: size=Md, ~variant: variant=Default, ~label: string="") => {
   <div class="basefn-spinner-container">
     <div class={getClassName()} role="status" ariaLabel="Loading" />
     {if showLabel {
-      <span class="basefn-spinner__label"> {Component.text(label)} </span>
+      <span class="basefn-spinner__label"> {Node.text(label)} </span>
     } else {
       <empty />
     }}

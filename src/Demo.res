@@ -118,10 +118,10 @@ module Demo = {
     let selectOptionsSignal = Signal.make(selectOptions)
 
     <>
-      {Component.textSignal(() => Signal.get(selectedOption))}
-      <h1> {Component.text("basefn-UI Component Library")} </h1>
+      {Node.signalText(() => Signal.get(selectedOption))}
+      <h1> {Node.text("basefn-UI Component Library")} </h1>
       <p style="color: #6b7280; margin-bottom: 2rem;">
-        {Component.text(
+        {Node.text(
           "A demonstration of all form components with both static and reactive values.",
         )}
       </p>
@@ -264,7 +264,7 @@ module Demo = {
         </div>
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          {Component.SignalFragment(
+          {Node.SignalFragment(
             Computed.make(() => {
               [
                 <Button
@@ -293,7 +293,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Alerts")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Display important messages with different severity levels.")}
+          {Node.text("Display important messages with different severity levels.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           <Alert
@@ -327,7 +327,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Progress")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Show progress indicators for ongoing operations.")}
+          {Node.text("Show progress indicators for ongoing operations.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 2rem;">
           <div>
@@ -387,7 +387,7 @@ module Demo = {
           </div>
           <div>
             <p style="color: #6b7280; margin-bottom: 0.5rem;">
-              {Component.text("Indeterminate progress:")}
+              {Node.text("Indeterminate progress:")}
             </p>
             <Progress value={Signal.make(0.0)} variant={Progress.Primary} indeterminate={true} />
           </div>
@@ -397,7 +397,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Tabs")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Organize content into tabbed sections.")}
+          {Node.text("Organize content into tabbed sections.")}
         </p>
         <Tabs
           tabs={[
@@ -409,7 +409,7 @@ module Demo = {
                   text={ReactiveProp.Static("Account Settings")} variant={Typography.H5}
                 />
                 <p style="color: #6b7280; margin-top: 0.5rem;">
-                  {Component.text(
+                  {Node.text(
                     "Manage your account settings and preferences here. You can update your profile information, change your password, and configure notification settings.",
                   )}
                 </p>
@@ -423,7 +423,7 @@ module Demo = {
                   text={ReactiveProp.Static("Security Settings")} variant={Typography.H5}
                 />
                 <p style="color: #6b7280; margin-top: 0.5rem;">
-                  {Component.text(
+                  {Node.text(
                     "Configure your security preferences including two-factor authentication, active sessions, and security logs.",
                   )}
                 </p>
@@ -444,7 +444,7 @@ module Demo = {
                   text={ReactiveProp.Static("Notification Preferences")} variant={Typography.H5}
                 />
                 <p style="color: #6b7280; margin-top: 0.5rem;">
-                  {Component.text("Choose how you want to receive notifications.")}
+                  {Node.text("Choose how you want to receive notifications.")}
                 </p>
                 <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
                   <Checkbox
@@ -467,7 +467,7 @@ module Demo = {
                   text={ReactiveProp.Static("Billing Information")} variant={Typography.H5}
                 />
                 <p style="color: #6b7280; margin-top: 0.5rem;">
-                  {Component.text(
+                  {Node.text(
                     "View and manage your billing information, payment methods, and invoices.",
                   )}
                 </p>
@@ -481,7 +481,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Accordion")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Collapsible content sections with expand/collapse functionality.")}
+          {Node.text("Collapsible content sections with expand/collapse functionality.")}
         </p>
         <Accordion
           items={[
@@ -489,7 +489,7 @@ module Demo = {
               value: "faq1",
               title: "What is basefn-UI?",
               content: <p>
-                {Component.text(
+                {Node.text(
                   "basefn-UI is a modern, reactive UI component library built with ReScript and Xote. It provides a comprehensive set of accessible and customizable components for building web applications.",
                 )}
               </p>,
@@ -499,7 +499,7 @@ module Demo = {
               title: "How do I install basefn-UI?",
               content: <div>
                 <p>
-                  {Component.text(
+                  {Node.text(
                     "You can install basefn-UI via npm or yarn. Here's how to get started:",
                   )}
                 </p>
@@ -513,7 +513,7 @@ module Demo = {
               value: "faq3",
               title: "Is basefn-UI customizable?",
               content: <p>
-                {Component.text(
+                {Node.text(
                   "Yes! basefn-UI is fully customizable. You can override the default styles using CSS variables or by providing custom CSS classes. Each component accepts standard HTML attributes including className and style.",
                 )}
               </p>,
@@ -522,7 +522,7 @@ module Demo = {
               value: "faq4",
               title: "Does basefn-UI support TypeScript?",
               content: <p>
-                {Component.text(
+                {Node.text(
                   "basefn-UI is built with ReScript, which provides excellent type safety. While it doesn't directly use TypeScript, ReScript's type system is even more robust and catches errors at compile time.",
                 )}
               </p>,
@@ -536,12 +536,12 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Breadcrumb")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Navigation breadcrumbs to show the current page hierarchy.")}
+          {Node.text("Navigation breadcrumbs to show the current page hierarchy.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 1.5rem;">
           <div>
             <p style="color: #6b7280; margin-bottom: 0.5rem; font-size: 0.875rem;">
-              {Component.text("Default separator:")}
+              {Node.text("Default separator:")}
             </p>
             <Breadcrumb
               items={[
@@ -554,7 +554,7 @@ module Demo = {
           </div>
           <div>
             <p style="color: #6b7280; margin-bottom: 0.5rem; font-size: 0.875rem;">
-              {Component.text("Custom separator:")}
+              {Node.text("Custom separator:")}
             </p>
             <Breadcrumb
               items={[
@@ -567,7 +567,7 @@ module Demo = {
           </div>
           <div>
             <p style="color: #6b7280; margin-bottom: 0.5rem; font-size: 0.875rem;">
-              {Component.text("With onClick handlers:")}
+              {Node.text("With onClick handlers:")}
             </p>
             <Breadcrumb
               items={[
@@ -607,7 +607,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Modal / Dialog")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Display content in an overlay dialog.")}
+          {Node.text("Display content in an overlay dialog.")}
         </p>
         <Button
           label={Static("Open Modal")}
@@ -636,12 +636,12 @@ module Demo = {
           </div>}
         >
           <p>
-            {Component.text(
+            {Node.text(
               "This is a modal dialog. You can include any content here. Click the backdrop or the close button to dismiss.",
             )}
           </p>
           <p style="margin-top: 1rem;">
-            {Component.text("Modals are great for focused user interactions and confirmations.")}
+            {Node.text("Modals are great for focused user interactions and confirmations.")}
           </p>
         </Modal>
       </div>
@@ -650,7 +650,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Switch / Toggle")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Binary on/off switches for settings and preferences.")}
+          {Node.text("Binary on/off switches for settings and preferences.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           <Switch checked={switchEnabled} label="Enable feature" />
@@ -666,7 +666,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Slider")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Select a value from a range.")}
+          {Node.text("Select a value from a range.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 2rem;">
           <Slider value={sliderValue} label="Volume" showValue={true} />
@@ -694,7 +694,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Tooltip")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Show contextual information on hover.")}
+          {Node.text("Show contextual information on hover.")}
         </p>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
           <Tooltip content="This appears on top" position={Tooltip.Top}>
@@ -716,7 +716,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Dropdown Menu")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Contextual menu with actions.")}
+          {Node.text("Contextual menu with actions.")}
         </p>
         <div style="display: flex; gap: 1rem;">
           <Dropdown
@@ -769,7 +769,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Toast / Notification")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Temporary notification messages.")}
+          {Node.text("Temporary notification messages.")}
         </p>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <Button
@@ -805,12 +805,12 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Stepper")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Multi-step process indicator with progress tracking.")}
+          {Node.text("Multi-step process indicator with progress tracking.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 2rem;">
           <div>
             <p style="color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem;">
-              {Component.text("Horizontal stepper:")}
+              {Node.text("Horizontal stepper:")}
             </p>
             <Stepper
               steps={[
@@ -845,7 +845,7 @@ module Demo = {
           </div>
           <div>
             <p style="color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem;">
-              {Component.text("Vertical stepper:")}
+              {Node.text("Vertical stepper:")}
             </p>
             <Stepper
               steps={[
@@ -881,7 +881,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Drawer / Sidebar")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Slide-in panels for additional content.")}
+          {Node.text("Slide-in panels for additional content.")}
         </p>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <Button
@@ -915,7 +915,7 @@ module Demo = {
           <div>
             <Typography text={ReactiveProp.Static("Drawer Content")} variant={Typography.H5} />
             <p style="margin-top: 1rem;">
-              {Component.text(
+              {Node.text(
                 "This is a drawer panel. You can use it for navigation, forms, or any additional content that doesn't fit in the main view.",
               )}
             </p>
@@ -939,12 +939,12 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Timeline")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Display chronological events in a visual timeline.")}
+          {Node.text("Display chronological events in a visual timeline.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 2rem;">
           <div>
             <p style="color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem;">
-              {Component.text("Vertical timeline:")}
+              {Node.text("Vertical timeline:")}
             </p>
             <Timeline
               items={[
@@ -982,7 +982,7 @@ module Demo = {
           </div>
           <div>
             <p style="color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem;">
-              {Component.text("With different variants:")}
+              {Node.text("With different variants:")}
             </p>
             <Timeline
               items={[
@@ -1036,21 +1036,21 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Layout Variants")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Different application layout configurations.")}
+          {Node.text("Different application layout configurations.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 2rem;">
           // Sidebar Only Example
           <div>
             <Typography text={ReactiveProp.Static("Sidebar Only Layout")} variant={Typography.H5} />
             <p style="color: #6b7280; margin: 0.5rem 0 1rem 0; font-size: 0.875rem;">
-              {Component.text("Application with sidebar navigation")}
+              {Node.text("Application with sidebar navigation")}
             </p>
             <div
               style="border: 2px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; height: 400px;"
             >
               <AppLayout
                 sidebar={<Sidebar
-                  logo={Component.text("eita UI")}
+                  logo={Node.text("eita UI")}
                   sections={[
                     {
                       title: Some("Main"),
@@ -1095,7 +1095,7 @@ module Demo = {
                     text={ReactiveProp.Static("Main Content Area")} variant={Typography.H3}
                   />
                   <p style="margin-top: 1rem;">
-                    {Component.text(
+                    {Node.text(
                       "This is the main content area. The sidebar provides persistent navigation.",
                     )}
                   </p>
@@ -1108,14 +1108,14 @@ module Demo = {
           <div>
             <Typography text={ReactiveProp.Static("Topbar Only Layout")} variant={Typography.H5} />
             <p style="color: #6b7280; margin: 0.5rem 0 1rem 0; font-size: 0.875rem;">
-              {Component.text("Application with top navigation bar")}
+              {Node.text("Application with top navigation bar")}
             </p>
             <div
               style="border: 2px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; height: 300px;"
             >
               <AppLayout
                 topbar={<Topbar
-                  logo={Component.text("eita UI")}
+                  logo={Node.text("eita UI")}
                   navItems={[
                     {
                       label: "Home",
@@ -1144,7 +1144,7 @@ module Demo = {
                     text={ReactiveProp.Static("Main Content Area")} variant={Typography.H3}
                   />
                   <p style="margin-top: 1rem;">
-                    {Component.text("This layout uses only a top navigation bar.")}
+                    {Node.text("This layout uses only a top navigation bar.")}
                   </p>
                 </div>
               </AppLayout>
@@ -1157,14 +1157,14 @@ module Demo = {
               text={ReactiveProp.Static("Sidebar + Topbar Layout")} variant={Typography.H5}
             />
             <p style="color: #6b7280; margin: 0.5rem 0 1rem 0; font-size: 0.875rem;">
-              {Component.text("Full application layout with both sidebar and topbar")}
+              {Node.text("Full application layout with both sidebar and topbar")}
             </p>
             <div
               style="border: 2px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; height: 500px;"
             >
               <AppLayout
                 sidebar={<Sidebar
-                  logo={Component.text("basefn")}
+                  logo={Node.text("basefn")}
                   sections={[
                     {
                       title: Some("Navigation"),
@@ -1206,7 +1206,7 @@ module Demo = {
                 <div style="padding: 2rem;">
                   <Typography text={ReactiveProp.Static("Dashboard")} variant={Typography.H3} />
                   <p style="margin-top: 1rem;">
-                    {Component.text(
+                    {Node.text(
                       "This is a complete application layout with both sidebar and topbar. Click the menu button in the topbar to toggle the sidebar.",
                     )}
                   </p>
@@ -1263,7 +1263,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Badges")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Display status indicators and labels with various styles.")}
+          {Node.text("Display status indicators and labels with various styles.")}
         </p>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
           <Badge label={Signal.make("Default")} variant={Badge.Default} />
@@ -1290,7 +1290,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Spinners")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Loading indicators in different sizes and colors.")}
+          {Node.text("Loading indicators in different sizes and colors.")}
         </p>
         <div style="display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
           <Spinner size={Spinner.Sm} variant={Spinner.Default} />
@@ -1314,24 +1314,24 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Keyboard Shortcuts")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Display keyboard shortcuts in a visually appealing way.")}
+          {Node.text("Display keyboard shortcuts in a visually appealing way.")}
         </p>
         <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
           <div>
-            <span style="color: #6b7280; margin-right: 0.5rem;"> {Component.text("Copy:")} </span>
+            <span style="color: #6b7280; margin-right: 0.5rem;"> {Node.text("Copy:")} </span>
             <Kbd keys={Signal.make(["Ctrl", "C"])} size={Kbd.Md} />
           </div>
           <div>
-            <span style="color: #6b7280; margin-right: 0.5rem;"> {Component.text("Paste:")} </span>
+            <span style="color: #6b7280; margin-right: 0.5rem;"> {Node.text("Paste:")} </span>
             <Kbd keys={Signal.make(["Ctrl", "V"])} size={Kbd.Md} />
           </div>
           <div>
-            <span style="color: #6b7280; margin-right: 0.5rem;"> {Component.text("Save:")} </span>
+            <span style="color: #6b7280; margin-right: 0.5rem;"> {Node.text("Save:")} </span>
             <Kbd keys={Signal.make(["Ctrl", "S"])} size={Kbd.Md} />
           </div>
           <div>
             <span style="color: #6b7280; margin-right: 0.5rem;">
-              {Component.text("Select All:")}
+              {Node.text("Select All:")}
             </span>
             <Kbd keys={Signal.make(["Ctrl", "A"])} size={Kbd.Md} />
           </div>
@@ -1339,7 +1339,7 @@ module Demo = {
         <div style="margin-top: 1rem;">
           <Kbd keys={Signal.make(["Shift", "Alt", "F"])} size={Kbd.Sm} />
           <span style="color: #6b7280; margin-left: 0.5rem;">
-            {Component.text("Format Document")}
+            {Node.text("Format Document")}
           </span>
         </div>
       </div>
@@ -1350,7 +1350,7 @@ module Demo = {
       <div style="margin-top: 2rem;">
         <Typography text={ReactiveProp.Static("Typography")} variant={Typography.H4} />
         <p style="color: #6b7280; margin: 0.5rem 0 1rem 0;">
-          {Component.text("Consistent text styling across your application.")}
+          {Node.text("Consistent text styling across your application.")}
         </p>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           <Typography text={ReactiveProp.Static("Heading 1")} variant={Typography.H1} />
@@ -1389,11 +1389,11 @@ module Demo = {
       <div
         style="margin-top: 3rem; padding: 1rem; background-color: #f3f4f6; border-radius: 0.5rem;"
       >
-        <h3 style="margin-top: 0; color: #374151;"> {Component.text("Form State (Real-time)")} </h3>
+        <h3 style="margin-top: 0; color: #374151;"> {Node.text("Form State (Real-time)")} </h3>
         <pre
           style="background-color: #1f2937; color: #f9fafb; padding: 1rem; border-radius: 0.25rem; overflow-x: auto; font-size: 0.875rem;"
         >
-          {Component.textSignal(() => {
+          {Node.signalText(() => {
             `Name: ${Signal.get(name)}
 Email: ${Signal.get(email)}
 Password: ${"*"->String.repeat(Signal.get(password)->String.length)}
@@ -1414,4 +1414,4 @@ Newsletter: ${Signal.get(newsletter)->Bool.toString}`
 }
 
 // Mount the demo application
-Component.mountById(<Demo />, "root")
+Node.mountById(<Demo />, "root")

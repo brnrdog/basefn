@@ -20,11 +20,11 @@ let examples: array<DocsExample.t> = {
           style="margin-bottom: 2rem;"
           variant={P}
         />
-        <Button> {Component.text("Call to Action")} </Button>
+        <Button> {Node.text("Call to Action")} </Button>
       </Card>,
       code: `<Card>
   <Typography text={ReactiveProp.Static("Card Title")} variant={Typography.H4} />
-  <p>{Component.text("This is a basic card component.")}</p>
+  <p>{Node.text("This is a basic card component.")}</p>
 </Card>`,
     },
   ]

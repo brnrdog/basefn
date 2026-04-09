@@ -25,7 +25,7 @@ let examples: array<DocsExample.t> = {
           >
             <div style="display: flex; flex-direction: column; gap: 1rem;">
               <Typography text={ReactiveProp.Static("Drawer Content")} variant={Typography.H5} />
-              <p> {Component.text("This drawer slides in from the right side.")} </p>
+              <p> {Node.text("This drawer slides in from the right side.")} </p>
             </div>
           </Drawer>
           <Drawer
@@ -36,7 +36,7 @@ let examples: array<DocsExample.t> = {
           >
             <div style="display: flex; flex-direction: column; gap: 1rem;">
               <Typography text={ReactiveProp.Static("Menu Items")} variant={Typography.H5} />
-              <p> {Component.text("This drawer slides in from the left side.")} </p>
+              <p> {Node.text("This drawer slides in from the left side.")} </p>
             </div>
           </Drawer>
         </div>
@@ -54,7 +54,7 @@ let examples: array<DocsExample.t> = {
   position={Drawer.Right}
   title={"Settings"}
 >
-  <p>{Component.text("Drawer content")}</p>
+  <p>{Node.text("Drawer content")}</p>
 </Drawer>`,
     },
     {
@@ -80,7 +80,7 @@ let examples: array<DocsExample.t> = {
             size={Drawer.Sm}
             title={"Small Drawer"}
           >
-            <p> {Component.text("This is a small drawer (240px).")} </p>
+            <p> {Node.text("This is a small drawer (240px).")} </p>
           </Drawer>
           <Drawer
             isOpen={isMediumOpen}
@@ -88,7 +88,7 @@ let examples: array<DocsExample.t> = {
             size={Drawer.Md}
             title={"Medium Drawer"}
           >
-            <p> {Component.text("This is a medium drawer (320px).")} </p>
+            <p> {Node.text("This is a medium drawer (320px).")} </p>
           </Drawer>
           <Drawer
             isOpen={isLargeOpen}
@@ -96,7 +96,7 @@ let examples: array<DocsExample.t> = {
             size={Drawer.Lg}
             title={"Large Drawer"}
           >
-            <p> {Component.text("This is a large drawer (480px).")} </p>
+            <p> {Node.text("This is a large drawer (480px).")} </p>
           </Drawer>
         </div>
       },
@@ -106,7 +106,7 @@ let examples: array<DocsExample.t> = {
   size={Drawer.Sm}
   title={"Small Drawer"}
 >
-  <p>{Component.text("Content")}</p>
+  <p>{Node.text("Content")}</p>
 </Drawer>`,
     },
   ]

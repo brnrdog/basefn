@@ -30,6 +30,6 @@ let make = (
       disabled={disabled}
       ?onChange
     />
-    <span class="basefn-radio-label"> {Component.text(label)} </span>
+    <span class="basefn-radio-label"> {Node.text(label)} </span>
   </label>
 }

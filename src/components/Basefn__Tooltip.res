@@ -14,7 +14,7 @@ let positionToString = (position: position) => {
 }
 
 @jsx.component
-let make = (~content: string, ~position: position=Top, ~children: Component.node) => {
+let make = (~content: string, ~position: position=Top, ~children: Node.node) => {
   let isVisible = Signal.make(false)
 
   let handleMouseEnter = _ => Signal.set(isVisible, true)
@@ -27,7 +27,7 @@ let make = (~content: string, ~position: position=Top, ~children: Component.node
 
   let tooltipContent = Computed.make(() => {
     if Signal.get(isVisible) {
-      [<div class={getTooltipClass()}> {Component.text(content)} </div>]
+      [<div class={getTooltipClass()}> {Node.text(content)} </div>]
     } else {
       []
     }
@@ -37,6 +37,6 @@ let make = (~content: string, ~position: position=Top, ~children: Component.node
     class="basefn-tooltip-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
   >
     {children}
-    {Component.signalFragment(tooltipContent)}
+    {Node.signalFragment(tooltipContent)}
   </div>
 }

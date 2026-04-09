@@ -29,7 +29,7 @@ let make = (
   ~maxHeight: option<string>=?,
   ~maxWidth: option<string>=?,
   ~className: option<string>=?,
-  ~children: Component.node,
+  ~children: Node.node,
 ) => {
   let getClassName = () => {
     let baseClass = "basefn-scroll-area"

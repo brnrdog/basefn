@@ -5,7 +5,7 @@ open Xote
 type tab = {
   value: string,
   label: string,
-  content: Component.node,
+  content: Node.node,
   disabled?: bool,
 }
 
@@ -51,10 +51,10 @@ let make = (~tabs: array<tab>, ~defaultValue: option<string>=?) => {
               onClick={_ => handleTabClick(tab.value, tab.disabled)}
               disabled={tab.disabled->Option.getOr(false)}
             >
-              {Component.text(tab.label)}
+              {Node.text(tab.label)}
             </button>
           })
-          ->Component.fragment}
+          ->Node.fragment}
         </div>
         <div class="basefn-tabs__content">
           {
@@ -69,5 +69,5 @@ let make = (~tabs: array<tab>, ~defaultValue: option<string>=?) => {
     ]
   })
 
-  Component.signalFragment(computed)
+  Node.signalFragment(computed)
 }

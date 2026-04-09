@@ -11,7 +11,7 @@ let examples: array<DocsExample.t> = {
         let activeNav = Signal.make("home")
         <div style="border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden;">
           <Topbar
-            logo={<div> {Component.text("Brand")} </div>}
+            logo={<div> {Node.text("Brand")} </div>}
             navItems={[
               {
                 label: "Home",
@@ -39,7 +39,7 @@ let examples: array<DocsExample.t> = {
       code: `let activeNav = Signal.make("home")
 
 <Topbar
-  logo={Some(<div>{Component.text("Brand")}</div>)}
+  logo={Some(<div>{Node.text("Brand")}</div>)}
   theme={Topbar.Light}
   navItems={Some([
     {
@@ -59,7 +59,7 @@ let examples: array<DocsExample.t> = {
         let menuOpen = Signal.make(false)
         <div style="border: 1px solid #374151; border-radius: 0.5rem; overflow: hidden;">
           <Topbar
-            logo={<div> {Component.text("App")} </div>}
+            logo={<div> {Node.text("App")} </div>}
             size={Topbar.Md}
             onMenuClick={() => Signal.update(menuOpen, m => !m)}
             rightContent={<div style="display: flex; gap: 0.75rem; align-items: center;">
@@ -72,7 +72,7 @@ let examples: array<DocsExample.t> = {
       code: `let menuOpen = Signal.make(false)
 
 <Topbar
-  logo={Some(<div>{Component.text("App")}</div>)}
+  logo={Some(<div>{Node.text("App")}</div>)}
   theme={Topbar.Dark}
   onMenuClick={Some(() => Signal.update(menuOpen, m => !m))}
   rightContent={Some(

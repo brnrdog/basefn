@@ -64,16 +64,16 @@ let make = (
         <div class="basefn-stepper__step-header" onClick={_ => handleStepClick(index, step.status)}>
           <div class="basefn-stepper__step-indicator">
             {switch step.status {
-            | Completed => Component.text("\u2713")
-            | Error => Component.text("\u00d7")
-            | _ => Component.text(Int.toString(index + 1))
+            | Completed => Node.text("\u2713")
+            | Error => Node.text("\u00d7")
+            | _ => Node.text(Int.toString(index + 1))
             }}
           </div>
           <div class="basefn-stepper__step-content">
-            <div class="basefn-stepper__step-title"> {Component.text(step.title)} </div>
+            <div class="basefn-stepper__step-title"> {Node.text(step.title)} </div>
             {switch step.description {
             | Some(desc) =>
-              <div class="basefn-stepper__step-description"> {Component.text(desc)} </div>
+              <div class="basefn-stepper__step-description"> {Node.text(desc)} </div>
             | None => <> </>
             }}
           </div>
@@ -81,6 +81,6 @@ let make = (
         <div class="basefn-stepper__connector" />
       </div>
     })
-    ->Component.fragment}
+    ->Node.fragment}
   </div>
 }

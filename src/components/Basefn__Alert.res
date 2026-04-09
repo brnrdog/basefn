@@ -44,16 +44,16 @@ let make = (
           <div class="basefn-alert__content">
             {switch title {
             | Some(titleText) =>
-              <div class="basefn-alert__title"> {Component.text(titleText)} </div>
+              <div class="basefn-alert__title"> {Node.text(titleText)} </div>
             | None => <> </>
             }}
             <div class="basefn-alert__message">
-              {Component.textSignal(() => Signal.get(message))}
+              {Node.signalText(() => Signal.get(message))}
             </div>
           </div>
           {dismissible
             ? <button class="basefn-alert__dismiss" onClick={_ => handleDismiss()}>
-                {Component.text("\u00d7")}
+                {Node.text("\u00d7")}
               </button>
             : <> </>}
         </div>,
@@ -64,5 +64,5 @@ let make = (
   })
 
   // Use signalFragment to reactively render the content
-  Component.signalFragment(content)
+  Node.signalFragment(content)
 }
