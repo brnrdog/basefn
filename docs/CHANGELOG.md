@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/brnrdog/basefn/compare/v1.10.0...v1.11.0) (2026-04-09)
+
+
+### Features
+
+* upgrade xote from v4 to v6 and address all breaking changes ([#24](https://github.com/brnrdog/basefn/issues/24)) ([156995c](https://github.com/brnrdog/basefn/commit/156995c4c6f59a4d546127919b0e2a7fb7e6c2f0))
+
 # [1.10.0](https://github.com/brnrdog/basefn/compare/v1.9.1...v1.10.0) (2026-03-30)
 
 
